@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slime_Idle
+  m_Name: Skeleton_Die
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -385692312, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
+      value: {fileID: -1730417782, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
+    - time: 0.083333336
+      value: {fileID: -624545322, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
     - time: 0.21666667
-      value: {fileID: 1080996120, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
-    - time: 0.45
-      value: {fileID: 367411057, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
-    - time: 0.6666667
-      value: {fileID: 173213929, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
+      value: {fileID: -722423258, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
+    - time: 0.33333334
+      value: {fileID: 308558212, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,16 +46,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -385692312, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
-    - {fileID: 1080996120, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
-    - {fileID: 367411057, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
-    - {fileID: 173213929, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
+    - {fileID: -1730417782, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
+    - {fileID: -624545322, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
+    - {fileID: -722423258, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
+    - {fileID: 308558212, guid: d4313e15c5371e245829440a0a40c01f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 0.45
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -74,4 +74,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.45
+    functionName: Remove
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

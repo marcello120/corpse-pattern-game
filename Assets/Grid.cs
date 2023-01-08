@@ -94,6 +94,13 @@ public class Grid
         Vector3 arrayPos = ConvetWorldPosToArrayPos(worldPos);
         int xint = (int)Mathf.Round(arrayPos.x);
         int yint = (int)Mathf.Round(arrayPos.y);
+        
+        if(xint < 0 || xint > width || yint < 0 || yint > height)
+        {
+            Debug.LogError("OUTSIDE GRID CONFIDES! " + xint + " : " + yint);
+            return;
+        }
+
         array[xint, yint] = 1;
         Print();
     }
