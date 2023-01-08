@@ -6,49 +6,65 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IEnemy
 {
-    private GameManager gameManager;
-
     public string enemyname;
+
+    private GameManager gameManager;
 
     public Animator animator;
 
-    public BoxCollider2D boxCollider2D;
+    public Collider2D boxCollider2D;
 
     public Rigidbody2D rb;
 
-    public GameObject copse;
+    public SpriteRenderer spriteRenderer;
+
+
+    public GameObject corpse;
 
     public float health;
-    public bool isDead;
+    public bool isDead = false;
+    public bool isMoving = false;
+    public float attackPower;
+    public float movemetSpeed;
 
 
 
-    // Start is called before the first frame update
-    public void Init()
+    // Should be called in Start
+    public virtual void Init()
     {
         //this should be done with events
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        Debug.Log("SUPER START");
         animator = GetComponent<Animator>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
+        boxCollider2D = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
 
-
-    public void Death()
+    public virtual void Death()
     {
 
         Vector3 place = gameManager.AddWorldPosToGridAndReturnAdjustedPos(transform.position);
 
-        Instantiate(copse, place, Quaternion.identity);
         animator.SetTrigger("Death");
         boxCollider2D.enabled = false;
+
+        if (corpse!=null)
+        {
+            Instantiate(corpse, place, Quaternion.identity);
+
+        }
+        else
+        {
+            Debug.LogError("Corspe must be set");
+        }
+        isDead = true;
+
+
     }
 
 
-    public void getHit(float damage, Vector2 knockback)
+    public virtual void getHit(float damage, Vector2 knockback)
     {
         rb.AddForce(knockback);
 
@@ -63,8 +79,42 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
     }
 
-    public void Remove()
+    public virtual void Remove()
     {
         Destroy(gameObject);
     }
+
+
+    public void damagePlayer(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            playerController.takeDamage(attackPower, this);
+        }
+    }
+
+    public bool moveToPlayerWithDetectionZone(DetectionZoneController detectionZoneController)
+    {
+        isMoving = false;
+
+        if (detectionZoneController.detectedObjs.Count > 0)
+        {
+            if (detectionZoneController.detectedObjs[0] != null && health > 0)
+            {
+                isMoving = true;
+                GameObject target = detectionZoneController.detectedObjs[0];
+
+                Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
+
+                rb.AddForce(directionToTarget * movemetSpeed);
+
+                isMoving = true;
+            }
+        }
+        animator.SetBool("IsMoving", isMoving);
+
+        return isMoving;
+    }
+
 }

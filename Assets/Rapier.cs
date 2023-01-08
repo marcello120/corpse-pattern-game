@@ -12,6 +12,8 @@ public class Rapier : Weapon
     public float weaponKnockback = 10;
     public float speed = 10;
 
+    private bool attackState = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,17 +34,25 @@ public class Rapier : Weapon
     public void StartAttack()
     {
         polygonCollider2.enabled= true;
+        attackState= true;
     }
 
     public void EndAttack()
     {
         polygonCollider2.enabled = false;
+        attackState = false;
 
     }
 
     public override void Attack()
     {
         animator.SetTrigger("Attack");
+    }
+
+
+    public override bool isAttacking()
+    {
+        return attackState;
     }
 
 

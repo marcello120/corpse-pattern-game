@@ -25,11 +25,17 @@ public class PlayerController : MonoBehaviour
 
     bool canMove = true;
 
+    bool canAttack = true;
+
     public float invicnicbilityTime = 0.3f;
 
     public bool invincible = false;
 
+    public float stunTime = 0.2f;
+    public bool stunned = false;
+
     public float ininvTimer = 0;
+    public float stuntimer = 0;
 
     public Vector3 mousePosition = new Vector3(0, 0, 0);
 
@@ -49,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
         //Debug.DrawRay(transform.position, lookDir);
 
-        //togle inivicibility
+        //toggle inivicibility
         if(invincible)
         {
             ininvTimer += Time.deltaTime;
@@ -59,9 +65,19 @@ public class PlayerController : MonoBehaviour
                 invincible= false;
             }
         }
+        //toggle stunned
+        if (stunned)
+        {
+            stuntimer += Time.deltaTime;
+            if (stuntimer > stunTime)
+            {
+                stuntimer = 0;
+                stunned = false;
+            }
+        }
 
         //move the character
-        if (canMove && rb.velocity == Vector2.zero)
+        if (canMove && !stunned)
         {
             // If movement input is not 0, try to move
             if (movementInput != Vector2.zero)
@@ -154,8 +170,12 @@ public class PlayerController : MonoBehaviour
 
     void OnFire()
     {
-        //animator.SetTrigger("swordAttack");
-        holster.Attack();
+        if (canAttack)
+        {
+            //animator.SetTrigger("swordAttack");
+            holster.Attack();
+        }
+
     }
 
     public void StartAttack()
@@ -175,6 +195,10 @@ public class PlayerController : MonoBehaviour
 
     public void takeDamage(float damage, Enemy enemy)
     {
+        if(!canAttack && !canMove)
+        {
+            return;
+        }
         if (invincible)
         {
             return;
@@ -193,11 +217,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             invincible = true;
+            stunned = true;
         }
     }
 
     public void Die()
     {
+        canAttack = false;
+        holster.canAttack = false;
         canMove = false;
         animator.SetTrigger("Death");
     }

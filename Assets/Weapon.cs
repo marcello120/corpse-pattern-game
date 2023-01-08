@@ -9,6 +9,11 @@ public class Weapon : MonoBehaviour, IWeapon
         throw new System.NotImplementedException();
     }
 
+    public virtual bool isAttacking()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
