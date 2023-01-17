@@ -16,32 +16,7 @@ public class SkeletonController : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        isMoving = false;
-
-        if (DetectionZoneController.detectedObjs.Count > 0)
-        {
-            if (DetectionZoneController.detectedObjs[0] != null && health > 0)
-            {
-                isMoving = true;
-                GameObject target = DetectionZoneController.detectedObjs[0];
-
-                Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
-
-                if (directionToTarget.x > 0f)
-                {
-                    spriteRenderer.flipX = true;
-                }
-                else
-                {
-                    spriteRenderer.flipX = false;
-                }
-
-                rb.AddForce(directionToTarget * movemetSpeed);
-
-                isMoving = true;
-            }
-        }
-        animator.SetBool("IsMoving", isMoving);
+        moveToPlayerWithDetectionZone(DetectionZoneController);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

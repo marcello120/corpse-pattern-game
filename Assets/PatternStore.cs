@@ -11,7 +11,7 @@ public class PatternStore
     {
         patterns = new List<int[,]>();
 
-        int[,] verticalLine = new int[1, 3] {
+       /* int[,] verticalLine = new int[1, 3] {
             {1,1,1}
         };
         patterns.Add(verticalLine);
@@ -46,8 +46,37 @@ public class PatternStore
             {-1,1},
             {1,1}
         };
-        patterns.Add(bottomleftcorner);
+        patterns.Add(bottomleftcorner);*/
 
+        int[,] wave = new int[5, 2] {
+            {-1,1},
+            {1,-1},
+            {-1,1},
+            {1,-1},
+            {-1,1}
+        };
+        patterns.Add(wave);
+
+        int[,] snake = new int[4, 2] {
+            {1,1},
+            {1,-1},
+            {1,-1},
+            {1,-1}
+        };
+        patterns.Add(snake);
+
+        int[,] reed = new int[2, 3] {
+            {1,1,1},
+            {1,-1,-1}
+        };
+        patterns.Add(reed);
+
+        int[,] eye = new int[3, 3] {
+            {-1,1,-1},
+            {1,-1,1},
+            {-1,1,-1},
+        };
+        patterns.Add(eye);
 
     }
 

@@ -18,6 +18,8 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public SpriteRenderer spriteRenderer;
 
+    public int flipBehaviour;
+
 
     public GameObject corpse;
 
@@ -107,6 +109,9 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
                 Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
 
+
+                handleFlip(flipBehaviour, directionToTarget);
+
                 rb.AddForce(directionToTarget * movemetSpeed);
 
                 isMoving = true;
@@ -115,6 +120,37 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         animator.SetBool("IsMoving", isMoving);
 
         return isMoving;
+    }
+
+    public void handleFlip(int flipBehaviour, Vector3 directionToTarget)
+    {
+        if(flipBehaviour != -1 && flipBehaviour != 1)
+        {
+            return;
+        }
+        if (flipBehaviour == 1)
+        {
+            if (directionToTarget.x < 0f)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+        if (flipBehaviour == -1)
+        {
+            if (directionToTarget.x > 0f)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+
     }
 
 }
