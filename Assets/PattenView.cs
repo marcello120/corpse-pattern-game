@@ -45,7 +45,8 @@ public class PattenView : MonoBehaviour
                 {
                     GameObject squareObj = Instantiate(square, patternGrid.getWorldPositionGridNoOffset(i, j) + new Vector3(patternGrid.gridCellSize, patternGrid.gridCellSize) * 0.5f + transform.position, Quaternion.identity, gameObject.transform);
                     GameObject corpseObj = Instantiate(corpse, patternGrid.getWorldPositionGridNoOffset(i, j) + new Vector3(patternGrid.gridCellSize, patternGrid.gridCellSize) * 0.5f + transform.position, Quaternion.identity, gameObject.transform);
-
+                    SpriteRenderer corpseRenderer = corpseObj.GetComponent<SpriteRenderer>();
+                    corpseRenderer.sortingOrder = 10;
                     squares.Add(squareObj);
                     corpses.Add(corpseObj);
                 }

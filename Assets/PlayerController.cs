@@ -110,9 +110,7 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("MouseY", lookDir.y);
             animator.SetFloat("MouseX", lookDir.x);
 
-            /*
-                        Debug.Log(lookDir);
-            */
+
             //flip sprite based on mouse position
             if (lookDir.x < 0f)
             {

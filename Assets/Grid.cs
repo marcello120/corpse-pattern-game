@@ -30,7 +30,6 @@ public class Grid
         {
             for (int y = 0; y < array.GetLength(1); y++)
             {
-                Debug.Log("x:" + x + "|" + "y:" + y);
                 //CreateWorldText(gridArray[x, y].ToString(), null, getWorldPositionGrid(x, y), 1, Color.white, TextAnchor.MiddleCenter);
                 Debug.DrawLine(getWorldPositionGridWithOffset(x, y), getWorldPositionGridWithOffset(x, y + 1), Color.black, 200f);
                 Debug.DrawLine(getWorldPositionGridWithOffset(x, y), getWorldPositionGridWithOffset(x + 1, y), Color.black, 200f);

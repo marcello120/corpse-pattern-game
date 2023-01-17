@@ -168,6 +168,7 @@ MonoBehaviour:
   boxCollider2D: {fileID: 0}
   rb: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  flipBehaviour: 1
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
   health: 20
   isDead: 0
