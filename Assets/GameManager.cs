@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public PattenView pattenView;
 
+    public AudioSource scoreSound;
+
     public Enemy slime;
 
     public int width = 22;
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
         grid = new Grid(width,height,gridCellSize,0);
 
         //set pattern
-        pattern = patternStore.getRandomPattern();
+        pattern = patternStore.getRandomEasyPattern();
         pattenView.SetPattern(pattern);
     }
 
@@ -72,6 +74,9 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < fitPatter.Count; i++)
             {
+                //SCORE!!!!
+                scoreSound.Play();
+
                 //Instantiate(square, grid.getWorldPositionGridWithOffset(fitPatter[i].x, fitPatter[i].y) + new Vector3(grid.gridCellSize, grid.gridCellSize) * 0.5f, Quaternion.identity);
 
                 //add a corpse cleaner, with collides with corpse then removes corpese and self
@@ -84,7 +89,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("SUCCESS");
            
             //get new random pattern from store
-            pattern = patternStore.getRandomPattern();
+            pattern = patternStore.getRandomEasyPattern();
 
             //set new pattern on UI
             pattenView.SetPattern(pattern);

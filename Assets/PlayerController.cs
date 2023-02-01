@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -41,12 +42,18 @@ public class PlayerController : MonoBehaviour
 
     public Holster holster;
 
+    public Text healthText;
+
+    public AudioSource takeDamageSound;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
+        healthText.text = playerHealth.ToString();
+
 
     }
 
@@ -203,10 +210,12 @@ public class PlayerController : MonoBehaviour
         }
         swordAttack.StopAttack();
         animator.SetTrigger("Hit");
+        takeDamageSound.Play();
         canMove = false;
         Vector2 knockback = (transform.position - enemy.gameObject.transform.position).normalized * 500;
         rb.AddForce(knockback);
         playerHealth -= damage;
+        healthText.text = playerHealth.ToString();
         canMove = true;
         if (playerHealth <= 0)
         {
@@ -230,6 +239,18 @@ public class PlayerController : MonoBehaviour
     public void Defeat()
     {
         Destroy(gameObject);
+    }
+
+    public void OnEscape()
+    {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
     }
 
 

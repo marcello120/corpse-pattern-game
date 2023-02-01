@@ -6,15 +6,20 @@ public class PatternStore
 {
 
     public List<int[,]> patterns;
+    public List<int[,]> easyPatterns;
+    public List<int[,]> hardPatterns;
 
     public PatternStore()
     {
         patterns = new List<int[,]>();
+        easyPatterns = new List<int[,]>();
+        hardPatterns = new List<int[,]>();
+
 
         int[,] verticalLine = new int[1, 3] {
             {1,1,1}
         };
-        patterns.Add(verticalLine);
+        easyPatterns.Add(verticalLine);
 
 
         int[,] horizontalLine = new int[3, 1] {
@@ -22,31 +27,31 @@ public class PatternStore
             {1},
             {1}
         };
-        patterns.Add(horizontalLine);
+        easyPatterns.Add(horizontalLine);
 
         int[,] toprightcorner = new int[2, 2] {
             {1,1},
             {1,-1}
         };
-        patterns.Add(toprightcorner);
+        easyPatterns.Add(toprightcorner);
 
         int[,] bottomrightcorner = new int[2, 2] {
             {1,1},
             {-1,1}
         };
-        patterns.Add(bottomrightcorner);
+        easyPatterns.Add(bottomrightcorner);
 
         int[,] topleftcorner = new int[2, 2] {
             {1,-1},
             {1,1}
         };
-        patterns.Add(topleftcorner);
+        easyPatterns.Add(topleftcorner);
 
         int[,] bottomleftcorner = new int[2, 2] {
             {-1,1},
             {1,1}
         };
-        patterns.Add(bottomleftcorner);
+        easyPatterns.Add(bottomleftcorner);
 
         int[,] wave = new int[5, 2] {
             {-1,1},
@@ -55,7 +60,7 @@ public class PatternStore
             {1,-1},
             {-1,1}
         };
-        patterns.Add(wave);
+        hardPatterns.Add(wave);
 
         int[,] snake = new int[4, 2] {
             {1,1},
@@ -63,20 +68,24 @@ public class PatternStore
             {1,-1},
             {1,-1}
         };
-        patterns.Add(snake);
+        hardPatterns.Add(snake);
 
         int[,] reed = new int[2, 3] {
             {1,1,1},
             {1,-1,-1}
         };
-        patterns.Add(reed);
+        hardPatterns.Add(reed);
 
         int[,] eye = new int[3, 3] {
             {-1,1,-1},
             {1,-1,1},
             {-1,1,-1},
         };
-        patterns.Add(eye);
+        hardPatterns.Add(eye);
+
+
+        patterns.AddRange(easyPatterns);
+        patterns.AddRange(hardPatterns);
 
     }
 
@@ -84,6 +93,18 @@ public class PatternStore
     {
         int max = patterns.Count;
         return patterns[Random.Range(0, max)];
+    }
+
+    public int[,] getRandomEasyPattern()
+    {
+        int max = easyPatterns.Count;
+        return easyPatterns[Random.Range(0, max)];
+    }
+
+    public int[,] getRandomHardPattern()
+    {
+        int max = hardPatterns.Count;
+        return hardPatterns[Random.Range(0, max)];
     }
 
 }

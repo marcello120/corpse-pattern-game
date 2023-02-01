@@ -18,6 +18,8 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public SpriteRenderer spriteRenderer;
 
+    public AudioSource getHitSound;
+
     public int flipBehaviour;
 
 
@@ -40,6 +42,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         boxCollider2D = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer= GetComponent<SpriteRenderer>();
+        getHitSound = GetComponent<AudioSource>();
     }
 
 
@@ -68,6 +71,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void getHit(float damage, Vector2 knockback)
     {
+        if(getHitSound!= null)
+        {
+            getHitSound.Play();
+        }
+
         rb.AddForce(knockback);
 
         health -= damage;

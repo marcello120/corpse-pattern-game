@@ -7,6 +7,7 @@ public class Rapier : Weapon
     private Rigidbody2D rb;
     private PolygonCollider2D polygonCollider2;
     private Animator animator;
+    private AudioSource hitSound;
 
     public float weaponAttackPower = 10;
     public float weaponKnockback = 10;
@@ -14,13 +15,13 @@ public class Rapier : Weapon
 
     private bool attackState = false;
 
-
     // Start is called before the first frame update
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
         polygonCollider2 = GetComponent<PolygonCollider2D>();
         animator = GetComponent<Animator>();
+        hitSound = GetComponent<AudioSource>();
 
         polygonCollider2.enabled = false;
     }
@@ -47,6 +48,7 @@ public class Rapier : Weapon
     public override void Attack()
     {
         animator.SetTrigger("Attack");
+        hitSound.Play();
     }
 
 
