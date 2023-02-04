@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FrogController : Enemy
 {
-    public DetectionZoneController detectionZoneController;
-    public GameObject tounge;
+    public FrogTungeController tounge;
 
     public enum State
     {
         Attacking,
         Moving,
+        Charging,
         Idle
     }
 
@@ -25,7 +25,6 @@ public class FrogController : Enemy
 
     public State state;
 
-    private Animator toungeAnimtor;
 
 
     // Start is called before the first frame update
@@ -34,8 +33,6 @@ public class FrogController : Enemy
         base.Init();
         player = GameObject.FindGameObjectWithTag("Player");
         state = State.Idle;
-        toungeAnimtor= tounge.GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -61,21 +58,26 @@ public class FrogController : Enemy
 
             if (distance < attackDistance)
             {
+                tounge.ReadyToAttack(directionToTarget);
+
                 //stop and perform attack
                 if (attackTime >= attackDelay)
                 {
+                    
                     //perform attack
                     attackTime = 0;
                     Debug.Log("ATTACK!");
-                    toungeAnimtor.SetTrigger("Attack");
+                    tounge.Attack();
                     
                 }
             }
             else
             {
+                tounge.NotReadyToAttack(directionToTarget);
                 //move to player
                 rb.AddForce(directionToTarget * movemetSpeed);
                 isMoving = true;
+                state = State.Moving;
             }
         }
 

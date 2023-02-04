@@ -183,21 +183,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void StartAttack()
-    {
-        canMove = false;
-        Debug.Log("Sword attack");
-        if (spriteRenderer.flipX)
-        {
-            swordAttack.AttackLeft();
-        }
-        else
-        {
-            swordAttack.AttackRight();
-        }
-        //holster.Attack();
-    }
-
     public void takeDamage(float damage, Enemy enemy)
     {
         if(!canAttack && !canMove)
@@ -208,7 +193,6 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        swordAttack.StopAttack();
         animator.SetTrigger("Hit");
         takeDamageSound.Play();
         canMove = false;
