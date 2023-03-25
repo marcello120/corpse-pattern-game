@@ -6,51 +6,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class PlayerController : MonoBehaviour
+public class RiggedPlayerController : PlayerController
 {
-
-    public float playerHealth = 30;
-
-    public float moveSpeed = 1f;
-    public float collisionOffset = 0.001f;
-    public ContactFilter2D movementFilter;
-    public SwordAttack swordAttack;
-
-    public Vector2 movementInput;
-    public Rigidbody2D rb;
-    public List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-
-    public Animator animator;
-
-    public SpriteRenderer spriteRenderer;
-
-    public bool canMove = true;
-
-    public bool canAttack = true;
-
-    public float invicnicbilityTime = 0.3f;
-
-    public bool invincible = false;
-
-    public float stunTime = 0.2f;
-    public bool stunned = false;
-
-    public float ininvTimer = 0;
-    public float stuntimer = 0;
-
-    public Vector3 mousePosition = new Vector3(0, 0, 0);
-
-    public Holster holster;
-
-    public Text healthText;
-
-    public AudioSource takeDamageSound;
-
-    public bool flipped;
+    public GameObject ParentBone;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         rb = GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
@@ -127,13 +89,17 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (lookDir.x < 0f && transform.localScale.x > 0f)
+                if (lookDir.x > 0f && ParentBone.transform.localRotation.eulerAngles.y != 180)
                 {
-                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                    //holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
+                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 180f, ParentBone.transform.localRotation.eulerAngles.z);
                 }
-                else if (lookDir.x > 0f && transform.localScale.x < 0f)
+                else if (lookDir.x < 0f && ParentBone.transform.localRotation.eulerAngles.y == 180)
                 {
-                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                    // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
+                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 0f, ParentBone.transform.localRotation.eulerAngles.z);
 
                 }
             }
