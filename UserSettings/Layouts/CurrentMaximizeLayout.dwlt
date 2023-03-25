@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 8767
+  controlID: 116
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 8768
+  controlID: 117
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 8769
+  controlID: 118
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 62650000
-      m_LastClickedID: 25954
-      m_ExpandedIDs: f2faffff0afbffff
+      m_SelectedIDs: bca80000
+      m_LastClickedID: 43196
+      m_ExpandedIDs: 04d5ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -560,9 +560,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.14429192, y: -0.1056252, z: -0.00045313747}
+    m_Target: {x: -0.3126678, y: 0.005690539, z: 0.13111089}
     speed: 2
-    m_Value: {x: -0.14025423, y: -0.09635974, z: -0.0006945488}
+    m_Value: {x: -0.31705266, y: 0.010798182, z: 0.1308372}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -613,9 +613,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.5123292
+    m_Target: 0.58083665
     speed: 2
-    m_Value: 0.5364704
+    m_Value: 0.6082059
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -744,22 +744,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Marci\Desktop\Projects\Unity\Cadaver-Unity\corpse-pattern-game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 886c0000
-    m_LastClickedID: 27784
-    m_ExpandedIDs: 00000000866c0000886c000000ca9a3b
+    m_SelectedIDs: d0ac0000
+    m_LastClickedID: 44240
+    m_ExpandedIDs: 00000000d0ac0000d2ac000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -787,7 +787,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000866c0000886c000000ca9a3b
+    m_ExpandedIDs: 00000000d0ac0000d2ac0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -812,8 +812,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 62650000
-    m_LastClickedInstanceID: 25954
+    m_SelectedInstanceIDs: bca80000
+    m_LastClickedInstanceID: 43196
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300000000000086600000d8620000e4660000b4640000a28000006edc0000c6df0000406600001898000010980000149800008c860000908600008086000096bb0000e6650000ec660000
     m_RenameOverlay:
@@ -839,7 +839,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 11}
+    m_ScrollPosition: {x: 0, y: 132}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 149
