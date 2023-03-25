@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -15,17 +16,17 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
 
-    Vector2 movementInput;
-    Rigidbody2D rb;
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    public Vector2 movementInput;
+    public Rigidbody2D rb;
+    public List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    Animator animator;
+    public Animator animator;
 
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
-    bool canMove = true;
+    public bool canMove = true;
 
-    bool canAttack = true;
+    public bool canAttack = true;
 
     public float invicnicbilityTime = 0.3f;
 
@@ -41,12 +42,20 @@ public class PlayerController : MonoBehaviour
 
     public Holster holster;
 
+    public Text healthText;
+
+    public AudioSource takeDamageSound;
+
+    public bool flipped;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
+        healthText.text = playerHealth.ToString();
+
 
     }
 
@@ -112,15 +121,35 @@ public class PlayerController : MonoBehaviour
 
 
             //flip sprite based on mouse position
-            if (lookDir.x < 0f)
+            if (spriteRenderer != null)
             {
-                spriteRenderer.flipX = true;
+                Flip(lookDir);
             }
             else
             {
-                spriteRenderer.flipX = false;
+                if (lookDir.x < 0f && transform.localScale.x > 0f)
+                {
+                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                }
+                else if (lookDir.x > 0f && transform.localScale.x < 0f)
+                {
+                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+
+                }
             }
 
+        }
+    }
+
+    private void Flip(Vector3 lookDir)
+    {
+        if (lookDir.x < 0f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
         }
     }
 
@@ -176,21 +205,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void StartAttack()
-    {
-        canMove = false;
-        Debug.Log("Sword attack");
-        if (spriteRenderer.flipX)
-        {
-            swordAttack.AttackLeft();
-        }
-        else
-        {
-            swordAttack.AttackRight();
-        }
-        //holster.Attack();
-    }
-
     public void takeDamage(float damage, Enemy enemy)
     {
         if(!canAttack && !canMove)
@@ -201,12 +215,13 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        swordAttack.StopAttack();
         animator.SetTrigger("Hit");
+        takeDamageSound.Play();
         canMove = false;
         Vector2 knockback = (transform.position - enemy.gameObject.transform.position).normalized * 500;
         rb.AddForce(knockback);
         playerHealth -= damage;
+        healthText.text = playerHealth.ToString();
         canMove = true;
         if (playerHealth <= 0)
         {
@@ -230,6 +245,18 @@ public class PlayerController : MonoBehaviour
     public void Defeat()
     {
         Destroy(gameObject);
+    }
+
+    public void OnEscape()
+    {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
     }
 
 
