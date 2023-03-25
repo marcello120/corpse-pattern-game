@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 4325643126273682215}
   - component: {fileID: 7457099189614200132}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: Scarab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

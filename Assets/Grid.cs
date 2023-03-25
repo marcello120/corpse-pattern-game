@@ -128,16 +128,16 @@ public class Grid
         //get x from worldPos
         float wx = worldPos.x;
         //remove 0.8 to set at origo.
-        wx -= 0.08f;
+        wx -= gridCellSize/2;
         //devide by 0.16 and add offset of 11
-        float localX = (wx / 0.16f) + width / 2;
+        float localX = (wx / gridCellSize) + width / 2;
 
         //get x from worldPos
         float wy = worldPos.y;
         //remove 0.8 to set at origo.
-        wy -= 0.08f;
+        wy -= gridCellSize/2;
         //devide by 0.16 and add offset of 11
-        float localY = (wy / 0.16f) + height / 2;
+        float localY = (wy / gridCellSize) + height / 2;
 
         Vector3 result = new Vector3(localX, localY, 0);
         Debug.Log("Result: " + result);
