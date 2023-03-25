@@ -9,6 +9,14 @@ using UnityEngine.UIElements;
 public class RiggedPlayerController : PlayerController
 {
     public GameObject ParentBone;
+    public float DashAmount = 1f;
+    public bool canDash = true;
+    public float dashCooldown = 3f;
+    public float dashTimer = 0f;
+
+
+
+    [SerializeField] private LayerMask dashLayerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +31,21 @@ public class RiggedPlayerController : PlayerController
 
     private void FixedUpdate()
     {
+        //toggle dash
+        if (!canDash)
+        {
+            dashTimer += Time.deltaTime;
+            if (dashTimer > dashCooldown)
+            {
+                dashTimer = 0;
+                canDash = true;
+            }
+        }
 
         //Debug.DrawRay(transform.position, lookDir);
 
         //toggle inivicibility
-        if(invincible)
+        if (invincible)
         {
             ininvTimer += Time.deltaTime;
             if (ininvTimer > invicnicbilityTime)
@@ -53,8 +71,11 @@ public class RiggedPlayerController : PlayerController
             // If movement input is not 0, try to move
             if (movementInput != Vector2.zero)
             {
+                Vector3 direction = movementInput.normalized;
 
-                bool success = TryMove(movementInput);
+                rb.velocity= direction * moveSpeed;
+
+/*              bool success = TryMove(movementInput);
 
                 if (!success)
                 {
@@ -64,8 +85,12 @@ public class RiggedPlayerController : PlayerController
                 if (!success)
                 {
                     success = TryMove(new Vector2(0, movementInput.y));
-                }
-                animator.SetBool("isMoving", success);
+                }*/
+
+
+
+
+                animator.SetBool("isMoving", true);
             }
             else
             {
@@ -159,6 +184,25 @@ public class RiggedPlayerController : PlayerController
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    void OnJump()
+    {
+        Debug.Log("JUMP");
+        if (canMove & !stunned & canDash)
+        {
+            RaycastHit2D raycast = Physics2D.Raycast(transform.position, movementInput.normalized, DashAmount, dashLayerMask);
+            if(raycast.collider==null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * DashAmount);
+                canDash = false;
+            }
+            else
+            {
+                Debug.Log(raycast.collider);
+            }
+        }
     }
 
     void OnFire()
