@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
 
     public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos)
     {
+        return AddWorldPosToGridAndReturnAdjustedPos(worldPos, 1);
+    }
+
+
+    public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber)
+    {
         //spawn replacement slime
         SpawnSlime();
 
@@ -64,7 +70,7 @@ public class GameManager : MonoBehaviour
         Vector3 adjustedPos = grid.adjustWoldPosToNearestCell(worldPos);
 
         //add adjusted world position to grid
-        grid.addWorldPosToArray(adjustedPos);
+        grid.addWorldPosToArray(adjustedPos, corpsenumber);
 
         //check if pattern is found in grid
         List<Vector2Int> fitPatter = patternChecker.checkForPatternAndReturnPositions(pattern, grid.array);

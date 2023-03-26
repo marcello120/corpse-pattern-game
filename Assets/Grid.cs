@@ -90,6 +90,12 @@ public class Grid
 
     public void addWorldPosToArray(Vector3 worldPos)
     {
+        addWorldPosToArray(worldPos, 1);
+    }
+
+
+    public void addWorldPosToArray(Vector3 worldPos, int corpseNumber)
+    {
         Vector3 arrayPos = ConvetWorldPosToArrayPos(worldPos);
         int xint = (int)Mathf.Round(arrayPos.x);
         int yint = (int)Mathf.Round(arrayPos.y);
@@ -100,7 +106,7 @@ public class Grid
             return;
         }
 
-        array[xint, yint] = 1;
+        array[xint, yint] = corpseNumber;
         Print();
     }
     public void RemoveFromArray(int x, int y)

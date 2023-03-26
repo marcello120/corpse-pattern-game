@@ -31,6 +31,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public float attackPower;
     public float movemetSpeed;
 
+    public int corpseNumber = 1;
 
 
     // Should be called in Start
@@ -49,7 +50,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public virtual void Death()
     {
 
-        Vector3 place = gameManager.AddWorldPosToGridAndReturnAdjustedPos(transform.position);
+        Vector3 place = gameManager.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
 
         animator.SetTrigger("Death");
         boxCollider2D.enabled = false;
