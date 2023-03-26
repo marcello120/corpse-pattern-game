@@ -259,6 +259,8 @@ public class RiggedPlayerController : PlayerController
 
     public void OnEscape()
     {
+        // TODO trigger pause screen
+
         if(Time.timeScale == 0)
         {
             Time.timeScale = 1;

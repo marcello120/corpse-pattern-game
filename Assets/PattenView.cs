@@ -25,6 +25,8 @@ public class PattenView : MonoBehaviour
 
     public List<GameObject> squares;
 
+    private float patternSize = 0.4f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +51,8 @@ public class PattenView : MonoBehaviour
             {
                 if (pattern[i, j] == 1)
                 {
-                    GameObject squareObj = Instantiate(square, transform.position + new Vector3(i *1.15f, j*1.15f) - new Vector3(-1,pattern.GetLength(1)), Quaternion.identity, gameObject.transform);
-                    GameObject corpseObj = Instantiate(corpse, transform.position + new Vector3(i * 1.15f, j * 1.15f) - new Vector3(-1, pattern.GetLength(1)), Quaternion.identity, gameObject.transform);
+                    GameObject squareObj = Instantiate(square, transform.position + new Vector3(i, j) * patternSize - new Vector3(-1, pattern.GetLength(1) * patternSize), Quaternion.identity, gameObject.transform);
+                    GameObject corpseObj = Instantiate(corpse, transform.position + new Vector3(i , j) * patternSize - new Vector3(-1, pattern.GetLength(1)*patternSize), Quaternion.identity, gameObject.transform);
 
 
                     /*
