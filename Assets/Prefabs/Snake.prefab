@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45a65255f81fca41b63e61ffa302ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 0.1
-  magnitude: 1
+  frequency: 20
+  magnitude: 0.03
   player: {fileID: 0}
-  distenceBetween: 0.1
+  distenceBetween: 0.075
   speed: 1
   bodyParts:
   - {fileID: 1130458422940699026, guid: 5ebfb0f7f622737438e9cc4d1a3d49f4, type: 3}
