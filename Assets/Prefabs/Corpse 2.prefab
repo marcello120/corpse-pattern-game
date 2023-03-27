@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2198458872556661557}
   - component: {fileID: 8931297546836305124}
   m_Layer: 3
-  m_Name: Corpse
+  m_Name: Corpse 2
   m_TagString: Corpse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 1653460117, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_Color: {r: 0.22232144, g: 0.735849, b: 0, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.54, y: 0.57}
@@ -198,8 +198,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: c197761c5bddb1041b7eb85e64f55878, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_Color: {r: 0.017358629, g: 0.6509434, b: 0, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.32, y: 0.32}
