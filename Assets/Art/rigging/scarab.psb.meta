@@ -90,7 +90,6 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
-    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: left picer
@@ -505,8 +504,7 @@ ScriptedImporter:
     - {x: 32, y: 33}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 571, y: 623}
-    spritePosition: {x: 817, y: 615}
+    uvTransform: {x: -246, y: 8}
   - name: right pincer
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -897,8 +895,7 @@ ScriptedImporter:
     - {x: 30, y: 31}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 571, y: 295}
-    spritePosition: {x: 1004, y: 615}
+    uvTransform: {x: -433, y: -320}
   - name: left middle leg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1311,8 +1308,7 @@ ScriptedImporter:
     - {x: 32, y: 33}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 744, y: 4}
-    spritePosition: {x: 682, y: 283}
+    uvTransform: {x: 62, y: -279}
   - name: left hind leg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1877,8 +1873,7 @@ ScriptedImporter:
     - {x: 45, y: 46}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 744, y: 462}
-    spritePosition: {x: 738, y: 142}
+    uvTransform: {x: 6, y: 320}
   - name: right middle leg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2324,8 +2319,7 @@ ScriptedImporter:
     - {x: 35, y: 36}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 744, y: 744}
-    spritePosition: {x: 1080, y: 280}
+    uvTransform: {x: -336, y: 464}
   - name: right hind leg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2824,8 +2818,7 @@ ScriptedImporter:
     - {x: 39, y: 40}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 571, y: 4}
-    spritePosition: {x: 1043, y: 146}
+    uvTransform: {x: -472, y: -142}
   - name: head
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3295,8 +3288,7 @@ ScriptedImporter:
     - {x: 38, y: 39}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 744, y: 252}
-    spritePosition: {x: 867, y: 607}
+    uvTransform: {x: -123, y: -355}
   - name: Layer 5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3499,8 +3491,7 @@ ScriptedImporter:
     - {x: 12, y: 13}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 694, y: 133}
+    uvTransform: {x: -690, y: -129}
   characterData:
     bones:
     - name: bone_1

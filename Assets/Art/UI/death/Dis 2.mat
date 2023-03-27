@@ -53,8 +53,8 @@ Material:
     m_Floats:
     - _CutOff: 0
     - _Glow_Thickness: 0.1
-    - _Noise_Scale: 111.49
-    - _Noise_Strenght: 8.38
+    - _Noise_Scale: 3.45
+    - _Noise_Strenght: 0.87
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
