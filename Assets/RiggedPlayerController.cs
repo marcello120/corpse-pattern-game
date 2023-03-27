@@ -25,8 +25,6 @@ public class RiggedPlayerController : PlayerController
         animator= GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
         healthText.text = playerHealth.ToString();
-
-
     }
 
     private void FixedUpdate()
@@ -75,21 +73,6 @@ public class RiggedPlayerController : PlayerController
 
                 rb.velocity= direction * moveSpeed;
 
-/*              bool success = TryMove(movementInput);
-
-                if (!success)
-                {
-                    success = TryMove(new Vector2(movementInput.x, 0));
-                }
-
-                if (!success)
-                {
-                    success = TryMove(new Vector2(0, movementInput.y));
-                }*/
-
-
-
-
                 animator.SetBool("isMoving", true);
             }
             else
@@ -108,70 +91,49 @@ public class RiggedPlayerController : PlayerController
 
 
             //flip sprite based on mouse position
-            if (spriteRenderer != null)
-            {
-                Flip(lookDir);
-            }
-            else
-            {
-                if (lookDir.x > 0f && ParentBone.transform.localRotation.eulerAngles.y != 180)
-                {
-                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-                    //holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 180f, ParentBone.transform.localRotation.eulerAngles.z);
-                }
-                else if (lookDir.x < 0f && ParentBone.transform.localRotation.eulerAngles.y == 180)
-                {
-                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-                    // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 0f, ParentBone.transform.localRotation.eulerAngles.z);
+            Flip(lookDir);
 
-                }
-            }
+
+              /*  float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle));
+*/
+
+                /*                if (lookDir.x > 0f && ParentBone.transform.localRotation.eulerAngles.y == 180)
+                                {
+                                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                                    //holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
+                                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 180f, ParentBone.transform.localRotation.eulerAngles.z);
+                                }
+                                else if (lookDir.x < 0f && ParentBone.transform.localRotation.eulerAngles.y != 180)
+                                {
+                                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                                    // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
+                                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 0f, ParentBone.transform.localRotation.eulerAngles.z);
+
+                                }*/
 
         }
     }
 
     private void Flip(Vector3 lookDir)
     {
-        if (lookDir.x < 0f)
+        if (lookDir.x > 0f & ParentBone.transform.localScale.y < 0)
         {
-            spriteRenderer.flipX = true;
+            //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            //holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
+            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y * -1, ParentBone.transform.localScale.z);
         }
-        else
+        else if (lookDir.x < 0f & ParentBone.transform.localScale.y > 0)
         {
-            spriteRenderer.flipX = false;
+            //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
+            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y*-1, ParentBone.transform.localScale.z);
+
         }
     }
 
-    private bool TryMove(Vector2 direction)
-    {
-        if (direction != Vector2.zero)
-        {
-            // Check for potential collisions
-            int count = rb.Cast(
-                direction, // X and Y values between -1 and 1 that represent the direction from the body to look for collisions
-                movementFilter, // The settings that determine where a collision can occur on such as layers to collide with
-                castCollisions, // List of collisions to store the found collisions into after the Cast is finished
-                moveSpeed * Time.fixedDeltaTime + collisionOffset); // The amount to cast equal to the movement plus an offset
-
-            if (count == 0)
-            {
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            // Can't move if there's no direction to move in
-            return false;
-        }
-
-    }
+  
+ 
 
 
     public void EndAtttack()
