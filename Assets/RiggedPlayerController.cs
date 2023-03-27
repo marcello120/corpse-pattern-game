@@ -14,6 +14,8 @@ public class RiggedPlayerController : PlayerController
     public float dashCooldown = 3f;
     public float dashTimer = 0f;
 
+    public GameObject dashEffect;
+
 
 
     [SerializeField] private LayerMask dashLayerMask;
@@ -159,6 +161,8 @@ public class RiggedPlayerController : PlayerController
                 rb.velocity = Vector2.zero;
                 rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * DashAmount);
                 canDash = false;
+                //change Quaternion identity to actual rotation 
+                Instantiate(dashEffect, new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * DashAmount, Quaternion.identity);
             }
             else
             {
