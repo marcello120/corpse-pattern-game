@@ -17,7 +17,7 @@ public class SnakeManager : MonoBehaviour
     //A Snake felépítéséhez:
     [SerializeField] float distenceBetween = 0.2f;
     [SerializeField] float speed = 100f;
-    //[SerializeField] float turnspeed = 20f;
+    // [SerializeField] float turnspeed = 20f;
     [SerializeField] List<GameObject> bodyParts = new List<GameObject>();
     List<GameObject> snakeBody = new List<GameObject>();
 
@@ -32,12 +32,31 @@ public class SnakeManager : MonoBehaviour
     {
         pos = transform.position;
 
-        if ( bodyParts.Count > 0 )
+        ManageSnakeBody();
+        
+        SnakeMovement();
+    }
+
+    void ManageSnakeBody()
+    {
+        if (bodyParts.Count > 0)
         {
             CreateBodyParts();
         }
-        SnakeMovement();
+        for (int i = 0; i < snakeBody.Count; i++)
+        {
+            if (snakeBody[i] == null)
+            {
+                snakeBody.RemoveAt(i);
+                i = i - 1;
+            }
+        } 
+       if (snakeBody.Count == 0) 
+        {
+            Destroy(this);
+        }
     }
+
     void SnakeMovement()
     {
 
