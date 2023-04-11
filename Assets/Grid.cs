@@ -9,7 +9,9 @@ public class Grid
     public int width;
     public int height;
     public float gridCellSize;
-    public int defaultValue; 
+    public int defaultValue;
+
+    private bool sliding = true;
 
     public int[,] array;
 
@@ -71,7 +73,7 @@ public class Grid
 
         Vector3 finalPos = new Vector3(nearestX, nearestY, 0);
 
-
+  
         Debug.Log("DEAD AT" + finalPos);
 
         return finalPos;
