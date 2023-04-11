@@ -158,6 +158,7 @@ public class RiggedPlayerController : PlayerController
             RaycastHit2D raycast = Physics2D.Raycast(transform.position, movementInput.normalized, DashAmount, dashLayerMask);
             if(raycast.collider==null)
             {
+                animator.SetTrigger("Dash");
                 rb.velocity = Vector2.zero;
                 rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * DashAmount);
                 canDash = false;

@@ -90,6 +90,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: toga
@@ -489,7 +490,8 @@ ScriptedImporter:
     - {x: 29, y: 30}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -755, y: -324}
+    uvTransform: {x: 551, y: 4}
+    spritePosition: {x: 1306, y: 328}
   - name: head
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -825,7 +827,8 @@ ScriptedImporter:
     - {x: 25, y: 26}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -1122, y: -293}
+    uvTransform: {x: 191, y: 457}
+    spritePosition: {x: 1313, y: 750}
   - name: left arm 2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1227,7 +1230,8 @@ ScriptedImporter:
     - {x: 31, y: 32}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -717, y: -333}
+    uvTransform: {x: 751, y: 228}
+    spritePosition: {x: 1468, y: 561}
   - name: left arm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1629,7 +1633,8 @@ ScriptedImporter:
     - {x: 31, y: 32}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -1180, y: -104}
+    uvTransform: {x: 4, y: 457}
+    spritePosition: {x: 1184, y: 561}
   - name: body
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2102,7 +2107,8 @@ ScriptedImporter:
     - {x: 35, y: 36}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -562, y: -546}
+    uvTransform: {x: 751, y: 4}
+    spritePosition: {x: 1313, y: 550}
   - name: left leg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2689,7 +2695,8 @@ ScriptedImporter:
     - {x: 47, y: 48}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -1153, y: -5}
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 1157, y: 9}
   - name: right leg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3100,7 +3107,8 @@ ScriptedImporter:
     - {x: 31, y: 32}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -987, y: -5}
+    uvTransform: {x: 385, y: 4}
+    spritePosition: {x: 1372, y: 9}
   characterData:
     bones:
     - name: bone_1
