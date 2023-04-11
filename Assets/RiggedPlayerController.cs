@@ -96,23 +96,6 @@ public class RiggedPlayerController : PlayerController
             Flip(lookDir);
 
 
-              /*  float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle));
-*/
-
-                /*                if (lookDir.x > 0f && ParentBone.transform.localRotation.eulerAngles.y == 180)
-                                {
-                                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-                                    //holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-                                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 180f, ParentBone.transform.localRotation.eulerAngles.z);
-                                }
-                                else if (lookDir.x < 0f && ParentBone.transform.localRotation.eulerAngles.y != 180)
-                                {
-                                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-                                    // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-                                    ParentBone.transform.eulerAngles = new Vector3(ParentBone.transform.localRotation.eulerAngles.x, 0f, ParentBone.transform.localRotation.eulerAngles.z);
-
-                                }*/
 
         }
     }
