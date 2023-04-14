@@ -5,8 +5,9 @@ using UnityEngine;
 public class SnakeManager : MonoBehaviour
 {
     //A Snake movementhez:
-    public float frequency = 5f; // Speed of sine movement
-    public float magnitude = 0.5f; //  Size of sine movement
+    public float frequency = 20f; // Speed of sine movement
+    public float magnitude = 0.03f; //  Size of sine movement
+    public float rotationSpeed = 1.0f;
 
     public Transform player;
 
@@ -16,10 +17,14 @@ public class SnakeManager : MonoBehaviour
 
     //A Snake felépítéséhez:
     [SerializeField] float distenceBetween = 0.2f;
-    [SerializeField] float speed = 100f;
+    [SerializeField] float speed = 10f;
     // [SerializeField] float turnspeed = 20f;
     [SerializeField] List<GameObject> bodyParts = new List<GameObject>();
     List<GameObject> snakeBody = new List<GameObject>();
+
+    //Új Snake
+    GameObject SnakeObject;
+    private float x = 1;
 
     float countUp = 0;
     void Start()
@@ -65,6 +70,9 @@ public class SnakeManager : MonoBehaviour
         axis = player.position - transform.position;
         axis = Quaternion.Euler(0, 0, 90) * axis;
         transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
+
+        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, axis);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
 
         //snakeBody[0].GetComponent<Rigidbody2D>().velocity = snakeBody[0].transform.right * speed * Time.deltaTime;
         //if(Input.GetAxis("Horizontal") != 0)
@@ -123,6 +131,15 @@ public class SnakeManager : MonoBehaviour
             temp.GetComponent<MarkerManager>().ClearMarkerList();
             countUp= 0;
         }
+    }
+    public void AddBodyParts(GameObject obj)
+    {
+        bodyParts.Add(obj);
+    }
+
+    public void AddNewSnake()
+    {
+        SnakeObject = new GameObject("Snake" + x.ToString());
     }
 
 }

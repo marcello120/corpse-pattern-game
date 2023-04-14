@@ -10990,6 +10990,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1171643175}
+    - target: {fileID: 6674800341599443893, guid: a421c3a0ddcb5db4e828213d908755ec, type: 3}
+      propertyPath: rotationSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 6674800341599443914, guid: a421c3a0ddcb5db4e828213d908755ec, type: 3}
       propertyPath: m_Name
       value: Snake
