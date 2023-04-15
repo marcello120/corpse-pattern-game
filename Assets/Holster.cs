@@ -54,7 +54,7 @@ public class Holster : MonoBehaviour
                     int layer = 0;
                     if (angle > 180 || angle < 0)
                     {
-                        layer = +1;
+                        layer = +2;
                     }
                     else
                     {

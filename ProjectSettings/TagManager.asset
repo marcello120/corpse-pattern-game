@@ -17,10 +17,10 @@ TagManager:
   - Particles
   - Obstacles
   - Glow
-  - 
-  - 
-  - 
-  - 
+  - PlayerBlock
+  - Player
+  - ObstacleBlock
+  - Enemy
   - 
   - 
   - 

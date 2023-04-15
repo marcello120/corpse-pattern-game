@@ -65,3 +65,5 @@ GraphicsSettings:
   m_LogWhenShaderIsCompiled: 0
   m_SRPDefaultSettings:
     UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: 7597343bd6159aa4ba550a73cf4f2bdc, type: 2}
+  m_CameraRelativeLightCulling: 0
+  m_CameraRelativeShadowCulling: 0

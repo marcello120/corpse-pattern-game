@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 638098907786303018}
   - component: {fileID: 7179949836138296492}
   - component: {fileID: 6479760633067730044}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 5792900778504140000}
   - component: {fileID: 4325643126273682215}
   - component: {fileID: 7457099189614200132}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -385692312, guid: 005aba8f00e776942ae8d6c226d9ceec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,10 +177,11 @@ MonoBehaviour:
   isMoving: 0
   attackPower: 5
   movemetSpeed: 14
+  corpseNumber: 1
   detectionZoneController: {fileID: 6479760633067730044}
 --- !u!95 &2249788066664053262
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -197,7 +198,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &5792900778504140000
 Rigidbody2D:
   serializedVersion: 4

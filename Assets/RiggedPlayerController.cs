@@ -16,6 +16,7 @@ public class RiggedPlayerController : PlayerController
 
     public GameObject dashEffect;
 
+    public ParticleSystem dust;
 
 
     [SerializeField] private LayerMask dashLayerMask;
@@ -75,11 +76,18 @@ public class RiggedPlayerController : PlayerController
 
                 rb.velocity= direction * moveSpeed;
 
+                if (!dust.isPlaying)
+                {
+                    dust.Play();
+                }
+
+
                 animator.SetBool("isMoving", true);
             }
             else
             {
                 animator.SetBool("isMoving", false);
+                dust.Stop();
 
             }
 
@@ -139,14 +147,16 @@ public class RiggedPlayerController : PlayerController
         if (canMove & !stunned & canDash)
         {
             RaycastHit2D raycast = Physics2D.Raycast(transform.position, movementInput.normalized, DashAmount, dashLayerMask);
-            if(raycast.collider==null)
+            if (raycast.collider == null)
             {
                 animator.SetTrigger("Dash");
                 rb.velocity = Vector2.zero;
-                rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * DashAmount);
+                Vector2 dashDirection = movementInput.normalized;
+                Vector2 dashPosition = new Vector2(transform.position.x, transform.position.y) + dashDirection * DashAmount;
+                rb.MovePosition(dashPosition);
                 canDash = false;
-                //change Quaternion identity to actual rotation 
-                Instantiate(dashEffect, new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * DashAmount, Quaternion.identity);
+                Quaternion dashRotation = Quaternion.FromToRotation(Vector2.right, dashDirection);
+                Instantiate(dashEffect, dashPosition, dashRotation);
             }
             else
             {
