@@ -799,7 +799,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &386462950
 PrefabInstance:
@@ -1120,7 +1120,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -9438,7 +9438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8437358592449326108, guid: 02dc7c3183a11fc4fa8b93dafeaccc41, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8437358592449326108, guid: 02dc7c3183a11fc4fa8b93dafeaccc41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10063,6 +10063,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2034958253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6674800341599443914, guid: a421c3a0ddcb5db4e828213d908755ec, type: 3}
+  m_PrefabInstance: {fileID: 6674800340790310645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2037451306
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,7 +10678,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6674800341599443892, guid: a421c3a0ddcb5db4e828213d908755ec, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6674800341599443892, guid: a421c3a0ddcb5db4e828213d908755ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10719,6 +10724,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1171643175}
+    - target: {fileID: 6674800341599443893, guid: a421c3a0ddcb5db4e828213d908755ec, type: 3}
+      propertyPath: SnakePrefab
+      value: 
+      objectReference: {fileID: 2034958253}
     - target: {fileID: 6674800341599443893, guid: a421c3a0ddcb5db4e828213d908755ec, type: 3}
       propertyPath: rotationSpeed
       value: 1000
