@@ -132,9 +132,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5569,6 +5569,7 @@ MonoBehaviour:
   dashCooldown: 3
   dashTimer: 0
   dashEffect: {fileID: 0}
+  dust: {fileID: 7779169507405934208}
   dashLayerMask:
     serializedVersion: 2
     m_Bits: 0
