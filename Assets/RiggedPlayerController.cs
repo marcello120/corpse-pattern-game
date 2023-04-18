@@ -18,6 +18,8 @@ public class RiggedPlayerController : PlayerController
 
     public ParticleSystem dust;
 
+    public AudioSource walkSound;
+
 
     [SerializeField] private LayerMask dashLayerMask;
 
@@ -80,7 +82,10 @@ public class RiggedPlayerController : PlayerController
                 {
                     dust.Play();
                 }
-
+                if (!walkSound.isPlaying)
+                {
+                    walkSound.Play();
+                }
 
                 animator.SetBool("isMoving", true);
             }
@@ -88,6 +93,7 @@ public class RiggedPlayerController : PlayerController
             {
                 animator.SetBool("isMoving", false);
                 dust.Stop();
+                walkSound.Stop();
 
             }
 
