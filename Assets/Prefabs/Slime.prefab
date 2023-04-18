@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 3181755119261110747}
   - component: {fileID: 2249788066664053262}
   - component: {fileID: 5792900778504140000}
-  - component: {fileID: 4325643126273682215}
   - component: {fileID: 7457099189614200132}
+  - component: {fileID: 5101482041446557720}
   m_Layer: 12
   m_Name: Slime
   m_TagString: Enemy
@@ -221,22 +221,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &4325643126273682215
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3668576176071076274}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0014013946, y: 0.0018685609}
-  serializedVersion: 2
-  m_Radius: 0.06458439
 --- !u!82 &7457099189614200132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -333,3 +317,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!60 &5101482041446557720
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668576176071076274}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.12}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.050027918, y: 0.040562358}
+      - {x: 0.05023455, y: 0.049216162}
+      - {x: 0.039603304, y: 0.049539298}
+      - {x: 0.039705668, y: 0.05967455}
+      - {x: -0.040449213, y: 0.05967154}
+      - {x: -0.040127363, y: 0.050921883}
+      - {x: -0.049067426, y: 0.04978872}
+      - {x: -0.049793176, y: 0.040455986}
+      - {x: -0.059149675, y: 0.039950415}
+      - {x: -0.059538454, y: 0.010501155}
+      - {x: -0.069845766, y: 0.010390686}
+      - {x: -0.070403494, y: -0.018733863}
+      - {x: -0.08052406, y: -0.019752417}
+      - {x: -0.08016834, y: -0.050018422}
+      - {x: -0.07088559, y: -0.050322767}
+      - {x: -0.07, y: -0.06}
+      - {x: 0.07012756, y: -0.058720585}
+      - {x: 0.06975309, y: -0.051523127}
+      - {x: 0.080875784, y: -0.050367527}
+      - {x: 0.08086466, y: -0.019291434}
+      - {x: 0.06977057, y: -0.01908262}
+      - {x: 0.069931425, y: 0.020661356}
+      - {x: 0.059983958, y: 0.02026225}
+      - {x: 0.060805306, y: 0.040297247}
