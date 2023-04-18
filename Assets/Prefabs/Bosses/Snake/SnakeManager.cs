@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SnakeManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class SnakeManager : MonoBehaviour
 
     //Új Snake
     GameObject SnakeObject;
+    public GameObject SnakePrefab;
     private float x = 1;
 
     float countUp = 0;
@@ -54,6 +56,8 @@ public class SnakeManager : MonoBehaviour
             {
                 snakeBody.RemoveAt(i);
                 i = i - 1;
+                               
+                AddNewSnake();
             }
         } 
        if (snakeBody.Count == 0) 
@@ -139,7 +143,16 @@ public class SnakeManager : MonoBehaviour
 
     public void AddNewSnake()
     {
-        SnakeObject = new GameObject("Snake" + x.ToString());
+        
+        //SnakeObject = new GameObject("Snake" + x.ToString());
+
+        //SnakeObject.AddComponent<SnakeManager>();
+        //GameObject gameObject = GameObject.
+        
+        Instantiate(SnakePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+        //gameObject.AddComponent(typeof(SnakeManager));
+        
     }
 
 }
