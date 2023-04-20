@@ -176,7 +176,7 @@ MonoBehaviour:
   isDead: 0
   isMoving: 0
   attackPower: 5
-  movemetSpeed: 14
+  movemetSpeed: 30
   corpseNumber: 1
   detectionZoneController: {fileID: 6479760633067730044}
 --- !u!95 &2249788066664053262

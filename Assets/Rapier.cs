@@ -48,7 +48,7 @@ public class Rapier : Weapon
     public override void Attack()
     {
         animator.SetTrigger("Attack");
-        hitSound.Play();
+        //hitSound.Play();
     }
 
 
