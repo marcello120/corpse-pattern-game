@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Tentacle2 : MonoBehaviour
@@ -23,10 +24,11 @@ public class Tentacle2 : MonoBehaviour
         segmentV = new Vector3[length];
     }
 
-    // Update is called once per frame
     void Update()
     {
         //wiggleDir.localRotation = Quaternion.Euler(0, 0, Mathf.Sin(Time.deltaTime * wiggleSpeed) * wiggleMagnitude);
+
+        ManageSnakeBody();
 
         segmentPoses[0] = targetDir.position;
         for (int i = 1; i < segmentPoses.Length; i++)
@@ -36,5 +38,18 @@ public class Tentacle2 : MonoBehaviour
             bodyParts[i - 1].transform.position = segmentPoses[i];
         }
         lineRend.SetPositions(segmentPoses);
+    }
+    void ManageSnakeBody()
+    {
+        for (int i = 0; i < bodyParts.Length; i++)
+        {
+            if (bodyParts[i] == null)
+            {
+                bodyParts[i] = bodyParts[i + 1];
+                //bodyParts[i] = null; !!!VESZÉLYES!!!
+                i = i - 1;
+            }
+        }
+        
     }
 }
