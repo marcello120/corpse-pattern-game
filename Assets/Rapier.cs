@@ -11,7 +11,12 @@ public class Rapier : Weapon
 
     public float weaponAttackPower = 10;
     public float weaponKnockback = 10;
+
     public float speed = 10;
+    public bool attackQueued = false;
+    public float timeSinceAttack = 0;
+    public bool canAttack = true;
+
 
     private bool attackState = false;
 
@@ -26,10 +31,21 @@ public class Rapier : Weapon
         polygonCollider2.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (!canAttack)
+        {
+            timeSinceAttack += Time.deltaTime;
+            if (timeSinceAttack > speed)
+            {
+                timeSinceAttack = 0;
+                canAttack = true;
+                if (attackQueued)
+                {
+                    Attack();
+                }
+            }
+        }
     }
 
     public void StartAttack()
@@ -42,13 +58,24 @@ public class Rapier : Weapon
     {
         polygonCollider2.enabled = false;
         attackState = false;
+        canAttack = false;
 
     }
 
     public override void Attack()
     {
-        animator.SetTrigger("Attack");
-        //hitSound.Play();
+        if (canAttack)
+        {
+            animator.SetTrigger("Attack");
+            hitSound.Play();
+            attackQueued = false;
+
+        }
+        else
+        {
+            attackQueued = true;
+        }
+        
     }
 
 
