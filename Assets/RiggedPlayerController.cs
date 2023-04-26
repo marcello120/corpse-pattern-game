@@ -25,10 +25,10 @@ public class RiggedPlayerController : PlayerController
 
     // Start is called before the first frame update
     void Start()
-    {  
+    {
         rb = GetComponent<Rigidbody2D>();
-        animator= GetComponent<Animator>();
-        spriteRenderer= GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         healthText.text = playerHealth.ToString();
     }
 
@@ -54,7 +54,7 @@ public class RiggedPlayerController : PlayerController
             if (ininvTimer > invicnicbilityTime)
             {
                 ininvTimer = 0;
-                invincible= false;
+                invincible = false;
             }
         }
         //toggle stunned
@@ -76,7 +76,7 @@ public class RiggedPlayerController : PlayerController
             {
                 Vector3 direction = movementInput.normalized;
 
-                rb.velocity= direction * moveSpeed;
+                rb.velocity = direction * moveSpeed;
 
                 if (!dust.isPlaying)
                 {
@@ -126,20 +126,20 @@ public class RiggedPlayerController : PlayerController
         {
             //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y*-1, ParentBone.transform.localScale.z);
+            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y * -1, ParentBone.transform.localScale.z);
 
         }
     }
 
-  
- 
+
+
 
 
     public void EndAtttack()
     {
         canMove = true;
         swordAttack.StopAttack();
-        
+
     }
 
     void OnMove(InputValue movementValue)
@@ -177,13 +177,20 @@ public class RiggedPlayerController : PlayerController
         {
             //animator.SetTrigger("swordAttack");
             holster.Attack();
+            if(canMove && !stunned)
+            {
+                mousePosition = Input.mousePosition;
+                Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+                rb.velocity = lookDir * 0.5f;
+
+            }
         }
 
     }
 
     public void takeDamage(float damage, Enemy enemy)
     {
-        if(!canAttack && !canMove)
+        if (!canAttack && !canMove)
         {
             return;
         }
@@ -198,6 +205,9 @@ public class RiggedPlayerController : PlayerController
         rb.AddForce(knockback);
         playerHealth -= damage;
         healthText.text = playerHealth.ToString();
+
+        CameraShake.Instance.Shake(3, 0.2f);
+
         canMove = true;
         if (playerHealth <= 0)
         {
@@ -227,7 +237,7 @@ public class RiggedPlayerController : PlayerController
     {
         // TODO trigger pause screen
 
-        if(Time.timeScale == 0)
+        if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
         }
