@@ -100,7 +100,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            RiggedPlayerController playerController = collision.gameObject.GetComponent<RiggedPlayerController>();
             playerController.takeDamage(attackPower, this);
         }
     }
