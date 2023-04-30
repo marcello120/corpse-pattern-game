@@ -23,6 +23,12 @@ public class SnakeManager : MonoBehaviour
     [SerializeField] List<GameObject> bodyParts = new List<GameObject>();
     List<GameObject> snakeBody = new List<GameObject>();
 
+
+    // Snake attack
+    [SerializeField] float inAttackRange = 1.0f;
+    private bool isAttacking = false;
+    private Vector3 whereToAttack;
+
     //Új Snake
     GameObject SnakeObject;
     public GameObject SnakePrefab;
@@ -45,7 +51,19 @@ public class SnakeManager : MonoBehaviour
 
         ManageSnakeBody();
         
-        SnakeMovement();
+        if (Vector2.Distance(player.position, transform.position) > inAttackRange)
+        {
+            SnakeMovement();
+        }
+        else
+        {
+            isAttacking= true;
+            whereToAttack = player.position;
+            StartCoroutine(SnakeAttack(whereToAttack));
+        }
+        
+        
+        
     }
 
     void ManageSnakeBody()
@@ -147,17 +165,17 @@ public class SnakeManager : MonoBehaviour
 
     public void AddNewSnake()
     {
-        
-        //SnakeObject = new GameObject("Snake" + x.ToString());
-
-        //SnakeObject.AddComponent<SnakeManager>();
-        //GameObject gameObject = GameObject.
-        
         Instantiate(SnakePrefab, transform.position, Quaternion.identity);
-
-
-        //gameObject.AddComponent(typeof(SnakeManager));
-
     }
-
+    IEnumerator SnakeAttack(Vector3 attackDirection)
+    {
+        yield return new WaitForSeconds(1);
+        while (transform.position != attackDirection)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.position, 10 * speed * Time.deltaTime); 
+            //nem jó mert az egész snake egyszerre odakerül ahelyett, hogy minden tagja egyesével
+            yield return null;
+            isAttacking= false;
+        }
+    }
 }
