@@ -32,6 +32,10 @@ public class SnakeManager : MonoBehaviour
     void Start()
     {
         CreateBodyParts();
+        if ( player == null )
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     // Update is called once per frame
@@ -100,7 +104,7 @@ public class SnakeManager : MonoBehaviour
     {
         if (snakeBody.Count == 0 )
         {
-            GameObject temp1 = Instantiate(bodyParts[0], transform.position, transform.rotation, transform);
+           GameObject temp1 = Instantiate(bodyParts[0], transform.position, transform.rotation, transform);
             if (!temp1.GetComponent<MarkerManager>())
                 temp1.AddComponent<MarkerManager>();
             if (!temp1.GetComponent<Rigidbody2D>())
@@ -149,10 +153,11 @@ public class SnakeManager : MonoBehaviour
         //SnakeObject.AddComponent<SnakeManager>();
         //GameObject gameObject = GameObject.
         
-        Instantiate(SnakePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(SnakePrefab, transform.position, Quaternion.identity);
+
 
         //gameObject.AddComponent(typeof(SnakeManager));
-        
+
     }
 
 }
