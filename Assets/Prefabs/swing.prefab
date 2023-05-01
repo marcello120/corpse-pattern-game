@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f00f1b780fcad4547887ac11d01a5db0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2887e902ca4214f99df985555b41e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackPower: 10
-  weaponAttackPower: 10
+  knockbackPower: 100
+  weaponAttackPower: 1
   timeToLive: 0
 --- !u!95 &8663506858128612819
 Animator:

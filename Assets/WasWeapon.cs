@@ -51,6 +51,8 @@ public class WasWeapon : Weapon
 
     public override void Attack()
     {
+        animator.SetTrigger("Attack");
+
 
         if (canAttack)
         {
