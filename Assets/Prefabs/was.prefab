@@ -10,11 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4716668695283474523}
   - component: {fileID: 4716668695283474520}
-  - component: {fileID: 4716668695283474521}
   - component: {fileID: 4716668695283474502}
-  - component: {fileID: 4716668695283474503}
   - component: {fileID: 4716668695283474522}
-  - component: {fileID: 8526542340750710068}
+  - component: {fileID: 7022103892923304407}
   m_Layer: 13
   m_Name: was
   m_TagString: Untagged
@@ -30,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4716668695283474500}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 3.3500001, y: 0.25000003, z: 0.33000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.7999995, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4716668695283474521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4716668695283474500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ae8d69a6e8b51747b4d8d6199b9bfd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponAttackPower: 1
-  weaponKnockback: 100
-  speed: 100
 --- !u!50 &4716668695283474502
 Rigidbody2D:
   serializedVersion: 4
@@ -125,69 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!60 &4716668695283474503
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4716668695283474500}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.1, y: 4.09}
-    newSize: {x: 6.1, y: 4.09}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.13, y: -0.565}
-      - {x: 0.16, y: -0.065}
-      - {x: 0.17999999, y: 0.36499998}
-      - {x: 0.22999999, y: 0.85499996}
-      - {x: 0.21, y: 1.145}
-      - {x: 0.089999996, y: 1.375}
-      - {x: 0.39, y: 1.805}
-      - {x: 0.45999998, y: 1.935}
-      - {x: 0.47, y: 2.0049999}
-      - {x: 0.45, y: 2.0249999}
-      - {x: 0.42999998, y: 2.0249999}
-      - {x: 0.28, y: 1.875}
-      - {x: -0.07, y: 1.495}
-      - {x: -0.21, y: 1.395}
-      - {x: -0.45, y: 0.895}
-      - {x: -0.47, y: 0.85499996}
-      - {x: -0.47, y: 0.72499996}
-      - {x: -0.42999998, y: 0.705}
-      - {x: -0.37, y: 0.695}
-      - {x: -0.25, y: 0.895}
-      - {x: -0.07, y: 1.055}
-      - {x: 0, y: 1.025}
-      - {x: -0.01, y: 0.865}
-      - {x: -0.03, y: 0.585}
-      - {x: -0.04, y: 0.275}
-      - {x: -0.08, y: -0.39499998}
-      - {x: -0.14, y: -1.525}
-      - {x: -0.21, y: -1.7149999}
-      - {x: -0.19999999, y: -1.8549999}
-      - {x: -0.16, y: -1.915}
-      - {x: -0.12, y: -1.9449999}
-      - {x: -0.07, y: -1.8349999}
-      - {x: -0.099999994, y: -1.995}
-      - {x: -0.08, y: -2.0149999}
-      - {x: -0.03, y: -2.0149999}
-      - {x: 0.13, y: -1.805}
-      - {x: 0.11, y: -1.6949999}
-      - {x: 0.07, y: -1.605}
 --- !u!95 &4716668695283474522
 Animator:
   serializedVersion: 5
@@ -209,99 +129,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!82 &8526542340750710068
-AudioSource:
+--- !u!114 &7022103892923304407
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4716668695283474500}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2ee21d27efe586140958fac7f0e25382, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37294881170ba1440a397f4af8d0ba9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAttackPower: 1
+  weaponKnockback: 10
+  speed: 0.5
+  attackQueued: 0
+  timeSinceAttack: 0
+  canAttack: 1
+  swing: {fileID: 8663506858128612782, guid: 0eeeee1d4794b5940b8a233b8e9c0e8c, type: 3}
+  reach: 0.05
