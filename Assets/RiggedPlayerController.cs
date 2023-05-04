@@ -20,6 +20,10 @@ public class RiggedPlayerController : PlayerController
 
     public AudioSource walkSound;
 
+    public bool gameIsPaused = false;
+    public GameObject pauseMenuUI;
+    [SerializeField] private Animator pauseMenuAnimator;
+
 
     [SerializeField] private LayerMask dashLayerMask;
 
@@ -244,6 +248,26 @@ public class RiggedPlayerController : PlayerController
         else
         {
             Time.timeScale = 0;
+        }
+        if (!gameIsPaused)
+        {
+            pauseMenuUI.SetActive(true);
+            pauseMenuAnimator.Play("Pause_Menu_Animation");
+            gameIsPaused= true;
+        }
+        else
+        {
+            //pauseMenuAnimator.Play("Close_Pause_Menu", 0, 0.0f);
+            StartCoroutine(WaitForTheFuckingAnimation());
+            //pauseMenuUI.SetActive(false);
+            //gameIsPaused= false;
+        }
+        IEnumerator WaitForTheFuckingAnimation()
+        {
+            pauseMenuAnimator.Play("Close_Pause_Menu", 0, 0.0f);
+            yield return new WaitForSeconds(1);
+            pauseMenuUI.SetActive(false);
+            gameIsPaused = false;
         }
     }
 
