@@ -251,16 +251,22 @@ public class RiggedPlayerController : PlayerController
         }
         if (!gameIsPaused)
         {
+            pauseMenuAnimator.Play("Pause_Menu_Animation", 0, 0.0f);
             pauseMenuUI.SetActive(true);
-            pauseMenuAnimator.Play("Pause_Menu_Animation");
-            gameIsPaused= true;
+            gameIsPaused = true;
+            //StartCoroutine(StartPauseMenuAnimation());
+
         }
         else
         {
-            //pauseMenuAnimator.Play("Close_Pause_Menu", 0, 0.0f);
             StartCoroutine(WaitForTheFuckingAnimation());
-            //pauseMenuUI.SetActive(false);
-            //gameIsPaused= false;
+        }
+        IEnumerator StartPauseMenuAnimation()
+        {
+            pauseMenuAnimator.Play("Pause_Menu_Animation", 0, 0.0f);
+            yield return new WaitForSeconds(1);
+            pauseMenuUI.SetActive(true);
+            gameIsPaused = true;
         }
         IEnumerator WaitForTheFuckingAnimation()
         {
@@ -269,6 +275,7 @@ public class RiggedPlayerController : PlayerController
             pauseMenuUI.SetActive(false);
             gameIsPaused = false;
         }
+
     }
 
 

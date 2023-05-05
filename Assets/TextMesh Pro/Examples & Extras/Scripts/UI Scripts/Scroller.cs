@@ -11,6 +11,6 @@ public class Scroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rawImg.uvRect = new Rect(rawImg.uvRect.position + new Vector2(_x, _y) * Time.deltaTime, rawImg.uvRect.size);
+        rawImg.uvRect = new Rect(rawImg.uvRect.position + new Vector2(_x, _y) * Time.unscaledDeltaTime, rawImg.uvRect.size);
     }
 }
