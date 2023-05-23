@@ -10,6 +10,8 @@ public class WeaponSwing : MonoBehaviour
 
     private bool isActive;
 
+    private GameObject player;
+
     private PolygonCollider2D polycollider;
 
     
@@ -20,6 +22,7 @@ public class WeaponSwing : MonoBehaviour
         polycollider = GetComponent<PolygonCollider2D>();
         polycollider.enabled = false;
         isActive = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void EndAttack()
@@ -42,7 +45,7 @@ public class WeaponSwing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 1f * Time.deltaTime);
     }
 
     public void InitWeaponAttack(float knockbackIN, float weaponAttackPowerIN)
