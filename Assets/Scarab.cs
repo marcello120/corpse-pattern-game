@@ -43,23 +43,41 @@ public class Scarab : Enemy
             {
                 waitCounter= 0f;
                 state = State.Moving;
+
             }
-            transform.position = adjustWoldPosToNearestCell(transform.position);
+
+            Vector3 adjustedpos = adjustWoldPosToNearestCell(transform.position);
+            if (Vector3.Distance(transform.position, adjustedpos) > 0.01f)
+            {
+                transform.position = adjustedpos;
+
+            }
+
         }
         
 
-        if(state == State.Moving)
+        else if(state == State.Moving)
         {
            if(destinationCell == null || destinationCell == Vector3.zero)
             {
                 setDestination(target.transform.position);
+
             }
             else if(health > 0)
             {
-                Vector2 directionToTarget = (destinationCell - transform.position).normalized;
+
+                Vector3 directionToTarget = (destinationCell - transform.position).normalized;
+
+                Debug.Log("Dest:" + destinationCell);
+                Debug.Log("Pos:" + transform.position);
+
+
+
                 rb.AddForce(directionToTarget * movemetSpeed);
 
-                if(Vector3.Distance(transform.position, destinationCell) < 0.01f)
+                Debug.DrawLine(transform.position, transform.position + directionToTarget);
+
+                if(Vector3.Distance(transform.position, destinationCell) < 0.1f)
                 {
                     destinationCell = Vector3.zero;
                     state = State.Waiting;
@@ -133,7 +151,7 @@ public class Scarab : Enemy
     public void OnCollisionEnter2D(Collision2D collision)
     {
         damagePlayer(collision.collider);
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy"|| collision.gameObject.layer == 11)
         {
 
             //collision.AddForce(direction * -2000f);
