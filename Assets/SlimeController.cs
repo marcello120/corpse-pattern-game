@@ -18,7 +18,8 @@ public class SlimeController : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        moveToPlayerWithDetectionZone(detectionZoneController);
+        moveGRIDToPlayerWithDetectionZone(detectionZoneController);
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

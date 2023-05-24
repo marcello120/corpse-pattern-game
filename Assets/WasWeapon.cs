@@ -70,9 +70,12 @@ public class WasWeapon : Weapon
 
             swing.InitWeaponAttack(weaponKnockback, weaponAttackPower);
 
-            Instantiate(swing, attackPosition, rotation);
-            
-            
+            WeaponSwing effect = Instantiate(swing, attackPosition, rotation);
+
+            //comment if tired
+           // effect.transform.SetParent(transform, true);
+
+
             attackQueued = false;
             canAttack = false;
         }

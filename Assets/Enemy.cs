@@ -131,6 +131,32 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         return isMoving;
     }
 
+    public bool moveGRIDToPlayerWithDetectionZone(DetectionZoneController detectionZoneController)
+    {
+        isMoving = false;
+
+        if (detectionZoneController.detectedObjs.Count > 0)
+        {
+            if (detectionZoneController.detectedObjs[0] != null && health > 0)
+            {
+                isMoving = true;
+                GameObject target = detectionZoneController.detectedObjs[0];
+
+                Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
+
+
+                handleFlip(flipBehaviour, directionToTarget);
+
+                rb.AddForce(directionToTarget * movemetSpeed);
+
+                isMoving = true;
+            }
+        }
+        animator.SetBool("IsMoving", isMoving);
+
+        return isMoving;
+    }
+
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)
     {
         if(flipBehaviour != -1 && flipBehaviour != 1)
