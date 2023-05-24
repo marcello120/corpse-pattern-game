@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,11 @@ public class Scarab : Enemy
     void Start()
     {
         base.Init();
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        
     }
 
     // Update is called once per frame
@@ -67,10 +73,6 @@ public class Scarab : Enemy
             {
 
                 Vector3 directionToTarget = (destinationCell - transform.position).normalized;
-
-                Debug.Log("Dest:" + destinationCell);
-                Debug.Log("Pos:" + transform.position);
-
 
 
                 rb.AddForce(directionToTarget * movemetSpeed);
@@ -151,7 +153,7 @@ public class Scarab : Enemy
     public void OnCollisionEnter2D(Collision2D collision)
     {
         damagePlayer(collision.collider);
-        if (collision.gameObject.tag == "Enemy"|| collision.gameObject.layer == 11)
+        if (collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "Wall")
         {
 
             //collision.AddForce(direction * -2000f);

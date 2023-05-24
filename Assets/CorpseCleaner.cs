@@ -23,7 +23,19 @@ public class CorpseCleaner : MonoBehaviour
         Debug.Log( "Coll: " + collision.gameObject.name);
         if (collision.gameObject.tag == "Corpse")
         {
-            StartCoroutine(WaitAndDestory(collision));
+            //StartCoroutine(WaitAndDestory(collision));
+            CorpseScript corpseScript = collision.gameObject.GetComponent<CorpseScript>();
+
+            if (corpseScript != null)
+            {
+                corpseScript.Remove();
+            }
+            else
+            {
+                Destroy(collision.gameObject);
+            }
+
+            Destroy(gameObject);
         }
 
     }
@@ -31,7 +43,18 @@ public class CorpseCleaner : MonoBehaviour
     private IEnumerator WaitAndDestory(Collider2D collision)
     {
         yield return new WaitForSeconds(0.2f);
-        Destroy(collision.gameObject);
+
+        CorpseScript corpseScript = collision.gameObject.GetComponent<CorpseScript>();
+
+        if (corpseScript!=null)
+        {
+            corpseScript.Remove();
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
+
         Destroy(gameObject);
     }
 }

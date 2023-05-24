@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("SUCCESS");
            
             //get new random pattern from store
-            pattern = patternStore.getRandomEasyPattern();
+            pattern = patternStore.getRandomHardPattern();
 
             //set new pattern on UI
             pattenView.SetPattern(pattern);

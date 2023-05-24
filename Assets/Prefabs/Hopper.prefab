@@ -109,7 +109,7 @@ MonoBehaviour:
   getHitSound: {fileID: 0}
   flipBehaviour: 0
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
-  health: 2
+  health: 1
   isDead: 0
   isMoving: 0
   attackPower: 2
@@ -121,8 +121,6 @@ MonoBehaviour:
   waitTime: 0.15
   waitCounter: 0
   destinationCell: {x: 0, y: 0, z: 0}
-  pushforce: 10
-  pushrand: 100
 --- !u!95 &6830850734151678584
 Animator:
   serializedVersion: 5

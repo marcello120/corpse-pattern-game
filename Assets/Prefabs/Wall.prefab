@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 819207386413707714}
   m_Layer: 11
   m_Name: shadow
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 819207386803349826}
   m_Layer: 7
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.014162064, y: -0.21950966}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 2.31, y: 1.67, z: 2.3, w: 2.1699998}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5, y: 5}
     newSize: {x: 5, y: 5}
