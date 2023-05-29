@@ -43,11 +43,12 @@ public class Grid
             Debug.DrawLine(getWorldPositionGridWithOffset(width, 0), getWorldPositionGridWithOffset(width, height), Color.black, 200f);
         }
     }
-    public Vector3 adjustWoldPosToNearestCell(Vector3 worldPos)
+
+    public static Vector3 adjustWoldPosToNearestCell(Vector3 worldPos, float gridCellSizeIn)
     {
         Vector3 pos = worldPos;
-        float nearestX = findMultiple(pos.x, gridCellSize);
-        float nearestY = findMultiple(pos.y, gridCellSize);
+        float nearestX = findMultiple(pos.x, gridCellSizeIn);
+        float nearestY = findMultiple(pos.y, gridCellSizeIn);
         Vector3 aprox = new Vector3(nearestX, nearestY, 0);
 
         float xDiff = aprox.x - pos.x;
@@ -55,31 +56,28 @@ public class Grid
 
         if (xDiff < 0)
         {
-            nearestX += gridCellSize/2;
+            nearestX += gridCellSizeIn / 2;
         }
         else
         {
-            nearestX -= gridCellSize / 2;
+            nearestX -= gridCellSizeIn / 2;
         }
 
         if (yDiff < 0)
         {
-            nearestY += gridCellSize / 2;
+            nearestY += gridCellSizeIn / 2;
         }
         else
         {
-            nearestY -= gridCellSize / 2;
+            nearestY -= gridCellSizeIn / 2;
         }
 
         Vector3 finalPos = new Vector3(nearestX, nearestY, 0);
 
-  
-        Debug.Log("DEAD AT" + finalPos);
-
         return finalPos;
     }
 
-    private float findMultiple(float value, float factor)
+    private static float findMultiple(float value, float factor)
     {
         float nearestMultiple =
                 (float)Math.Round(

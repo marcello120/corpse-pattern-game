@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         SpawnSlime();
 
         //adjust fractional world pos to nearest multiple of gridcellsize AND offset it to center of Grid
-        Vector3 adjustedPos = grid.adjustWoldPosToNearestCell(worldPos);
+        Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos,grid.gridCellSize);
 
         //add adjusted world position to grid
         grid.addWorldPosToArray(adjustedPos, corpsenumber);

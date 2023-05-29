@@ -205,7 +205,7 @@ public class RiggedPlayerController : PlayerController
         animator.SetTrigger("Hit");
         takeDamageSound.Play();
         canMove = false;
-        Vector2 knockback = (transform.position - enemy.gameObject.transform.position).normalized * 500;
+        Vector2 knockback = (transform.position - enemy.gameObject.transform.position).normalized * 300;
         rb.AddForce(knockback);
         playerHealth -= damage;
         healthText.text = playerHealth.ToString();

@@ -18,7 +18,7 @@ public class SlimeController : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        moveGRIDToPlayerWithDetectionZone(detectionZoneController);
+        moveToPlayerWithDetectionZone(detectionZoneController);
 
     }
 
