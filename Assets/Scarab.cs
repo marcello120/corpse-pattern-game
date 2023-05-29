@@ -2,6 +2,7 @@ using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
@@ -59,9 +60,11 @@ public class Scarab : Enemy
             }
 
             Vector3 adjustedpos = Grid.adjustWoldPosToNearestCell(transform.position,gridsize);
-            if (Vector3.Distance(transform.position, adjustedpos) > 0.01f)
+            if (Vector3.Distance(transform.position, adjustedpos) > 0.1f)
             {
-                transform.position = adjustedpos;
+                Vector3 directionToTarget = (adjustedpos - transform.position).normalized;
+                rb.AddForce(directionToTarget * movemetSpeed);
+
 
             }
 
@@ -189,9 +192,5 @@ public class Scarab : Enemy
         }
 
     }
-
-
-
-
 
 }

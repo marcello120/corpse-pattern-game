@@ -14,6 +14,8 @@ public class WeaponSwing : MonoBehaviour
 
     private PolygonCollider2D polycollider;
 
+    public GameObject hitEffect;
+
     
 
     // Start is called before the first frame update
@@ -74,6 +76,8 @@ public class WeaponSwing : MonoBehaviour
             if (enemy != null)
             {
                 enemy.getHit(weaponAttackPower, GetKnockBack(collision));
+                Vector2 contactpoint= collision.ClosestPoint(enemy.transform.position);
+                Instantiate(hitEffect, contactpoint, Quaternion.identity);
             }
         }
     }
