@@ -215,18 +215,19 @@ MonoBehaviour:
   getHitSound: {fileID: 0}
   flipBehaviour: 0
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
-  health: 3
+  health: 2
   isDead: 0
   isMoving: 0
   attackPower: 1
-  movemetSpeed: 200
+  movemetSpeed: 150
   corpseNumber: 1
   target: {fileID: 0}
   gridsize: 0.5
   state: 1
-  waitTime: 0.2
+  waitTime: 0.4
   waitCounter: 0
   destinationCell: {x: 0, y: 0, z: 0}
+  gofirst: 0
 --- !u!58 &6830850734151678585
 CircleCollider2D:
   m_ObjectHideFlags: 0

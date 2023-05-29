@@ -60,9 +60,11 @@ public class Scarab : Enemy
             }
 
             Vector3 adjustedpos = Grid.adjustWoldPosToNearestCell(transform.position,gridsize);
-            if (Vector3.Distance(transform.position, adjustedpos) > 0.01f)
+            if (Vector3.Distance(transform.position, adjustedpos) > 0.1f)
             {
-                transform.position = adjustedpos;
+                Vector3 directionToTarget = (adjustedpos - transform.position).normalized;
+                rb.AddForce(directionToTarget * movemetSpeed);
+
 
             }
 
