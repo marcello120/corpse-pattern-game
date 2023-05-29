@@ -23,7 +23,7 @@ TagManager:
   - ObstacleBlock
   - Enemy
   - Weapon
-  - 
+  - EnemyDMGbox
   - 
   - 
   - 
