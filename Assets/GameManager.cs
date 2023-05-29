@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         SpawnSlime();
 
         //adjust fractional world pos to nearest multiple of gridcellsize AND offset it to center of Grid
-        Vector3 adjustedPos = grid.adjustWoldPosToNearestCell(worldPos);
+        Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos,grid.gridCellSize);
 
         //add adjusted world position to grid
         grid.addWorldPosToArray(adjustedPos, corpsenumber);
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("SUCCESS");
            
             //get new random pattern from store
-            pattern = patternStore.getRandomEasyPattern();
+            pattern = patternStore.getRandomHardPattern();
 
             //set new pattern on UI
             pattenView.SetPattern(pattern);

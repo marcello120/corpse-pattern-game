@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ public class Scarab : Enemy
 
     public Vector3 destinationCell;
 
+    public bool gofirst;
+
     public enum State
     {
         Idle,
@@ -30,6 +33,14 @@ public class Scarab : Enemy
     void Start()
     {
         base.Init();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+ 
+        
     }
 
     // Update is called once per frame
@@ -43,26 +54,42 @@ public class Scarab : Enemy
             {
                 waitCounter= 0f;
                 state = State.Moving;
+                animator.SetBool("IsMoving",true);
+
             }
-            transform.position = adjustWoldPosToNearestCell(transform.position);
+
+            Vector3 adjustedpos = Grid.adjustWoldPosToNearestCell(transform.position,gridsize);
+            if (Vector3.Distance(transform.position, adjustedpos) > 0.01f)
+            {
+                transform.position = adjustedpos;
+
+            }
+
         }
         
 
-        if(state == State.Moving)
+        else if(state == State.Moving)
         {
            if(destinationCell == null || destinationCell == Vector3.zero)
             {
                 setDestination(target.transform.position);
+
             }
             else if(health > 0)
             {
-                Vector2 directionToTarget = (destinationCell - transform.position).normalized;
+
+                Vector3 directionToTarget = (destinationCell - transform.position).normalized;
+
+
                 rb.AddForce(directionToTarget * movemetSpeed);
 
-                if(Vector3.Distance(transform.position, destinationCell) < 0.01f)
+                Debug.DrawLine(transform.position, transform.position + directionToTarget);
+
+                if(Vector3.Distance(transform.position, destinationCell) < 0.1f)
                 {
                     destinationCell = Vector3.zero;
                     state = State.Waiting;
+                    animator.SetBool("IsMoving", false);
                 }
 
             }
@@ -91,7 +118,7 @@ public class Scarab : Enemy
         destinationCell = closest;
     }
 
-    private void bounce(Vector3 initialTarget)
+    public void bounce(Vector3 initialTarget)
     {
 
         List<Vector3> neighbors = getNeighbors();
@@ -114,77 +141,57 @@ public class Scarab : Enemy
 
     private List<Vector3> getNeighbors()
     {
-        List<Vector3> neighbors = new List<Vector3>();
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize*-1,gridsize*-1)));
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 1, gridsize * -1)));
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 0, gridsize * -1)));
-
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * -1, gridsize * 1)));
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 1, gridsize * 1)));
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 0, gridsize * 1)));
-
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * -1, gridsize * 0)));
-        neighbors.Add(adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 1, gridsize * 0)));
+        List<Vector3> neighbors = new List<Vector3>
+        {
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * -1, gridsize * -1), gridsize),
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 1, gridsize * -1), gridsize),
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 0, gridsize * -1), gridsize),
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * -1, gridsize * 1), gridsize),
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 1, gridsize * 1), gridsize),
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 0, gridsize * 1), gridsize),
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * -1, gridsize * 0), gridsize),
+            Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * 1, gridsize * 0), gridsize)
+        };
 
         return neighbors;
     }
- 
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public override void Death()
     {
-        damagePlayer(collision.collider);
-        if (collision.gameObject.tag == "Enemy")
+        base.Death();
+       Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D cc in ccs)
         {
-
-            //collision.AddForce(direction * -2000f);
-            bounce(collision.transform.position);
+            cc.enabled= false;
         }
     }
 
-
-    public Vector3 adjustWoldPosToNearestCell(Vector3 worldPos)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 pos = worldPos;
-        float nearestX = findMultiple(pos.x, gridsize);
-        float nearestY = findMultiple(pos.y, gridsize);
-        Vector3 aprox = new Vector3(nearestX, nearestY, 0);
+        gofirst = false;
+        if (collision.gameObject.GetComponent<Scarab>() !=null) 
+        {
+            Scarab other = collision.gameObject.GetComponent<Scarab>();
+            if (other.gofirst)
+            {
+                state = State.Waiting;
+            }
+            else
+            {
+                setDestination(target.transform.position);
+                gofirst = true;
+            }
 
-        float xDiff = aprox.x - pos.x;
-        float yDiff = aprox.y - pos.y;
-
-        if (xDiff < 0)
-        {
-            nearestX += gridsize / 2;
         }
-        else
+        else if ( collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy")
         {
-            nearestX -= gridsize / 2;
-        }
-
-        if (yDiff < 0)
-        {
-            nearestY += gridsize / 2;
-        }
-        else
-        {
-            nearestY -= gridsize / 2;
+           bounce(collision.transform.position);
         }
 
-        Vector3 finalPos = new Vector3(nearestX, nearestY);
-
-        return finalPos;
     }
 
-    private float findMultiple(float value, float factor)
-    {
-        float nearestMultiple =
-                (float)Math.Round(
-                     (value / (float)factor),
-                     MidpointRounding.AwayFromZero
-                 ) * factor;
 
-        return nearestMultiple;
-    }
+
 
 
 }
