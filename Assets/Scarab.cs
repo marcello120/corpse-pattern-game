@@ -23,6 +23,10 @@ public class Scarab : Enemy
 
     public bool gofirst;
 
+    public GameObject statusHolder;
+
+    public GameObject deathMarker;
+
     public enum State
     {
         Idle,
@@ -157,6 +161,25 @@ public class Scarab : Enemy
         };
 
         return neighbors;
+    }
+
+
+    public override void getHit(float damage, Vector2 knockback)
+    {
+        base.getHit(damage, knockback);
+        //check if next attack kills
+        if (health - damage <= 0)
+        {
+            setDeathMarker();
+        }
+    }
+
+    private void setDeathMarker()
+    {
+        if (statusHolder.transform.childCount < 1)
+        {
+            Instantiate(deathMarker, statusHolder.transform);
+        }
     }
 
     public override void Death()
