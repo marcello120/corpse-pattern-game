@@ -21,8 +21,6 @@ public class Scarab : Enemy
 
     public Vector3 destinationCell;
 
-    public bool gofirst;
-
     public GameObject statusHolder;
 
     public GameObject deathMarker;
@@ -194,22 +192,21 @@ public class Scarab : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gofirst = false;
         if (collision.gameObject.GetComponent<Scarab>() !=null) 
         {
-            Scarab other = collision.gameObject.GetComponent<Scarab>();
-            if (other.gofirst)
+            float mydist = Vector3.Distance(transform.position, target.position);
+            float otherdist =  Vector3.Distance(collision.transform.position, target.position);
+            if (otherdist < mydist)
             {
                 state = State.Waiting;
             }
             else
             {
                 setDestination(target.transform.position);
-                gofirst = true;
             }
 
         }
-        else if ( collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy")
+        else if ( collision.gameObject.tag == "Wall")
         {
            bounce(collision.transform.position);
         }

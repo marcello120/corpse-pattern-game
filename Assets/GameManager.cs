@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,10 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
 
+    public GameObject spawnerParent;
+
+    public float enemyCount = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +52,7 @@ public class GameManager : MonoBehaviour
         //set pattern
         pattern = patternStore.getRandomEasyPattern();
         pattenView.SetPattern(pattern);
+
     }
 
     // Update is called once per frame
@@ -64,7 +70,7 @@ public class GameManager : MonoBehaviour
     public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber)
     {
         //spawn replacement slime
-        SpawnSlime();
+       SpawnSlime(worldPos);
 
         //adjust fractional world pos to nearest multiple of gridcellsize AND offset it to center of Grid
         Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos,grid.gridCellSize);
@@ -95,7 +101,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("SUCCESS");
            
             //get new random pattern from store
-            pattern = patternStore.getRandomHardPattern();
+            pattern = patternStore.getRandomMediumPattern();
 
             //set new pattern on UI
             pattenView.SetPattern(pattern);
@@ -109,9 +115,24 @@ public class GameManager : MonoBehaviour
         return adjustedPos;
     }
 
-    private void SpawnSlime()
+    private void SpawnSlime(Vector3 pos )
     {
-        Vector2 vector2 = UnityEngine.Random.insideUnitCircle.normalized;
-        Instantiate(slime,vector2,Quaternion.identity);
+        List<EnemySpawner> spawners = spawnerParent.GetComponentsInChildren<EnemySpawner>().OfType<EnemySpawner>().ToList();
+
+        List<EnemySpawner> sortedSpawners = spawners.OrderByDescending(t => Vector3.Distance(pos, t.transform.position)).ToList();
+
+        if(sortedSpawners.Count > 0 && sortedSpawners[0]!=null) {
+            sortedSpawners[0].spawnEnemy();
+        }
+
+        if ((score > 10 && enemyCount == 3) || (score > 5 && enemyCount == 2))
+        {
+            if (sortedSpawners.Count > 1 && sortedSpawners[1] != null)
+            {
+                sortedSpawners[1].spawnEnemy();
+                enemyCount++;
+            }
+        }
+     
     }
 }

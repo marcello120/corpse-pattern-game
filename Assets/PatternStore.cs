@@ -7,12 +7,15 @@ public class PatternStore
 
     public List<int[,]> patterns;
     public List<int[,]> easyPatterns;
+    public List<int[,]> mediumPatterns;
     public List<int[,]> hardPatterns;
+
 
     public PatternStore()
     {
         patterns = new List<int[,]>();
         easyPatterns = new List<int[,]>();
+        mediumPatterns= new List<int[,]>();
         hardPatterns = new List<int[,]>();
 
 
@@ -60,7 +63,7 @@ public class PatternStore
             {1,-1},
             {-1,1}
         };
-        hardPatterns.Add(wave);
+        mediumPatterns.Add(wave);
 
         int[,] snake = new int[4, 2] {
             {1,1},
@@ -68,23 +71,74 @@ public class PatternStore
             {1,-1},
             {1,-1}
         };
-        hardPatterns.Add(snake);
+        mediumPatterns.Add(snake);
 
         int[,] reed = new int[2, 3] {
             {1,1,1},
             {1,-1,-1}
         };
-        hardPatterns.Add(reed);
+        mediumPatterns.Add(reed);
 
         int[,] eye = new int[3, 3] {
             {-1,1,-1},
             {1,-1,1},
             {-1,1,-1},
         };
-        hardPatterns.Add(eye);
+        mediumPatterns.Add(eye);
+
+        int[,] star = new int[3, 3] {
+            {1,-1,1},
+            {-1,1,-1},
+            {1,-1,1},
+        };
+        mediumPatterns.Add(star);
+
+        int[,] circle = new int[4, 4] {
+            {1,1,1,1 },
+            {1,-1,-1,1 },
+            {1,-1,-1,1 },
+            {1,1,1,1 }
+        };
+        hardPatterns.Add(circle);
+
+        int[,] upArrow = new int[4, 4] {
+            {-1,-1,1,-1 },
+            {1,1,1,1 },
+            {1,1,1,1 },
+            {-1,-1,1,-1 }
+        };
+        hardPatterns.Add(upArrow);
+
+        int[,] rightArrow = new int[4, 4] {
+            {-1,1,1,-1 },
+            {-1,1,1,-1 },
+            {1,1,1,1 },
+            {-1,1,1,-1 }
+        };
+        hardPatterns.Add(rightArrow);
+
+        int[,] u = new int[3, 3] {
+            {1,1,1},
+            {1,-1,-1},
+            {1,1,1},
+        };
+        mediumPatterns.Add(u);
+
+        int[,] fountain = new int[3, 3] {
+            {1,-1,-1},
+            {1,1,1},
+            {1,-1,-1},
+        };
+        mediumPatterns.Add(fountain);
+
+        /*        { -1,-1,-1,-1 },
+                    { -1,-1,-1,-1 },
+                    { -1,-1,-1,-1 },
+                    { -1,-1,-1,-1 }*/
 
 
         patterns.AddRange(easyPatterns);
+        patterns.AddRange(mediumPatterns);
         patterns.AddRange(hardPatterns);
 
     }
@@ -99,6 +153,12 @@ public class PatternStore
     {
         int max = easyPatterns.Count;
         return easyPatterns[Random.Range(0, max)];
+    }
+
+    public int[,] getRandomMediumPattern()
+    {
+        int max = mediumPatterns.Count;
+        return mediumPatterns[Random.Range(0, max)];
     }
 
     public int[,] getRandomHardPattern()
