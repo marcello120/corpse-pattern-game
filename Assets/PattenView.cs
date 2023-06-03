@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,8 @@ public class PattenView : MonoBehaviour
 
     public void SetPattern(int[,] newPattern)
     {
+        transform.localScale = Vector3.one;
+
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
@@ -64,6 +67,16 @@ public class PattenView : MonoBehaviour
                     corpses.Add(corpseObj);
                 }
             }
+        }
+        scaleView(newPattern);
+
+    }
+
+    private void scaleView(int[,] newPattern)
+    {
+        if(newPattern.GetLength(0) > 3 || newPattern.GetLength(1) > 3)
+        {
+            transform.localScale = new Vector3(0.75f,0.75f,1);
         }
     }
 
