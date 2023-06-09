@@ -124,7 +124,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.35
 --- !u!50 &5039742561100875017
 Rigidbody2D:
   serializedVersion: 4
@@ -371,7 +371,6 @@ MonoBehaviour:
   waitTime: 0.4
   waitCounter: 0
   destinationCell: {x: 0, y: 0, z: 0}
-  gofirst: 0
   statusHolder: {fileID: 3778428473664654173}
   deathMarker: {fileID: 2368188668467871554, guid: 390bc02e92fcd494487dd361d3bb4b6c, type: 3}
 --- !u!58 &6830850734151678585

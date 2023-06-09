@@ -1,12 +1,16 @@
 
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Text successText;
+    public TextMeshProUGUI successText;
+
+    public TextMeshProUGUI hightText;
 
     public GameObject square;
 
@@ -34,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
 
+    public int highscore = 0;
+
     public GameObject spawnerParent;
 
     public float enemyCount = 2;
@@ -52,6 +58,10 @@ public class GameManager : MonoBehaviour
         //set pattern
         pattern = patternStore.getRandomEasyPattern();
         pattenView.SetPattern(pattern);
+        highscore = PlayerPrefs.GetInt("HighScore", 0);
+
+        successText.SetText("Score: " + 0);
+        hightText.SetText("Top:  " + highscore);
 
     }
 
@@ -107,12 +117,24 @@ public class GameManager : MonoBehaviour
             pattenView.SetPattern(pattern);
 
             //Increment score and set UI
-            score = score + 1;
-            successText.text = score.ToString();
+            incrementScore(); 
+           
         }
 
         //return the world position where the enemy should place the coprse
         return adjustedPos;
+    }
+
+    public void incrementScore()
+    {
+        score = score + 1;
+        successText.SetText("Score: " + score);
+        if(score > highscore)
+        {
+            highscore = score;
+            PlayerPrefs.SetInt("HighScore", highscore);
+            hightText.SetText("Top:  " + highscore);
+        }
     }
 
     private void SpawnSlime(Vector3 pos )
