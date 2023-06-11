@@ -129,7 +129,7 @@ public class Grid
         return new Vector3(x, y) * gridCellSize + new Vector3(width / 2 * -gridCellSize, height / 2 * -gridCellSize);
     }
  
-    private Vector3 ConvetWorldPosToArrayPos(Vector3 worldPos)
+    public Vector3 ConvetWorldPosToArrayPos(Vector3 worldPos)
     {
         //get x from worldPos
         float wx = worldPos.x;

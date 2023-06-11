@@ -1,10 +1,10 @@
 
-using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,6 +44,14 @@ public class GameManager : MonoBehaviour
 
     public float enemyCount = 2;
 
+    public Doubler doubler;
+
+    public List<DoublerSpawner> doublerSpawners;
+
+    public GameObject doublerSpawnerParent;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +71,19 @@ public class GameManager : MonoBehaviour
         successText.SetText("Score: " + 0);
         hightText.SetText("Top:  " + highscore);
 
+        doublerSpawners = doublerSpawnerParent.GetComponentsInChildren<DoublerSpawner>().OfType<DoublerSpawner>().ToList();
+
+        SpawnDoubler();
+
+
+
+    }
+
+    private void SpawnDoubler()
+    {
+        DoublerSpawner selected = doublerSpawners[UnityEngine.Random.Range(0, doublerSpawners.Count)];
+        doubler = selected.SpawnDoubler();
+        
     }
 
     // Update is called once per frame
@@ -91,15 +112,28 @@ public class GameManager : MonoBehaviour
         //check if pattern is found in grid
         List<Vector2Int> fitPatter = patternChecker.checkForPatternAndReturnPositions(pattern, grid.array);
 
+
         //if pattern is found - remove objects and move game along
         if (fitPatter.Count > 0)
         {
+            int multiplier = 1;
+            Vector3 doublerLocAdjusted = Grid.adjustWoldPosToNearestCell(doubler.transform.position, grid.gridCellSize);
+            Vector3 doublerLoc = grid.ConvetWorldPosToArrayPos(doublerLocAdjusted);
+
+
             for (int i = 0; i < fitPatter.Count; i++)
             {
+                if(fitPatter[i].x == doublerLoc.x && fitPatter[i].y == doublerLoc.y)
+                {
+                    //doubler is part of pattern
+                    multiplier = 2;
+                    Debug.Log("Multiplier detected");
+                    Destroy(doubler);
+                    SpawnDoubler();
+                }
+
                 //SCORE!!!!
                 scoreSound.Play();
-
-                //Instantiate(square, grid.getWorldPositionGridWithOffset(fitPatter[i].x, fitPatter[i].y) + new Vector3(grid.gridCellSize, grid.gridCellSize) * 0.5f, Quaternion.identity);
 
                 //add a corpse cleaner, with collides with corpse then removes corpese and self
                 Instantiate(corpseCleaner, grid.getWorldPositionGridWithOffset(fitPatter[i].x, fitPatter[i].y) + new Vector3(grid.gridCellSize, grid.gridCellSize) * 0.5f, Quaternion.identity);
@@ -117,7 +151,7 @@ public class GameManager : MonoBehaviour
             pattenView.SetPattern(pattern);
 
             //Increment score and set UI
-            incrementScore(); 
+            incrementScore(multiplier); 
            
         }
 
@@ -125,9 +159,9 @@ public class GameManager : MonoBehaviour
         return adjustedPos;
     }
 
-    public void incrementScore()
+    public void incrementScore(int multi)
     {
-        score = score + 1;
+        score = score + 1 * multi;
         successText.SetText("Score: " + score);
         if(score > highscore)
         {
