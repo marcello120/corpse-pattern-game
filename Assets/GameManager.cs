@@ -9,6 +9,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI successText;
+    public TextMeshProUGUI successDeathText;
 
     public TextMeshProUGUI hightText;
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
 
         successText.SetText("Score: " + 0);
         hightText.SetText("Top:  " + highscore);
+        
 
         doublerSpawners = doublerSpawnerParent.GetComponentsInChildren<DoublerSpawner>().OfType<DoublerSpawner>().ToList();
 
@@ -163,7 +165,8 @@ public class GameManager : MonoBehaviour
     {
         score = score + 1 * multi;
         successText.SetText("Score: " + score);
-        if(score > highscore)
+        successDeathText.SetText(score.ToString());
+        if (score > highscore)
         {
             highscore = score;
             PlayerPrefs.SetInt("HighScore", highscore);
