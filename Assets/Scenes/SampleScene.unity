@@ -6653,6 +6653,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kecske: 5
   spimage: {fileID: 666472699}
+  ressurectSceneName: SampleScene
+  quitSceneName: Start Menu
 --- !u!210 &666472702
 SortingGroup:
   m_ObjectHideFlags: 0
