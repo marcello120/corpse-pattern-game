@@ -2,18 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class kutya : MonoBehaviour
 {
     public float kecske;
-    //public Shader shader;
     public Image spimage;
 
-    // Start is called before the first frame update
-    void Start()
+    public string ressurectSceneName;
+    public string quitSceneName;
+
+    public void RessurectButtonPress()
     {
-        
+        SceneManager.LoadScene(ressurectSceneName);
+    }
+    public void QuitButtonPress()
+    {
+        SceneManager.LoadScene(quitSceneName);
     }
 
     // Update is called once per frame
