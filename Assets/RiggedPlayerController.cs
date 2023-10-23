@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,7 +22,9 @@ public class RiggedPlayerController : PlayerController
     public AudioSource walkSound;
 
     public bool gameIsPaused = false;
+    public bool canStartMenuAnim = true;
     public GameObject pauseMenuUI;
+    public GameObject deathMenuUI;
     [SerializeField] private Animator pauseMenuAnimator;
 
 
@@ -235,6 +238,7 @@ public class RiggedPlayerController : PlayerController
     public void Defeat()
     {
         Destroy(gameObject);
+        deathMenuUI.SetActive(true);
     }
 
     public void OnEscape()
@@ -249,17 +253,23 @@ public class RiggedPlayerController : PlayerController
         {
             Time.timeScale = 0;
         }
-        if (!gameIsPaused)
+        if (!gameIsPaused && canStartMenuAnim)
         {
+            canStartMenuAnim = false;
             pauseMenuAnimator.Play("Pause_Menu_Animation", 0, 0.0f);
             pauseMenuUI.SetActive(true);
             gameIsPaused = true;
+            canStartMenuAnim = true;
             //StartCoroutine(StartPauseMenuAnimation());
 
         }
         else
         {
-            StartCoroutine(WaitForTheFuckingAnimation());
+            if (canStartMenuAnim)
+            {
+                canStartMenuAnim = false;
+                StartCoroutine(WaitForTheFuckingAnimation());
+            }
         }
         IEnumerator StartPauseMenuAnimation()
         {
@@ -267,6 +277,7 @@ public class RiggedPlayerController : PlayerController
             yield return new WaitForSeconds(1);
             pauseMenuUI.SetActive(true);
             gameIsPaused = true;
+            canStartMenuAnim = true;
         }
         IEnumerator WaitForTheFuckingAnimation()
         {
@@ -274,7 +285,9 @@ public class RiggedPlayerController : PlayerController
             yield return new WaitForSeconds(1);
             pauseMenuUI.SetActive(false);
             gameIsPaused = false;
+            canStartMenuAnim= true;
         }
+        
 
     }
 
