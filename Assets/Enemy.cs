@@ -33,6 +33,10 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public int corpseNumber = 1;
 
+    public Boolean stunned;
+    public float stunTimer;
+    public float stunTime;
+
 
     // Should be called in Start
     public virtual void Init()
@@ -131,6 +135,12 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         return isMoving;
     }
 
+    public virtual bool stun()
+    {
+        Debug.Log("Abstract Stun");
+        stunned = true;
+        return stunned;
+    }
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)
     {

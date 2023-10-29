@@ -365,6 +365,9 @@ MonoBehaviour:
   attackPower: 1
   movemetSpeed: 150
   corpseNumber: 1
+  stunned: 0
+  stunTimer: 0
+  stunTime: 3
   target: {fileID: 0}
   gridsize: 0.5
   state: 1
@@ -373,6 +376,7 @@ MonoBehaviour:
   destinationCell: {x: 0, y: 0, z: 0}
   statusHolder: {fileID: 3778428473664654173}
   deathMarker: {fileID: 2368188668467871554, guid: 390bc02e92fcd494487dd361d3bb4b6c, type: 3}
+  stunMarker: {fileID: 6087808011274934262, guid: ffb921f5a24b0aa49a696bc1373f7ecb, type: 3}
 --- !u!58 &6830850734151678585
 CircleCollider2D:
   m_ObjectHideFlags: 0
