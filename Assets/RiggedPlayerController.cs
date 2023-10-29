@@ -21,6 +21,8 @@ public class RiggedPlayerController : PlayerController
 
     public AudioSource walkSound;
 
+    public Collider2D collider;
+
     public bool gameIsPaused = false;
     public bool canStartMenuAnim = true;
     public GameObject pauseMenuUI;
@@ -29,6 +31,9 @@ public class RiggedPlayerController : PlayerController
 
 
     [SerializeField] private LayerMask dashLayerMask;
+    [SerializeField] private LayerMask enemyLayerMask;
+
+    public PerfectDashDecider perfectDashDecider;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +42,8 @@ public class RiggedPlayerController : PlayerController
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         healthText.text = playerHealth.ToString();
+        collider = GetComponent<Collider2D>();
+        
     }
 
     private void FixedUpdate()
@@ -82,6 +89,16 @@ public class RiggedPlayerController : PlayerController
             if (movementInput != Vector2.zero)
             {
                 Vector3 direction = movementInput.normalized;
+                
+                //roate perfect dash checker towards input dir
+                if (perfectDashDecider != null)
+                {
+                    // Calculate the angle in radians.
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                    // Set the rotation to the calculated angle.
+                    perfectDashDecider.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                }
 
                 rb.velocity = direction * moveSpeed;
 
@@ -157,24 +174,53 @@ public class RiggedPlayerController : PlayerController
     void OnJump()
     {
         Debug.Log("JUMP");
+        //check if we can move
         if (canMove & !stunned & canDash)
         {
+            animator.SetTrigger("Dash");
+            rb.velocity = Vector2.zero;
+            Vector2 dashDirection = movementInput.normalized; 
+            //check for wall
             RaycastHit2D raycast = Physics2D.Raycast(transform.position, movementInput.normalized, DashAmount, dashLayerMask);
+            Vector2 dashPosition;
             if (raycast.collider == null)
             {
-                animator.SetTrigger("Dash");
-                rb.velocity = Vector2.zero;
-                Vector2 dashDirection = movementInput.normalized;
-                Vector2 dashPosition = new Vector2(transform.position.x, transform.position.y) + dashDirection * DashAmount;
-                rb.MovePosition(dashPosition);
-                canDash = false;
+                //no wall - dash full amount
+                dashPosition = new Vector2(transform.position.x, transform.position.y) + dashDirection * DashAmount;
                 Quaternion dashRotation = Quaternion.FromToRotation(Vector2.right, dashDirection);
                 Instantiate(dashEffect, dashPosition, dashRotation);
+
+                //PERFECT DASH
+                if (perfectDashDecider != null && perfectDashDecider.isPerfect().Count > 0)
+                {
+                    Debug.Log("PERFECT DODGE ON ");
+                    invincible = true;
+                    //set all
+                    foreach (GameObject stuntarget in perfectDashDecider.isPerfect())
+                    { 
+                        if (stuntarget.GetComponent<Enemy>() != null)
+                        {
+                            Enemy enemy = stuntarget.GetComponent<Enemy>();
+                            enemy.stun();
+                        }
+                        else if (stuntarget.GetComponentInParent<Enemy>() != null)
+                        {
+                            Enemy enemy = stuntarget.GetComponentInParent<Enemy>();
+                            enemy.stun();
+                        }
+                    }
+                }
+
             }
             else
             {
+                //wall - dash only until wall
                 Debug.Log(raycast.collider);
+                ColliderDistance2D distanceToObstacle = Physics2D.Distance(collider, raycast.collider);
+                dashPosition = new Vector2(transform.position.x, transform.position.y) + dashDirection * distanceToObstacle.distance * 0.9f;
             }
+            rb.MovePosition(dashPosition);
+            canDash = false;
         }
     }
 

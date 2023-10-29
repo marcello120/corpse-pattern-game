@@ -25,6 +25,10 @@ public class Scarab : Enemy
 
     public GameObject deathMarker;
 
+    public GameObject stunMarker;
+
+    private GameObject StunMarkerInstance;
+
     public enum State
     {
         Idle,
@@ -49,6 +53,18 @@ public class Scarab : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (stunned)
+        {
+             stunTimer += Time.deltaTime;
+            if (stunTimer > stunTime)
+            {
+                stunTimer = 0;
+                stunned = false;
+                removeStunMarker();
+            }
+            return;
+        }
+
         //if waiting, correct self to grid
         if(state == State.Waiting)
         {
@@ -71,8 +87,6 @@ public class Scarab : Enemy
             }
 
         }
-        
-
         else if(state == State.Moving)
         {
            if(destinationCell == null || destinationCell == Vector3.zero)
@@ -178,6 +192,25 @@ public class Scarab : Enemy
         {
             Instantiate(deathMarker, statusHolder.transform);
         }
+    }
+
+    private void setStunMarker()
+    {
+        if (StunMarkerInstance == null)
+        {
+            StunMarkerInstance = Instantiate(stunMarker, statusHolder.transform);
+        }
+    }
+    private void removeStunMarker()
+    {
+        Destroy(StunMarkerInstance);
+    }
+
+    public override bool stun()
+    {
+        stunned = true;
+        setStunMarker();
+        return stunned;
     }
 
     public override void Death()
