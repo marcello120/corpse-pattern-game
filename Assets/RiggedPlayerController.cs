@@ -33,6 +33,8 @@ public class RiggedPlayerController : PlayerController
     [SerializeField] private LayerMask dashLayerMask;
     [SerializeField] private LayerMask enemyLayerMask;
 
+    public Animator effectsAnimator;
+
     public PerfectDashDecider perfectDashDecider;
 
     // Start is called before the first frame update
@@ -195,6 +197,7 @@ public class RiggedPlayerController : PlayerController
                 {
                     Debug.Log("PERFECT DODGE ON ");
                     invincible = true;
+                    effectsAnimator.Play("effect_flash");
                     //set all
                     foreach (GameObject stuntarget in perfectDashDecider.isPerfect())
                     { 
@@ -202,11 +205,13 @@ public class RiggedPlayerController : PlayerController
                         {
                             Enemy enemy = stuntarget.GetComponent<Enemy>();
                             enemy.stun();
+                            perfectDashDecider.playNice();
                         }
                         else if (stuntarget.GetComponentInParent<Enemy>() != null)
                         {
                             Enemy enemy = stuntarget.GetComponentInParent<Enemy>();
                             enemy.stun();
+                            perfectDashDecider.playNice();
                         }
                     }
                 }
