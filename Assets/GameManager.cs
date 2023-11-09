@@ -172,6 +172,15 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highscore);
             hightText.SetText("Top:  " + highscore);
         }
+        if (score % 5 == 0)
+        {
+            levelUp();
+        }
+    }
+
+    private void levelUp()
+    {
+        Debug.Log("Level Up");
     }
 
     private void SpawnSlime(Vector3 pos )
