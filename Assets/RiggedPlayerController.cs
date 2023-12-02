@@ -23,6 +23,8 @@ public class RiggedPlayerController : PlayerController
 
     public Collider2D collider;
 
+    public int level = 1;
+
     public bool gameIsPaused = false;
     public bool canStartMenuAnim = true;
     public GameObject pauseMenuUI;
@@ -286,10 +288,17 @@ public class RiggedPlayerController : PlayerController
         animator.SetTrigger("Death");
     }
 
+
     public void Defeat()
     {
         Destroy(gameObject);
         deathMenuUI.SetActive(true);
+    }
+
+    public void levelUp()
+    {
+        level++;
+        Debug.Log("LeveledUp " + level);
     }
 
     public void OnEscape()
@@ -340,6 +349,16 @@ public class RiggedPlayerController : PlayerController
         }
         
 
+    }
+
+    public void heal(float inHealth)
+    {
+        playerHealth += inHealth;
+        if (playerHealth > maxHealth)
+        {
+            playerHealth= maxHealth;
+        }
+        healthText.text= playerHealth.ToString();
     }
 
 
