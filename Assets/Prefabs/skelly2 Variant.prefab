@@ -6212,6 +6212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 5
+  maxHealth: 5
   moveSpeed: 2
   collisionOffset: 0.001
   movementFilter:
@@ -6255,6 +6256,7 @@ MonoBehaviour:
   dust: {fileID: 7779169507405934208}
   walkSound: {fileID: 0}
   collider: {fileID: 0}
+  level: 1
   gameIsPaused: 0
   canStartMenuAnim: 1
   pauseMenuUI: {fileID: 0}

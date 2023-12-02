@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float playerHealth = 30;
+    public float maxHealth = 30;
 
     public float moveSpeed = 1f;
     public float collisionOffset = 0.001f;

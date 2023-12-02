@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject doublerSpawnerParent;
 
+    public RiggedPlayerController player;
+
     
 
     // Start is called before the first frame update
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
 
         SpawnDoubler();
 
+        player = (RiggedPlayerController)GameObject.FindFirstObjectByType(typeof(RiggedPlayerController));
 
 
     }
@@ -172,9 +175,10 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highscore);
             hightText.SetText("Top:  " + highscore);
         }
-        if (score % 5 == 0)
+        if ((player.level * 5)-1 < score && score != 0 && score !=1) 
         {
             levelUp();
+            player.levelUp();
         }
     }
 
