@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
     public GameObject doublerSpawnerParent;
 
     public RiggedPlayerController player;
+
+    public PowerUpSelection powerUpSelection;
 
     
 
@@ -150,7 +153,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("SUCCESS");
            
             //get new random pattern from store
-            pattern = patternStore.getRandomMediumPattern();
+            pattern = patternStore.getRandomEasyPattern();
 
             //set new pattern on UI
             pattenView.SetPattern(pattern);
@@ -175,15 +178,19 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highscore);
             hightText.SetText("Top:  " + highscore);
         }
-        if ((player.level * 5)-1 < score && score != 0 && score !=1) 
+        if ((player.level * 1)-1 < score && score != 0 && score !=1) 
         {
-            levelUp();
+            StartCoroutine(levelUp());
             player.levelUp();
         }
     }
 
-    private void levelUp()
+    private IEnumerator levelUp()
     {
+        yield return new WaitForSeconds(0.5f);
+
+        powerUpSelection.show();
+        Time.timeScale = 0;
         Debug.Log("Level Up");
     }
 

@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7588f40c0b3ec5047962780f53ec533b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 470612544917005262, guid: 0e01fabefaa72094391cd5983f436ab5, type: 3}
-  corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
+  square: {fileID: 2385623526522994528, guid: 9692498321670594db6fa61726379aad, type: 3}
+  corpse: {fileID: 9030311286409595893, guid: 1a7318025a385494babfd6e89d252a1d, type: 3}
+  ancor: {fileID: 0}
   corpses: []
   squares: []

@@ -10,8 +10,7 @@ public class PowerUpObject : MonoBehaviour
 
     void Start()
     {
-        sprite= GetComponent<SpriteRenderer>();
-        sprite.color = powerUp.powerUpColor;
+        init(powerUp);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +20,13 @@ public class PowerUpObject : MonoBehaviour
             powerUp.apply(collision.gameObject);
             Destroy(gameObject);
         }
+    }
+
+    public void init(PowerUp powerUpIn)
+    {
+        sprite = GetComponent<SpriteRenderer>();
+        powerUp = powerUpIn;
+        sprite.color = powerUp.powerUpColor;
     }
 }
  
