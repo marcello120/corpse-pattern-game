@@ -15,4 +15,5 @@ MonoBehaviour:
   powerUpName: Heal
   powerUpDescription: Heal
   powerUpColor: {r: 1, g: 0.3820755, b: 0.3820755, a: 1}
+  sprite: {fileID: 21300000, guid: 12d04bc13c344684aacab81ffd943804, type: 3}
   healAmount: 2

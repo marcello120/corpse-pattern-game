@@ -15,4 +15,5 @@ MonoBehaviour:
   powerUpName: Increase Max HP
   powerUpDescription: Increase Max HP
   powerUpColor: {r: 0.509434, g: 0, b: 0.3838976, a: 1}
+  sprite: {fileID: 21300000, guid: 2b47b459cccb3494aa8eaee0b4f424c3, type: 3}
   maxHPIncreasAmount: 1

@@ -88,6 +88,7 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         button.interactable = true;
         GetComponent<Button>().onClick.AddListener(delegate { choose(); });
         button.onClick.AddListener(delegate { choose(); });
+        icon.sprite = powerUp.sprite;
 
     }
 
@@ -97,6 +98,8 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         GameObject newPowerUp = Instantiate(PowerUpContainer,new Vector3(0,0,0), Quaternion.identity);
         newPowerUp.GetComponent<PowerUpObject>().init(powerUp);
         powerUpSelection.hide();
+        GetComponent<Button>().onClick.RemoveAllListeners();
+        button.onClick.RemoveAllListeners();
     }
 
  
