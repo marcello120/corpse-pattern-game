@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
+using Unity.VisualScripting;
 
 public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
@@ -29,11 +31,13 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public PowerUpSelection powerUpSelection;
 
+    private bool chosen = false;
 
     void Start()
     {
         startPos = transform.position;
         startScale = transform.localScale;
+        chosen = false;
     }
 
     private IEnumerator moveCard(bool animStart)
@@ -89,20 +93,26 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         GetComponent<Button>().onClick.AddListener(delegate { choose(); });
         button.onClick.AddListener(delegate { choose(); });
         icon.sprite = powerUp.sprite;
-
+        chosen = false;
     }
 
     public void choose()
     {
+        GetComponent<Button>().onClick.RemoveAllListeners();
+        button.onClick.RemoveAllListeners();
+        if (chosen)
+        {
+            return;
+        }
+        chosen = true;
         button.interactable = false;
         GameObject newPowerUp = Instantiate(PowerUpContainer,new Vector3(0,0,0), Quaternion.identity);
         newPowerUp.GetComponent<PowerUpObject>().init(powerUp);
+
         powerUpSelection.hide();
-        GetComponent<Button>().onClick.RemoveAllListeners();
-        button.onClick.RemoveAllListeners();
     }
 
- 
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -111,19 +121,20 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (eventData.fullyExited)
-        {
             eventData.selectedObject = null;
-        }
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         StartCoroutine(moveCard(true));
+        icon.GetComponent<Animator>().SetBool("selected", true);
+        
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
         StartCoroutine(moveCard(false));
+        icon.GetComponent<Animator>().SetBool("selected", false);
+
     }
 }
