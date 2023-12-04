@@ -9,6 +9,8 @@ public class WasWeapon : Weapon
 
     public float weaponAttackPower = 10;
     public float weaponKnockback = 10;
+    public float baseWeaponReach = 3.35f;
+    public float currentWeaponReach = 0f;
 
     public float speed = 10;
     public bool attackQueued = false;
@@ -22,12 +24,16 @@ public class WasWeapon : Weapon
 
     public float reach;
 
+    public GameObject actualWas;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-
+        rb = actualWas.GetComponent<Rigidbody2D>();
+        animator = actualWas.GetComponent<Animator>();
+        currentWeaponReach = baseWeaponReach;
+        increaseReach(0f);
     }
 
     void FixedUpdate()
@@ -48,6 +54,12 @@ public class WasWeapon : Weapon
     }
 
 
+    public override void increaseReach(float reachIncreae)
+    {
+        currentWeaponReach += reachIncreae;
+        transform.localPosition = new Vector3(currentWeaponReach, transform.localPosition.y, actualWas.transform.localPosition.z);
+    }
+
 
     public override void Attack()
     {
@@ -56,7 +68,7 @@ public class WasWeapon : Weapon
 
         if (canAttack)
         {
-            Transform playerTransform = transform;
+            Transform playerTransform = actualWas.transform;
             float offset = reach;
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -83,9 +95,6 @@ public class WasWeapon : Weapon
         {
             attackQueued = true;
         }
-
-
-
         
     }
 

@@ -8,25 +8,30 @@ public class PowerUpObject : MonoBehaviour
 
     public SpriteRenderer sprite;
 
+    public Rigidbody2D rb;
+
     void Start()
     {
         init(powerUp);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            powerUp.apply(collision.gameObject);
             Destroy(gameObject);
+            powerUp.apply(collision.gameObject);
         }
     }
 
     public void init(PowerUp powerUpIn)
     {
         sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         powerUp = powerUpIn;
         sprite.color = powerUp.powerUpColor;
+        sprite.sprite = powerUp.sprite;
     }
 }
  

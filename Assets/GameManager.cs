@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -187,7 +186,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator levelUp()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
 
         powerUpSelection.show();
         Time.timeScale = 0;

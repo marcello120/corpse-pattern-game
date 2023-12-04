@@ -361,5 +361,10 @@ public class RiggedPlayerController : PlayerController
         healthText.text= playerHealth.ToString();
     }
 
+    public void inreaseReach(float reachIncrease)
+    {
+        holster.increaseReach(reachIncrease);
+    }
+
 
 }
