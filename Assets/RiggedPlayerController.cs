@@ -361,6 +361,12 @@ public class RiggedPlayerController : PlayerController
         healthText.text= playerHealth.ToString();
     }
 
+    public void increaseDashAmount(float dashIncreaseAmount)
+    {
+        DashAmount += dashIncreaseAmount;
+        perfectDashDecider.updateDashAmount();
+    }
+
     public void inreaseReach(float reachIncrease)
     {
         holster.increaseReach(reachIncrease);

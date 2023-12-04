@@ -22,11 +22,16 @@ public class PerfectDashDecider : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
+        updateDashAmount();
+    }
+
+    public void updateDashAmount()
+    {
         player = transform.parent.GetComponent<RiggedPlayerController>();
         redZone.transform.localScale = new Vector3(player.DashAmount * MAGIC_NUMBER, redZone.transform.localScale.y);
         float redOffset = (player.DashAmount * MAGIC_NUMBER) / 2f;
-        redZone.transform.localPosition = new Vector3(redOffset , redZone.transform.localPosition.y);
-        greenZone.transform.localPosition = new Vector3((player.DashAmount) * MAGIC_NUMBER+ 0.5f, greenZone.transform.localPosition.y);
+        redZone.transform.localPosition = new Vector3(redOffset, redZone.transform.localPosition.y);
+        greenZone.transform.localPosition = new Vector3((player.DashAmount) * MAGIC_NUMBER + 0.5f, greenZone.transform.localPosition.y);
 
     }
 
@@ -43,11 +48,5 @@ public class PerfectDashDecider : MonoBehaviour
             return redZone.enemies;
         }
         return new List<GameObject>();    
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
