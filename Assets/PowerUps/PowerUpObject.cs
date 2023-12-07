@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PowerUpObject : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PowerUpObject : MonoBehaviour
     public SpriteRenderer sprite;
 
     public Rigidbody2D rb;
+
+    public Light2D light;
 
     void Start()
     {
@@ -30,8 +33,10 @@ public class PowerUpObject : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         powerUp = powerUpIn;
-        sprite.color = powerUp.powerUpColor;
+        //sprite.color = powerUp.powerUpColor;
         sprite.sprite = powerUp.sprite;
+        light = GetComponentInChildren<Light2D>();
+        light.color = powerUp.powerUpColor;
     }
 }
  

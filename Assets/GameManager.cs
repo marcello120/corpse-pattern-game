@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
             sortedSpawners[0].spawnEnemy();
         }
 
-        if ((score > 10 && enemyCount == 3) || (score > 5 && enemyCount == 2))
+        if (score/5 + 1 >=  enemyCount)
         {
             if (sortedSpawners.Count > 1 && sortedSpawners[1] != null)
             {

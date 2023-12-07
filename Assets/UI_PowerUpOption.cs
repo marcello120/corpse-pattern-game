@@ -94,6 +94,8 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         button.onClick.AddListener(delegate { choose(); });
         icon.sprite = powerUp.sprite;
         chosen = false;
+        StartCoroutine(moveCard(false));
+
     }
 
     public void choose()

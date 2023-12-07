@@ -42,6 +42,8 @@ public class PerfectDashDecider : MonoBehaviour
 
     public List<GameObject> isPerfect()
     {
+        redZone.enemies.RemoveAll(obj => obj == null);
+        greenZone.enemies.RemoveAll(obj => obj == null);
         //red has enemy and green has no enemy
         if (redZone.enemies.Count > 0 && greenZone.enemies.Count <= 0)
         {
@@ -49,4 +51,5 @@ public class PerfectDashDecider : MonoBehaviour
         }
         return new List<GameObject>();    
     }
+
 }
