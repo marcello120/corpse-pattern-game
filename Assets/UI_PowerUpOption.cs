@@ -18,7 +18,8 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Image background;
     public Image icon;
     public Button button;
-    public GameObject PowerUpContainer;
+    public GameObject powerUpContainer;
+    public Image glow;
 
     //-----------------------------------
 
@@ -86,6 +87,7 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void init()
     {
         background.color = powerUp.powerUpColor;
+        glow.color= powerUp.powerUpColor;
         title.text = powerUp.powerUpName;
         description.text = powerUp.powerUpDescription;
         button.name = powerUp.powerUpName;
@@ -108,7 +110,7 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         chosen = true;
         button.interactable = false;
-        GameObject newPowerUp = Instantiate(PowerUpContainer,new Vector3(0,0,0), Quaternion.identity);
+        GameObject newPowerUp = Instantiate(powerUpContainer,new Vector3(0,0,0), Quaternion.identity);
         newPowerUp.GetComponent<PowerUpObject>().init(powerUp);
 
         powerUpSelection.hide();
