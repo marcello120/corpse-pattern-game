@@ -26,7 +26,6 @@ public class RiggedPlayerController : PlayerController
     public int level = 1;
 
     public bool gameIsPaused = false;
-    public bool canStartMenuAnim = true;
     public GameObject pauseMenuUI;
     public GameObject deathMenuUI;
     [SerializeField] private Animator pauseMenuAnimator;
@@ -301,55 +300,69 @@ public class RiggedPlayerController : PlayerController
         Debug.Log("LeveledUp " + level);
     }
 
+    private Coroutine animationCoroutine;
+    private Coroutine closeAnimationCoroutine;
+    private bool isAnimating = false;
+    private bool canToggle = true;
+
     public void OnEscape()
     {
-        // TODO trigger pause screen
-
-        if (Time.timeScale == 0)
+        if (gameIsPaused)
         {
-            Time.timeScale = 1;
+            ResumeGame();
         }
         else
         {
-            Time.timeScale = 0;
+            PauseGame();
         }
-        if (!gameIsPaused && canStartMenuAnim)
-        {
-            canStartMenuAnim = false;
-            pauseMenuAnimator.Play("Pause_Menu_Animation", 0, 0.0f);
-            pauseMenuUI.SetActive(true);
-            gameIsPaused = true;
-            canStartMenuAnim = true;
-            //StartCoroutine(StartPauseMenuAnimation());
-
-        }
-        else
-        {
-            if (canStartMenuAnim)
-            {
-                canStartMenuAnim = false;
-                StartCoroutine(WaitForTheFuckingAnimation());
-            }
-        }
-        IEnumerator StartPauseMenuAnimation()
-        {
-            pauseMenuAnimator.Play("Pause_Menu_Animation", 0, 0.0f);
-            yield return new WaitForSeconds(1);
-            pauseMenuUI.SetActive(true);
-            gameIsPaused = true;
-            canStartMenuAnim = true;
-        }
-        IEnumerator WaitForTheFuckingAnimation()
-        {
-            pauseMenuAnimator.Play("Close_Pause_Menu", 0, 0.0f);
-            yield return new WaitForSeconds(1);
-            pauseMenuUI.SetActive(false);
-            gameIsPaused = false;
-            canStartMenuAnim= true;
-        }
-        
-
     }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        gameIsPaused = true;
+
+        // Enable the GameObject before starting animation
+        pauseMenuUI.SetActive(true);
+
+        if (!isAnimating)
+        {
+            isAnimating = true;
+            pauseMenuAnimator.Play("Pause_Menu_Animation");
+            StartCoroutine(WaitForAnimationFinish("Pause_Menu_Animation"));
+        }
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1;
+        gameIsPaused = false;
+
+        if (!isAnimating)
+        {
+            isAnimating = true;
+            pauseMenuAnimator.Play("Close_Pause_Menu");
+            StartCoroutine(WaitForAnimationFinish("Close_Pause_Menu"));
+        }
+    }
+
+    IEnumerator WaitForAnimationFinish(string animationName)
+    {
+        while (!pauseMenuAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationName) ||
+               pauseMenuAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.95f)
+        {
+            yield return null;
+        }
+
+        isAnimating = false;
+
+        // Deactivate UI only if it was a close animation
+        if (!gameIsPaused && animationName == "Close_Pause_Menu")
+        {
+            pauseMenuUI.SetActive(false);
+        }
+    }
+
 
     public void heal(float inHealth)
     {
