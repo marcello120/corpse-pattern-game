@@ -110,7 +110,11 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         chosen = true;
         button.interactable = false;
-        GameObject newPowerUp = Instantiate(powerUpContainer,new Vector3(0,0,0), Quaternion.identity);
+        RiggedPlayerController player = (RiggedPlayerController)GameObject.FindFirstObjectByType(typeof(RiggedPlayerController));
+
+        Vector3 targetPos = GameManager.Instance.getSpawnPoint(player.transform.position, 8, 10);
+
+        GameObject newPowerUp = Instantiate(powerUpContainer, targetPos, Quaternion.identity);
         newPowerUp.GetComponent<PowerUpObject>().init(powerUp);
 
         powerUpSelection.hide();

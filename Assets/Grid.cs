@@ -150,7 +150,7 @@ public class Grid
         return result;
     }
 
-        public void Print()
+    public void Print()
     {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < array.GetLength(0); i++)

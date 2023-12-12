@@ -3,8 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,9 +15,9 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI hightText;
 
-    public GameObject square;
-
     public GameObject corpseCleaner;
+
+    public GameObject rock;
 
     private PatternChecker patternChecker;
 
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     public Grid grid;
 
+    public Grid obstacles;
+
     public bool success = false;
 
     int[,] pattern;
@@ -45,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     public float enemyCount = 2;
 
+    public Doubler doublerPrefab;
+
     public Doubler doubler;
 
     public List<DoublerSpawner> doublerSpawners;
@@ -55,18 +61,27 @@ public class GameManager : MonoBehaviour
 
     public PowerUpSelection powerUpSelection;
 
-    
+    public static GameManager Instance;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(width/2 * -gridCellSize, height/2 * -gridCellSize);
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        transform.position = new Vector3(width / 2 * -gridCellSize, height / 2 * -gridCellSize);
 
         patternChecker = new PatternChecker();
         patternStore = new PatternStore();
 
         //create array
-        grid = new Grid(width,height,gridCellSize,0);
+        grid = new Grid(width, height, gridCellSize, 0);
+
+        obstacles = new Grid(width, height, gridCellSize, 0);
 
         //set pattern
         pattern = patternStore.getRandomEasyPattern();
@@ -75,22 +90,24 @@ public class GameManager : MonoBehaviour
 
         successText.SetText("Score: " + 0);
         hightText.SetText("Top:  " + highscore);
-        
+
 
         doublerSpawners = doublerSpawnerParent.GetComponentsInChildren<DoublerSpawner>().OfType<DoublerSpawner>().ToList();
 
-        SpawnDoubler();
 
         player = (RiggedPlayerController)GameObject.FindFirstObjectByType(typeof(RiggedPlayerController));
+
+        SpawnDoubler();
 
 
     }
 
     private void SpawnDoubler()
     {
-        DoublerSpawner selected = doublerSpawners[UnityEngine.Random.Range(0, doublerSpawners.Count)];
-        doubler = selected.SpawnDoubler();
-        
+        //DoublerSpawner selected = doublerSpawners[UnityEngine.Random.Range(0, doublerSpawners.Count)];
+
+        doubler = SpawnWithCheck(doublerPrefab.gameObject,player.transform.position,8,10).GetComponent<Doubler>();
+
     }
 
     // Update is called once per frame
@@ -108,10 +125,10 @@ public class GameManager : MonoBehaviour
     public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber)
     {
         //spawn replacement slime
-       SpawnSlime(worldPos);
+        SpawnSlime(worldPos);
 
         //adjust fractional world pos to nearest multiple of gridcellsize AND offset it to center of Grid
-        Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos,grid.gridCellSize);
+        Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos, grid.gridCellSize);
 
         //add adjusted world position to grid
         grid.addWorldPosToArray(adjustedPos, corpsenumber);
@@ -130,7 +147,7 @@ public class GameManager : MonoBehaviour
 
             for (int i = 0; i < fitPatter.Count; i++)
             {
-                if(fitPatter[i].x == doublerLoc.x && fitPatter[i].y == doublerLoc.y)
+                if (fitPatter[i].x == doublerLoc.x && fitPatter[i].y == doublerLoc.y)
                 {
                     //doubler is part of pattern
                     multiplier = 2;
@@ -150,7 +167,7 @@ public class GameManager : MonoBehaviour
             }
             success = true;
             Debug.Log("SUCCESS");
-           
+
             //get new random pattern from store
             pattern = patternStore.getRandomEasyPattern();
 
@@ -158,8 +175,8 @@ public class GameManager : MonoBehaviour
             pattenView.SetPattern(pattern);
 
             //Increment score and set UI
-            incrementScore(multiplier); 
-           
+            incrementScore(multiplier);
+
         }
 
         //return the world position where the enemy should place the coprse
@@ -177,7 +194,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highscore);
             hightText.SetText("Top:  " + highscore);
         }
-        if ((player.level * 1)-1 < score && score != 0 && score !=1) 
+        if ((player.level * 1) - 1 < score && score != 0 && score != 1)
         {
             StartCoroutine(levelUp());
             player.levelUp();
@@ -193,24 +210,140 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level Up");
     }
 
-    private void SpawnSlime(Vector3 pos )
+    private void SpawnSlime(Vector3 pos)
     {
-        List<EnemySpawner> spawners = spawnerParent.GetComponentsInChildren<EnemySpawner>().OfType<EnemySpawner>().ToList();
+        //List<EnemySpawner> spawners = spawnerParent.GetComponentsInChildren<EnemySpawner>().OfType<EnemySpawner>().ToList();
 
-        List<EnemySpawner> sortedSpawners = spawners.OrderByDescending(t => Vector3.Distance(pos, t.transform.position)).ToList();
+        //List<EnemySpawner> sortedSpawners = spawners.OrderByDescending(t => Vector3.Distance(pos, t.transform.position)).ToList();
 
-        if(sortedSpawners.Count > 0 && sortedSpawners[0]!=null) {
-            sortedSpawners[0].spawnEnemy();
+        SpawnWithCheck(slime.gameObject, player.transform.position, 8, 10);
+
+        if (score / 5 + 1 >= enemyCount)
+        {
+            SpawnWithCheck(slime.gameObject, player.transform.position, 8, 10);
+            enemyCount++;
         }
 
-        if (score/5 + 1 >=  enemyCount)
+    }
+
+    private Vector2Int worldPosToGridPos(Vector3 pos, Grid inputGrid)
+    {
+        Vector3 intialLocation = Grid.adjustWoldPosToNearestCell(pos, inputGrid.gridCellSize);
+        Vector3 initialGridPos = inputGrid.ConvetWorldPosToArrayPos(intialLocation);
+        int xint = (int)Mathf.Round(initialGridPos.x);
+        int yint = (int)Mathf.Round(initialGridPos.y);
+        return new Vector2Int(xint, yint);
+    }
+    private Vector2Int getRandomGridPointInRadius(Vector2Int pos, int innerX, int outerX)
+    {
+        int xint = pos.x;
+        int yint = pos.y;
+
+        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2f); // Random angle in radians
+        float radius = UnityEngine.Random.Range(innerX, outerX); // Random radius between x1 and x2
+
+        // Calculate the random position using polar coordinates
+        int x = Mathf.RoundToInt(radius * Mathf.Cos(angle));
+        int y = Mathf.RoundToInt(radius * Mathf.Sin(angle));
+
+        int xintAdj = xint + x;
+        int yintAdj = yint + y;
+
+        Debug.Log("RANDO " + xintAdj + " " + yintAdj);
+
+
+        if (xintAdj > width - 1 || xintAdj <= 1)
         {
-            if (sortedSpawners.Count > 1 && sortedSpawners[1] != null)
+            xintAdj = xint - x;
+        }
+        if (yintAdj > height - 1 || yintAdj <= 1)
+
+        {
+            yintAdj = yint - y;
+        }
+
+        if ((xintAdj > width - 1 || xintAdj <= 1 || yintAdj > width - 1 || yintAdj <= 1))
+        {
+            Debug.Log(" We fucked up.");
+            return new Vector2Int(0, 0);
+        }
+
+        return (new Vector2Int(xintAdj, yintAdj));
+
+    }
+
+    //999 if not good
+    private Vector3 trySpawnInGrid(Vector2Int pos, Grid inGrid)
+    {
+        int xintAdj = pos.x;
+        int yintAdj = pos.y;
+        int valueAtPoint = inGrid.array[xintAdj, yintAdj];
+
+        if (valueAtPoint == 0)
+        {
+            //check worldpos for collision
+            Vector3 worldPos = inGrid.getWorldPositionGridWithOffset(xintAdj, yintAdj) + new Vector3(gridCellSize / 2, gridCellSize / 2);
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(worldPos, 0.2f);
+            //maybe check if hitColliders are obstactles?
+            if (hitColliders.Length > 0)
             {
-                sortedSpawners[1].spawnEnemy();
-                enemyCount++;
+                //this is taken, record it
+                inGrid.SetField(xintAdj, yintAdj, 101);
+                //recheck
+                Debug.Log("Coll" + worldPos);
+                return new Vector3(999, 999);
+            }
+            else
+            {
+                Debug.Log("ITS HERE" + worldPos);
+                return worldPos;
+
             }
         }
-     
+        else
+        {
+            //occupado
+            return new Vector3(999, 999);
+        }
     }
+
+    //to spawn anywhere in grid set spawnWorldPos to 0,0 and outer x/y to width/height and inner to 0
+    //to spawn in given place set variance to 0
+    //0,0 needs to be a safe space to spawn as fallback
+    public GameObject SpawnWithCheck(GameObject thingToSpawn, Vector3 spawnWorldPos, int innerX, int outerX)
+    {
+        Debug.Log("Spawining " + thingToSpawn.name + " at " + spawnWorldPos + " with inner of " + innerX + " and outer " + outerX);
+
+        Vector3 spawnPoint = getSpawnPoint(spawnWorldPos, innerX, outerX);
+
+        return Instantiate(thingToSpawn, spawnPoint, Quaternion.identity);
+
+    }
+
+    public Vector3 getSpawnPoint(Vector3 spawnWorldPos, int innerX, int outerX)
+    {
+        Vector2Int gridPos = worldPosToGridPos(spawnWorldPos, obstacles);
+
+        int tryCount = 0;
+        int maxTries = 200;
+        bool success = false;
+
+        while (tryCount < maxTries && !success)
+        {
+            Vector2Int randomPos = getRandomGridPointInRadius(gridPos, innerX, outerX);
+            Vector3 spawnCandidate = trySpawnInGrid(randomPos, obstacles);
+
+            if (spawnCandidate.x == 999)
+            {
+                tryCount++;
+            }
+            else
+            {
+                return spawnCandidate;
+            }
+
+        }
+        return new Vector3(0, 0, 0);
+    }
+
 }
