@@ -23,6 +23,10 @@ public class WasWeapon : Weapon
     public WeaponSwing swing;
 
     public float reach;
+    public float size = 1;
+
+    private Vector3 baseSize;
+
 
     public GameObject actualWas;
 
@@ -33,7 +37,13 @@ public class WasWeapon : Weapon
         rb = actualWas.GetComponent<Rigidbody2D>();
         animator = actualWas.GetComponent<Animator>();
         currentWeaponReach = baseWeaponReach;
+        baseSize = transform.localScale;
         increaseReach(0f);
+        increaseSize(0f);
+
+
+        //InvokeRepeating(nameof(Attack), 0f, 0.5f); // Update the path every 0.5 seconds
+
     }
 
     void FixedUpdate()
@@ -60,6 +70,14 @@ public class WasWeapon : Weapon
         transform.localPosition = new Vector3(currentWeaponReach, transform.localPosition.y, actualWas.transform.localPosition.z);
     }
 
+    public override void increaseSize(float sizeIncrease)
+    {
+        size *= (1 + sizeIncrease);
+        transform.localScale = baseSize * size;
+    }
+
+
+
 
     public override void Attack()
     {
@@ -82,7 +100,8 @@ public class WasWeapon : Weapon
 
             swing.InitWeaponAttack(weaponKnockback, weaponAttackPower);
 
-            WeaponSwing effect = Instantiate(swing, attackPosition, rotation);
+            WeaponSwing effect = Instantiate(swing, transform);
+            effect.transform.localScale *= size;
 
             //comment if tired
            // effect.transform.SetParent(transform, true);

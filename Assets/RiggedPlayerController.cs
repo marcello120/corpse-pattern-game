@@ -385,5 +385,10 @@ public class RiggedPlayerController : PlayerController
         holster.increaseReach(reachIncrease);
     }
 
+    public void inreaseWeaponSize(float sizeIncrease)
+    {
+        holster.increaseSize(sizeIncrease);
+    }
+
 
 }

@@ -81,7 +81,6 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             getHitSound.Play();
         }
 
-        rb.AddForce(knockback);
 
         health -= damage;
         if (health <= 0)
@@ -90,6 +89,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
         else
         {
+            rb.AddForce(knockback);
             animator.SetTrigger("Hit");
         }
     }
