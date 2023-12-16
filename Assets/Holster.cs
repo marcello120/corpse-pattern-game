@@ -73,6 +73,10 @@ public class Holster : MonoBehaviour
         weapon.increaseReach(rangeIncrease);
     }
 
+    public void increaseSize(float sizeIncrease)
+    {
+        weapon.increaseSize(sizeIncrease);
+    }
 
     public void Attack()
     {

@@ -77,7 +77,7 @@ public class WeaponSwing : MonoBehaviour
             {
                 enemy.getHit(weaponAttackPower, GetKnockBack(collision));
                 Vector2 contactpoint= collision.ClosestPoint(enemy.transform.position);
-                Instantiate(hitEffect, contactpoint, Quaternion.identity);
+                //Instantiate(hitEffect, contactpoint, Quaternion.identity);
             }
         }
     }

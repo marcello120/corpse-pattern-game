@@ -183,4 +183,5 @@ MonoBehaviour:
   canAttack: 1
   swing: {fileID: 8663506858128612782, guid: 0eeeee1d4794b5940b8a233b8e9c0e8c, type: 3}
   reach: 0.1
+  size: 1
   actualWas: {fileID: 3655454372636065323}

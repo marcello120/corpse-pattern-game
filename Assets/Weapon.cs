@@ -14,6 +14,11 @@ public class Weapon : MonoBehaviour, IWeapon
         throw new System.NotImplementedException();
     }
 
+    public virtual void increaseSize(float reachIncreae)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public virtual bool isAttacking()
     {
         throw new System.NotImplementedException();

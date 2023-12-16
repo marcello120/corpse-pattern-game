@@ -1,4 +1,4 @@
-using Mono.Cecil;
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +29,16 @@ public class Scarab : Enemy
 
     private GameObject StunMarkerInstance;
 
+    public GameObject hitEffect;
+
+    private float moveTimer;
+    private float moveTimerLimit = 1f;
+
+
+    Seeker seeker;
+
+    Path path;
+
     public enum State
     {
         Idle,
@@ -46,8 +56,31 @@ public class Scarab : Enemy
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
+        seeker = GetComponent<Seeker>();
  
         
+    }
+
+    private void UpdatePath()
+    {
+        if (seeker.IsDone())
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
+    }
+
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+        }
+        if(path.vectorPath.Count < 4)
+        {
+            setDestination(target.transform.position);
+        }
+        else
+        {
+            setDestination(path.vectorPath[3]);
+        }
     }
 
     // Update is called once per frame
@@ -66,18 +99,21 @@ public class Scarab : Enemy
         }
 
         //if waiting, correct self to grid
-        if(state == State.Waiting)
+        if (state == State.Waiting)
         {
+            moveTimer = 0;
             waitCounter += Time.deltaTime;
-            if(waitCounter > waitTime)
+            if (waitCounter > waitTime)
             {
-                waitCounter= 0f;
+                waitCounter = 0f;
+                UpdatePath();
                 state = State.Moving;
-                animator.SetBool("IsMoving",true);
+                animator.SetBool("IsMoving", true);
+
 
             }
 
-            Vector3 adjustedpos = Grid.adjustWoldPosToNearestCell(transform.position,gridsize);
+            Vector3 adjustedpos = Grid.adjustWoldPosToNearestCell(transform.position, gridsize);
             if (Vector3.Distance(transform.position, adjustedpos) > 0.1f)
             {
                 Vector3 directionToTarget = (adjustedpos - transform.position).normalized;
@@ -87,11 +123,28 @@ public class Scarab : Enemy
             }
 
         }
-        else if(state == State.Moving)
+        else if (state == State.Moving)
         {
+            if (moveTimer > moveTimerLimit)
+            {
+                UpdatePath();
+                moveTimer = 0;
+            }
+            else
+            {
+                moveTimer += Time.deltaTime;
+            }
+
            if(destinationCell == null || destinationCell == Vector3.zero)
             {
-                setDestination(target.transform.position);
+                if (path == null || path.vectorPath.Count < 4)
+                {
+                    setDestination(target.transform.position);
+                }
+                else
+                {
+                    setDestination(path.vectorPath[3]);
+                }
 
             }
             else if(health > 0)
@@ -102,7 +155,7 @@ public class Scarab : Enemy
 
                 rb.AddForce(directionToTarget * movemetSpeed);
 
-                Debug.DrawLine(transform.position, transform.position + directionToTarget);
+                //Debug.DrawLine(transform.position, transform.position + directionToTarget);
 
                 if(Vector3.Distance(transform.position, destinationCell) < 0.1f)
                 {
@@ -118,7 +171,7 @@ public class Scarab : Enemy
 
     private void setDestination(Vector3 initialTarget)
     {
-
+        //Debug.DrawLine(transform.position, initialTarget,Color.magenta,500f);
         List<Vector3> neighbors = getNeighbors();
 
         Vector3 closest = neighbors.ToArray()[0];
@@ -180,6 +233,7 @@ public class Scarab : Enemy
     {
         base.getHit(damage, knockback);
         //check if next attack kills
+        Instantiate(hitEffect,transform.position,Quaternion.identity);
         if (health - damage <= 0)
         {
             setDeathMarker();
@@ -235,13 +289,20 @@ public class Scarab : Enemy
             }
             else
             {
-                setDestination(target.transform.position);
+                if (path == null || path.vectorPath.Count < 4)
+                {
+                    setDestination(target.transform.position);
+                }
+                else
+                {
+                    setDestination(path.vectorPath[3]);
+                }
             }
 
         }
         else if ( collision.gameObject.tag == "Wall")
         {
-           bounce(collision.transform.position);
+           //bounce(collision.transform.position);
         }
 
     }

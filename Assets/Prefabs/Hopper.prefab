@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 6830850734151678591}
   - component: {fileID: 6830850734151678585}
   - component: {fileID: 6830850734151678588}
+  - component: {fileID: 3930865473214127224}
   m_Layer: 12
   m_Name: Hopper
   m_TagString: Enemy
@@ -363,7 +364,7 @@ MonoBehaviour:
   isDead: 0
   isMoving: 0
   attackPower: 1
-  movemetSpeed: 150
+  movemetSpeed: 125
   corpseNumber: 1
   stunned: 0
   stunTimer: 0
@@ -371,12 +372,13 @@ MonoBehaviour:
   target: {fileID: 0}
   gridsize: 0.5
   state: 1
-  waitTime: 0.4
+  waitTime: 0.5
   waitCounter: 0
   destinationCell: {x: 0, y: 0, z: 0}
   statusHolder: {fileID: 3778428473664654173}
   deathMarker: {fileID: 2368188668467871554, guid: 390bc02e92fcd494487dd361d3bb4b6c, type: 3}
   stunMarker: {fileID: 6087808011274934262, guid: ffb921f5a24b0aa49a696bc1373f7ecb, type: 3}
+  hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
 --- !u!58 &6830850734151678585
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -414,6 +416,34 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3930865473214127224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830850734151678587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 1
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 0
+    exactEndPoint: 0
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &6830850735057799976
 GameObject:
   m_ObjectHideFlags: 0
