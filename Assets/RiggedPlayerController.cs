@@ -46,6 +46,7 @@ public class RiggedPlayerController : PlayerController
         spriteRenderer = GetComponent<SpriteRenderer>();
         healthText.text = playerHealth.ToString();
         collider = GetComponent<Collider2D>();
+        UpdateHearts();
         
     }
 
@@ -264,6 +265,7 @@ public class RiggedPlayerController : PlayerController
         rb.AddForce(knockback);
         playerHealth -= damage;
         healthText.text = playerHealth.ToString();
+        UpdateHearts();
 
         CameraShake.Instance.Shake(3, 0.2f);
 
@@ -370,8 +372,10 @@ public class RiggedPlayerController : PlayerController
         if (playerHealth > maxHealth)
         {
             playerHealth= maxHealth;
+            
         }
         healthText.text= playerHealth.ToString();
+        UpdateHearts();
     }
 
     public void increaseDashAmount(float dashIncreaseAmount)
@@ -390,5 +394,29 @@ public class RiggedPlayerController : PlayerController
         holster.increaseSize(sizeIncrease);
     }
 
+    //------------Heart Container------------
+    [SerializeField] private UnityEngine.UI.Image[] hearts;
 
+    public void UpdateHearts()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < playerHealth)
+            {
+                hearts[i].gameObject.SetActive(true);
+                hearts[i].color = Color.white;
+            }
+            else
+            {
+                if (playerHealth < 7 && i < 6)
+                {
+                    hearts[i].color = Color.black;
+                }
+                else
+                {
+                    hearts[i].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
 }
