@@ -16,6 +16,7 @@ public class PowerUpObject : MonoBehaviour
     void Start()
     {
         init(powerUp);
+        //add pointer
         
     }
 

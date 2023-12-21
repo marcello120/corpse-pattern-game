@@ -11,6 +11,10 @@ public class MidPoint : MonoBehaviour
 
     private void Update()
     {
+        if(playerTransform== null)
+        {
+            return;
+        }
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 cameraTargetPosition = (mousePosition + (cameraTargetDivider - 1) * playerTransform.position) / cameraTargetDivider;
 
