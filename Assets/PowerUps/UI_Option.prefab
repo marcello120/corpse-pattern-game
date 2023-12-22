@@ -792,6 +792,8 @@ MonoBehaviour:
   button: {fileID: 1198407939775527948}
   powerUpContainer: {fileID: 5208161543274711450, guid: 99a3b096a5814e24a9e1bcd7f9cb055a, type: 3}
   glow: {fileID: 3523339179882378229}
+  pointerObj: {fileID: 5893585845143364105, guid: 8d7f21bc446ff9846b4c9326c59c4e50, type: 3}
+  pointerCanvas: {fileID: 0}
   verticalMoveAmount: 5
   moveTime: 0.5
   scaleAmount: 1.1

@@ -21,6 +21,10 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public GameObject powerUpContainer;
     public Image glow;
 
+    public GameObject pointerObj;
+    public Canvas pointerCanvas;
+
+
     //-----------------------------------
 
     [SerializeField] private float verticalMoveAmount = 10f;
@@ -39,6 +43,7 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         startPos = transform.position;
         startScale = transform.localScale;
         chosen = false;
+        pointerCanvas = GameObject.Find("Pointer_Canvas").GetComponent<Canvas>();
     }
 
     private IEnumerator moveCard(bool animStart)
@@ -117,6 +122,9 @@ public class UI_PowerUpOption : MonoBehaviour, IPointerEnterHandler, IPointerExi
         GameObject newPowerUp = Instantiate(powerUpContainer, targetPos, Quaternion.identity);
         newPowerUp.GetComponent<PowerUpObject>().init(powerUp);
 
+        //init pointer
+        GameObject pointer = Instantiate(pointerObj, pointerCanvas.gameObject.transform);
+        pointer.GetComponent<Window_QuestPointer>().init(newPowerUp, powerUp.powerUpColor);
         powerUpSelection.hide();
     }
 
