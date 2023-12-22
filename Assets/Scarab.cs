@@ -63,6 +63,10 @@ public class Scarab : Enemy
 
     private void UpdatePath()
     {
+        if (target == null)
+        {
+            return;
+        }
         if (seeker.IsDone())
             seeker.StartPath(transform.position, target.position, OnPathComplete);
     }
@@ -86,6 +90,11 @@ public class Scarab : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (target == null)
+        {
+            return;
+        }
+
         if (stunned)
         {
              stunTimer += Time.deltaTime;
@@ -125,6 +134,7 @@ public class Scarab : Enemy
         }
         else if (state == State.Moving)
         {
+
             if (moveTimer > moveTimerLimit)
             {
                 UpdatePath();

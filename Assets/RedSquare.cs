@@ -37,6 +37,10 @@ public class RedSquare : Enemy
 
     private void UpdatePath()
     {
+        if (target == null)
+        {
+            return;
+        }
         if (seeker.IsDone())
             seeker.StartPath(transform.position, target.position, OnPathComplete);
     }
