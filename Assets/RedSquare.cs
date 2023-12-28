@@ -7,6 +7,7 @@ public class RedSquare : Enemy
 {
     public GameObject body;
     public Transform target;
+    public GameObject track;
 
     Path path;
     int currentWaypoint;
@@ -29,10 +30,22 @@ public class RedSquare : Enemy
 
         InvokeRepeating(nameof(UpdatePath), 0f, 0.5f); // Update the path every 0.5 seconds
 
+        InvokeRepeating(nameof(SpawnTrail), 0f, 0.4f); // Spawn Trail 
+
 
         //seeker.StartPath(rb.position,target.position, onPathComplete);
 
 
+    }
+
+    private void SpawnTrail()
+    {
+        GameObject spawnedTrack = Instantiate(track, transform.position, Quaternion.identity);
+        DamageSurface damageSurface = spawnedTrack.GetComponent<DamageSurface>();
+        damageSurface.parent = this;
+        damageSurface.timeToLive = 10f;
+        damageSurface.attackPower = 1f;
+        damageSurface.lifeTimer= 0f;
     }
 
     private void UpdatePath()
