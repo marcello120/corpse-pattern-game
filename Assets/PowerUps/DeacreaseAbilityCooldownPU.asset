@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667a756b7f65dd041b12442fc2bbaea5, type: 3}
   m_Name: DeacreaseAbilityCooldownPU
   m_EditorClassIdentifier: 
-  powerUpName: 
-  powerUpDescription: 
-  powerUpColor: {r: 0, g: 0, b: 0, a: 0}
-  sprite: {fileID: 0}
-  abilityCooldownDecreaseAmount: 0
+  powerUpName: Reduce ability cooldown
+  powerUpDescription: 'Reduce ability cooldown '
+  powerUpColor: {r: 0.68956923, g: 0.9811321, b: 0.9811321, a: 1}
+  sprite: {fileID: 21300000, guid: 7e64474279135b34295a735a0ae1e97d, type: 3}
+  abilityCooldownDecreaseAmount: 0.1
