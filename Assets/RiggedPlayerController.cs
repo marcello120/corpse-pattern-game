@@ -60,6 +60,7 @@ public class RiggedPlayerController : PlayerController
             {
                 dashTimer = 0;
                 canDash = true;
+                effectsAnimator.Play("effect_wheel");
             }
         }
 
@@ -394,6 +395,12 @@ public class RiggedPlayerController : PlayerController
         holster.increaseSize(sizeIncrease);
     }
 
+    public void decreaseAbilityCooldown(float abilityCooldownDecreaseAmount)
+    {
+        dashCooldown -= abilityCooldownDecreaseAmount;
+    }
+
+
     //------------Heart Container------------
     [SerializeField] private UnityEngine.UI.Image[] hearts;
 
@@ -419,4 +426,5 @@ public class RiggedPlayerController : PlayerController
             }
         }
     }
+
 }
