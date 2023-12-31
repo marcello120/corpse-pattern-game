@@ -7,12 +7,17 @@ public class DashDistancePowerUp : PowerUp
 {
     public float dashDistanceIncrease;
 
-    public override void apply(GameObject player)
+    public override bool apply(GameObject player)
     {
         if (player.tag == "Player" && player.GetComponent<RiggedPlayerController>() != null)
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.increaseDashAmount(dashDistanceIncrease);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

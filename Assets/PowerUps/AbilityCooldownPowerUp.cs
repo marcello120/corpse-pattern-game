@@ -9,12 +9,18 @@ public class AbilityCooldownPowerUp : PowerUp
 {
     public float abilityCooldownDecreaseAmount;
 
-    public override void apply(GameObject player)
+    public override bool apply(GameObject player)
     {
         if (player.tag == "Player" && player.GetComponent<RiggedPlayerController>() != null)
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.decreaseAbilityCooldown(abilityCooldownDecreaseAmount);
+            return true;
+        }
+        else
+        {
+            Debug.Log("WHY?");
+            return false;
         }
     }
 }

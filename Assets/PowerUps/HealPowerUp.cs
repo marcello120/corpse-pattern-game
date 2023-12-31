@@ -7,12 +7,17 @@ public class HealPowerUp : PowerUp
 {
     public float healAmount;
 
-    public override void apply(GameObject player)
+    public override bool apply(GameObject player)
     {
-        if (player.tag == "Player" && player.GetComponent<RiggedPlayerController>()!= null )
+       if (player.tag == "Player" && player.GetComponent<RiggedPlayerController>()!= null )
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.heal(healAmount);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

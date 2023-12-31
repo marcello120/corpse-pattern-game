@@ -10,5 +10,5 @@ public abstract class PowerUp : ScriptableObject
     public Color powerUpColor;
     public Sprite sprite;
 
-    public abstract void apply(GameObject player);
+    public abstract bool apply(GameObject player);
 }
