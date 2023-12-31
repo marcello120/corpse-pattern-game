@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7688686019394590719}
   m_Layer: 9
   m_Name: shadow
-  m_TagString: Untagged
+  m_TagString: PlayerShadow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,8 +246,8 @@ MonoBehaviour:
   - {fileID: 2495351452782309460}
   - {fileID: 604893985106197724}
   m_Bounds:
-    m_Center: {x: 0.06534302, y: -0.20270157, z: 0}
-    m_Extent: {x: 1.0776199, y: 2.2068546, z: 0}
+    m_Center: {x: 0.065342665, y: -0.20270538, z: 0}
+    m_Extent: {x: 1.0776198, y: 2.2068546, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   - {fileID: 7562226831490057617}
   - {fileID: 5201112702085383148}
   m_Bounds:
-    m_Center: {x: -0.03310746, y: 0.10136104, z: 0}
+    m_Center: {x: -0.0331074, y: 0.10136104, z: 0}
     m_Extent: {x: 0.9658042, y: 1.4248657, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -651,8 +651,8 @@ MonoBehaviour:
   - {fileID: 5201112702085383148}
   - {fileID: 6320006786018346518}
   m_Bounds:
-    m_Center: {x: 0.06507474, y: 0.6938884, z: 0}
-    m_Extent: {x: 0.7767036, y: 0.7969558, z: 0}
+    m_Center: {x: 0.06507528, y: 0.6938881, z: 0}
+    m_Extent: {x: 0.7767036, y: 0.7969562, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -919,8 +919,8 @@ MonoBehaviour:
   - {fileID: 6320006786018346518}
   - {fileID: 5551738333685249117}
   m_Bounds:
-    m_Center: {x: -0.005610466, y: 0.77644134, z: 0}
-    m_Extent: {x: 1.0882307, y: 1.0837712, z: 0}
+    m_Center: {x: -0.0056102276, y: 0.7764393, z: 0}
+    m_Extent: {x: 1.0882305, y: 1.0837711, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -6435,7 +6435,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 53264
+  m_InstanceId: 117272
   m_LocalBounds:
     m_Center: {x: -0.11526871, y: -0.18672752, z: 0}
     m_Extent: {x: 1.110199, y: 3.6425152, z: 0}
@@ -6465,7 +6465,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 1141887611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 53200
+  m_InstanceId: 117208
   m_LocalBounds:
     m_Center: {x: -0.06999993, y: -3.54, z: 0}
     m_Extent: {x: 1.23, y: 0.9900001, z: 0}
@@ -6730,8 +6730,8 @@ MonoBehaviour:
   - {fileID: 5022717046190482340}
   - {fileID: 7559394223611386197}
   m_Bounds:
-    m_Center: {x: -0.3749305, y: 0.08388615, z: 0}
-    m_Extent: {x: 1.3324974, y: 1.4346483, z: 0}
+    m_Center: {x: -0.37493002, y: 0.08388615, z: 0}
+    m_Extent: {x: 1.3324975, y: 1.4346483, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -6838,7 +6838,7 @@ MonoBehaviour:
   - {fileID: 3843932108449922240}
   - {fileID: 4659437751408110980}
   m_Bounds:
-    m_Center: {x: 0.022828579, y: 0.052289486, z: 0}
+    m_Center: {x: 0.02282846, y: 0.052289486, z: 0}
     m_Extent: {x: 2.0200763, y: 2.2371302, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -6945,8 +6945,8 @@ MonoBehaviour:
   - {fileID: 5551738333685249117}
   - {fileID: 7053392283565137617}
   m_Bounds:
-    m_Center: {x: 0.21693313, y: 0.12977767, z: 0}
-    m_Extent: {x: 1.1912463, y: 1.4998724, z: 0}
+    m_Center: {x: 0.21693349, y: 0.12977862, z: 0}
+    m_Extent: {x: 1.191246, y: 1.4998734, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
