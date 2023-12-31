@@ -24,8 +24,10 @@ public class PowerUpObject : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
-            powerUp.apply(collision.gameObject);
+            if (powerUp.apply(collision.gameObject))
+            {
+                Destroy(gameObject);
+            }     
         }
     }
 

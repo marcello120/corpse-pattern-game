@@ -9,12 +9,14 @@ public class ReachIncreasePowerUp : PowerUp
     public float reachIncreaseAmount;
 
 
-    public override void apply(GameObject player)
+    public override bool apply(GameObject player)
     {
         if (player.tag == "Player" && player.GetComponent<RiggedPlayerController>() != null)
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.inreaseReach(reachIncreaseAmount);
+            return true;
         }
+        return false;
     }
 }

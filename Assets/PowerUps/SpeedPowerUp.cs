@@ -7,12 +7,14 @@ public class SpeedPowerUp : PowerUp
 {
     public float speedIncreaseAmount;
 
-    public override void apply(GameObject player)
+    public override bool apply(GameObject player)
     {
         if (player.tag == "Player" && player.GetComponent<RiggedPlayerController>()!= null )
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.moveSpeed *= (1.0f + speedIncreaseAmount);
+            return true;
         }
+        return false;
     }
 }

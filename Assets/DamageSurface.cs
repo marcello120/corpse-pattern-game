@@ -52,7 +52,7 @@ public class DamageSurface : MonoBehaviour
     //we collide with the shadow
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "PlayerShadow")
         {
             RiggedPlayerController playerController = collision.gameObject.GetComponentInParent<RiggedPlayerController>();
             playerController.takeDamage(attackPower, parent);
