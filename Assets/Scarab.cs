@@ -1,27 +1,16 @@
 using Pathfinding;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.XR;
+
 
 public class Scarab : Enemy
 {
-    public Transform target;
-
-    public float gridsize = 0.5f;
-
-    public State state = State.Waiting;
-
     public float waitTime = 1f;
 
     public float waitCounter = 0f;
 
     public Vector3 destinationCell;
 
-    public GameObject statusHolder;
 
     public GameObject deathMarker;
 
@@ -39,19 +28,10 @@ public class Scarab : Enemy
 
     Path path;
 
-    public enum State
-    {
-        Idle,
-        Waiting,
-        Moving
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         base.Init();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        animator = GetComponentInChildren<Animator>();
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -79,7 +59,7 @@ public class Scarab : Enemy
         }
         if(path.vectorPath.Count < 4)
         {
-            setDestination(target.transform.position);
+            setDestination(target.position);
         }
         else
         {
@@ -95,15 +75,15 @@ public class Scarab : Enemy
             return;
         }
 
-        if (stunned)
+        if (isStunned())
         {
-             stunTimer += Time.deltaTime;
-            if (stunTimer > stunTime)
-            {
-                stunTimer = 0;
-                stunned = false;
-                removeStunMarker();
-            }
+            // stunTimer += Time.deltaTime;
+            //if (stunTimer > stunTime)
+            //{
+            //    stunTimer = 0;
+            //    stunned = false;
+            //    removeStunMarker();
+            //}
             return;
         }
 
@@ -122,7 +102,7 @@ public class Scarab : Enemy
 
             }
 
-            Vector3 adjustedpos = Grid.adjustWoldPosToNearestCell(transform.position, gridsize);
+            Vector3 adjustedpos = Grid.adjustWoldPosToNearestCell(transform.position, GameManager.Instance.gridCellSize);
             if (Vector3.Distance(transform.position, adjustedpos) > 0.1f)
             {
                 Vector3 directionToTarget = (adjustedpos - transform.position).normalized;
@@ -149,7 +129,7 @@ public class Scarab : Enemy
             {
                 if (path == null || path.vectorPath.Count < 4)
                 {
-                    setDestination(target.transform.position);
+                    setDestination(target.position);
                 }
                 else
                 {
@@ -223,6 +203,7 @@ public class Scarab : Enemy
 
     private List<Vector3> getNeighbors()
     {
+        float gridsize = GameManager.Instance.gridCellSize;
         List<Vector3> neighbors = new List<Vector3>
         {
             Grid.adjustWoldPosToNearestCell(transform.position + new Vector3(gridsize * -1, gridsize * -1), gridsize),
@@ -244,38 +225,15 @@ public class Scarab : Enemy
         base.getHit(damage, knockback);
         //check if next attack kills
         Instantiate(hitEffect,transform.position,Quaternion.identity);
-        if (health - damage <= 0)
-        {
-            setDeathMarker();
-        }
+
     }
 
-    private void setDeathMarker()
-    {
-        if (statusHolder.transform.childCount < 1)
-        {
-            Instantiate(deathMarker, statusHolder.transform);
-        }
-    }
-
-    private void setStunMarker()
-    {
-        if (StunMarkerInstance == null)
-        {
-            StunMarkerInstance = Instantiate(stunMarker, statusHolder.transform);
-        }
-    }
     private void removeStunMarker()
     {
         Destroy(StunMarkerInstance);
     }
 
-    public override bool stun()
-    {
-        stunned = true;
-        setStunMarker();
-        return stunned;
-    }
+
 
     public override void Death()
     {
@@ -301,7 +259,7 @@ public class Scarab : Enemy
             {
                 if (path == null || path.vectorPath.Count < 4)
                 {
-                    setDestination(target.transform.position);
+                    setDestination(target.position);
                 }
                 else
                 {

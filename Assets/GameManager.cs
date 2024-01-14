@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public int width = 22;
     public int height = 12;
-    public float gridCellSize = 0.16f;
+    public float gridCellSize = 0.5f;
 
     public Grid grid;
 
@@ -275,36 +275,36 @@ public class GameManager : MonoBehaviour
     //999 if not good
     private Vector3 trySpawnInGrid(Vector2Int pos, Grid inGrid)
     {
-        int xintAdj = pos.x;
-        int yintAdj = pos.y;
-        int valueAtPoint = inGrid.array[xintAdj, yintAdj];
+        int arrayWidth = inGrid.array.GetLength(0);
+        int arrayHeight = inGrid.array.GetLength(1);
 
-        if (valueAtPoint == 0)
+        if (!IsWithinBounds(pos, arrayWidth, arrayHeight))
         {
-            //check worldpos for collision
-            Vector3 worldPos = inGrid.getWorldPositionGridWithOffset(xintAdj, yintAdj) + new Vector3(gridCellSize / 2, gridCellSize / 2);
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(worldPos, 0.2f);
-            //maybe check if hitColliders are obstactles?
-            if (hitColliders.Length > 0)
-            {
-                //this is taken, record it
-                inGrid.SetField(xintAdj, yintAdj, 101);
-                //recheck
-                Debug.Log("Coll" + worldPos);
-                return new Vector3(999, 999);
-            }
-            else
-            {
-                Debug.Log("ITS HERE" + worldPos);
-                return worldPos;
-
-            }
-        }
-        else
-        {
-            //occupado
             return new Vector3(999, 999);
         }
+
+        int valueAtPoint = inGrid.array[pos.x, pos.y];
+
+        if (valueAtPoint != 0)
+        {
+            return new Vector3(999, 999);
+        }
+
+        Vector3 worldPos = inGrid.getWorldPositionGridWithOffset(pos.x, pos.y) + new Vector3(gridCellSize / 2, gridCellSize / 2);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(worldPos, 0.2f);
+
+        if (hitColliders.Length > 0)
+        {
+            inGrid.SetField(pos.x, pos.y, 101);
+            return new Vector3(999, 999);
+        }
+
+        return worldPos;
+    }
+
+    private bool IsWithinBounds(Vector2Int pos, int width, int height)
+    {
+        return pos.x >= 0 && pos.x < width && pos.y >= 0 && pos.y < height;
     }
 
     //to spawn anywhere in grid set spawnWorldPos to 0,0 and outer x/y to width/height and inner to 0

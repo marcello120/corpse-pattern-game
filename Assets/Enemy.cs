@@ -1,64 +1,83 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(StatusHolder))]
+
 public abstract class Enemy : MonoBehaviour, IEnemy
 {
+    protected Animator animator;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer spriteRenderer;
+    protected AudioSource getHitSound;
+
+
+    [Header("Set these")]
+    public GameObject body;
     public string enemyname;
-
-    private GameManager gameManager;
-
-    public Animator animator;
-
-    public Collider2D boxCollider2D;
-
-    public Rigidbody2D rb;
-
-    public SpriteRenderer spriteRenderer;
-
-    public AudioSource getHitSound;
-
-    public int flipBehaviour;
-
-
     public GameObject corpse;
+    public int corpseNumber = 1;
+    public int flipBehaviour;
+    public NearDeathStatusEffect nearDeathStatusEffect;
 
+    [Header("Stats")]
     public float health;
-    public bool isDead = false;
-    public bool isMoving = false;
     public float attackPower;
     public float movemetSpeed;
-
-    public int corpseNumber = 1;
-
-    public Boolean stunned;
-    public float stunTimer;
     public float stunTime;
 
+
+    [Header("Debug")]
+    public State state = State.Idle;
+    public bool isDead = false;
+    public bool stunned;
+    public float stunTimer;
+
+
+    [Header("Extra")]
+    public string extra;
+    public Transform target;
+    public StatusHolder statusHolder;
+
+
+
+    public enum State
+    {
+        Idle,
+        Waiting,
+        Moving,
+        Attacking,
+        Dead
+    }
 
     // Should be called in Start
     public virtual void Init()
     {
         //this should be done with events
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        animator = GetComponent<Animator>();
-        boxCollider2D = GetComponent<Collider2D>();
+        animator = body.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer= GetComponent<SpriteRenderer>();
+        spriteRenderer= body.GetComponent<SpriteRenderer>();
         getHitSound = GetComponent<AudioSource>();
+        TryGetComponent(out statusHolder);
     }
 
 
     public virtual void Death()
     {
 
-        Vector3 place = gameManager.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
+        Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
 
         animator.SetTrigger("Death");
-        boxCollider2D.enabled = false;
-
+        Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D cc in ccs)
+        {
+            cc.enabled = false;
+        }
+    
         if (corpse!=null)
         {
             Instantiate(corpse, place, Quaternion.identity);
@@ -92,6 +111,12 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             rb.AddForce(knockback);
             animator.SetTrigger("Hit");
         }
+
+        if (health - damage <= 0)
+        {
+            addStatusEffect( Instantiate(nearDeathStatusEffect));
+        }
+
     }
 
     public virtual void Remove()
@@ -109,34 +134,61 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
     }
 
+    public bool isStunned()
+    {
+        if(statusHolder == null)
+        {
+            return false;
+        }
+        if (statusHolder.effects.Any(x => x!=null && x.statusEffectName=="Stun"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void addStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusHolder != null & statusEffect != null)
+        {
+            statusHolder.Add(statusEffect);
+        }
+        else
+        {
+            Debug.LogError("NO EFFECT || NO STATUS FUCK YOU!");
+        }
+    }
+
     public bool moveToPlayerWithDetectionZone(DetectionZoneController detectionZoneController)
     {
-        isMoving = false;
+        //isMoving = false;
 
-        if (detectionZoneController.detectedObjs.Count > 0)
-        {
-            if (detectionZoneController.detectedObjs[0] != null && health > 0)
-            {
-                isMoving = true;
-                GameObject target = detectionZoneController.detectedObjs[0];
+        //if (detectionZoneController.detectedObjs.Count > 0)
+        //{
+        //    if (detectionZoneController.detectedObjs[0] != null && health > 0)
+        //    {
+        //        isMoving = true;
+        //        GameObject target = detectionZoneController.detectedObjs[0];
 
-                Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
+        //        Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
 
 
-                handleFlip(flipBehaviour, directionToTarget);
+        //        handleFlip(flipBehaviour, directionToTarget);
 
-                rb.AddForce(directionToTarget * movemetSpeed);
+        //        rb.AddForce(directionToTarget * movemetSpeed);
 
-                isMoving = true;
-            }
-        }
-        animator.SetBool("IsMoving", isMoving);
+        //        isMoving = true;
+        //    }
+        //}
+        //animator.SetBool("IsMoving", isMoving);
 
-        return isMoving;
+        //return isMoving;
+        return true;
     }
 
     public virtual bool stun()
     {
+
         Debug.Log("Abstract Stun");
         stunned = true;
         return stunned;

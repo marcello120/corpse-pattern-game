@@ -38,6 +38,9 @@ public class RiggedPlayerController : PlayerController
 
     public PerfectDashDecider perfectDashDecider;
 
+    public SlowStatusEffect slowStatusEffect;
+    public StunStatusEffect stunStatusEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -161,6 +164,18 @@ public class RiggedPlayerController : PlayerController
     }
 
 
+    public void Stun(Enemy enemy)
+    {
+        enemy.addStatusEffect(Instantiate(stunStatusEffect));
+
+    }
+
+    public void Slow(Enemy enemy)
+    {
+        enemy.addStatusEffect(Instantiate(slowStatusEffect));
+
+    }
+
 
 
 
@@ -174,6 +189,23 @@ public class RiggedPlayerController : PlayerController
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    void OnUtility()
+    {
+        Debug.Log("UTILITY");
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+        effectsAnimator.Play("effect_vortex");
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            if(hitCollider.gameObject.tag == "Enemy" && hitCollider.gameObject.GetComponent<Enemy>()!=null)
+            {
+                Enemy en = hitCollider.gameObject.GetComponent<Enemy>();
+                Slow(en);
+            }
+
+        }
+
     }
 
     void OnJump()
@@ -207,13 +239,15 @@ public class RiggedPlayerController : PlayerController
                         if (stuntarget.GetComponent<Enemy>() != null)
                         {
                             Enemy enemy = stuntarget.GetComponent<Enemy>();
-                            enemy.stun();
+                            //enemy.stun();
+                            Stun(enemy);
                             perfectDashDecider.playNice();
                         }
                         else if (stuntarget.GetComponentInParent<Enemy>() != null)
                         {
                             Enemy enemy = stuntarget.GetComponentInParent<Enemy>();
-                            enemy.stun();
+                            //enemy.stun();
+                            Stun(enemy);
                             perfectDashDecider.playNice();
                         }
                     }
@@ -262,7 +296,17 @@ public class RiggedPlayerController : PlayerController
         animator.SetTrigger("Hit");
         takeDamageSound.Play();
         canMove = false;
-        Vector2 knockback = (transform.position - enemy.gameObject.transform.position).normalized * 300;
+        Vector2 knockback;
+        if (enemy != null)
+        {
+            knockback = (transform.position - enemy.gameObject.transform.position).normalized * 300;
+        }
+        else
+        {
+            // Generate a random knockback direction if the enemy is null
+            float randomAngle = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
+            knockback = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * 300;
+        }
         rb.AddForce(knockback);
         playerHealth -= damage;
         healthText.text = playerHealth.ToString();

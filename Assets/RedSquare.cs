@@ -5,22 +5,17 @@ using Pathfinding;
 
 public class RedSquare : Enemy
 {
-    public GameObject body;
-    public Transform target;
-    public GameObject track;
 
     Path path;
     int currentWaypoint;
     bool reachedEndOfPath;
-
+     
     Seeker seeker;
 
     public float nextWayPointDist = 1f;
     void Start()
     {
         base.Init();
-        spriteRenderer = body.GetComponent<SpriteRenderer>();
-        animator = body.GetComponent<Animator>();
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -30,23 +25,11 @@ public class RedSquare : Enemy
 
         InvokeRepeating(nameof(UpdatePath), 0f, 0.5f); // Update the path every 0.5 seconds
 
-        InvokeRepeating(nameof(SpawnTrail), 0f, 0.4f); // Spawn Trail 
-
-
         //seeker.StartPath(rb.position,target.position, onPathComplete);
 
 
     }
 
-    private void SpawnTrail()
-    {
-        GameObject spawnedTrack = Instantiate(track, transform.position, Quaternion.identity);
-        DamageSurface damageSurface = spawnedTrack.GetComponent<DamageSurface>();
-        damageSurface.parent = this;
-        damageSurface.timeToLive = 10f;
-        damageSurface.attackPower = 1f;
-        damageSurface.lifeTimer= 0f;
-    }
 
     private void UpdatePath()
     {
@@ -73,10 +56,22 @@ public class RedSquare : Enemy
         base.Death();
     }
 
+    public override void getHit(float damage, Vector2 knockback)
+    {
+        if (isStunned())
+        {
+            base.getHit(damage, knockback);
+
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (path == null || isDead)
+        if (path == null || isDead || state == State.Dead)
             return;
+        if (isStunned())
+            return;
+      
 
         if (currentWaypoint >= path.vectorPath.Count)
         {

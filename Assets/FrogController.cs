@@ -6,14 +6,7 @@ public class FrogController : Enemy
 {
     public FrogTungeController tounge;
 
-    public enum State
-    {
-        Attacking,
-        Moving,
-        Charging,
-        Idle
-    }
-
+ 
 
     public GameObject player;
 
@@ -23,7 +16,6 @@ public class FrogController : Enemy
     public float attackDelay;
     public float attackTime;
 
-    public State state;
 
 
 
@@ -39,54 +31,54 @@ public class FrogController : Enemy
     void FixedUpdate()
     {
 
-        //moveToPlayerWithDetectionZone(detectionZoneController);
+        ////moveToPlayerWithDetectionZone(detectionZoneController);
 
-        if (player == null)
-        {
-            return;
-        }
+        //if (player == null)
+        //{
+        //    return;
+        //}
 
-        isMoving = false;
+        //isMoving = false;
 
-        float distance = Vector3.Distance(transform.position, player.transform.position);
+        //float distance = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distance <= chaseDistance)
-        {
-            Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
+        //if (distance <= chaseDistance)
+        //{
+        //    Vector2 directionToTarget = (player.transform.position - transform.position).normalized;
 
-            handleFlip(-1,directionToTarget);
+        //    handleFlip(-1,directionToTarget);
 
-            if (distance < attackDistance)
-            {
-                tounge.ReadyToAttack(directionToTarget);
+        //    if (distance < attackDistance)
+        //    {
+        //        tounge.ReadyToAttack(directionToTarget);
 
-                //stop and perform attack
-                if (attackTime >= attackDelay)
-                {
+        //        //stop and perform attack
+        //        if (attackTime >= attackDelay)
+        //        {
                     
-                    //perform attack
-                    attackTime = 0;
-                    Debug.Log("ATTACK!");
-                    tounge.Attack();
+        //            //perform attack
+        //            attackTime = 0;
+        //            Debug.Log("ATTACK!");
+        //            tounge.Attack();
                     
-                }
-            }
-            else
-            {
-                tounge.NotReadyToAttack(directionToTarget);
-                //move to player
-                rb.AddForce(directionToTarget * movemetSpeed);
-                isMoving = true;
-                state = State.Moving;
-            }
-        }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        tounge.NotReadyToAttack(directionToTarget);
+        //        //move to player
+        //        rb.AddForce(directionToTarget * movemetSpeed);
+        //        isMoving = true;
+        //        state = State.Moving;
+        //    }
+        //}
 
-        if (attackTime < attackDelay)
-        {
-            attackTime += Time.deltaTime;
-        }
+        //if (attackTime < attackDelay)
+        //{
+        //    attackTime += Time.deltaTime;
+        //}
 
-        animator.SetBool("IsMoving", isMoving);
+        //animator.SetBool("IsMoving", isMoving);
 
 
 
