@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -28,14 +27,12 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public float health;
     public float attackPower;
     public float movemetSpeed;
-    public float stunTime;
 
 
     [Header("Debug")]
     public State state = State.Idle;
     public bool isDead = false;
     public bool stunned;
-    public float stunTimer;
 
 
     [Header("Extra")]
@@ -68,6 +65,8 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void Death()
     {
+        rb.velocity = Vector3.zero;
+
 
         Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
 
@@ -114,7 +113,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
         if (health - damage <= 0)
         {
-            addStatusEffect( Instantiate(nearDeathStatusEffect));
+            addStatusEffect(Instantiate(nearDeathStatusEffect));
         }
 
     }
@@ -147,6 +146,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         return false;
     }
 
+    public bool canMove()
+    {
+        return (isDead || state == State.Dead || isStunned());
+    }
+
     public void addStatusEffect(StatusEffect statusEffect)
     {
         if (statusHolder != null & statusEffect != null)
@@ -157,6 +161,12 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             Debug.LogError("NO EFFECT || NO STATUS FUCK YOU!");
         }
+    }
+
+    public void moveInDirection(Vector3 direction)
+    {
+        Vector3 force = direction * movemetSpeed * Time.fixedDeltaTime;
+        rb.AddForce(force);
     }
 
     public bool moveToPlayerWithDetectionZone(DetectionZoneController detectionZoneController)
