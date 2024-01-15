@@ -8,6 +8,7 @@ public class RedSquare: Enemy
     public void Start()
     {
         base.Init();
+        state = State.Moving;
     }
 
     public override void getHit(float damage, Vector2 knockback)
