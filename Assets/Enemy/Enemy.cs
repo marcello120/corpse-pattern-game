@@ -164,9 +164,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     }
 
     public void moveInDirection(Vector3 direction)
-    {
+    { 
+        if(!isStunned()) { 
         Vector3 force = direction * movemetSpeed * Time.fixedDeltaTime;
         rb.AddForce(force);
+        }
     }
 
     public bool moveToPlayerWithDetectionZone(DetectionZoneController detectionZoneController)
