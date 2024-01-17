@@ -21,6 +21,17 @@ public class Member : MonoBehaviour
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0);
     }
 
+    void Update()
+    {
+        acceleration = Combine();
+        acceleration = Vector3.ClampMagnitude(acceleration, conf.maxAccelaration);
+        velocity = velocity + acceleration * Time.deltaTime;
+        velocity = Vector3.ClampMagnitude(velocity, conf.maxVelocity);
+        position = position + velocity * Time.deltaTime;
+        WrapAround(ref position, -level.bounds, level.bounds);
+        transform.position = position;
+    }
+
     void WrapAround(ref Vector3 vector, float min, float max)
     {
         vector.x = WrapAroundFloat(vector.x, min, max);
@@ -46,17 +57,6 @@ public class Member : MonoBehaviour
         return Random.Range(0f, 1f) - Random.Range(0f, 1f);
     }
     
-    void Update()
-    {
-        acceleration = Wander();
-        acceleration = Vector3.ClampMagnitude(acceleration, conf.maxAccelaration);
-        velocity = velocity + acceleration * Time.deltaTime;
-        velocity = Vector3.ClampMagnitude(velocity, conf.maxVelocity);
-        position = position + velocity * Time.deltaTime;
-        WrapAround(ref position, -level.bounds, level.bounds);
-        transform.position = position;
-    }
-
     protected Vector3 Wander()
     {
         float jitter = conf.wanderJitter * Time.deltaTime;
@@ -67,5 +67,43 @@ public class Member : MonoBehaviour
         Vector3 targetInWorldSpace = transform.TransformPoint(targetInLocalSpace);
         targetInWorldSpace -= this.position;
         return targetInWorldSpace.normalized;
+    }
+
+    Vector3 Cohesion()
+    {
+        Vector3 cohesionVector= new Vector3();
+        int countMembers = 0;
+        var neighbors = level.GetNeighbors(this, conf.cohesionRadius);
+        if(neighbors.Count == 0)
+        {
+            return cohesionVector;
+        }
+        foreach(var member in neighbors) 
+        {
+            if (IsInFOV(member.position))
+            {
+                cohesionVector += member.position;
+                countMembers++;
+            }
+        }
+        if(countMembers == 0)
+        {
+            return cohesionVector;
+        }
+        cohesionVector /= countMembers;
+        cohesionVector = cohesionVector - this.position;
+        cohesionVector = Vector3.Normalize(cohesionVector);
+        return cohesionVector;
+    }
+
+    virtual protected Vector3 Combine()
+    {
+        Vector3 finalVec = conf.cohesionPriority * Cohesion() + conf.wanderPriority * Wander();
+        return finalVec;
+    }
+
+    public bool IsInFOV(Vector3 vec)
+    {
+        return Vector3.Angle(this.velocity, vec - this.position) <= conf.maxFOV;
     }
 }
