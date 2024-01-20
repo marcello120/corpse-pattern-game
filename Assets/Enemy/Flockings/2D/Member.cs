@@ -63,7 +63,7 @@ public class Member : MonoBehaviour
         wanderTarget += new Vector3(RandomBinomial() * jitter, RandomBinomial() * jitter, 0);
         wanderTarget = wanderTarget.normalized;
         wanderTarget *= conf.wanderRadius;
-        Vector3 targetInLocalSpace = wanderTarget + new Vector3(0, conf.wanderDistance, 0);
+        Vector3 targetInLocalSpace = wanderTarget + new Vector3(conf.wanderDistance, conf.wanderDistance, 0);
         Vector3 targetInWorldSpace = transform.TransformPoint(targetInLocalSpace);
         targetInWorldSpace -= this.position;
         return targetInWorldSpace.normalized;
@@ -96,9 +96,73 @@ public class Member : MonoBehaviour
         return cohesionVector;
     }
 
+    Vector3 Alignment()
+    {
+        Vector3 alignVector = new Vector3();
+        var members = level.GetNeighbors(this, conf.alignmentRadius);
+        if(members.Count == 0)
+        {
+            return alignVector;
+        }
+        foreach(var member in members)
+        {
+            if (IsInFOV(member.position))
+            {
+                alignVector += member.velocity;
+            }
+        }
+        return alignVector.normalized;
+    }
+
+    Vector3 Seperation()
+    {
+        Vector3 seperateVector = new Vector3();
+        var members = level.GetNeighbors(this, conf.seperationRadius);
+        if(members.Count == 0)
+        {
+            return seperateVector;
+        }
+        foreach(var member in members)
+        {
+            if (IsInFOV(member.position))
+            {
+                Vector3 movingTowards = this.position - member.position;
+                if(movingTowards.magnitude > 0)
+                {
+                    seperateVector += movingTowards.normalized / movingTowards.magnitude;
+                }
+            }
+        }
+        return seperateVector.normalized;
+    }
+
+    Vector3 Avoidance()
+    {
+        Vector3 avoidVector = new Vector3();
+        var enemyList = level.GetEnemies(this, conf.avoidanceRadius);
+        if(enemyList.Count == 0)
+        {
+            return avoidVector;
+        }
+        foreach(var enemy in enemyList)
+        {
+            avoidVector += RunAway(enemy.transform.position);
+        }
+        return avoidVector.normalized;
+    }
+
+    Vector3 RunAway(Vector3 target)
+    {
+        Vector3 neededVelocity = (position - target.normalized) * conf.maxVelocity;
+        return neededVelocity - velocity;
+    }
+
     virtual protected Vector3 Combine()
     {
-        Vector3 finalVec = conf.cohesionPriority * Cohesion() + conf.wanderPriority * Wander();
+        Vector3 finalVec = conf.cohesionPriority * Cohesion() + conf.wanderPriority * Wander()
+                            +conf.alignmentPriority * Alignment()
+                            + conf.seperationPriority * Seperation()
+                            + conf.avoidancePriority * Avoidance();
         return finalVec;
     }
 
