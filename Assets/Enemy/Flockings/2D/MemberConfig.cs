@@ -24,15 +24,4 @@ public class MemberConfig : MonoBehaviour
     [Header("Avoidance")]
     public float avoidanceRadius;
     public float avoidancePriority;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -28,15 +28,17 @@ public class Member : MonoBehaviour
         velocity = velocity + acceleration * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, conf.maxVelocity);
         position = position + velocity * Time.deltaTime;
-        WrapAround(ref position, -level.bounds, level.bounds);
+        float halfBounds = level.bounds;
+        Vector3 minBounds = -new Vector3(halfBounds, halfBounds, 0) + level.localPos;
+        Vector3 maxBounds = new Vector3(halfBounds, halfBounds, 0) + level.localPos;
         transform.position = position;
     }
 
-    void WrapAround(ref Vector3 vector, float min, float max)
+    void WrapAround(ref Vector3 vector, Vector3 min, Vector3 max)
     {
-        vector.x = WrapAroundFloat(vector.x, min, max);
-        vector.y = WrapAroundFloat(vector.y, min, max);
-        vector.z = WrapAroundFloat(vector.z, min, max);
+        vector.x = WrapAroundFloat(vector.x, min.x, max.x);
+        vector.y = WrapAroundFloat(vector.y, min.y, max.y);
+        vector.z = WrapAroundFloat(vector.z, min.z, max.z);
     }
 
     float WrapAroundFloat(float value, float min, float max)
