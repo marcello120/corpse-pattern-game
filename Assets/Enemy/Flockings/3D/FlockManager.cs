@@ -15,12 +15,26 @@ public class FlockManager : MonoBehaviour
     [Header("Flock Enemy Settings")]
     [Range(0f, 5f)]
     public float minSpeed;
-    [Range(0f, 5f)]
+    [Range(0f, 10f)]
     public float maxSpeed;
-    [Range(1f, 10f)]
+    [Range(0.1f, 10f)]
     public float neighbourDistance;
+    [Range(0.01f, 10f)]
+    public float avoidDistance;
     [Range(0.5f, 5f)]
     public float rotationSpeed;
+    public float alignmentWeight;
+    public float cohesionWeight;
+    public float goalWeight;
+    public float maxGoalDistance;
+    public float separationWeight;
+    public float maxSeparationDistance;
+    public float avoidRadius;
+    public float collisionAvoidWeight;
+    public float currentWanderAngle;
+    public float wanderAngleChange;
+    public float wanderWeight;
+    public float boundsCorrectionWeight;
 
     // Start is called before the first frame update
     void Start()
