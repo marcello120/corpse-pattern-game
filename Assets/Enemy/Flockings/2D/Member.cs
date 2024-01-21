@@ -9,6 +9,9 @@ public class Member : MonoBehaviour
     public Vector3 acceleration;
     Vector3 wanderTarget;
 
+    bool isMovingToCenter = false;
+    Vector3 targetCenter;
+
     public Level level;
     public MemberConfig conf;
 
@@ -40,12 +43,38 @@ public class Member : MonoBehaviour
         float halfBounds = level.bounds;
         Vector3 minBounds = -new Vector3(halfBounds, halfBounds, 0) + level.localPos;
         Vector3 maxBounds = new Vector3(halfBounds, halfBounds, 0) + level.localPos;
-        WrapAround(ref position, minBounds, maxBounds);
+        //WrapAround(ref position, minBounds, maxBounds);
+
+        if (IsOutsideBounds(position, minBounds, maxBounds))
+        {
+            // Start moving towards the center
+            isMovingToCenter = true;
+            targetCenter = level.localPos;
+        }
+
+        if (isMovingToCenter)
+        {
+            // Interpolate towards the center
+            position = Vector3.Lerp(position, targetCenter, (conf.maxVelocity * 1.5f) * Time.deltaTime);
+
+            // Check if close enough to the center to stop moving
+            if (Vector3.Distance(position, targetCenter) < conf.centerRadius)
+            {
+                isMovingToCenter = false;
+            }
+        }
+
         transform.position = position;
 
     }
 
-    void WrapAround(ref Vector3 vector, Vector3 min, Vector3 max)
+    bool IsOutsideBounds(Vector3 vector, Vector3 min, Vector3 max)
+    {
+        return vector.x < min.x || vector.x > max.x || vector.y < min.y || vector.y > max.y;
+    }
+
+    // !!!FLOCKING JUTSU - TELEPORTATION TECHNIQUE!!!
+    /*void WrapAround(ref Vector3 vector, Vector3 min, Vector3 max)
     {
         vector.x = WrapAroundFloat(vector.x, min.x, max.x);
         vector.y = WrapAroundFloat(vector.y, min.y, max.y);
@@ -63,7 +92,7 @@ public class Member : MonoBehaviour
             value = max;
         }
         return value;
-    }
+    }*/
 
     float RandomBinomial()
     {
