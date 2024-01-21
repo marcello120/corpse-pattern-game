@@ -15,7 +15,7 @@ public class Member : MonoBehaviour
     void Start()
     {
         level = FindObjectOfType<Level>();
-        conf = FindObjectOfType<MemberConfig > ();
+        conf = FindObjectOfType<MemberConfig>();
 
         position = transform.position;
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0);
@@ -28,10 +28,21 @@ public class Member : MonoBehaviour
         velocity = velocity + acceleration * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, conf.maxVelocity);
         position = position + velocity * Time.deltaTime;
+
+        float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, conf.rotationSpeed * Time.deltaTime);
+        // Ensure the sprite is not flipped
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x);
+        transform.localScale = scale;
+
         float halfBounds = level.bounds;
         Vector3 minBounds = -new Vector3(halfBounds, halfBounds, 0) + level.localPos;
         Vector3 maxBounds = new Vector3(halfBounds, halfBounds, 0) + level.localPos;
+        WrapAround(ref position, minBounds, maxBounds);
         transform.position = position;
+
     }
 
     void WrapAround(ref Vector3 vector, Vector3 min, Vector3 max)
@@ -58,7 +69,7 @@ public class Member : MonoBehaviour
     {
         return Random.Range(0f, 1f) - Random.Range(0f, 1f);
     }
-    
+
     protected Vector3 Wander()
     {
         float jitter = conf.wanderJitter * Time.deltaTime;
@@ -73,14 +84,14 @@ public class Member : MonoBehaviour
 
     Vector3 Cohesion()
     {
-        Vector3 cohesionVector= new Vector3();
+        Vector3 cohesionVector = new Vector3();
         int countMembers = 0;
         var neighbors = level.GetNeighbors(this, conf.cohesionRadius);
-        if(neighbors.Count == 0)
+        if (neighbors.Count == 0)
         {
             return cohesionVector;
         }
-        foreach(var member in neighbors) 
+        foreach (var member in neighbors)
         {
             if (IsInFOV(member.position))
             {
@@ -88,7 +99,7 @@ public class Member : MonoBehaviour
                 countMembers++;
             }
         }
-        if(countMembers == 0)
+        if (countMembers == 0)
         {
             return cohesionVector;
         }
@@ -102,11 +113,11 @@ public class Member : MonoBehaviour
     {
         Vector3 alignVector = new Vector3();
         var members = level.GetNeighbors(this, conf.alignmentRadius);
-        if(members.Count == 0)
+        if (members.Count == 0)
         {
             return alignVector;
         }
-        foreach(var member in members)
+        foreach (var member in members)
         {
             if (IsInFOV(member.position))
             {
@@ -120,16 +131,16 @@ public class Member : MonoBehaviour
     {
         Vector3 seperateVector = new Vector3();
         var members = level.GetNeighbors(this, conf.seperationRadius);
-        if(members.Count == 0)
+        if (members.Count == 0)
         {
             return seperateVector;
         }
-        foreach(var member in members)
+        foreach (var member in members)
         {
             if (IsInFOV(member.position))
             {
                 Vector3 movingTowards = this.position - member.position;
-                if(movingTowards.magnitude > 0)
+                if (movingTowards.magnitude > 0)
                 {
                     seperateVector += movingTowards.normalized / movingTowards.magnitude;
                 }
@@ -142,11 +153,11 @@ public class Member : MonoBehaviour
     {
         Vector3 avoidVector = new Vector3();
         var enemyList = level.GetEnemies(this, conf.avoidanceRadius);
-        if(enemyList.Count == 0)
+        if (enemyList.Count == 0)
         {
             return avoidVector;
         }
-        foreach(var enemy in enemyList)
+        foreach (var enemy in enemyList)
         {
             avoidVector += RunAway(enemy.transform.position);
         }
@@ -162,7 +173,7 @@ public class Member : MonoBehaviour
     virtual protected Vector3 Combine()
     {
         Vector3 finalVec = conf.cohesionPriority * Cohesion() + conf.wanderPriority * Wander()
-                            +conf.alignmentPriority * Alignment()
+                            + conf.alignmentPriority * Alignment()
                             + conf.seperationPriority * Seperation()
                             + conf.avoidancePriority * Avoidance();
         return finalVec;

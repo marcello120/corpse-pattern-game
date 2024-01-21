@@ -7,6 +7,7 @@ public class MemberConfig : MonoBehaviour
     public float maxFOV = 180f;
     public float maxAccelaration;
     public float maxVelocity;
+    public float rotationSpeed;
     [Header("Wander")]
     public float wanderJitter;
     public float wanderRadius;
