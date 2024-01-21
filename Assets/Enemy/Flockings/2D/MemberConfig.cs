@@ -25,4 +25,6 @@ public class MemberConfig : MonoBehaviour
     [Header("Avoidance")]
     public float avoidanceRadius;
     public float avoidancePriority;
+    [Header("From the center")]
+    public float centerRadius;
 }
