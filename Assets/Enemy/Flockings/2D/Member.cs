@@ -21,7 +21,7 @@ public class Member : MonoBehaviour
         conf = FindObjectOfType<MemberConfig>();
 
         position = transform.position;
-        velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0);
+        velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0); //Itt a Range fontos
     }
 
     void Update()
@@ -50,12 +50,13 @@ public class Member : MonoBehaviour
             // Start moving towards the center
             isMovingToCenter = true;
             targetCenter = level.localPos;
+            velocity += (targetCenter - position).normalized * conf.maxVelocity * Time.deltaTime;
         }
 
         if (isMovingToCenter)
         {
-            // Interpolate towards the center
-            position = Vector3.Lerp(position, targetCenter, (conf.maxVelocity * 1.5f) * Time.deltaTime);
+            // Húzza vissza középre
+            //position = Vector3.Lerp(position, targetCenter, (conf.maxVelocity * 1.5f) * Time.deltaTime);
 
             // Check if close enough to the center to stop moving
             if (Vector3.Distance(position, targetCenter) < conf.centerRadius)
@@ -195,7 +196,7 @@ public class Member : MonoBehaviour
 
     Vector3 RunAway(Vector3 target)
     {
-        Vector3 neededVelocity = (position - target.normalized) * conf.maxVelocity;
+        Vector3 neededVelocity = (position - target).normalized * conf.maxVelocity;
         return neededVelocity - velocity;
     }
 
@@ -205,6 +206,7 @@ public class Member : MonoBehaviour
                             + conf.alignmentPriority * Alignment()
                             + conf.seperationPriority * Seperation()
                             + conf.avoidancePriority * Avoidance();
+
         return finalVec;
     }
 
