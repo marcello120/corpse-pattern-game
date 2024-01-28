@@ -19,10 +19,10 @@ public class SimpleAStarMove : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
 
-        if (enemy.target == null)
-        {
-            enemy.target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        //if (enemy.target == null)
+        //{
+        //    enemy.target = GameObject.FindGameObjectWithTag("Player").transform;
+        //}
         seeker = GetComponent<Seeker>();
 
         InvokeRepeating(nameof(UpdatePath), 0f,0.5f); 
@@ -52,8 +52,9 @@ public class SimpleAStarMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (path == null || enemy.state!=Enemy.State.Moving)
+        if (path == null || (enemy.state!=Enemy.State.Moving && enemy.state != Enemy.State.Idle)){
             return;
+        }
 
         if (currentWaypoint >= path.vectorPath.Count)
         {

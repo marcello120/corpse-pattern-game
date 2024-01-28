@@ -21,7 +21,7 @@ public class CorpseCleaner : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log( "Coll: " + collision.gameObject.name);
-        if (collision.gameObject.tag == "Corpse")
+        if (collision.gameObject.tag == "Corpse" || collision.gameObject.tag == "Doubler")
         {
             //StartCoroutine(WaitAndDestory(collision));
             CorpseScript corpseScript = collision.gameObject.GetComponent<CorpseScript>();

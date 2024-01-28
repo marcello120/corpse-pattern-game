@@ -159,10 +159,8 @@ public class GameManager : MonoBehaviour
                 //SCORE!!!!
                 scoreSound.Play();
 
-                //add a corpse cleaner, with collides with corpse then removes corpese and self
-                Instantiate(corpseCleaner, grid.getWorldPositionGridWithOffset(fitPatter[i].x, fitPatter[i].y) + new Vector3(grid.gridCellSize, grid.gridCellSize) * 0.5f, Quaternion.identity);
-                //also clear corpse from array, use new removeCorpse method
-                grid.RemoveFromArray(fitPatter[i].x, fitPatter[i].y);
+                Vector2Int corpseLoc = fitPatter[i];
+                removeCorpseAtGridLoc(corpseLoc);
 
             }
             success = true;
@@ -181,6 +179,22 @@ public class GameManager : MonoBehaviour
 
         //return the world position where the enemy should place the coprse
         return adjustedPos;
+    }
+
+
+    public void removeCorpseAtWorldPos(Vector3 pos)
+    {
+        Vector3 corpseLocAdj = Grid.adjustWoldPosToNearestCell(pos, grid.gridCellSize);
+        Vector3 coprseLoc = grid.ConvetWorldPosToArrayPos(corpseLocAdj);
+        removeCorpseAtGridLoc(new Vector2Int(Mathf.FloorToInt(coprseLoc.x), Mathf.FloorToInt(coprseLoc.y)));
+    }
+
+    private void removeCorpseAtGridLoc(Vector2Int corpseLoc)
+    {
+        //add a corpse cleaner, with collides with corpse then removes corpese and self
+        Instantiate(corpseCleaner, grid.getWorldPositionGridWithOffset(corpseLoc.x, corpseLoc.y) + new Vector3(grid.gridCellSize, grid.gridCellSize) * 0.5f, Quaternion.identity);
+        //also clear corpse from array, use new removeCorpse method
+        grid.RemoveFromArray(corpseLoc.x, corpseLoc.y);
     }
 
     public void incrementScore(int multi)

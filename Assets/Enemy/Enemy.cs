@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -69,6 +66,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     {
         rb.velocity = Vector3.zero;
 
+        statusHolder.RemoveAll(this);
 
         Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
 
@@ -172,8 +170,10 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     }
 
     public virtual void moveInDirection(Vector3 direction)
-    { 
-        if(!isStunned()) { 
+    {
+        handleFlip(flipBehaviour, direction);
+
+        if (!isStunned()) { 
         Vector3 force = direction * movemetSpeed * Time.fixedDeltaTime;
         rb.AddForce(force);
         }
@@ -216,13 +216,15 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)
     {
-        if(flipBehaviour != -1 && flipBehaviour != 1)
+        Vector2 theDtoT = (target.transform.position - transform.position).normalized;
+
+        if (flipBehaviour != -1 && flipBehaviour != 1)
         {
             return;
         }
         if (flipBehaviour == 1)
         {
-            if (directionToTarget.x < 0f)
+            if (theDtoT.x < 0f)
             {
                 spriteRenderer.flipX = true;
             }
@@ -233,7 +235,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
         if (flipBehaviour == -1)
         {
-            if (directionToTarget.x > 0f)
+            if (theDtoT.x > 0f)
             {
                 spriteRenderer.flipX = true;
             }
