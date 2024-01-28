@@ -177,8 +177,6 @@ public class RiggedPlayerController : PlayerController
     }
 
 
-
-
     public void EndAtttack()
     {
         canMove = true;
@@ -442,6 +440,12 @@ public class RiggedPlayerController : PlayerController
     public void decreaseAbilityCooldown(float abilityCooldownDecreaseAmount)
     {
         dashCooldown -= abilityCooldownDecreaseAmount;
+    }
+
+    public void increaseEffectsDuration(float durationIncreaseAmount)
+    {
+        stunStatusEffect.duration += durationIncreaseAmount;
+        slowStatusEffect.duration += durationIncreaseAmount;
     }
 
 

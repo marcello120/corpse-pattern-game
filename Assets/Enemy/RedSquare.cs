@@ -9,6 +9,7 @@ public class RedSquare: Enemy
     {
         base.Init();
         state = State.Moving;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public override void getHit(float damage, Vector2 knockback)

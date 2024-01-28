@@ -37,6 +37,29 @@ public class StatusHolder : MonoBehaviour
         return true;
     }
 
+    public void RemoveAll(Enemy enemy)
+    {
+        //call remove on all effects
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            effects[i].remove(enemy);
+            effects.Remove(effects[i]);
+        }
+    }
+
+    public void removeDeathMarker(Enemy enemy)
+    {
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            if (effects[i].statusEffectName == "NearDeath")
+            {
+                effects[i].remove(enemy);
+                effects.Remove(effects[i]);
+            }
+
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

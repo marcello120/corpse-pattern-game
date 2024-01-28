@@ -29,7 +29,8 @@ public class StrafingAStarMovement : MonoBehaviour
 
     void UpdatePath()
     {
-        if (enemy.target == null || seeker.IsDone())
+
+        if (seeker.IsDone())
         { 
             if(chasing)
             {

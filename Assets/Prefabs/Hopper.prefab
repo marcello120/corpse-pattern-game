@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 3930865473214127224}
   - component: {fileID: 2170857140757691772}
   - component: {fileID: 183570961126016350}
+  - component: {fileID: 4506565422929423101}
   m_Layer: 12
   m_Name: Hopper
   m_TagString: Enemy
@@ -328,23 +329,17 @@ MonoBehaviour:
   corpseNumber: 1
   flipBehaviour: 0
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
+  hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
   health: 2
   attackPower: 1
-  movemetSpeed: 125
-  stunTime: 3
+  movemetSpeed: 4000
   state: 1
   isDead: 0
   stunned: 0
-  stunTimer: 0
   extra: 
   target: {fileID: 0}
   statusHolder: {fileID: 0}
-  waitTime: 0.5
-  waitCounter: 0
-  destinationCell: {x: 0, y: 0, z: 0}
-  deathMarker: {fileID: 2368188668467871554, guid: 390bc02e92fcd494487dd361d3bb4b6c, type: 3}
-  stunMarker: {fileID: 6087808011274934262, guid: ffb921f5a24b0aa49a696bc1373f7ecb, type: 3}
-  hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
+  animator: {fileID: 0}
 --- !u!58 &6830850734151678585
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -520,7 +515,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effects: []
   offset: 0.2
-  statusMarker: {fileID: 0}
+--- !u!114 &4506565422929423101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830850734151678587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1cc39a131121604d9543fcb61b44e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 1
+  waitCounter: 0
+  destinationCell: {x: 0, y: 0, z: 0}
 --- !u!1 &6830850735057799976
 GameObject:
   m_ObjectHideFlags: 0
