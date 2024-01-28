@@ -11,11 +11,13 @@ public class Level : MonoBehaviour
     public List<Member> members;
     public List<Enemy> enemies;
     public float bounds;
-    public float spawnRadius;
+    public Vector3 spawnRadius = new Vector3(1, 1, 0);
+    public Vector3 localPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        localPos = this.transform.position;
         members = new List<Member>();
         enemies = new List<Enemy>();
 
@@ -30,8 +32,9 @@ public class Level : MonoBehaviour
     {
         for(int i = 0; i < count; i++)
         {
-            Instantiate(prefab, new Vector3(Random.Range(-spawnRadius, spawnRadius), Random.Range(-spawnRadius, spawnRadius), 0),
-                Quaternion.identity); 
+            Vector3 pos = transform.position + new Vector3(Random.Range(-spawnRadius.x, spawnRadius.x), Random.Range(-spawnRadius.y, spawnRadius.y), 0);
+            
+            Instantiate(prefab, pos, Quaternion.identity); 
         }
     }
 
@@ -50,5 +53,18 @@ public class Level : MonoBehaviour
         }
 
         return neighborsFound;
+    }
+
+    public List<Enemy> GetEnemies(Member member, float radius)
+    {
+        List<Enemy> returnEnemies = new List<Enemy>();
+        foreach(var enemy in enemies)
+        {
+            if(Vector3.Distance(member.position, enemy.transform.position) <= radius)
+            {
+                returnEnemies.Add(enemy);
+            }
+        }
+        return returnEnemies;
     }
 }

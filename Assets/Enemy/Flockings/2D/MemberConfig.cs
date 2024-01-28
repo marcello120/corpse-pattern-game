@@ -7,6 +7,7 @@ public class MemberConfig : MonoBehaviour
     public float maxFOV = 180f;
     public float maxAccelaration;
     public float maxVelocity;
+    public float rotationSpeed;
     [Header("Wander")]
     public float wanderJitter;
     public float wanderRadius;
@@ -24,15 +25,6 @@ public class MemberConfig : MonoBehaviour
     [Header("Avoidance")]
     public float avoidanceRadius;
     public float avoidancePriority;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("From the center")]
+    public float centerRadius;
 }
