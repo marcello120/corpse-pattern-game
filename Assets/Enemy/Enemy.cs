@@ -9,7 +9,6 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IEnemy
 {
-    protected Animator animator;
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
     protected AudioSource getHitSound;
@@ -22,6 +21,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public int corpseNumber = 1;
     public int flipBehaviour;
     public NearDeathStatusEffect nearDeathStatusEffect;
+    public GameObject hitEffect;
 
     [Header("Stats")]
     public float health;
@@ -39,6 +39,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public string extra;
     public Transform target;
     public StatusHolder statusHolder;
+    public Animator animator;
 
 
 
@@ -47,6 +48,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         Idle,
         Waiting,
         Moving,
+        Preparing,
         Attacking,
         Dead
     }
@@ -94,7 +96,13 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void getHit(float damage, Vector2 knockback)
     {
-        if(getHitSound!= null)
+        if (hitEffect != null)
+        {
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+
+        }
+
+        if (getHitSound!= null)
         {
             getHitSound.Play();
         }
@@ -163,7 +171,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
     }
 
-    public void moveInDirection(Vector3 direction)
+    public virtual void moveInDirection(Vector3 direction)
     { 
         if(!isStunned()) { 
         Vector3 force = direction * movemetSpeed * Time.fixedDeltaTime;
