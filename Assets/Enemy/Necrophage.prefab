@@ -75,6 +75,7 @@ MonoBehaviour:
   chaseTime: 15
   chaseTimer: 0
   poweredUp: 0
+  baseMass: 1
 --- !u!61 &1280364478102889713
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -354,9 +355,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022601008, y: -0.023909807}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.17720425
+  m_Radius: 0.15
 --- !u!1 &1280364478353682057
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +388,7 @@ Transform:
   m_GameObject: {fileID: 1280364478353682057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1280364478102889718}
@@ -513,9 +514,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.046720058, y: -0.07502049}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.44324353
+  m_Radius: 0.5
 --- !u!1 &1280364478747885716
 GameObject:
   m_ObjectHideFlags: 0

@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highscore);
             hightText.SetText("Top:  " + highscore);
         }
-        if ((player.level * 1) - 1 < score && score != 0 && score != 1)
+        if ((player.level * 1) - 1 < score && score != 0)
         {
             StartCoroutine(levelUp());
             player.levelUp();
