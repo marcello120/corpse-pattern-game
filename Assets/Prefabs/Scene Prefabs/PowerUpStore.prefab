@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2225967726681697881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2225967726681697880}
+  - component: {fileID: 2225967726681697863}
+  m_Layer: 5
+  m_Name: PowerUpStore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2225967726681697880
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225967726681697881}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.014314054}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2225967726681697863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225967726681697881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8638dad82b44ca34785f9154a50124fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUps:
+  - {fileID: 11400000, guid: ebf96662f0c377b4f93c61e69f18d77b, type: 2}
+  - {fileID: 11400000, guid: c1691e93e9f311445a906275a0555fb4, type: 2}
+  - {fileID: 11400000, guid: 6c0174b6722ba3a4aa108a9abe54b56b, type: 2}
+  - {fileID: 11400000, guid: 7005ae5cf3bb447429c5b198f649c668, type: 2}
+  - {fileID: 11400000, guid: 1f896ce29c1e01c4fac8dab6749d5cdd, type: 2}
+  - {fileID: 11400000, guid: d379d21b41dd27f4fae848993d4a3945, type: 2}
+  - {fileID: 11400000, guid: 27a2b2012ae6697429d6dbdfbca2125d, type: 2}
+  - {fileID: 11400000, guid: 9e744bc301e3a53419dd830f3846ba6a, type: 2}
+  - {fileID: 11400000, guid: 8ccc30f21d67bf34f94269f69ba16db3, type: 2}
