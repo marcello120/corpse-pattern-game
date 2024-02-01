@@ -23,7 +23,7 @@ public class Necrophage : Enemy
     void Start()
     {
         base.Init();
-        state = State.Idle;
+        setState(State.Idle);
     }
 
     // Update is called once per frame
@@ -50,6 +50,10 @@ public class Necrophage : Enemy
             return;
         }
 
+        if(state == State.Base)
+        {
+            setState(State.Idle);
+        }
 
         if (state == State.Idle)
         {
@@ -62,7 +66,7 @@ public class Necrophage : Enemy
                 }
                 else
                 {
-                    state = State.Moving;
+                    setState(State.Moving);
                     return;
                 }
             }
@@ -71,7 +75,7 @@ public class Necrophage : Enemy
             {
                 if (atCorpse())
                 {
-                    state = State.Preparing;
+                    setState(State.Preparing);
                     rb.mass = 500;
                 }
                 else
@@ -96,14 +100,14 @@ public class Necrophage : Enemy
             else
             {
                 chaseTimer = 0f;
-                state= State.Idle;
+                setState(State.Idle);
             }
         }
         else if(state == State.Preparing)
         {
             if (target == null)
             {
-                state= State.Idle;
+                setState(State.Idle);
                 rb.mass = baseMass;
                 return;
             }
@@ -114,7 +118,6 @@ public class Necrophage : Enemy
             }
             else
             {
-                state= State.Moving;
                 consumeTimer = 0f;
                 eatCorpse();
                 rb.mass = baseMass;
@@ -126,8 +129,8 @@ public class Necrophage : Enemy
  
     public override void getHit(float damage, Vector2 knockback)
     {
+        setState(State.Moving);
         base.getHit(damage, knockback);
-        state = State.Moving;
         rb.mass = baseMass;
         if(health == 1 && poweredUp)
         {
@@ -143,7 +146,7 @@ public class Necrophage : Enemy
         body.transform.localScale *= 1.2f;
         spriteRenderer.material.SetColor("_Color", Color.red);
         poweredUp = true;
-        state = State.Moving;
+        setState(State.Moving);
         statusHolder.removeDeathMarker(this);
     }
 
@@ -154,7 +157,7 @@ public class Necrophage : Enemy
         body.transform.localScale *= 0.8f;
         spriteRenderer.material.SetColor("_Color", Color.white);
         poweredUp = false;
-        state = State.Idle;
+        setState(State.Idle);
     }
 
     private void eatCorpse()

@@ -144,15 +144,17 @@ MonoBehaviour:
   corpseNumber: 1
   flipBehaviour: 0
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
+  hitEffect: {fileID: 0}
   health: 5
   attackPower: 2
   movemetSpeed: 120
-  state: 2
+  state: 0
   isDead: 0
   stunned: 0
   extra: 
   target: {fileID: 0}
   statusHolder: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!61 &6935654007287246747
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -512,7 +514,7 @@ Animator:
   m_GameObject: {fileID: 6935654007504086499}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1eadb24e25c00314ca29273be39f168b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 115060ce8a2122e4c88f1814097de185, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
