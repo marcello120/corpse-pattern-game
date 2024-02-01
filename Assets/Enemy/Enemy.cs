@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
 
     [Header("Debug")]
-    public State state = State.Idle;
+    public State state = State.Base;
     public bool isDead = false;
     public bool stunned;
 
@@ -42,8 +43,8 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public enum State
     {
+        Base,
         Idle,
-        Waiting,
         Moving,
         Preparing,
         Attacking,
@@ -52,8 +53,24 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public void setState(State stateIn)
     {
+        if(stateIn == state)
+        {
+            return;
+        }
 
+        Debug.Log("Setting " + name + " state from " + state + "  to " + stateIn);
         state = stateIn;
+        resetStates();
+        animator.SetBool(Enum.GetName(stateIn.GetType(), stateIn), true);
+    }
+
+    private void resetStates()
+    {
+        foreach (State st in Enum.GetValues(typeof(State)))
+        {
+            string stString = Enum.GetName(st.GetType(), st);
+            animator.SetBool(stString, false);
+        }
     }
 
 
@@ -95,8 +112,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             Debug.LogError("Corspe must be set");
         }
         isDead = true;
-
-
+        setState(State.Dying);
     }
 
 

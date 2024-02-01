@@ -65,6 +65,11 @@ public class StrafingAStarMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(enemy.state != Enemy.State.Moving)
+        {
+            return;
+        }
+
         if (path == null)
             return;
 

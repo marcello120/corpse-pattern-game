@@ -37,7 +37,7 @@ public class PeriodicAStarMovement : MonoBehaviour
         }
         seeker = GetComponent<Seeker>();
 
-
+        enemy.setState(Enemy.State.Preparing);
     }
 
     private void UpdatePath()
@@ -87,7 +87,7 @@ public class PeriodicAStarMovement : MonoBehaviour
         }
 
         //if waiting, correct self to grid
-        if (enemy.state == Enemy.State.Waiting)
+        if (enemy.state == Enemy.State.Preparing)
         {
             moveTimer = 0;
             waitCounter += Time.deltaTime;
@@ -95,9 +95,7 @@ public class PeriodicAStarMovement : MonoBehaviour
             {
                 waitCounter = 0f;
                 UpdatePath();
-                enemy.state = Enemy.State.Moving;
-                enemy.animator.SetBool("IsMoving", true);
-
+                enemy.setState(Enemy.State.Moving);
 
             }
 
@@ -148,8 +146,8 @@ public class PeriodicAStarMovement : MonoBehaviour
                 if (Vector3.Distance(transform.position, destinationCell) < 0.1f)
                 {
                     destinationCell = Vector3.zero;
-                    enemy.state = Enemy.State.Waiting;
-                    enemy.animator.SetBool("IsMoving", false);
+                    enemy.setState(Enemy.State.Preparing);
+
                 }
 
             }
@@ -227,7 +225,8 @@ public class PeriodicAStarMovement : MonoBehaviour
             float otherdist = Vector3.Distance(collision.transform.position, enemy.target.position);
             if (otherdist < mydist)
             {
-                enemy.state = Enemy.State.Waiting;
+                enemy.setState(Enemy.State.Preparing);
+
             }
             else
             {

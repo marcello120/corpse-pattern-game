@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 303696664405621429}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ddfbbb5de18b226478aa9dfe10a441ad, type: 2}
+  m_Controller: {fileID: 9100000, guid: 115060ce8a2122e4c88f1814097de185, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   health: 2
   attackPower: 1
   movemetSpeed: 4000
-  state: 1
+  state: 3
   isDead: 0
   stunned: 0
   extra: 

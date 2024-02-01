@@ -8,7 +8,7 @@ public class RedSquare: Enemy
     public void Start()
     {
         base.Init();
-        state = State.Moving;
+        setState(State.Moving);
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
