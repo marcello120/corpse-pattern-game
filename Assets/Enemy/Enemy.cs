@@ -47,8 +47,15 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         Moving,
         Preparing,
         Attacking,
-        Dead
+        Dying
     }
+
+    public void setState(State stateIn)
+    {
+
+        state = stateIn;
+    }
+
 
     // Should be called in Start
     public virtual void Init()
@@ -64,6 +71,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void Death()
     {
+
         rb.velocity = Vector3.zero;
 
         statusHolder.RemoveAll(this);
@@ -154,7 +162,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public bool canMove()
     {
-        return (isDead || state == State.Dead || isStunned());
+        return (isDead || state == State.Dying || isStunned());
     }
 
     public void addStatusEffect(StatusEffect statusEffect)
