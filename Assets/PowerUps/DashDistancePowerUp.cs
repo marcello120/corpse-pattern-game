@@ -13,6 +13,7 @@ public class DashDistancePowerUp : PowerUp
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.increaseDashAmount(dashDistanceIncrease);
+            playerController.addPowerUp(this);
             return true;
         }
         else

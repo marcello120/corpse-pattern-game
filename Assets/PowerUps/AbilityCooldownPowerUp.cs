@@ -15,6 +15,7 @@ public class AbilityCooldownPowerUp : PowerUp
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.decreaseAbilityCooldown(abilityCooldownDecreaseAmount);
+            playerController.addPowerUp(this);
             return true;
         }
         else

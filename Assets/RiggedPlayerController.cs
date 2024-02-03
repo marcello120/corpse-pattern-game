@@ -41,6 +41,8 @@ public class RiggedPlayerController : PlayerController
     public SlowStatusEffect slowStatusEffect;
     public StunStatusEffect stunStatusEffect;
 
+    public List<PowerUp> powerUps;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -404,6 +406,12 @@ public class RiggedPlayerController : PlayerController
         {
             pauseMenuUI.SetActive(false);
         }
+    }
+
+
+    public void addPowerUp(PowerUp powerUp)
+    {
+        powerUps.Add(powerUp);
     }
 
 

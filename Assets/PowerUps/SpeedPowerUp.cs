@@ -13,6 +13,7 @@ public class SpeedPowerUp : PowerUp
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.moveSpeed *= (1.0f + speedIncreaseAmount);
+            playerController.addPowerUp(this);
             return true;
         }
         return false;
