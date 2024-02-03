@@ -22,6 +22,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public GameObject hitEffect;
 
     [Header("Stats")]
+    public float maxHealth;
     public float health;
     public float attackPower;
     public float movemetSpeed;
@@ -83,6 +84,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         spriteRenderer= body.GetComponent<SpriteRenderer>();
         getHitSound = GetComponent<AudioSource>();
         TryGetComponent(out statusHolder);
+
+        if(maxHealth == 0f)
+        {
+            maxHealth = health;
+        }
     }
 
 
@@ -95,7 +101,6 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
         Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
 
-        animator.SetTrigger("Death");
         Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
         foreach (Collider2D cc in ccs)
         {
@@ -195,11 +200,17 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void moveInDirection(Vector3 direction)
     {
+        moveInDirectionWithSpeedModifier(direction, 1f);
+    }
+
+    public virtual void moveInDirectionWithSpeedModifier(Vector3 direction, float modifier)
+    {
         handleFlip(flipBehaviour, direction);
 
-        if (!isStunned()) { 
-        Vector3 force = direction * movemetSpeed * Time.fixedDeltaTime;
-        rb.AddForce(force);
+        if (!isStunned())
+        {
+            Vector3 force = direction * movemetSpeed * modifier * Time.fixedDeltaTime;
+            rb.AddForce(force);
         }
     }
 
@@ -236,6 +247,19 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         Debug.Log("Abstract Stun");
         stunned = true;
         return stunned;
+    }
+
+    public void scale(float factor)
+    {
+        float newMaxHealth = maxHealth * factor;
+        if(factor > 1f)
+        {
+            health += newMaxHealth - maxHealth;
+        }
+        maxHealth = newMaxHealth;
+
+        attackPower *= factor;
+        movemetSpeed *= factor;
     }
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)
