@@ -16,7 +16,7 @@ public class Necrophage : Enemy
 
     public bool poweredUp = false;
 
-    public float baseMass = 1f;
+    private float baseMass = 1f;
 
 
     // Start is called before the first frame update
@@ -140,11 +140,10 @@ public class Necrophage : Enemy
 
     private void powerUp()
     {
-        health += 2;
-        attackPower += 1;
-        movemetSpeed *= 1.5f;
-        body.transform.localScale *= 1.2f;
+        scale(2f);
+        transform.localScale *= 1.5f;
         spriteRenderer.material.SetColor("_Color", Color.red);
+        spriteRenderer.color = Color.green;
         poweredUp = true;
         setState(State.Moving);
         statusHolder.removeDeathMarker(this);
@@ -152,9 +151,8 @@ public class Necrophage : Enemy
 
     private void powerDown()
     {
-        attackPower = 1;
-        movemetSpeed *= 0.75f;
-        body.transform.localScale *= 0.8f;
+        scale(0.5f);
+        transform.localScale *= 0.75f;
         spriteRenderer.material.SetColor("_Color", Color.white);
         poweredUp = false;
         setState(State.Idle);

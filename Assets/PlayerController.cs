@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
     public Holster holster;
 
-    public Text healthText;
 
     public AudioSource takeDamageSound;
 
@@ -59,7 +58,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
         spriteRenderer= GetComponent<SpriteRenderer>();
-        healthText.text = playerHealth.ToString();
 
 
     }
@@ -226,7 +224,6 @@ public class PlayerController : MonoBehaviour
         Vector2 knockback = (transform.position - enemy.gameObject.transform.position).normalized * 500;
         rb.AddForce(knockback);
         playerHealth -= damage;
-        healthText.text = playerHealth.ToString();
         canMove = true;
         if (playerHealth <= 0)
         {
