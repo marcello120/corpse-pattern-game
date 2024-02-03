@@ -9,7 +9,12 @@ public class Invisible : Enemy
     public float baseSpeed = 1f;
     public float frenzySpeed = 200f;
 
-    public float chaseTime = 3f;
+    [Header("Timer")]
+
+    public float prepTime = 3f;
+    public float prepTimer = 0f;
+
+    public float chaseTime = 15f;
     public float chaseTimer = 0f;
 
     // Start is called before the first frame update
@@ -56,6 +61,18 @@ public class Invisible : Enemy
 
         if(state == State.Moving)
         {
+
+            if (chaseTimer < chaseTime)
+            {
+                chaseTimer += Time.deltaTime;
+                //move to player
+            }
+            else
+            {
+                chaseTimer = 0f;
+                setState(State.Preparing);
+            }
+
             if (Vector3.Distance(transform.position, target.position) < 0.35f) //MULI MEG FOGJA OLDANI HOGY NE LEHESSEN KIHTALNI
             {
                 movemetSpeed = baseSpeed;
@@ -66,13 +83,13 @@ public class Invisible : Enemy
 
         if(state == State.Preparing)
         {
-            if (chaseTimer < chaseTime)
+            if (prepTimer < prepTime)
             {
-                chaseTimer += Time.deltaTime;
+                prepTimer += Time.deltaTime;
             }
             else
             {
-                chaseTimer = 0f;
+                prepTimer = 0f;
                 setState(State.Idle);
             }
         }

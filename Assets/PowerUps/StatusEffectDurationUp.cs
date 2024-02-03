@@ -15,6 +15,7 @@ public class StatusEffectDurationUp : PowerUp
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.increaseEffectsDuration(durationIncreaseAmount);
+            playerController.addPowerUp(this);
             return true;
         }
         return false;

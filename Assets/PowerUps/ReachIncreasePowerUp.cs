@@ -15,6 +15,7 @@ public class ReachIncreasePowerUp : PowerUp
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.inreaseReach(reachIncreaseAmount);
+            playerController.addPowerUp(this);
             return true;
         }
         return false;

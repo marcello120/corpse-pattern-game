@@ -14,6 +14,7 @@ public class MaxHPPowerUp : PowerUp
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.maxHealth += maxHPIncreasAmount;
             playerController.heal(maxHPIncreasAmount);
+            playerController.addPowerUp(this);
             return true;
         }
         else

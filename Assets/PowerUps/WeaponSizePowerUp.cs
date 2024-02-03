@@ -14,6 +14,7 @@ public class WeaponSizePowerUp : PowerUp
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.inreaseWeaponSize(weaponSizeIncreaseAmount);
+            playerController.addPowerUp(this);
             return true;
         }
         return false;

@@ -5,22 +5,27 @@ using UnityEngine;
 
 public class Scorpion : Enemy
 {
+    [Header("Targeting")]
+
     public GameObject roamTarget;
     public Transform playerTransform;
+    public float chargeSpeed = 7.5f;
+    public bool hasAttacked = false;
+
+
+    [Header("Distance")]
 
     public float maxiDistToPlayer = 5f;
     public float minDistToPlayer = 1.75f;
     public float attackDist = 0.75f;
 
-    public float chargeSpeed = 7.5f;
+    [Header("Timers")]
 
     public float beforeAttackWaitTime = 1f;
     public float beforeAttackWaitTimer = 0;
 
     public float afterAttackWaitTime = 2f;
     public float afterAttackWaitTimer = 0;
-
-    public bool hasAttacked = false;
 
 
     // Start is called before the first frame update

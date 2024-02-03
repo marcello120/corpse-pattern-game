@@ -13,6 +13,7 @@ public class HealPowerUp : PowerUp
         {
             RiggedPlayerController playerController = player.GetComponent<RiggedPlayerController>();
             playerController.heal(healAmount);
+            playerController.addPowerUp(this);
             return true;
         }
         else
