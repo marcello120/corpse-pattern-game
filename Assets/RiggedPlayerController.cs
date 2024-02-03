@@ -47,7 +47,6 @@ public class RiggedPlayerController : PlayerController
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        healthText.text = playerHealth.ToString();
         collider = GetComponent<Collider2D>();
         UpdateHearts();
         
@@ -307,7 +306,6 @@ public class RiggedPlayerController : PlayerController
         }
         rb.AddForce(knockback);
         playerHealth -= damage;
-        healthText.text = playerHealth.ToString();
         UpdateHearts();
 
         CameraShake.Instance.Shake(3, 0.2f);
@@ -417,7 +415,6 @@ public class RiggedPlayerController : PlayerController
             playerHealth= maxHealth;
             
         }
-        healthText.text= playerHealth.ToString();
         UpdateHearts();
     }
 
@@ -463,8 +460,9 @@ public class RiggedPlayerController : PlayerController
             }
             else
             {
-                if (playerHealth < 7 && i < 6)
+                if (i < maxHealth)
                 {
+                    hearts[i].gameObject.SetActive(true);
                     hearts[i].color = Color.black;
                 }
                 else
