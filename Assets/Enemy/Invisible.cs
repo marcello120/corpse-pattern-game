@@ -11,11 +11,11 @@ public class Invisible : Enemy
 
     [Header("Timer")]
 
-    public float prepTime = 3f;
-    public float prepTimer = 0f;
 
-    public float chaseTime = 15f;
-    public float chaseTimer = 0f;
+    public MuliTimer chaseTimer = new MuliTimer(15f);
+
+
+    public MuliTimer prepareTimer = new MuliTimer(3f);
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,8 @@ public class Invisible : Enemy
         //if killed nearby while charging -> CHarge longer (reset timer)
         //if HIT ->  goes invies and moves X dist away
 
-        if(state == State.Idle)
+
+        if (state == State.Idle)
         {
             if (Vector3.Distance(transform.position, target.position) < frenzyDistToPlayer)
             {
@@ -62,14 +63,14 @@ public class Invisible : Enemy
         if(state == State.Moving)
         {
 
-            if (chaseTimer < chaseTime)
+            if (!chaseTimer.isDone())
             {
-                chaseTimer += Time.deltaTime;
+                chaseTimer.update(Time.deltaTime);
                 //move to player
             }
             else
             {
-                chaseTimer = 0f;
+                chaseTimer.reset();
                 setState(State.Preparing);
             }
 
@@ -83,13 +84,13 @@ public class Invisible : Enemy
 
         if(state == State.Preparing)
         {
-            if (prepTimer < prepTime)
+            if (!prepareTimer.isDone())
             {
-                prepTimer += Time.deltaTime;
+                prepareTimer.update(Time.deltaTime);
             }
             else
             {
-                prepTimer = 0f;
+                prepareTimer.reset();
                 setState(State.Idle);
             }
         }

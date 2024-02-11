@@ -90,6 +90,12 @@ public class StrafingAStarMovement : MonoBehaviour
         }
 
         // Check for collision with the player
+
+        if (enemy.target == null)
+        {
+            return;
+        }
+
         float distanceToPlayer = Vector3.Distance(transform.position, enemy.target.position);
 
         if (distanceToPlayer < collisionThreshold && !chasing)

@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
 
     public AudioSource scoreSound;
 
-    public Enemy slime;
-
     public int width = 22;
     public int height = 12;
     public float gridCellSize = 0.5f;
@@ -230,11 +228,13 @@ public class GameManager : MonoBehaviour
 
         //List<EnemySpawner> sortedSpawners = spawners.OrderByDescending(t => Vector3.Distance(pos, t.transform.position)).ToList();
 
-        SpawnWithCheck(slime.gameObject, player.transform.position, 8, 10);
+        Enemy enemy = EnemyStore.instance.getRandomEnemy();
+
+        SpawnWithCheck(enemy.gameObject, player.transform.position, 8, 10);
 
         if (score / 5 + 1 >= enemyCount)
         {
-            SpawnWithCheck(slime.gameObject, player.transform.position, 8, 10);
+            SpawnWithCheck(enemy.gameObject, player.transform.position, 8, 10);
             enemyCount++;
         }
 

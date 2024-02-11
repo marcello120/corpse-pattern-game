@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class WeaponSwing : MonoBehaviour
 {
@@ -66,12 +67,18 @@ public class WeaponSwing : MonoBehaviour
         return (direction.normalized * knockbackPower * -1);
     }
 
+    private static readonly int ENEMY_DAMAGE_LAYER = 14;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.tag == "Enemy" && isActive)
         {
+            if (collision.gameObject.layer == ENEMY_DAMAGE_LAYER)
+            {
+                Debug.Log("Hello");
+            }
+             
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
