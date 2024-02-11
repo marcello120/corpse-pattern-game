@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class MuliTimer
+[System.Serializable]
+public class MuliTimer 
 {
-    private float time;
-    private float elapsedtime;
+    public float time;
+    public float elapsedtime;
 
     public MuliTimer(float limit)
     {
         this.time = limit;
-        this.elapsedtime= 0;
+        this.elapsedtime = 0;
     }
 
     public void reset()
@@ -21,7 +22,7 @@ public class MuliTimer
 
     public bool isDone()
     {
-        return time > elapsedtime;
+        return time < elapsedtime;
     }
 
     public void update(float increment)

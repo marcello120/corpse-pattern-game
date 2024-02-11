@@ -11,6 +11,8 @@ public class Necrophage : Enemy
     public float corpseConsumetTime=15f;
     public float consumeTimer = 0f;
 
+
+
     public float chaseTime = 15f;
     public float chaseTimer = 0f;
 

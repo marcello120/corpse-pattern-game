@@ -44,6 +44,5 @@ public class PowerUpStore : MonoBehaviour
         }
 
         return powerUpList;
-
     }
 }

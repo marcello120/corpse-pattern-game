@@ -264,6 +264,10 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)
     {
+        if (target == null)
+        {
+            return;
+        }
         Vector2 theDtoT = (target.transform.position - transform.position).normalized;
 
         if (flipBehaviour != -1 && flipBehaviour != 1)

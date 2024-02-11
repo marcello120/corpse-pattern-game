@@ -12,6 +12,18 @@ public class RedSquare: Enemy
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
+    public void Update()
+    {
+        if(isStunned()  && state== State.Moving) 
+        {
+            setState(State.Idle);
+        }
+        if (!isStunned() && state == State.Idle)
+        {
+            setState(State.Moving);
+        }
+    }
+
     public override void getHit(float damage, Vector2 knockback)
     {
         if (isStunned())
