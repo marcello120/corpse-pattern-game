@@ -22,4 +22,11 @@ public class EnemyHitbox: MonoBehaviour
         parentEnemy.Remove();
     }
 
+    public void getHit(float damage, Vector2 knockbac)
+    {
+        if (parentEnemy == null) return;
+        parentEnemy.getHit(damage, knockbac);
+    }
+
+
 }

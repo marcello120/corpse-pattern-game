@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using UnityEngine.XR;
 
-public class PeriodicAStarMovement : MonoBehaviour
+public class PeriodicAStarMovement : AStarMovement
 {
     public float waitTime = 1f;
 
@@ -15,42 +15,24 @@ public class PeriodicAStarMovement : MonoBehaviour
     private float moveTimer;
     private float moveTimerLimit = 1f;
 
-    private Enemy enemy;
 
-    private Rigidbody2D rb;
-
-    Seeker seeker;
-
-    Path path;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        rb = GetComponent<Rigidbody2D>();
-
-        enemy = GetComponent<Enemy>();
+        init();
 
         if (enemy.target == null)
         {
             enemy.target = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        seeker = GetComponent<Seeker>();
+
 
         enemy.setState(Enemy.State.Preparing);
     }
 
-    private void UpdatePath()
-    {
-        if (enemy.target == null)
-        {
-            return;
-        }
-        if (seeker.IsDone())
-            seeker.StartPath(transform.position, enemy.target.position, OnPathComplete);
-    }
 
-    private void OnPathComplete(Path p)
+    public override void OnPathComplete(Path p)
     {
         if (!p.error)
         {

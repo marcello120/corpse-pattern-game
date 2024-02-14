@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
 
@@ -67,7 +68,7 @@ public class WeaponSwing : MonoBehaviour
         return (direction.normalized * knockbackPower * -1);
     }
 
-    private static readonly int ENEMY_DAMAGE_LAYER = 14;
+    private static readonly int ENEMY_DAMAGE_LAYER = 17;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -86,6 +87,11 @@ public class WeaponSwing : MonoBehaviour
                 Vector2 contactpoint= collision.ClosestPoint(enemy.transform.position);
                 //Instantiate(hitEffect, contactpoint, Quaternion.identity);
             }
+            else if(collision.GetComponent<EnemyHitbox>()!= null)
+            {
+                collision.GetComponent<EnemyHitbox>().getHit(weaponAttackPower, GetKnockBack(collision));
+            }
+
         }
     }
 }
