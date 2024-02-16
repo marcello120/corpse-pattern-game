@@ -1,16 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class SimpleAStarMove : AStarMovement
+public class FleeingAStarMovement : AStarMovement
 {
+
     void Start()
     {
-        init();
+        base.init();
     }
 
+    public override bool preMoveChecksDone()
+    {
+        if (!base.preMoveChecksDone())
+            return false;
 
+        // Reverse the direction of the path to flee
+        path.vectorPath.Reverse();
+
+        return true;
+    }
     private void FixedUpdate()
     {
         if (!preMoveChecksDone())
@@ -20,7 +28,7 @@ public class SimpleAStarMove : AStarMovement
 
         // Move character towards next waypoint
         Vector3 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        enemy.moveInDirection(direction);
+        enemy.moveInDirection(-direction);
 
         // Check if close enough to the current waypoint, then proceed to the next one
         float distance = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);

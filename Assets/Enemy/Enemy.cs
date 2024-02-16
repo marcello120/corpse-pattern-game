@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -39,6 +40,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public Transform target;
     public StatusHolder statusHolder;
     public Animator animator;
+    public List<State> moveStates = new List<State>(){ State.Idle, State.Moving };
 
 
 

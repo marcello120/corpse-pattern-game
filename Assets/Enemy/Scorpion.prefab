@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 457231206616159207}
   m_Layer: 17
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,15 +420,15 @@ MonoBehaviour:
   animator: {fileID: 0}
   roamTarget: {fileID: 4112866766781027947, guid: bf7e01a002c4fc24a9eae746a3206a14, type: 3}
   playerTransform: {fileID: 0}
+  chargeSpeed: 7.5
+  hasAttacked: 0
   maxiDistToPlayer: 5
   minDistToPlayer: 2
   attackDist: 1
-  chargeSpeed: 7.5
   beforeAttackWaitTime: 0.75
   beforeAttackWaitTimer: 0
   afterAttackWaitTime: 2
   afterAttackWaitTimer: 0
-  hasAttacked: 0
 --- !u!61 &457231206933666177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005997896, y: -0.027337343}
+  m_Offset: {x: -0.009644389, y: -0.0054585934}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -453,7 +453,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18784428, y: 0.25926644}
+  m_Size: {x: 0.53061175, y: 0.50236416}
   m_EdgeRadius: 0
 --- !u!114 &457231206933666178
 MonoBehaviour:

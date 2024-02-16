@@ -246,8 +246,8 @@ MonoBehaviour:
   - {fileID: 2495351452782309460}
   - {fileID: 604893985106197724}
   m_Bounds:
-    m_Center: {x: 0.065342665, y: -0.20270538, z: 0}
-    m_Extent: {x: 1.0776198, y: 2.2068546, z: 0}
+    m_Center: {x: 0.06534076, y: -0.20270538, z: 0}
+    m_Extent: {x: 1.0776198, y: 2.2068555, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -513,8 +513,8 @@ MonoBehaviour:
   - {fileID: 7562226831490057617}
   - {fileID: 5201112702085383148}
   m_Bounds:
-    m_Center: {x: -0.0331074, y: 0.10136104, z: 0}
-    m_Extent: {x: 0.9658042, y: 1.4248657, z: 0}
+    m_Center: {x: -0.03311044, y: 0.10136151, z: 0}
+    m_Extent: {x: 0.965804, y: 1.4248652, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -651,8 +651,8 @@ MonoBehaviour:
   - {fileID: 5201112702085383148}
   - {fileID: 6320006786018346518}
   m_Bounds:
-    m_Center: {x: 0.06507528, y: 0.6938881, z: 0}
-    m_Extent: {x: 0.7767036, y: 0.7969562, z: 0}
+    m_Center: {x: 0.06507385, y: 0.6938886, z: 0}
+    m_Extent: {x: 0.7767036, y: 0.7969557, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -919,8 +919,8 @@ MonoBehaviour:
   - {fileID: 6320006786018346518}
   - {fileID: 5551738333685249117}
   m_Bounds:
-    m_Center: {x: -0.0056102276, y: 0.7764393, z: 0}
-    m_Extent: {x: 1.0882305, y: 1.0837711, z: 0}
+    m_Center: {x: -0.0056118965, y: 0.7764393, z: 0}
+    m_Extent: {x: 1.0882308, y: 1.0837711, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -6045,7 +6045,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 7
+  m_LinearDrag: 8
   m_AngularDrag: 100
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -6246,7 +6246,6 @@ MonoBehaviour:
   stuntimer: 0
   mousePosition: {x: 0, y: 0, z: 0}
   holster: {fileID: 1174910148388614554}
-  healthText: {fileID: 0}
   takeDamageSound: {fileID: 8903467144175623326}
   flipped: 0
   ParentBone: {fileID: 6249290031206965986}
@@ -6271,6 +6270,9 @@ MonoBehaviour:
     m_Bits: 0
   effectsAnimator: {fileID: 5683588136381550804}
   perfectDashDecider: {fileID: 4223998125466626249}
+  slowStatusEffect: {fileID: 0}
+  stunStatusEffect: {fileID: 0}
+  powerUps: []
   hearts: []
 --- !u!114 &6272262823411728183
 MonoBehaviour:
@@ -6435,7 +6437,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 117272
+  m_InstanceId: 198320
   m_LocalBounds:
     m_Center: {x: -0.11526871, y: -0.18672752, z: 0}
     m_Extent: {x: 1.110199, y: 3.6425152, z: 0}
@@ -6465,7 +6467,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 1141887611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 117208
+  m_InstanceId: 198256
   m_LocalBounds:
     m_Center: {x: -0.06999993, y: -3.54, z: 0}
     m_Extent: {x: 1.23, y: 0.9900001, z: 0}
@@ -6730,8 +6732,8 @@ MonoBehaviour:
   - {fileID: 5022717046190482340}
   - {fileID: 7559394223611386197}
   m_Bounds:
-    m_Center: {x: -0.37493002, y: 0.08388615, z: 0}
-    m_Extent: {x: 1.3324975, y: 1.4346483, z: 0}
+    m_Center: {x: -0.3749305, y: 0.08388615, z: 0}
+    m_Extent: {x: 1.332497, y: 1.4346473, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -6838,8 +6840,8 @@ MonoBehaviour:
   - {fileID: 3843932108449922240}
   - {fileID: 4659437751408110980}
   m_Bounds:
-    m_Center: {x: 0.02282846, y: 0.052289486, z: 0}
-    m_Extent: {x: 2.0200763, y: 2.2371302, z: 0}
+    m_Center: {x: 0.022828221, y: 0.052289486, z: 0}
+    m_Extent: {x: 2.0200756, y: 2.2371302, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -6945,7 +6947,7 @@ MonoBehaviour:
   - {fileID: 5551738333685249117}
   - {fileID: 7053392283565137617}
   m_Bounds:
-    m_Center: {x: 0.21693349, y: 0.12977862, z: 0}
+    m_Center: {x: 0.2169311, y: 0.12977767, z: 0}
     m_Extent: {x: 1.191246, y: 1.4998734, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

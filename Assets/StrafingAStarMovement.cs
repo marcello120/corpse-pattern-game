@@ -3,31 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class StrafingAStarMovement : MonoBehaviour
+public class StrafingAStarMovement : AStarMovement
 {
     public float circleRadius = 5.0f;
     public float collisionThreshold = 1f;
-    public float nextWayPointDist = 0.2f;
-
-    private Enemy enemy;
-    private Seeker seeker;
-    private Path path;
-    private int currentWaypoint = 0;
 
     public bool chasing = false;
 
     void Start()
     {
-        seeker = GetComponent<Seeker>();
-        enemy = GetComponent<Enemy>();
-        InvokeRepeating("UpdatePath", 0f, 0.5f); // Update path every 0.5 seconds
-        if (enemy.target == null)
-        {
-            enemy.target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        init();
     }
 
-    void UpdatePath()
+    public override void UpdatePath()
     {
 
         if (seeker.IsDone())
@@ -54,27 +42,14 @@ public class StrafingAStarMovement : MonoBehaviour
 
     }
 
-    void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
-    }
-
     void FixedUpdate()
     {
-        if(enemy.state != Enemy.State.Moving)
+
+
+        if (!preMoveChecksDone())
         {
             return;
         }
-
-        if (path == null)
-            return;
-
-        if (currentWaypoint >= path.vectorPath.Count)
-            return;
 
         // Direction to the next waypoint
         Vector3 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;
