@@ -314,6 +314,7 @@ MonoBehaviour:
   target: {fileID: 0}
   statusHolder: {fileID: 0}
   animator: {fileID: 0}
+  moveStates: 0100000002000000
   frenzyDistToPlayer: 1.75
   baseSpeed: 1
   frenzySpeed: 300
@@ -321,7 +322,7 @@ MonoBehaviour:
     time: 15
     elapsedtime: 0
   prepareTimer:
-    time: 3
+    time: 5
     elapsedtime: 0
 --- !u!114 &1166266786613326374
 MonoBehaviour:
@@ -494,6 +495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591e2e029e1c6b945b4a235dcba7637e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
   nextWayPointDist: 0.15
 --- !u!58 &7740664648857900368
 CircleCollider2D:

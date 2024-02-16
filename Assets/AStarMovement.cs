@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System.Linq;
 
 [RequireComponent(typeof(Enemy))]
 public class AStarMovement : MonoBehaviour
@@ -52,7 +53,7 @@ public class AStarMovement : MonoBehaviour
 
     public virtual bool preMoveChecksDone()
     {
-        if (path == null || (enemy.state != Enemy.State.Moving && enemy.state != Enemy.State.Idle))
+        if (path == null || !enemy.moveStates.Contains(enemy.state))
         {
             return false;
         }

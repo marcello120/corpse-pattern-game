@@ -15,7 +15,9 @@ public class Invisible : Enemy
     public MuliTimer chaseTimer = new MuliTimer(15f);
 
 
-    public MuliTimer prepareTimer = new MuliTimer(3f);
+    public MuliTimer prepareTimer = new MuliTimer(5f);
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class Invisible : Enemy
         base.Init();
         setState(State.Idle);
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        turnInvisible();
+        moveStates.Add(State.Preparing);
     }
 
 
@@ -54,7 +56,6 @@ public class Invisible : Enemy
                 setState(State.Moving);
                 baseSpeed = movemetSpeed;
                 movemetSpeed = frenzySpeed;
-                turnVisible();
                 return;
             }
             return;
@@ -72,37 +73,45 @@ public class Invisible : Enemy
             {
                 chaseTimer.reset();
                 setState(State.Preparing);
+                if (movemetSpeed > 0)
+                {
+                    movemetSpeed = movemetSpeed * -1;
+                }
+
+
             }
 
-            if (Vector3.Distance(transform.position, target.position) < 0.35f) //MULI MEG FOGJA OLDANI HOGY NE LEHESSEN KIHTALNI
+            if (Vector3.Distance(transform.position, target.position) < 0.3f) //MULI MEG FOGJA OLDANI HOGY NE LEHESSEN KIHTALNI
             {
                 movemetSpeed = baseSpeed;
                 setState(State.Preparing);
+                if (movemetSpeed > 0)
+                {
+                    movemetSpeed = movemetSpeed * -1;
+                }
             }
             return;
         }
 
         if(state == State.Preparing)
         {
+
             if (!prepareTimer.isDone())
             {
                 prepareTimer.update(Time.deltaTime);
+                //move away from player 
+
             }
             else
             {
                 prepareTimer.reset();
                 setState(State.Idle);
+                if(movemetSpeed < 0)
+                {
+                    movemetSpeed = movemetSpeed * -1;
+                }
             }
         }
     }
 
-    private void turnInvisible()
-    {
-
-    }
-
-    private void turnVisible()
-    {
-
-    }
 }
