@@ -12,4 +12,8 @@ public class Scarab : Enemy
         setState(State.Moving);
     }
 
+    private void Update()
+    {
+    }
+
 }

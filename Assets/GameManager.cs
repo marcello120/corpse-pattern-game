@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading;
 using TMPro;
@@ -46,6 +47,8 @@ public class GameManager : MonoBehaviour
     public GameObject spawnerParent;
 
     public float enemyCount = 2;
+    public float currentEnemyCount = 1;
+
 
     public Doubler doublerPrefab;
 
@@ -97,7 +100,22 @@ public class GameManager : MonoBehaviour
 
         SpawnDoubler();
 
+        InvokeRepeating(nameof(SpawnEnemies), 0f, 7.5f);
 
+        //instead of count keep list
+        currentEnemyCount = GameObject.FindObjectsOfType<Enemy>().Count();
+
+
+
+    }
+
+    void SpawnEnemies()
+    {
+        while(enemyCount > currentEnemyCount)
+        {
+            Debug.Log("SPAWNING ENEMY");
+            SpawnSlime((int)(enemyCount-currentEnemyCount));
+        }
     }
 
     private void SpawnDoubler()
@@ -114,16 +132,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos)
+    public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber, int powerLevel)
     {
-        return AddWorldPosToGridAndReturnAdjustedPos(worldPos, 1);
-    }
+        currentEnemyCount-=powerLevel;
 
-
-    public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber)
-    {
-        //spawn replacement slime
-        SpawnSlime(worldPos);
 
         //adjust fractional world pos to nearest multiple of gridcellsize AND offset it to center of Grid
         Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos, grid.gridCellSize);
@@ -211,6 +223,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine(levelUp());
             player.levelUp();
         }
+        if (score / 5 + 1 >= enemyCount)
+        {
+            enemyCount++;
+        }
     }
 
     private IEnumerator levelUp()
@@ -222,22 +238,19 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level Up");
     }
 
-    private void SpawnSlime(Vector3 pos)
+    public void SpawnSlime(int maxPower)
     {
         //List<EnemySpawner> spawners = spawnerParent.GetComponentsInChildren<EnemySpawner>().OfType<EnemySpawner>().ToList();
 
         //List<EnemySpawner> sortedSpawners = spawners.OrderByDescending(t => Vector3.Distance(pos, t.transform.position)).ToList();
 
-        Enemy enemy = EnemyStore.instance.getRandomEnemy();
+        Enemy enemy = EnemyStore.instance.getRandomEnemyWithMaxPower(maxPower);
+        currentEnemyCount += enemy.powerLevel;
+
+        Debug.Log("SPAWNING " + enemy.name);
+
 
         SpawnWithCheck(enemy.gameObject, player.transform.position, 8, 10);
-
-        if (score / 5 + 1 >= enemyCount)
-        {
-            SpawnWithCheck(enemy.gameObject, player.transform.position, 8, 10);
-            enemyCount++;
-        }
-
     }
 
     private Vector2Int worldPosToGridPos(Vector3 pos, Grid inputGrid)
