@@ -7,6 +7,7 @@ public class LassoScript : MonoBehaviour
     public GameObject Bullet;
     public float bulletSpeed;
     public Transform shootPoint;
+    public bool attached;
 
     Vector2 Direction;
     GameObject hitTarget;
@@ -51,6 +52,7 @@ public class LassoScript : MonoBehaviour
         {
             hitTarget = bulletInstance;
             rope.enabled = true;
+            attached = clawScript.attached;
         }
     }
 }
