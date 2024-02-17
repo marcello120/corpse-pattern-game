@@ -19,7 +19,7 @@ public class ColDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && collision.gameObject.layer == 12)
+        if (collision.gameObject.tag == "Enemy" && collision.gameObject.layer == 17)
         {
             Debug.Log("ENTERED COLLIDER");
             enemies.Add(collision.gameObject);
@@ -29,7 +29,7 @@ public class ColDetector : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && collision.gameObject.layer == 12)
+        if (collision.gameObject.tag == "Enemy" && collision.gameObject.layer == 17)
         {
             Debug.Log("Exit COLLIDER");
             enemies.Remove(collision.gameObject);

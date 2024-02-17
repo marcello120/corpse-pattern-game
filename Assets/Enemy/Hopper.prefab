@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7396034717881238316}
   - component: {fileID: 892142823974740553}
   - component: {fileID: 5039742561100875017}
-  - component: {fileID: 3356142182082843182}
-  m_Layer: 14
+  - component: {fileID: 3500128615615184838}
+  m_Layer: 17
   m_Name: BallBody
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.5
 --- !u!50 &5039742561100875017
 Rigidbody2D:
   serializedVersion: 4
@@ -146,7 +146,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3356142182082843182
+--- !u!114 &3500128615615184838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 303696664405621429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0d82d7373d8d3c47ae8ebbe658d1106, type: 3}
+  m_Script: {fileID: 11500000, guid: 43e4f1de2d5b905428e75018b532564c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parentEnemy: {fileID: 0}
@@ -270,6 +270,90 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &6385542402852387239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9079926591379202501}
+  - component: {fileID: 3600262718765763718}
+  - component: {fileID: 5727420411605740391}
+  - component: {fileID: 7924327466880931165}
+  m_Layer: 14
+  m_Name: DMGzone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9079926591379202501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385542402852387239}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6830850734151678589}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &3600262718765763718
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385542402852387239}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &5727420411605740391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385542402852387239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe5cf4883169db46b06a5a2ec9b2116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentEnemy: {fileID: 0}
+--- !u!58 &7924327466880931165
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385542402852387239}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &6830850734151678587
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +392,7 @@ Transform:
   - {fileID: 6830850735057799983}
   - {fileID: 136571729387253582}
   - {fileID: 699120806210815398}
+  - {fileID: 9079926591379202501}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -330,7 +415,7 @@ MonoBehaviour:
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
-  maxHealth: 0
+  maxHealth: 2
   health: 2
   attackPower: 1
   movemetSpeed: 4000
@@ -341,6 +426,7 @@ MonoBehaviour:
   target: {fileID: 0}
   statusHolder: {fileID: 0}
   animator: {fileID: 0}
+  moveStates: 0100000002000000
 --- !u!58 &6830850734151678585
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -528,6 +614,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc39a131121604d9543fcb61b44e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
+  nextWayPointDist: 0.2
   waitTime: 1
   waitCounter: 0
   destinationCell: {x: 0, y: 0, z: 0}

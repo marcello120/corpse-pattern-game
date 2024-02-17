@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DetectionZoneController : MonoBehaviour
 {
-    public List<GameObject> detectedObjs = new List<GameObject>();
+    public List<GameObject> detectedObjs;
 
     CircleCollider2D circleCollider2D;
     // Start is called before the first frame update

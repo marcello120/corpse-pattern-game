@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 457231206616159207}
   m_Layer: 17
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   flipBehaviour: 1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
+  powerLevel: 2
   maxHealth: 3
   health: 3
   attackPower: 2
@@ -418,17 +419,18 @@ MonoBehaviour:
   target: {fileID: 0}
   statusHolder: {fileID: 0}
   animator: {fileID: 0}
+  moveStates: 0100000002000000
   roamTarget: {fileID: 4112866766781027947, guid: bf7e01a002c4fc24a9eae746a3206a14, type: 3}
   playerTransform: {fileID: 0}
+  chargeSpeed: 7.5
+  hasAttacked: 0
   maxiDistToPlayer: 5
   minDistToPlayer: 2
   attackDist: 1
-  chargeSpeed: 7.5
   beforeAttackWaitTime: 0.75
   beforeAttackWaitTimer: 0
   afterAttackWaitTime: 2
   afterAttackWaitTimer: 0
-  hasAttacked: 0
 --- !u!61 &457231206933666177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -442,7 +444,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005997896, y: -0.027337343}
+  m_Offset: {x: -0.009644389, y: -0.0054585934}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -453,7 +455,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18784428, y: 0.25926644}
+  m_Size: {x: 0.53061175, y: 0.50236416}
   m_EdgeRadius: 0
 --- !u!114 &457231206933666178
 MonoBehaviour:
@@ -626,4 +628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591e2e029e1c6b945b4a235dcba7637e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
   nextWayPointDist: 0.15

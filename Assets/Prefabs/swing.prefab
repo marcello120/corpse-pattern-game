@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8663506858128612782}
   - component: {fileID: 8663506858128612819}
   - component: {fileID: -2343313484899497956}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}

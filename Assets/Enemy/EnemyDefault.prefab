@@ -103,6 +103,9 @@ GameObject:
   - component: {fileID: 3812315529965903336}
   - component: {fileID: 3812315529965903337}
   - component: {fileID: 3812315529965903318}
+  - component: {fileID: 521858398799025215}
+  - component: {fileID: 1467583162205217800}
+  - component: {fileID: 434885269346337311}
   m_Layer: 12
   m_Name: EnemyDefault
   m_TagString: Enemy
@@ -158,6 +161,7 @@ MonoBehaviour:
   target: {fileID: 0}
   statusHolder: {fileID: 0}
   animator: {fileID: 0}
+  moveStates: 0100000002000000
 --- !u!61 &3812315529965903330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +175,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005997896, y: -0.027337343}
+  m_Offset: {x: -0.00051635504, y: 0.002810955}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -182,7 +186,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18784428, y: 0.25926644}
+  m_Size: {x: 0.47836438, y: 0.48948985}
   m_EdgeRadius: 0
 --- !u!114 &3812315529965903329
 MonoBehaviour:
@@ -355,6 +359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591e2e029e1c6b945b4a235dcba7637e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
   nextWayPointDist: 0.15
 --- !u!114 &3812315529965903336
 MonoBehaviour:
@@ -386,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextWaypointDistance: 0.2
-  pathOffset: 1
+  pathOffset: 0.2
 --- !u!114 &3812315529965903318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,10 +407,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c905287f55b7574ea7c07f53bde55a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
+  nextWayPointDist: 0.2
   circleRadius: 2
   collisionThreshold: 1
-  nextWayPointDist: 0.2
   chasing: 0
+--- !u!114 &521858398799025215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812315529965903335}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c4a278ec85aaa428f9d1eb066de92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
+  nextWayPointDist: 0.2
+  predictionFactor: 1
+--- !u!114 &1467583162205217800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812315529965903335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a38992d38754a547b17646d9b14b8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 4
+  slowingDistance: 5
+  nextWayPointDist: 0.2
+--- !u!114 &434885269346337311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812315529965903335}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11733ba2a9c82f54481028bdbaa6ce71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
+  nextWayPointDist: 0.2
 --- !u!1 &3812315530116192154
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +481,7 @@ GameObject:
   - component: {fileID: 3812315530116192132}
   m_Layer: 17
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

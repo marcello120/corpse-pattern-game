@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public int flipBehaviour;
     public NearDeathStatusEffect nearDeathStatusEffect;
     public GameObject hitEffect;
+    public int powerLevel = 1;
 
     [Header("Stats")]
     public float maxHealth;
@@ -39,7 +41,8 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public Transform target;
     public StatusHolder statusHolder;
     public Animator animator;
-
+    public List<State> moveStates = new List<State>() { State.Idle, State.Moving };
+  
 
 
     public enum State
@@ -97,9 +100,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
         rb.velocity = Vector3.zero;
 
-        statusHolder.RemoveAll(this);
-
-        Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
+        Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber,powerLevel);
 
         Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
         foreach (Collider2D cc in ccs)
@@ -118,6 +119,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
         isDead = true;
         setState(State.Dying);
+    }
+
+    public void removeAllStatuses()
+    {
+        statusHolder.RemoveAll(this);
     }
 
 
@@ -164,7 +170,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         if (collision.gameObject.tag == "Player")
         {
             RiggedPlayerController playerController = collision.gameObject.GetComponent<RiggedPlayerController>();
-            playerController.takeDamage(attackPower, this);
+            playerController.takeDamage(attackPower, this.gameObject);
         }
     }
 
@@ -255,11 +261,18 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         if(factor > 1f)
         {
             health += newMaxHealth - maxHealth;
+            transform.localScale *= (factor * 0.66f);
+
+        }
+        else
+        {
+            transform.localScale *= (factor * 1.5f);
         }
         maxHealth = newMaxHealth;
 
         attackPower *= factor;
         movemetSpeed *= factor;
+        powerLevel += 1;
     }
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)

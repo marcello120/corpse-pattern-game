@@ -37,6 +37,17 @@ public class StatusHolder : MonoBehaviour
         return true;
     }
 
+    private void reAllignStatusObjects()
+    {
+        for (int i = 0; i < effects.Count; i++)
+        {
+            if (effects[i] != null) {
+                effects[i].statusObject.transform.position = transform.position + new Vector3(0f, (i+1) * offset, 0f);
+
+            }
+        }
+    }
+
     public void RemoveAll(Enemy enemy)
     {
         //call remove on all effects
@@ -69,8 +80,7 @@ public class StatusHolder : MonoBehaviour
             if (effects[i] == null)
             {
                 effects.RemoveAt(i);
-                
-                //remove from view
+                reAllignStatusObjects();
             }
             else
             {
