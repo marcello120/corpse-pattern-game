@@ -290,7 +290,7 @@ public class RiggedPlayerController : PlayerController
         pattenView.toggleBig();
     }
 
-    public void takeDamage(float damage, Enemy enemy)
+    public void takeDamage(float damage, GameObject enemy)
     {
         if (!canAttack && !canMove)
         {
