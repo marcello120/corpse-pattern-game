@@ -100,8 +100,6 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
         rb.velocity = Vector3.zero;
 
-        statusHolder.RemoveAll(this);
-
         Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber,powerLevel);
 
         Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
@@ -121,6 +119,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
         isDead = true;
         setState(State.Dying);
+    }
+
+    public void removeAllStatuses()
+    {
+        statusHolder.RemoveAll(this);
     }
 
 
