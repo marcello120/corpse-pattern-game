@@ -8,6 +8,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IEnemy
 {
+    //hello
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
     protected AudioSource getHitSound;
