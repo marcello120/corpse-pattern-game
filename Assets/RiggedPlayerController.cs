@@ -43,6 +43,8 @@ public class RiggedPlayerController : PlayerController
 
     public List<PowerUp> powerUps;
 
+    public PattenView pattenView;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -280,6 +282,12 @@ public class RiggedPlayerController : PlayerController
             }
         }
 
+    }
+
+    void OnTab()
+    {
+        Debug.Log("TAB pressed");
+        pattenView.toggleBig();
     }
 
     public void takeDamage(float damage, Enemy enemy)
