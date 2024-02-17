@@ -60,6 +60,7 @@ MonoBehaviour:
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
+  powerLevel: 3
   maxHealth: 5
   health: 5
   attackPower: 2
@@ -71,6 +72,7 @@ MonoBehaviour:
   target: {fileID: 0}
   statusHolder: {fileID: 0}
   animator: {fileID: 0}
+  moveStates: 0100000002000000
 --- !u!61 &7421201534729223838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -268,9 +270,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c905287f55b7574ea7c07f53bde55a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
+  nextWayPointDist: 0.2
   circleRadius: 2
   collisionThreshold: 1
-  nextWayPointDist: 0.2
   chasing: 0
 --- !u!1 &7421201534964636840
 GameObject:

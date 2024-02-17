@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public int flipBehaviour;
     public NearDeathStatusEffect nearDeathStatusEffect;
     public GameObject hitEffect;
+    public int powerLevel = 1;
 
     [Header("Stats")]
     public float maxHealth;
@@ -40,8 +41,8 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public Transform target;
     public StatusHolder statusHolder;
     public Animator animator;
-    public List<State> moveStates = new List<State>(){ State.Idle, State.Moving };
-
+    public List<State> moveStates = new List<State>() { State.Idle, State.Moving };
+  
 
 
     public enum State
@@ -101,7 +102,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
         statusHolder.RemoveAll(this);
 
-        Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber);
+        Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber,powerLevel);
 
         Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
         foreach (Collider2D cc in ccs)
@@ -257,11 +258,18 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         if(factor > 1f)
         {
             health += newMaxHealth - maxHealth;
+            transform.localScale *= (factor * 0.66f);
+
+        }
+        else
+        {
+            transform.localScale *= (factor * 1.5f);
         }
         maxHealth = newMaxHealth;
 
         attackPower *= factor;
         movemetSpeed *= factor;
+        powerLevel += 1;
     }
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)

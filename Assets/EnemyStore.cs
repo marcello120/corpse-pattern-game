@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyStore : MonoBehaviour
@@ -23,6 +24,32 @@ public class EnemyStore : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0, enemies.Length);
 
         return enemies[randomIndex];
+    }
+
+    public Enemy getRandomEnemyWithMaxPower(int maxPower)
+    {
+        int randomSkipChance = UnityEngine.Random.Range(1, maxPower+1);
+
+        if(randomSkipChance > 1) {
+            return getRandomEnemyWithMaxPower(maxPower - 1);
+
+        }
+
+        // Filter the enemies array to get only enemies with powerLevel equal to maxPower
+        var eligibleEnemies = enemies.Where(enemy => enemy.powerLevel == maxPower).ToList();
+
+        // Check if there are eligible enemies
+        if (eligibleEnemies.Count > 0)
+        {
+            // Select a random enemy from the filtered list
+            int randomIndex = UnityEngine.Random.Range(0, eligibleEnemies.Count);
+            return eligibleEnemies[randomIndex];
+        }
+        else
+        {
+            // If no eligible enemies found, return null or handle appropriately
+            return getRandomEnemyWithMaxPower(maxPower-1);
+        }
     }
 
     public List<Enemy> getShuffledList(Enemy[] enemyArray)
