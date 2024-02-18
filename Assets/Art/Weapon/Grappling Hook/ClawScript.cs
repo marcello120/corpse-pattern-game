@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClawScript : MonoBehaviour
 {
     LassoScript lasszo;
-    private bool attached;
+    public bool attached;
     private Transform targetHit;
 
     void Start()
@@ -71,5 +71,9 @@ public class ClawScript : MonoBehaviour
         {
             col.enabled = false;
         }
+    }
+    public bool IsAttached()
+    {
+        return attached;
     }
 }
