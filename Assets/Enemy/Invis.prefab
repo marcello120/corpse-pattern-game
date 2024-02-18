@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 1166266786613326378}
   - component: {fileID: 1166266786613326380}
   - component: {fileID: 7740664648857900368}
+  - component: {fileID: 9127546780429150099}
   m_Layer: 12
   m_Name: Invis
   m_TagString: Enemy
@@ -500,7 +501,8 @@ MonoBehaviour:
   currentWaypoint: 0
   reachedEndOfPath: 0
   seeker: {fileID: 0}
-  nextWayPointDist: 0.15
+  nextWayPointDist: 0.2
+  moveStates: 0200000001000000
 --- !u!58 &7740664648857900368
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -517,6 +519,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.33
+--- !u!114 &9127546780429150099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166266786613326368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11733ba2a9c82f54481028bdbaa6ce71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
+  nextWayPointDist: 0.2
+  moveStates: 03000000
 --- !u!1 &1166266786857768512
 GameObject:
   m_ObjectHideFlags: 0

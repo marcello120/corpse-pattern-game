@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating(nameof(SpawnEnemies), 0f, 7.5f);
 
         //instead of count keep list
-        currentEnemyCount = GameObject.FindObjectsOfType<Enemy>().Count();
+        currentEnemyCount = GameObject.FindObjectsOfType<Enemy>().Sum(item => item.powerLevel);
 
 
 

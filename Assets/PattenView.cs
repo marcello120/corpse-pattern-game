@@ -142,6 +142,10 @@ public class PattenView : MonoBehaviour
     {
         foreach (GameObject obj in list)
         {
+            if (obj == null)
+            {
+                continue;
+            }
             // Get the Image component
             Image imageComponent = obj.GetComponent<Image>();
 

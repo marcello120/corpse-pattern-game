@@ -71,6 +71,7 @@ public class Scorpion : Enemy
             }
             if (Vector3.Distance(transform.position, playerTransform.position) > maxiDistToPlayer)
             {
+                //THIS IS FUCKED
                 Vector3 goal = GameManager.Instance.getSpawnPoint(playerTransform.position, 0, 4);
                 roamTarget.transform.position = goal;
                 return;
