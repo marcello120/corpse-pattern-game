@@ -415,10 +415,11 @@ MonoBehaviour:
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
+  powerLevel: 1
   maxHealth: 2
   health: 2
   attackPower: 1
-  movemetSpeed: 4000
+  movemetSpeed: 3500
   state: 3
   isDead: 0
   stunned: 0
@@ -618,7 +619,7 @@ MonoBehaviour:
   currentWaypoint: 0
   reachedEndOfPath: 0
   seeker: {fileID: 0}
-  nextWayPointDist: 0.2
+  nextWayPointDist: 0.25
   waitTime: 1
   waitCounter: 0
   destinationCell: {x: 0, y: 0, z: 0}
