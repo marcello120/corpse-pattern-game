@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClawScript : MonoBehaviour
 {
-    LassoScript lasszo;
+    public LassoScript lasszo;
     public bool attached;
     private Transform targetHit;
 
@@ -25,6 +25,10 @@ public class ClawScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(!(other.gameObject.tag == "Player") || !(other.gameObject.layer == 10))
+        {
+            return;
+        }
         if (!attached)
         {
             if (other.CompareTag("Enemy") && !attached)
