@@ -64,6 +64,7 @@ public class ClawScript : MonoBehaviour
 
         // Set attached to true
         attached = true;
+        lasszo.Attach();
 
         // Optionally, disable the collider to prevent further collisions
         Collider2D col = GetComponent<Collider2D>();
@@ -72,8 +73,5 @@ public class ClawScript : MonoBehaviour
             col.enabled = false;
         }
     }
-    public bool IsAttached()
-    {
-        return attached;
-    }
+    
 }
