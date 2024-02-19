@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class PatternStore
+public  class PatternStore: MonoBehaviour
 {
+    public List<CorpseConfig> corpseConfigs;
+
+    public Dictionary<int, Sprite> configs = new Dictionary<int, Sprite>();
 
     public List<int[,]> patterns;
     public List<int[,]> easyPatterns;
@@ -12,8 +15,22 @@ public  class PatternStore
     public List<int[,]> hardPatterns;
 
 
-    public PatternStore()
+    public static PatternStore Instance;
+
+    public void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        foreach (var item in corpseConfigs)
+        {
+            configs.Add(item.key, item.corpse);
+        }
+
+
+
         patterns = new List<int[,]>();
         easyPatterns = new List<int[,]>();
         mediumPatterns= new List<int[,]>();
@@ -131,6 +148,13 @@ public  class PatternStore
             {1,-1,-1},
         };
         mediumPatterns.Add(fountain);
+
+        int[,] div2011 = new int[2, 2] {
+            {12,1},
+            {-1,1}
+        };
+        mediumPatterns.Add(div2011);
+
 
         /*        { -1,-1,-1,-1 },
                     { -1,-1,-1,-1 },

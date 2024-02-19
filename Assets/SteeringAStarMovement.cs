@@ -80,8 +80,6 @@ public class SteeringAStarMovement : MonoBehaviour
             desiredSpeed = maxSpeed * (distance / slowingDistance);
         }
 
-        Debug.Log("SPED: " + desiredSpeed);
-
         enemy.moveInDirectionWithSpeedModifier(direction,desiredSpeed);
 
 

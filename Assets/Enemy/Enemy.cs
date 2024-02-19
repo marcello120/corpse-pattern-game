@@ -111,7 +111,8 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     
         if (corpse!=null)
         {
-            Instantiate(corpse, place, Quaternion.identity);
+            GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
+            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNumber];
 
         }
         else

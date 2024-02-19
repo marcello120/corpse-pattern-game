@@ -300,7 +300,7 @@ MonoBehaviour:
   body: {fileID: 1166266786429614173}
   enemyname: Mourner
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
-  corpseNumber: 1
+  corpseNumber: 13
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
@@ -502,7 +502,6 @@ MonoBehaviour:
   reachedEndOfPath: 0
   seeker: {fileID: 0}
   nextWayPointDist: 0.2
-  moveStates: 0200000001000000
 --- !u!58 &7740664648857900368
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -536,7 +535,6 @@ MonoBehaviour:
   reachedEndOfPath: 0
   seeker: {fileID: 0}
   nextWayPointDist: 0.2
-  moveStates: 03000000
 --- !u!1 &1166266786857768512
 GameObject:
   m_ObjectHideFlags: 0
