@@ -62,7 +62,8 @@ public class PatternChecker
         {
             for (int j = 0; j < subArray.GetLength(1); j++)
             {
-                if (subArray[i, j] == inPattern[i, j])
+                //1 is genric corpse. spec corpses are >10
+                if (subArray[i, j] == inPattern[i, j] || (inPattern[i, j]==1 && subArray[i, j]> 10))
                 {
                     int xpos = i + xOffset;
                     int ypos = j + yOffset;
@@ -116,9 +117,10 @@ public class PatternChecker
         {
             for (int j = 0; j < array1.GetLength(1); j++)
             {
-                if (array1[i, j] != array2[i, j])
-                {
-                    return false;
+                //1 means any corpse, coprses are >10
+                if (array1[i, j] != array2[i, j] && (array1[i, j] != 1 || array2[i, j] <= 10))
+                    {
+                        return false;
                 }
             }
         }

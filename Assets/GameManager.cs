@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         transform.position = new Vector3(width / 2 * -gridCellSize, height / 2 * -gridCellSize);
 
         patternChecker = new PatternChecker();
-        patternStore = new PatternStore();
+        patternStore = PatternStore.Instance;
 
         //create array
         grid = new Grid(width, height, gridCellSize, 0);

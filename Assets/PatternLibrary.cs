@@ -12,7 +12,7 @@ public class PatternLibrary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        patternStore= new PatternStore();
+        patternStore = PatternStore.Instance;
         rectTransform = GetComponent<RectTransform>();
 
         List<int[,]> patterns = patternStore.patterns;
