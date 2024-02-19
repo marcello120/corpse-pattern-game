@@ -43,7 +43,7 @@ public class RiggedPlayerController : PlayerController
 
     public List<PowerUp> powerUps;
 
-    public PattenView pattenView;
+    public PatternGrid patternGrid;
 
     // Start is called before the first frame update
     void Start()
@@ -287,7 +287,7 @@ public class RiggedPlayerController : PlayerController
     void OnTab()
     {
         Debug.Log("TAB pressed");
-        pattenView.toggleBig();
+        patternGrid.toggleBig();
     }
 
     public void takeDamage(float damage, GameObject enemy)

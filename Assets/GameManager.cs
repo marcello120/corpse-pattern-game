@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
 
     private PatternStore patternStore;
 
-    public PattenView pattenView;
+    //public PattenView pattenView;
+
+    public PatternGrid patternGrid;
 
     public AudioSource scoreSound;
 
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour
 
         //set pattern
         pattern = patternStore.getRandomEasyPattern();
-        pattenView.SetPattern(pattern);
+        patternGrid.setPattern(pattern);
         highscore = PlayerPrefs.GetInt("HighScore", 0);
 
         successText.SetText("Score: " + 0);
@@ -180,7 +182,7 @@ public class GameManager : MonoBehaviour
             pattern = patternStore.getRandomEasyPattern();
 
             //set new pattern on UI
-            pattenView.SetPattern(pattern);
+            patternGrid.setPattern(pattern);
 
             //Increment score and set UI
             incrementScore(multiplier);

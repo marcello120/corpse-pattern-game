@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatternStore
+public  class PatternStore
 {
 
     public List<int[,]> patterns;
@@ -146,25 +147,43 @@ public class PatternStore
     public int[,] getRandomPattern()
     {
         int max = patterns.Count;
-        return patterns[Random.Range(0, max)];
+        return patterns[UnityEngine.Random.Range(0, max)];
     }
 
     public int[,] getRandomEasyPattern()
     {
         int max = easyPatterns.Count;
-        return easyPatterns[Random.Range(0, max)];
+        return easyPatterns[UnityEngine.Random.Range(0, max)];
     }
 
     public int[,] getRandomMediumPattern()
     {
         int max = mediumPatterns.Count;
-        return mediumPatterns[Random.Range(0, max)];
+        return mediumPatterns[UnityEngine.Random.Range(0, max)];
     }
 
     public int[,] getRandomHardPattern()
     {
         int max = hardPatterns.Count;
-        return hardPatterns[Random.Range(0, max)];
+        return hardPatterns[UnityEngine.Random.Range(0, max)];
+    }
+
+    public static int[,] Rotate(int[,] input)
+    {
+        int rows = input.GetLength(0);
+        int cols = input.GetLength(1);
+
+        int[,] rotated = new int[cols, rows];
+
+        for (int i = 0; i < cols; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                rotated[i, j] = input[j, cols - 1 - i];
+            }
+        }
+
+        return rotated;
     }
 
 }
