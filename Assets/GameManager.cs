@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
 
             //get new random pattern from store
             pattern = patternStore.getRandomEasyPattern();
+            pattern = patternStore.spiceItUp(pattern, 7);
 
             //set new pattern on UI
             patternGrid.setPattern(pattern);
