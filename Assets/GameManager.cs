@@ -321,7 +321,7 @@ public class GameManager : MonoBehaviour
         }
 
         Vector3 worldPos = inGrid.getWorldPositionGridWithOffset(pos.x, pos.y) + new Vector3(gridCellSize / 2, gridCellSize / 2);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(worldPos, 0.2f);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(worldPos, 0.2f, LayerMask.GetMask("Enemy", "ObstacleBlock","Player"));
 
         if (hitColliders.Length > 0)
         {
@@ -355,7 +355,7 @@ public class GameManager : MonoBehaviour
         Vector2Int gridPos = worldPosToGridPos(spawnWorldPos, obstacles);
 
         int tryCount = 0;
-        int maxTries = 200;
+        int maxTries = 100;
         bool success = false;
 
         while (tryCount < maxTries && !success)
