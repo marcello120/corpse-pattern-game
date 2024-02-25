@@ -71,12 +71,15 @@ public class Scorpion : Enemy
             }
             if (Vector3.Distance(transform.position, playerTransform.position) > maxiDistToPlayer)
             {
-                //THIS IS FUCKED
+                if ((Vector3.Distance(roamTarget.transform.position, playerTransform.position) < maxiDistToPlayer*0.7)){
+                    //moving towards player - Good
+                    return;
+                }
                 Vector3 goal = GameManager.Instance.getSpawnPoint(playerTransform.position, 0, 4);
                 roamTarget.transform.position = goal;
                 return;
             }
-            if (Vector3.Distance(transform.position, target.position) < 0.5f)
+            if (Vector3.Distance(transform.position, target.position) < 0.2f)
             {
                 Vector3 goal = GameManager.Instance.getSpawnPoint(transform.position, 2, 7);
                 roamTarget.transform.position = goal;

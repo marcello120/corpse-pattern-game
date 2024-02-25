@@ -18,7 +18,8 @@ public  class PatternStore: MonoBehaviour
 
     public static PatternStore Instance;
 
-    public void Start()
+
+    public void Awake()
     {
         if (Instance == null)
         {
@@ -155,6 +156,49 @@ public  class PatternStore: MonoBehaviour
             {-1,1}
         };
         mediumPatterns.Add(div2011);
+
+        int[,] bowl = new int[4, 3] {
+            {-1,1,1 },
+            {1,-1,1 },
+            {1,-1,1 },
+            {-1,1,1 }
+
+        };
+        mediumPatterns.Add(bowl);
+
+
+        int[,] bird = new int[3, 4] {
+            {-1,-1,-1,1 },
+            {1,1,1,1 },
+            {-1,1,1,-1 },
+
+        };
+        mediumPatterns.Add(bird);
+
+        int[,] twist = new int[3, 4] {
+            {1,-1,1,-1 },
+            {-1,1,-1,1 },
+            {1,-1,1,-1 },
+
+        };
+        mediumPatterns.Add(twist);
+
+        int[,] hand = new int[3, 3] {
+            {1,-1,-1},
+            {1,-1,1},
+            {1,1,-1},
+        };
+        mediumPatterns.Add(hand);
+
+
+        int[,] sphinx = new int[4, 3] {
+            {1,-1,-1 },
+            {1,1,1 },
+            {1,1,-1 },
+            {1,1,-1 }
+
+        };
+        mediumPatterns.Add(sphinx);
 
 
         /*        { -1,-1,-1,-1 },

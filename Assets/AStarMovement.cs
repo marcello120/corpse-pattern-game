@@ -53,6 +53,10 @@ public class AStarMovement : MonoBehaviour
 
     public virtual bool preMoveChecksDone()
     {
+        if(enemy.target == null)
+        {
+            return false;
+        }
         if (path == null || !enemy.moveStates.Contains(enemy.state))
         {
             return false;

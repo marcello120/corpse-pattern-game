@@ -285,6 +285,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
         Vector2 theDtoT = (target.transform.position - transform.position).normalized;
 
+
         if (flipBehaviour != -1 && flipBehaviour != 1)
         {
             return;

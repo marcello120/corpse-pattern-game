@@ -93,5 +93,10 @@ public class WeaponSwing : MonoBehaviour
             }
 
         }
+        if (collision.tag == "Projectile" && isActive)
+        {
+            collision.GetComponent<Projectile>().Parried();
+
+        }
     }
 }
