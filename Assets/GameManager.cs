@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 
         //set pattern
         pattern = patternStore.getRandomEasyPattern();
+        pattern = patternStore.spiceItUp(pattern, 1);
         patternGrid.setPattern(pattern);
         highscore = PlayerPrefs.GetInt("HighScore", 0);
 
