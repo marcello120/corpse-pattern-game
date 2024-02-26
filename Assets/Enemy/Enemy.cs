@@ -249,6 +249,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         return true;
     }
 
+    public void moveToRest(Vector3 restingPlace)
+    {
+
+    }
+
     public virtual bool stun()
     {
 
@@ -279,6 +284,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)
     {
+
         if (target == null)
         {
             return;
@@ -290,6 +296,20 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             return;
         }
+
+        if (spriteRenderer == null)
+        {
+            if (directionToTarget.x * flipBehaviour < 0f)
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f); // Face left
+            }
+            else if (directionToTarget.x * flipBehaviour > 0f)
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f); // Face right
+            }
+            return;
+        }
+
         if (flipBehaviour == 1)
         {
             if (theDtoT.x < 0f)
