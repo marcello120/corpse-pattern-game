@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatusHolder))]
@@ -209,6 +210,18 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public virtual void moveInDirection(Vector3 direction)
     {
         moveInDirectionWithSpeedModifier(direction, 1f);
+    }
+
+    public virtual void forceMoveToPosition(Vector3 forcedPos, float power)
+    {
+        float moveForceMultiplier = 40; //magic number
+
+        Vector3 direction = forcedPos - transform.position;
+
+        float requiredForceMagnitude = direction.magnitude * moveForceMultiplier * rb.mass *rb.drag;
+
+        rb.AddForce(direction.normalized * requiredForceMagnitude, ForceMode2D.Force);
+
     }
 
     public virtual void moveInDirectionWithSpeedModifier(Vector3 direction, float modifier)
