@@ -6101,8 +6101,8 @@ MonoBehaviour:
     m_Bits: 0
   effectsAnimator: {fileID: 5683588136381550804}
   perfectDashDecider: {fileID: 4223998125466626249}
-  slowStatusEffect: {fileID: 0}
-  stunStatusEffect: {fileID: 0}
+  slowStatusEffect: {fileID: 11400000, guid: c80aa0d617c49b64cb8489d55b1310ca, type: 2}
+  stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
   powerUps: []
   patternGrid: {fileID: 0}
   selectedUtility: 0
@@ -6113,6 +6113,7 @@ MonoBehaviour:
     time: 5
     elapsedtime: 0
   pullLine: {fileID: 6010421079866859731, guid: a859f2c30b8638340ba1fb9c90ed00a4, type: 3}
+  projectile: {fileID: 1013748439425590854, guid: 5bbeeed0d20a7904db1afb2b0f26c1ab, type: 3}
   hearts: []
 --- !u!50 &725991873
 Rigidbody2D:
@@ -6446,7 +6447,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 307444
+  m_InstanceId: 175174
   m_LocalBounds:
     m_Center: {x: -0.11526871, y: -0.18672752, z: 0}
     m_Extent: {x: 1.110199, y: 3.6425152, z: 0}
@@ -6476,7 +6477,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 1141887611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 307380
+  m_InstanceId: 175110
   m_LocalBounds:
     m_Center: {x: -0.06999993, y: -3.54, z: 0}
     m_Extent: {x: 1.23, y: 0.9900001, z: 0}
