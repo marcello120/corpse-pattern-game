@@ -100,7 +100,7 @@ public class Ranged : Enemy
                 attackPrepTime.reset();
                 Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
                 Projectile spawenProj = Instantiate(projectile, transform.position, Quaternion.identity);
-                spawenProj.Setup(directionToPlayer, attackPower);
+                spawenProj.Setup(directionToPlayer, attackPower,3);
                 projectileCount -= 1f;
                 setState(State.Preparing); 
                 return;

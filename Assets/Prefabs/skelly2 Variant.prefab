@@ -246,8 +246,8 @@ MonoBehaviour:
   - {fileID: 2495351452782309460}
   - {fileID: 604893985106197724}
   m_Bounds:
-    m_Center: {x: 0.06534076, y: -0.20270538, z: 0}
-    m_Extent: {x: 1.0776198, y: 2.2068555, z: 0}
+    m_Center: {x: 0.06534362, y: -0.20270538, z: 0}
+    m_Extent: {x: 1.0776207, y: 2.2068546, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -513,8 +513,8 @@ MonoBehaviour:
   - {fileID: 7562226831490057617}
   - {fileID: 5201112702085383148}
   m_Bounds:
-    m_Center: {x: -0.03311044, y: 0.10136151, z: 0}
-    m_Extent: {x: 0.965804, y: 1.4248652, z: 0}
+    m_Center: {x: -0.033106804, y: 0.10135913, z: 0}
+    m_Extent: {x: 0.9658042, y: 1.4248657, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -651,8 +651,8 @@ MonoBehaviour:
   - {fileID: 5201112702085383148}
   - {fileID: 6320006786018346518}
   m_Bounds:
-    m_Center: {x: 0.06507385, y: 0.6938886, z: 0}
-    m_Extent: {x: 0.7767036, y: 0.7969557, z: 0}
+    m_Center: {x: 0.065075755, y: 0.6938871, z: 0}
+    m_Extent: {x: 0.7767036, y: 0.79695517, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -919,8 +919,8 @@ MonoBehaviour:
   - {fileID: 6320006786018346518}
   - {fileID: 5551738333685249117}
   m_Bounds:
-    m_Center: {x: -0.0056118965, y: 0.7764393, z: 0}
-    m_Extent: {x: 1.0882308, y: 1.0837711, z: 0}
+    m_Center: {x: -0.0056085587, y: 0.7764356, z: 0}
+    m_Extent: {x: 1.0882313, y: 1.0837712, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -5987,11 +5987,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4956227166122449498}
+  - component: {fileID: 4415330327736415906}
   - component: {fileID: 725991873}
   - component: {fileID: 8950490565877135590}
   - component: {fileID: 8903467144175623326}
   - component: {fileID: 4079142161244592374}
-  - component: {fileID: 4415330327736415906}
   - component: {fileID: 6272262823411728183}
   - component: {fileID: 6561725042021704842}
   - component: {fileID: 5271152790112201057}
@@ -6032,6 +6032,89 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -53.74, y: 0, z: 0}
+--- !u!114 &4415330327736415906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052863797743698489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a02737bc1d7892449fc7e75a064225f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 5
+  maxHealth: 5
+  moveSpeed: 2
+  collisionOffset: 0.001
+  movementFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  swordAttack: {fileID: 0}
+  movementInput: {x: 0, y: 0}
+  rb: {fileID: 0}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  canMove: 1
+  canAttack: 1
+  invicnicbilityTime: 0.75
+  invincible: 0
+  stunTime: 0.2
+  stunned: 0
+  ininvTimer: 0
+  stuntimer: 0
+  mousePosition: {x: 0, y: 0, z: 0}
+  holster: {fileID: 1174910148388614554}
+  takeDamageSound: {fileID: 8903467144175623326}
+  flipped: 0
+  ParentBone: {fileID: 6249290031206965986}
+  DashAmount: 1
+  canDash: 1
+  dashCooldown: 2
+  dashTimer: 0
+  dashEffect: {fileID: 3678630056906836289, guid: f43a186ef485ad14d8ddc5feaa10df58, type: 3}
+  dust: {fileID: 7779169507405934208}
+  walkSound: {fileID: 0}
+  collider: {fileID: 0}
+  level: 1
+  gameIsPaused: 0
+  pauseMenuUI: {fileID: 0}
+  deathMenuUI: {fileID: 0}
+  pauseMenuAnimator: {fileID: 0}
+  dashLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  effectsAnimator: {fileID: 5683588136381550804}
+  perfectDashDecider: {fileID: 4223998125466626249}
+  slowStatusEffect: {fileID: 11400000, guid: c80aa0d617c49b64cb8489d55b1310ca, type: 2}
+  stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
+  powerUps: []
+  patternGrid: {fileID: 0}
+  selectedUtility: 0
+  interactLayerMask:
+    serializedVersion: 2
+    m_Bits: 6272
+  utilTimer:
+    time: 5
+    elapsedtime: 0
+  pullLine: {fileID: 6010421079866859731, guid: a859f2c30b8638340ba1fb9c90ed00a4, type: 3}
+  projectile: {fileID: 1013748439425590854, guid: 5bbeeed0d20a7904db1afb2b0f26c1ab, type: 3}
+  hearts: []
 --- !u!50 &725991873
 Rigidbody2D:
   serializedVersion: 4
@@ -6201,79 +6284,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4415330327736415906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6052863797743698489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a02737bc1d7892449fc7e75a064225f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: 5
-  maxHealth: 5
-  moveSpeed: 2
-  collisionOffset: 0.001
-  movementFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  swordAttack: {fileID: 0}
-  movementInput: {x: 0, y: 0}
-  rb: {fileID: 0}
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  canMove: 1
-  canAttack: 1
-  invicnicbilityTime: 0.75
-  invincible: 0
-  stunTime: 0.2
-  stunned: 0
-  ininvTimer: 0
-  stuntimer: 0
-  mousePosition: {x: 0, y: 0, z: 0}
-  holster: {fileID: 1174910148388614554}
-  takeDamageSound: {fileID: 8903467144175623326}
-  flipped: 0
-  ParentBone: {fileID: 6249290031206965986}
-  DashAmount: 1
-  canDash: 1
-  dashCooldown: 2
-  dashTimer: 0
-  dashEffect: {fileID: 3678630056906836289, guid: f43a186ef485ad14d8ddc5feaa10df58, type: 3}
-  dust: {fileID: 7779169507405934208}
-  walkSound: {fileID: 0}
-  collider: {fileID: 0}
-  level: 1
-  gameIsPaused: 0
-  pauseMenuUI: {fileID: 0}
-  deathMenuUI: {fileID: 0}
-  pauseMenuAnimator: {fileID: 0}
-  dashLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  effectsAnimator: {fileID: 5683588136381550804}
-  perfectDashDecider: {fileID: 4223998125466626249}
-  slowStatusEffect: {fileID: 0}
-  stunStatusEffect: {fileID: 0}
-  powerUps: []
-  hearts: []
 --- !u!114 &6272262823411728183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6437,7 +6447,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 198320
+  m_InstanceId: 175174
   m_LocalBounds:
     m_Center: {x: -0.11526871, y: -0.18672752, z: 0}
     m_Extent: {x: 1.110199, y: 3.6425152, z: 0}
@@ -6467,7 +6477,7 @@ MonoBehaviour:
   - {x: 0.99493027, y: -3.8292427, z: 0}
   m_ShapePathHash: 1141887611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 198256
+  m_InstanceId: 175110
   m_LocalBounds:
     m_Center: {x: -0.06999993, y: -3.54, z: 0}
     m_Extent: {x: 1.23, y: 0.9900001, z: 0}
@@ -6732,8 +6742,8 @@ MonoBehaviour:
   - {fileID: 5022717046190482340}
   - {fileID: 7559394223611386197}
   m_Bounds:
-    m_Center: {x: -0.3749305, y: 0.08388615, z: 0}
-    m_Extent: {x: 1.332497, y: 1.4346473, z: 0}
+    m_Center: {x: -0.3749305, y: 0.083883286, z: 0}
+    m_Extent: {x: 1.332497, y: 1.4346454, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -6947,8 +6957,8 @@ MonoBehaviour:
   - {fileID: 5551738333685249117}
   - {fileID: 7053392283565137617}
   m_Bounds:
-    m_Center: {x: 0.2169311, y: 0.12977767, z: 0}
-    m_Extent: {x: 1.191246, y: 1.4998734, z: 0}
+    m_Center: {x: 0.21693301, y: 0.12977576, z: 0}
+    m_Extent: {x: 1.191246, y: 1.4998724, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

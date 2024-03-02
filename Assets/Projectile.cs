@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -8,9 +7,11 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float damage;
     public bool isParried = false;
+    public bool byPlayer = false;
 
-    public void Setup(Vector3 direction, float damage)
+    public void Setup(Vector3 direction, float damage, float speed)
     {
+        this.speed = speed;
         this.damage = damage;
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.AddForce(direction * speed, ForceMode2D.Impulse);
@@ -34,7 +35,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player") { 
+        if(collision.tag == "Player" && !byPlayer) { 
             RiggedPlayerController player = collision.GetComponent<RiggedPlayerController>();
             if(player != null)
             {

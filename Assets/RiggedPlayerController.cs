@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
 
 public class RiggedPlayerController : PlayerController
 {
@@ -45,6 +46,26 @@ public class RiggedPlayerController : PlayerController
 
     public PatternGrid patternGrid;
 
+    public enum Utility
+    {
+        MASS_SLOW,
+        PULL,
+        RANGED_SHOT,
+        CORPSE_MOVE,
+        PUSH_FORWARD,
+        PUSH_BLAST
+    }
+
+    public Utility selectedUtility;
+    [SerializeField] private LayerMask interactLayerMask;
+
+    public MuliTimer utilTimer;
+
+    public GameObject pullLine;
+    public Projectile projectile;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +79,12 @@ public class RiggedPlayerController : PlayerController
 
     private void FixedUpdate()
     {
+
+        if (!utilTimer.isDone())
+        {
+            utilTimer.update(Time.deltaTime);
+        }
+
         //toggle dash
         if (!canDash)
         {
@@ -194,18 +221,120 @@ public class RiggedPlayerController : PlayerController
 
     void OnUtility()
     {
-        Debug.Log("UTILITY");
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-        effectsAnimator.Play("effect_vortex");
-        foreach (Collider2D hitCollider in hitColliders)
+        if (!utilTimer.isDone())
         {
-            if(hitCollider.gameObject.tag == "Enemy" && hitCollider.gameObject.GetComponent<Enemy>()!=null)
-            {
-                Enemy en = hitCollider.gameObject.GetComponent<Enemy>();
-                Slow(en);
-            }
-
+            return;
         }
+
+        if(selectedUtility == Utility.MASS_SLOW)
+        {
+            Debug.Log("MASS_SLOW");
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+            effectsAnimator.Play("effect_vortex");
+            foreach (Collider2D hitCollider in hitColliders)
+            {
+                if (hitCollider.gameObject.tag == "Enemy" && hitCollider.gameObject.GetComponent<Enemy>() != null)
+                {
+                    Enemy en = hitCollider.gameObject.GetComponent<Enemy>();
+                    Slow(en);
+                }
+
+            }
+            utilTimer.reset();
+            return;
+        }
+        if (selectedUtility == Utility.PULL)
+        {
+            Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+            Vector3 lookDir2D = new Vector3(lookDir.x, lookDir.y);
+            float castOffset = 0.3f;
+            float castDistance = 2f;
+
+
+            Debug.Log("PULL");
+            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position + castOffset * lookDir2D, lookDir2D,castDistance, interactLayerMask);
+            Debug.DrawRay(transform.position + castOffset * lookDir2D, lookDir2D*castDistance, Color.yellow, 20);
+
+            //If something was hit.
+            if (hit.collider != null)
+            {
+                Enemy hitEnemy = hit.collider.GetComponent<Enemy>();
+                if(hitEnemy != null)
+                {
+                    Debug.Log("Enemy In Range!");
+                    Debug.Log("PULL  " + hit.collider.name);
+                    LineRenderer line = Instantiate(pullLine, Vector3.zero, Quaternion.identity).GetComponent<LineRenderer>();
+                    //line.transform.position = transform.position;
+                    line.SetPosition(0,transform.position);
+                    line.SetPosition(1,hitEnemy.transform.position);
+                    Destroy(line, 0.15f);
+                    hitEnemy.forceMoveToPosition(transform.position + castOffset * lookDir2D, 1f);
+                    utilTimer.reset();
+                    return;
+                }
+
+            }
+            LineRenderer backupline = Instantiate(pullLine, Vector3.zero, Quaternion.identity).GetComponent<LineRenderer>();
+            //line.transform.position = transform.position;
+            backupline.SetPosition(0, transform.position);
+            Vector3 newPos = transform.position + castOffset * lookDir2D;
+            backupline.SetPosition(1, newPos + castDistance* lookDir2D);
+            Destroy(backupline, 0.15f);
+            utilTimer.reset();
+            return;
+        }
+        if (selectedUtility == Utility.PUSH_FORWARD)
+        {
+            Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+            Vector3 lookDir2D = new Vector3(lookDir.x, lookDir.y);
+            float pushOffset = 0.01f;
+            float pushReach = 1f;
+            float pushDist = 2f;
+
+
+            Debug.Log("PUSH");
+            RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position + pushOffset * lookDir2D, lookDir2D, pushReach, interactLayerMask);
+            Debug.DrawRay(transform.position + pushOffset * lookDir2D, lookDir2D * pushReach, Color.yellow, 20);
+
+            //If something was hit.
+            if (hit.collider != null)
+            {
+                Enemy hitEnemy = hit.collider.GetComponent<Enemy>();
+                if (hitEnemy != null)
+                {
+                    Debug.Log("Enemy In Range!");
+                    Debug.Log("PUSH  " + hit.collider.name);
+                    LineRenderer line = Instantiate(pullLine, Vector3.zero, Quaternion.identity).GetComponent<LineRenderer>();
+                    //line.transform.position = transform.position;
+                    line.SetPosition(0, transform.position);
+                    line.SetPosition(1, hitEnemy.transform.position);
+                    Destroy(line, 0.15f);
+                    hitEnemy.forceMoveToPosition(transform.position + pushDist * lookDir2D, 1f);
+                    utilTimer.reset();
+                    return;
+                }
+
+            }
+            LineRenderer backupline = Instantiate(pullLine, Vector3.zero, Quaternion.identity).GetComponent<LineRenderer>();
+            //line.transform.position = transform.position;
+            backupline.SetPosition(0, transform.position);
+            Vector3 newPos = transform.position + pushOffset * lookDir2D;
+            backupline.SetPosition(1, newPos + pushReach * lookDir2D);
+            Destroy(backupline, 0.15f);
+            utilTimer.reset();
+            return;
+        }
+        if (selectedUtility == Utility.RANGED_SHOT)
+        {
+            Debug.Log("RANGED_SHOT");
+            Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+            Vector3 lookDir2D = new Vector3(lookDir.x, lookDir.y);
+            Projectile spawenProj = Instantiate(projectile, transform.position, Quaternion.identity);
+            spawenProj.byPlayer = true;
+            spawenProj.isParried = true;
+            spawenProj.Setup(lookDir2D, 1,10);
+        }
+
 
     }
 
