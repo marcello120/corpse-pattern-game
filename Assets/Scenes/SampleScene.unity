@@ -2681,7 +2681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415330327736415906, guid: 298f1b1a6e677b148a81a17b6d69eaa3, type: 3}
       propertyPath: selectedUtility
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4415330327736415906, guid: 298f1b1a6e677b148a81a17b6d69eaa3, type: 3}
       propertyPath: deathMenuAnimator
@@ -24434,7 +24434,7 @@ PrefabInstance:
       objectReference: {fileID: 2062775990}
     - target: {fileID: 2512616840177150869, guid: 7cbf8ed63d7b3f845bb97a08e2e7dc7e, type: 3}
       propertyPath: enemyCount
-      value: 50
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2512616840177150869, guid: 7cbf8ed63d7b3f845bb97a08e2e7dc7e, type: 3}
       propertyPath: pattenView
@@ -25421,6 +25421,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 69436118}
     m_Modifications:
+    - target: {fileID: 1867704126625786263, guid: a7f7e6c9cf6a35f4a9982cab37e70df9, type: 3}
+      propertyPath: text
+      value: jobb click
+      objectReference: {fileID: 0}
     - target: {fileID: 6129074316063178912, guid: a7f7e6c9cf6a35f4a9982cab37e70df9, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -237.20001

@@ -53,8 +53,10 @@ public class RiggedPlayerController : PlayerController
         RANGED_SHOT,
         CORPSE_MOVE,
         PUSH_FORWARD,
-        PUSH_BLAST
     }
+
+    [Header("Util")]
+
 
     public Utility selectedUtility;
     [SerializeField] private LayerMask interactLayerMask;
@@ -64,6 +66,9 @@ public class RiggedPlayerController : PlayerController
     public GameObject pullLine;
     public Projectile projectile;
 
+    //default -100
+    public int storedCorpse = -100;
+    public GameObject corpse;
 
 
     // Start is called before the first frame update
@@ -333,7 +338,34 @@ public class RiggedPlayerController : PlayerController
             spawenProj.byPlayer = true;
             spawenProj.isParried = true;
             spawenProj.Setup(lookDir2D, 1,10);
+            utilTimer.reset();
+
         }
+        if (selectedUtility == Utility.CORPSE_MOVE)
+        {
+            if(storedCorpse == -100)
+            {
+                Vector2Int grdiPos = GameManager.Instance.worldPosToGridPos(transform.position, GameManager.Instance.grid);
+                storedCorpse = GameManager.Instance.removeCoprseAndReturnID(grdiPos);
+                if(storedCorpse == 0)
+                {
+                    storedCorpse = -100;
+                    return;
+                }
+                GameManager.Instance.removeCorpseAtWorldPos(transform.position);
+
+            }
+            else
+            {
+                Vector3 place =  GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, storedCorpse, 0);
+                GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
+                newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[storedCorpse];
+                storedCorpse = -100;
+            }
+            utilTimer.reset();
+
+        }
+
 
 
     }

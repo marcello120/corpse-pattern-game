@@ -134,6 +134,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public int removeCoprseAndReturnID(Vector2Int gridPos)
+    {
+        int coprpseNumberToReturn = grid.array[gridPos.x, gridPos.y];
+
+        grid.array[gridPos.x, gridPos.y] = 0;
+
+
+        return coprpseNumberToReturn;
+    }
+
     public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber, int powerLevel)
     {
         currentEnemyCount-=powerLevel;
@@ -256,7 +266,7 @@ public class GameManager : MonoBehaviour
         SpawnWithCheck(enemy.gameObject, player.transform.position, 8, 10);
     }
 
-    private Vector2Int worldPosToGridPos(Vector3 pos, Grid inputGrid)
+    public Vector2Int worldPosToGridPos(Vector3 pos, Grid inputGrid)
     {
         Vector3 intialLocation = Grid.adjustWoldPosToNearestCell(pos, inputGrid.gridCellSize);
         Vector3 initialGridPos = inputGrid.ConvetWorldPosToArrayPos(intialLocation);
