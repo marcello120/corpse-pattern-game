@@ -35,12 +35,9 @@ public class LassoScript : MonoBehaviour
 
         Direction = mousePos - (Vector2)transform.position;
 
-        // Ha nincs attacholva, akkor arra nézzen
-        if (!isAttached)
-        {
-            FaceMouse();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
+        FaceMouse();
+
+        if (Input.GetKeyDown(KeyCode.E) && !isAttached)
         {
             Shoot();
         }
@@ -54,7 +51,7 @@ public class LassoScript : MonoBehaviour
         {
             RecallClaw();
         }
-        if(distance < 0.2f && isMoving)
+        if (isMoving && distance < 0.5f)
         {
             StopClaw();
         }
@@ -67,7 +64,7 @@ public class LassoScript : MonoBehaviour
     }
     public void Attach()
     {
-        isAttached = clawScript.attached;
+        isAttached = true;
     }
 
     void Shoot()
