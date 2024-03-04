@@ -16,11 +16,16 @@ public class LassoScript : MonoBehaviour
     GameObject hitTarget;
 
     public LineRenderer rope;
+    public ClawScript clawScript;
+    public Rigidbody2D bulletRigidbody;
+
     void Start()
     {
         rope.enabled = false;
         isAttached = false;
         isMoving = false;
+        clawScript = Claw.GetComponent<ClawScript>();
+        bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -29,8 +34,12 @@ public class LassoScript : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Direction = mousePos - (Vector2)transform.position;
-        FaceMouse();
 
+        // Ha nincs attacholva, akkor arra nézzen
+        if (!isAttached)
+        {
+            FaceMouse();
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Shoot();
@@ -58,7 +67,6 @@ public class LassoScript : MonoBehaviour
     }
     public void Attach()
     {
-        ClawScript clawScript = Claw.GetComponent<ClawScript>();
         isAttached = clawScript.attached;
     }
 
@@ -66,9 +74,6 @@ public class LassoScript : MonoBehaviour
     {
         if (Claw != null)
         {
-            Rigidbody2D bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
-            ClawScript clawScript = Claw.GetComponent<ClawScript>();
-
             if (bulletRigidbody != null)
             {
                 bulletRigidbody.velocity = transform.right * clawSpeed;
@@ -93,7 +98,6 @@ public class LassoScript : MonoBehaviour
     }
     void StopClaw()
     {
-        Rigidbody2D bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
         if (bulletRigidbody != null)
         {
             bulletRigidbody.velocity = Vector2.zero;
