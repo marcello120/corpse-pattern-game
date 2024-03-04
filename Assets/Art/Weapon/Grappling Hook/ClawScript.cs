@@ -58,7 +58,7 @@ public class ClawScript : MonoBehaviour
         }
 
         // Parent the bullet to the enemy
-        transform.parent = enemyTransform;
+        //transform.parent = enemyTransform;
 
         // Reset local position to zero
         transform.localPosition = Vector3.zero;
