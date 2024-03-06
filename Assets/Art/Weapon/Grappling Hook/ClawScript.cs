@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ClawScript : MonoBehaviour
 {
+    public GameObject Grappler;
     public LassoScript lasszo;
     public bool attached;
     private Transform targetHit;
 
     void Start()
     {
-        lasszo = GetComponent<LassoScript>();
+        lasszo = Grappler.GetComponent<LassoScript>();
         attached = false;
     }
 
@@ -56,13 +57,6 @@ public class ClawScript : MonoBehaviour
             rb.gravityScale = 0f;
             rb.freezeRotation = true;
         }
-
-        // Parent the bullet to the enemy
-        transform.parent = enemyTransform;
-
-        // Reset local position to zero
-        transform.localPosition = Vector3.zero;
-
         // Set the targetHit to the enemy's transform
         targetHit = enemyTransform;
 
@@ -76,6 +70,11 @@ public class ClawScript : MonoBehaviour
         {
             col.enabled = false;
         }
+        // Parent the bullet to the enemy
+        transform.parent = enemyTransform;
+
+        // Reset local position to zero
+        transform.localPosition = Vector3.zero;
     }
     
 }
