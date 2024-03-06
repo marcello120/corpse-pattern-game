@@ -64,6 +64,7 @@ public class LassoScript : MonoBehaviour
     }
     public void Attach()
     {
+        Debug.Log("Attached called in LassoScript");
         isAttached = true;
     }
 
@@ -93,12 +94,20 @@ public class LassoScript : MonoBehaviour
         }
         isMoving = true;
     }
-    void StopClaw()
+    public void StopClaw()
     {
         if (bulletRigidbody != null)
         {
             bulletRigidbody.velocity = Vector2.zero;
             Claw.transform.position = shootPoint.position;
+
+            // Parent the Claw to the shootPoint
+            Claw.transform.SetParent(shootPoint);
+
+            // Reset local position and rotation to maintain the original offset and rotation
+            Claw.transform.localPosition = Vector3.zero;
+            Claw.transform.localRotation = Quaternion.identity;
+
             rope.enabled = false;
             isAttached = false;
             hitTarget = null;
