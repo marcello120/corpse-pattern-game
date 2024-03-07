@@ -4,30 +4,12 @@ using UnityEngine;
 
 public class Rapier : Weapon
 {
-    private Rigidbody2D rb;
     private PolygonCollider2D polygonCollider2;
-    private Animator animator;
-    private AudioSource hitSound;
-
-    public float weaponAttackPower = 10;
-    public float weaponKnockback = 10;
-
-    public float speed = 10;
-    public bool attackQueued = false;
-    public float timeSinceAttack = 0;
-    public bool canAttack = true;
-
-
-    private bool attackState = false;
-
+   
     // Start is called before the first frame update
     void Start()
     {
-        rb= GetComponent<Rigidbody2D>();
-        polygonCollider2 = GetComponent<PolygonCollider2D>();
-        animator = GetComponent<Animator>();
-        hitSound = GetComponent<AudioSource>();
-
+        Init();
         polygonCollider2.enabled = false;
     }
 

@@ -111,6 +111,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //public float calculateScore()
+    //{
+        
+
+    //    return score * 10 - getNumberOfCorpsesOnGrind() - ;
+    //}
+
     void SpawnEnemies()
     {
         while(enemyCount > currentEnemyCount)

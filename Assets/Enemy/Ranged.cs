@@ -42,7 +42,10 @@ public class Ranged : Enemy
     // Update is called once per frame
     void Update()
     {
-
+        if(playerTransform== null)
+        {
+            return;
+        }
         //find a spot X dist from player
         //is spot is far, find new spot
         //if at spot -> fire projectile at player loc

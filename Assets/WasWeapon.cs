@@ -4,46 +4,11 @@ using UnityEngine;
 
 public class WasWeapon : Weapon
 {
-    private Rigidbody2D rb;
-    private Animator animator;
-
-    public float weaponAttackPower = 10;
-    public float weaponKnockback = 10;
-    public float baseWeaponReach = 3.35f;
-    public float currentWeaponReach = 0f;
-
-    public float speed = 10;
-    public bool attackQueued = false;
-    public float timeSinceAttack = 0;
-    public bool canAttack = true;
-
-
-    private bool attackState = false;
-
-    public WeaponSwing swing;
-
-    public float reach;
-    public float size = 1;
-
-    private Vector3 baseSize;
-
-
-    public GameObject actualWas;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        rb = actualWas.GetComponent<Rigidbody2D>();
-        animator = actualWas.GetComponent<Animator>();
-        currentWeaponReach = baseWeaponReach;
-        baseSize = transform.localScale;
-        increaseReach(0f);
-        increaseSize(0f);
-
-
+        Init();
         //InvokeRepeating(nameof(Attack), 0f, 0.5f); // Update the path every 0.5 seconds
-
     }
 
     void FixedUpdate()
@@ -64,21 +29,6 @@ public class WasWeapon : Weapon
     }
 
 
-    public override void increaseReach(float reachIncreae)
-    {
-        currentWeaponReach += reachIncreae;
-        transform.localPosition = new Vector3(currentWeaponReach, transform.localPosition.y, actualWas.transform.localPosition.z);
-    }
-
-    public override void increaseSize(float sizeIncrease)
-    {
-        size *= (1 + sizeIncrease);
-        transform.localScale = baseSize * size;
-    }
-
-
-
-
     public override void Attack()
     {
         animator.SetTrigger("Attack");
@@ -86,7 +36,7 @@ public class WasWeapon : Weapon
 
         if (canAttack)
         {
-            Transform playerTransform = actualWas.transform;
+            Transform playerTransform = weaponBody.transform;
             float offset = reach;
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -106,7 +56,6 @@ public class WasWeapon : Weapon
             //comment if tired
            // effect.transform.SetParent(transform, true);
 
-
             attackQueued = false;
             canAttack = false;
         }
@@ -116,16 +65,5 @@ public class WasWeapon : Weapon
         }
         
     }
-
-
-    public override bool isAttacking()
-    {
-        return attackState;
-    }
-
-
-
-  
-
 
 }

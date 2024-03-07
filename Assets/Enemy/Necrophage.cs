@@ -92,6 +92,10 @@ public class Necrophage : Enemy
             if (target == null || target.tag == "Corpse")
             {
                 target = GameObject.FindGameObjectWithTag("Player").transform;
+                if (target == null)
+                {
+                    return;
+                }
             }
 
             if (chaseTimer < chaseTime)

@@ -24,8 +24,6 @@ public class PlayerController : MonoBehaviour
 
     public Animator animator;
 
-    public SpriteRenderer spriteRenderer;
-
     public bool canMove = true;
 
     public bool canAttack = true;
@@ -57,9 +55,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator= GetComponent<Animator>();
-        spriteRenderer= GetComponent<SpriteRenderer>();
-
-
     }
 
     private void FixedUpdate()
@@ -123,13 +118,7 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("MouseX", lookDir.x);
 
 
-            //flip sprite based on mouse position
-            if (spriteRenderer != null)
-            {
-                Flip(lookDir);
-            }
-            else
-            {
+
                 if (lookDir.x < 0f && transform.localScale.x > 0f)
                 {
                     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
@@ -139,20 +128,8 @@ public class PlayerController : MonoBehaviour
                     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
                 }
-            }
+            
 
-        }
-    }
-
-    private void Flip(Vector3 lookDir)
-    {
-        if (lookDir.x < 0f)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
         }
     }
 

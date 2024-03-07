@@ -10,7 +10,6 @@ using UnityEngine.XR;
 
 public class RiggedPlayerController : PlayerController
 {
-    public GameObject ParentBone;
     public float DashAmount = 1f;
     public bool canDash = true;
     public float dashCooldown = 3f;
@@ -70,13 +69,14 @@ public class RiggedPlayerController : PlayerController
     public int storedCorpse = -100;
     public GameObject corpse;
 
+    public GameObject playerBody;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = playerBody.GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
         UpdateHearts();
         
@@ -183,17 +183,18 @@ public class RiggedPlayerController : PlayerController
 
     private void Flip(Vector3 lookDir)
     {
-        if (lookDir.x > 0f & ParentBone.transform.localScale.y < 0)
+        Vector3 bodyHolderScale = playerBody.transform.parent.localScale;
+        if (lookDir.x > 0f & bodyHolderScale.x < 0)
         {
             //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             //holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y * -1, ParentBone.transform.localScale.z);
+            playerBody.transform.parent.localScale = new Vector3(bodyHolderScale.x * -1, bodyHolderScale.y, bodyHolderScale.z);
         }
-        else if (lookDir.x < 0f & ParentBone.transform.localScale.y > 0)
+        else if (lookDir.x < 0f & bodyHolderScale.x > 0)
         {
             //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y * -1, ParentBone.transform.localScale.z);
+            playerBody.transform.parent.localScale = new Vector3(bodyHolderScale.x * -1, bodyHolderScale.y, bodyHolderScale.z);
 
         }
     }
