@@ -16,11 +16,16 @@ public class LassoScript : MonoBehaviour
     GameObject hitTarget;
 
     public LineRenderer rope;
+    public ClawScript clawScript;
+    public Rigidbody2D bulletRigidbody;
+
     void Start()
     {
         rope.enabled = false;
         isAttached = false;
         isMoving = false;
+        clawScript = Claw.GetComponent<ClawScript>();
+        bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -29,9 +34,10 @@ public class LassoScript : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Direction = mousePos - (Vector2)transform.position;
+
         FaceMouse();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !isAttached)
         {
             Shoot();
         }
@@ -45,7 +51,7 @@ public class LassoScript : MonoBehaviour
         {
             RecallClaw();
         }
-        if(distance < 0.2f && isMoving)
+        if (isMoving && distance < 0.5f)
         {
             StopClaw();
         }
@@ -58,17 +64,14 @@ public class LassoScript : MonoBehaviour
     }
     public void Attach()
     {
-        ClawScript clawScript = Claw.GetComponent<ClawScript>();
-        isAttached = clawScript.attached;
+        Debug.Log("Attached called in LassoScript");
+        isAttached = true;
     }
 
     void Shoot()
     {
         if (Claw != null)
         {
-            Rigidbody2D bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
-            ClawScript clawScript = Claw.GetComponent<ClawScript>();
-
             if (bulletRigidbody != null)
             {
                 bulletRigidbody.velocity = transform.right * clawSpeed;
@@ -91,13 +94,20 @@ public class LassoScript : MonoBehaviour
         }
         isMoving = true;
     }
-    void StopClaw()
+    public void StopClaw()
     {
-        Rigidbody2D bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
         if (bulletRigidbody != null)
         {
             bulletRigidbody.velocity = Vector2.zero;
             Claw.transform.position = shootPoint.position;
+
+            // Parent the Claw to the shootPoint
+            Claw.transform.SetParent(shootPoint);
+
+            // Reset local position and rotation to maintain the original offset and rotation
+            Claw.transform.localPosition = Vector3.zero;
+            Claw.transform.localRotation = Quaternion.identity;
+
             rope.enabled = false;
             isAttached = false;
             hitTarget = null;
