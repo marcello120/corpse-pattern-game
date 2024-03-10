@@ -637,9 +637,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a38992d38754a547b17646d9b14b8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  currentWaypoint: 0
+  reachedEndOfPath: 0
+  seeker: {fileID: 0}
+  nextWayPointDist: 0.2
   maxSpeed: 4
   slowingDistance: 5
-  nextWayPointDist: 0.2
 --- !u!114 &2710121823641362391
 MonoBehaviour:
   m_ObjectHideFlags: 0

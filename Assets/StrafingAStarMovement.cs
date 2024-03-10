@@ -17,10 +17,7 @@ public class StrafingAStarMovement : AStarMovement
 
     public override void UpdatePath()
     {
-        if (!preMoveChecksDone())
-        {
-            return;
-        }
+
 
         if (seeker.IsDone())
         { 
