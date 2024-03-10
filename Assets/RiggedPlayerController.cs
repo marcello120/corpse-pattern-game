@@ -52,6 +52,7 @@ public class RiggedPlayerController : PlayerController
         RANGED_SHOT,
         CORPSE_MOVE,
         PUSH_FORWARD,
+        EXPLODE
     }
 
     [Header("Util")]
@@ -364,8 +365,31 @@ public class RiggedPlayerController : PlayerController
                 storedCorpse = -100;
             }
             utilTimer.reset();
-
         }
+        if (selectedUtility == Utility.EXPLODE)
+        {
+            float expRadius = 1f;
+            float knockbackPower = 1;
+            effectsAnimator.Play("effect_explode");
+
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, expRadius);
+            //foreach collider in hitColliders
+            foreach (Collider2D coll in hitColliders)
+            {
+                //enemy
+                if (coll.gameObject.GetComponent<Enemy>() != null)
+                {
+                    Vector2 direction = transform.position - coll.gameObject.transform.position;
+
+                    Vector2 knockback = (direction.normalized * knockbackPower * -1);
+
+                    coll.gameObject.GetComponent<Enemy>().getHit(2f, knockback);
+                }
+                //player
+                takeDamage(1f, null);
+            }
+        }
+
 
 
 

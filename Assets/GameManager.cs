@@ -269,7 +269,10 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("SPAWNING " + enemy.name);
 
-
+        if(player == null)
+        {
+            return;
+        }
         SpawnWithCheck(enemy.gameObject, player.transform.position, 8, 10);
     }
 

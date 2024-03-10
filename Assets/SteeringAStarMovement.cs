@@ -3,68 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-[RequireComponent(typeof(Enemy))]
-public class SteeringAStarMovement : MonoBehaviour
+public class SteeringAStarMovement : AStarMovement
 {
-    private Enemy enemy;
-
-    Path path;
-    int currentWaypoint;
-    bool reachedEndOfPath;
 
     public float maxSpeed = 800f; // Maximum speed of movement
     public float slowingDistance = 5f; // Distance at which to start slowing down
 
-    Seeker seeker;
-
-    public float nextWayPointDist = 0.2f;
 
     void Start()
     {
-        enemy = GetComponent<Enemy>();
-
-        seeker = GetComponent<Seeker>();
-
-        InvokeRepeating(nameof(UpdatePath), 0f, 0.5f);
-
-    }
-
-
-    private void UpdatePath()
-    {
-        if (enemy.target == null)
-        {
-            return;
-        }
-        if (seeker.IsDone())
-            seeker.StartPath(transform.position, enemy.target.position, OnPathComplete);
-    }
-
-    private void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
+        init();
     }
 
 
     private void FixedUpdate()
     {
-        if (path == null || (enemy.state != Enemy.State.Moving && enemy.state != Enemy.State.Idle))
+        if (!preMoveChecksDone())
         {
             return;
-        }
-
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
         }
 
         // Direction to the next waypoint

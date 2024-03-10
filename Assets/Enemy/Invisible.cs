@@ -39,7 +39,10 @@ public class Invisible : Enemy
     // Update is called once per frame
     void Update()
     {
-
+        if(target == null)
+        {
+            return;
+        }
         //MOVES SLOW&INVIS TOWARDS PLAYER
         //IF near player REVEAL+ CHANGE
         // other enemy killed in Radius also REVEAL+ CHANGE

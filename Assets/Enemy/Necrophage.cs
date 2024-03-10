@@ -91,11 +91,12 @@ public class Necrophage : Enemy
         {
             if (target == null || target.tag == "Corpse")
             {
-                target = GameObject.FindGameObjectWithTag("Player").transform;
-                if (target == null)
+                GameObject targetObj = GameObject.FindGameObjectWithTag("Player");
+                if (targetObj == null)
                 {
                     return;
                 }
+                target = targetObj.transform;
             }
 
             if (chaseTimer < chaseTime)

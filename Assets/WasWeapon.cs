@@ -51,7 +51,7 @@ public class WasWeapon : Weapon
             swing.InitWeaponAttack(weaponKnockback, weaponAttackPower);
 
             WeaponSwing effect = Instantiate(swing, transform);
-            effect.transform.localScale *= size;
+            effect.transform.localScale *= size*10;
 
             //comment if tired
            // effect.transform.SetParent(transform, true);
