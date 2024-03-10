@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI successText;
     public TextMeshProUGUI successDeathText;
 
+    public TextMeshProUGUI deathScore;
+    public TextMeshProUGUI deathExtraCorpses;
+    public TextMeshProUGUI deathTimeBonus;
+
+
     public TextMeshProUGUI hightText;
 
     public GameObject corpseCleaner;
@@ -66,6 +71,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public float gameTime = 0;
+
 
 
     // Start is called before the first frame update
@@ -111,12 +118,32 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //public float calculateScore()
-    //{
-        
+    private int calculateScore()
+    {
+        Debug.Log("SCORE E: " + score * 10 + " - " + getNumberOfCorpsesOnGrind() + " + " + getTimeBonus());
+        return (int) (score * 10 - getNumberOfCorpsesOnGrind() + getTimeBonus());
+    }
 
-    //    return score * 10 - getNumberOfCorpsesOnGrind() - ;
-    //}
+    private int getTimeBonus()
+    {
+       return (int) (score / gameTime * 100);
+    }
+
+    private int getNumberOfCorpsesOnGrind()
+    {
+        int numberOfCorpses = 0;
+        for (int i = 0; i < grid.array.GetLength(0); i++)
+        {
+            for (int j = 0; j < grid.array.GetLength(1); j++)
+            {
+                if (grid.array[i, j] != 0)
+                {
+                    numberOfCorpses++;
+                }
+            }
+        }
+        return numberOfCorpses;
+    }
 
     void SpawnEnemies()
     {
@@ -136,9 +163,9 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        gameTime += Time.fixedDeltaTime;
     }
 
     public int removeCoprseAndReturnID(Vector2Int gridPos)
@@ -230,8 +257,12 @@ public class GameManager : MonoBehaviour
     public void incrementScore(int multi)
     {
         score = score + 1 * multi;
+        Debug.Log("SCORE:  " + calculateScore());
         successText.SetText("Score: " + score);
-        successDeathText.SetText(score.ToString());
+        successDeathText.SetText(calculateScore().ToString());
+        deathScore.SetText((score*10).ToString());
+        deathExtraCorpses.SetText(getNumberOfCorpsesOnGrind().ToString());
+        deathTimeBonus.SetText(getTimeBonus().ToString());
         if (score > highscore)
         {
             highscore = score;
