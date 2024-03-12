@@ -39,7 +39,12 @@ public class Scarab : Enemy
         {
             cc.enabled = false;
         }
-
+        if (cio.coprseNumber == 999)
+        {
+            Instantiate(cio.corpseMound, place, Quaternion.identity);
+            AstarPath.active.Scan();
+        }
+        else
         if (corpse != null)
         {
             int corpseNum = cio.coprseNumber;
