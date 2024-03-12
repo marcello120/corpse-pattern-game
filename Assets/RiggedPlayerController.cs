@@ -315,7 +315,7 @@ public class RiggedPlayerController : PlayerController
                     //line.transform.position = transform.position;
                     line.SetPosition(0, transform.position);
                     line.SetPosition(1, hitEnemy.transform.position);
-                    Destroy(line, 0.15f);
+                    Destroy(line, 0.2f);
                     hitEnemy.forceMoveToPosition(transform.position + pushDist * lookDir2D, 1f);
                     utilTimer.reset();
                     return;
@@ -327,7 +327,7 @@ public class RiggedPlayerController : PlayerController
             backupline.SetPosition(0, transform.position);
             Vector3 newPos = transform.position + pushOffset * lookDir2D;
             backupline.SetPosition(1, newPos + pushReach * lookDir2D);
-            Destroy(backupline, 0.15f);
+            Destroy(backupline, 0.2f);
             utilTimer.reset();
             return;
         }
@@ -359,7 +359,7 @@ public class RiggedPlayerController : PlayerController
             }
             else
             {
-                Vector3 place =  GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, storedCorpse, 0);
+                Vector3 place =  GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, storedCorpse, 0).corpseWorldPos;
                 GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
                 newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[storedCorpse];
                 storedCorpse = -100;

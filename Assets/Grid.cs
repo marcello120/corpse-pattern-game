@@ -88,13 +88,13 @@ public class Grid
         return nearestMultiple;
     }
 
-    public void addWorldPosToArray(Vector3 worldPos)
+    public int addWorldPosToArray(Vector3 worldPos)
     {
-        addWorldPosToArray(worldPos, 1);
+       return addWorldPosToArray(worldPos, 1);
     }
 
 
-    public void addWorldPosToArray(Vector3 worldPos, int corpseNumber)
+    public int addWorldPosToArray(Vector3 worldPos, int corpseNumber)
     {
         Vector3 arrayPos = ConvetWorldPosToArrayPos(worldPos);
         int xint = (int)Mathf.Round(arrayPos.x);
@@ -103,11 +103,29 @@ public class Grid
         if(xint < 0 || xint > width || yint < 0 || yint > height)
         {
             Debug.LogError("OUTSIDE GRID CONFIDES! " + xint + " : " + yint);
-            return;
+            return 0;
         }
 
-        array[xint, yint] = corpseNumber;
-        Print();
+        if (array[xint, yint] == 99)
+        {
+            array[xint, yint] = 0;
+            Print();
+            return 999;
+        }
+        else if (array[xint,yint] != 0)
+        {
+            Debug.Log("STACK! " + xint + " : " + yint);
+            array[xint, yint] = 99;
+            Print();
+            return 99;
+        }
+        else
+        {
+            array[xint, yint] = corpseNumber;
+            Print();
+            return corpseNumber;
+        }
+
     }
     public void RemoveFromArray(int x, int y)
     {

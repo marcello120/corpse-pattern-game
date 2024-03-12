@@ -47,16 +47,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   successText: {fileID: 0}
-  square: {fileID: 470612544917005262, guid: 0e01fabefaa72094391cd5983f436ab5, type: 3}
+  successDeathText: {fileID: 0}
+  deathScore: {fileID: 0}
+  deathExtraCorpses: {fileID: 0}
+  deathTimeBonus: {fileID: 0}
+  hightText: {fileID: 0}
   corpseCleaner: {fileID: 8401404227447141671, guid: d99d496fba4eb5a44831f719535b0263, type: 3}
-  pattenView: {fileID: 0}
+  rock: {fileID: 0}
+  patternGrid: {fileID: 0}
   scoreSound: {fileID: 784164780926356821}
-  slime: {fileID: 3181755119261110747, guid: 02dc7c3183a11fc4fa8b93dafeaccc41, type: 3}
   width: 22
   height: 12
   gridCellSize: 0.16
   success: 0
   score: 0
+  highscore: 0
+  spawnerParent: {fileID: 0}
+  enemyCount: 2
+  currentEnemyCount: 1
+  doublerPrefab: {fileID: 0}
+  doubler: {fileID: 0}
+  doublerSpawners: []
+  doublerSpawnerParent: {fileID: 0}
+  player: {fileID: 0}
+  powerUpSelection: {fileID: 0}
+  gameTime: 0
+  corpseMoundObj: {fileID: 6848862316599546136, guid: 59e4f13ad97a68142b4a1dfe7750a221, type: 3}
 --- !u!82 &5297149557472241942
 AudioSource:
   m_ObjectHideFlags: 0

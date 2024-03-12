@@ -29,7 +29,10 @@ public class Scarab : Enemy
 
         rb.velocity = Vector3.zero;
 
-        Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, corpseNumber, powerLevel);
+        GameManager.CoprseInfoObject cio = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, corpseNumber, powerLevel);
+
+        Vector3 place = cio.corpseWorldPos;
+
 
         Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
         foreach (Collider2D cc in ccs)
@@ -39,10 +42,12 @@ public class Scarab : Enemy
 
         if (corpse != null)
         {
-            GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
-            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNumber];
-            restingPlace = place;
+            int corpseNum = cio.coprseNumber;
 
+            GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
+            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNum];
+            newCorpse.GetComponent<CorpseScript>().Init(corpseNum);
+            restingPlace = place;
         }
         else
         {

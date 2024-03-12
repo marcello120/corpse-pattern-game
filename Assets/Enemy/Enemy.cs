@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Pathfinding;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatusHolder))]
@@ -102,19 +103,27 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
         rb.velocity = Vector3.zero;
 
-        Vector3 place = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position,corpseNumber,powerLevel);
+        GameManager.CoprseInfoObject cio = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, corpseNumber, powerLevel);
+
+        Vector3 place = cio.corpseWorldPos;
 
         Collider2D[] ccs = GetComponentsInChildren<Collider2D>();
         foreach (Collider2D cc in ccs)
         {
             cc.enabled = false;
         }
-    
-        if (corpse!=null)
+        if(cio.coprseNumber == 999)
         {
-            GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
-            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNumber];
+            Instantiate(cio.corpseMound, place, Quaternion.identity);
+            AstarPath.active.Scan();
+        }
+        else if (corpse!=null)
+        {
+            int corpseNum = cio.coprseNumber;
 
+            GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
+            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNum];
+            newCorpse.GetComponent<CorpseScript>().Init(corpseNum);
         }
         else
         {

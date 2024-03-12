@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
 
     public float gameTime = 0;
 
+    public GameObject corpseMoundObj;
+
+
 
 
     // Start is called before the first frame update
@@ -121,12 +124,12 @@ public class GameManager : MonoBehaviour
     private int calculateScore()
     {
         Debug.Log("SCORE E: " + score * 10 + " - " + getNumberOfCorpsesOnGrind() + " + " + getTimeBonus());
-        return (int) (score * 10 - getNumberOfCorpsesOnGrind() + getTimeBonus());
+        return (int)(score * 10 - getNumberOfCorpsesOnGrind() + getTimeBonus());
     }
 
     private int getTimeBonus()
     {
-       return (int) (score / gameTime * 100);
+        return (int)(score / gameTime * 100);
     }
 
     private int getNumberOfCorpsesOnGrind()
@@ -147,10 +150,10 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemies()
     {
-        while(enemyCount > currentEnemyCount)
+        while (enemyCount > currentEnemyCount)
         {
             Debug.Log("SPAWNING ENEMY");
-            SpawnSlime((int)(enemyCount-currentEnemyCount));
+            SpawnSlime((int)(enemyCount - currentEnemyCount));
         }
     }
 
@@ -158,7 +161,7 @@ public class GameManager : MonoBehaviour
     {
         //DoublerSpawner selected = doublerSpawners[UnityEngine.Random.Range(0, doublerSpawners.Count)];
 
-        doubler = SpawnWithCheck(doublerPrefab.gameObject,player.transform.position,8,10).GetComponent<Doubler>();
+        doubler = SpawnWithCheck(doublerPrefab.gameObject, player.transform.position, 8, 10).GetComponent<Doubler>();
 
     }
 
@@ -178,7 +181,22 @@ public class GameManager : MonoBehaviour
         return coprpseNumberToReturn;
     }
 
-    public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber, int powerLevel)
+    public class CoprseInfoObject
+    {
+        public int coprseNumber;
+        public Vector3 corpseWorldPos;
+        public GameObject corpseMound;
+
+        public CoprseInfoObject(int coprseNumber, Vector3 corpseWorldPos, GameObject corpseMound)
+        {
+            this.coprseNumber = coprseNumber;
+            this.corpseWorldPos = corpseWorldPos;
+            this.corpseMound = corpseMound;
+        }
+    }
+
+
+    public CoprseInfoObject AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber, int powerLevel)
     {
         currentEnemyCount-=powerLevel;
 
@@ -187,7 +205,13 @@ public class GameManager : MonoBehaviour
         Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos, grid.gridCellSize);
 
         //add adjusted world position to grid
-        grid.addWorldPosToArray(adjustedPos, corpsenumber);
+        int newCorpseNum =  grid.addWorldPosToArray(adjustedPos, corpsenumber);
+
+        if(newCorpseNum == 999)
+        {
+            removeCorpseAtWorldPos(adjustedPos);
+            return new CoprseInfoObject(newCorpseNum, adjustedPos,corpseMoundObj);
+        }
 
         //check if pattern is found in grid
         List<Vector2Int> fitPatter = patternChecker.checkForPatternAndReturnPositions(pattern, grid.array);
@@ -235,7 +259,7 @@ public class GameManager : MonoBehaviour
         }
 
         //return the world position where the enemy should place the coprse
-        return adjustedPos;
+        return new CoprseInfoObject(newCorpseNum, adjustedPos,null);
     }
 
 
