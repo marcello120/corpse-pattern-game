@@ -45,8 +45,11 @@ public class Necrophage : Enemy
         {
             if(target ==null || target.tag!= "Player")
             {
-                target = GameObject.FindGameObjectWithTag("Player").transform;
-
+                GameObject targetObj = GameObject.FindGameObjectWithTag("Player");
+                if(targetObj != null)
+                {
+                    target = targetObj.transform;
+                }
             }
             //move to player;
             return;
@@ -91,7 +94,12 @@ public class Necrophage : Enemy
         {
             if (target == null || target.tag == "Corpse")
             {
-                target = GameObject.FindGameObjectWithTag("Player").transform;
+                GameObject targetObj = GameObject.FindGameObjectWithTag("Player");
+                if (targetObj == null)
+                {
+                    return;
+                }
+                target = targetObj.transform;
             }
 
             if (chaseTimer < chaseTime)

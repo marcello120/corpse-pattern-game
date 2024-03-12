@@ -42,9 +42,15 @@ public class TheBomb : Enemy
         //if close enough stop moving??????????????? (control by adding removing attacking from movestates)
         //start preparing explosion
         //explode, deal dmg in area, lose hp
-        //rest 
+        //rest
+        //
+       
+        if(target == null)
+        {
+            return;
+        }
 
-        if(state== State.Moving)
+        if (state== State.Moving)
         {
             if (Vector3.Distance(transform.position, target.position) < boomDist)
             {

@@ -58,6 +58,10 @@ public class Scorpion : Enemy
         //Post attack - rest at loc for few secs
         //back to Idle after rest 
 
+        if(playerTransform== null)
+        {
+            return;
+        }
 
 
         if (state == State.Idle)

@@ -10,7 +10,6 @@ using UnityEngine.XR;
 
 public class RiggedPlayerController : PlayerController
 {
-    public GameObject ParentBone;
     public float DashAmount = 1f;
     public bool canDash = true;
     public float dashCooldown = 3f;
@@ -53,8 +52,11 @@ public class RiggedPlayerController : PlayerController
         RANGED_SHOT,
         CORPSE_MOVE,
         PUSH_FORWARD,
-        PUSH_BLAST
+        EXPLODE
     }
+
+    [Header("Util")]
+
 
     public Utility selectedUtility;
     [SerializeField] private LayerMask interactLayerMask;
@@ -64,14 +66,18 @@ public class RiggedPlayerController : PlayerController
     public GameObject pullLine;
     public Projectile projectile;
 
+    //default -100
+    public int storedCorpse = -100;
+    public GameObject corpse;
+
+    public GameObject playerBody;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = playerBody.GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
         UpdateHearts();
         
@@ -178,17 +184,18 @@ public class RiggedPlayerController : PlayerController
 
     private void Flip(Vector3 lookDir)
     {
-        if (lookDir.x > 0f & ParentBone.transform.localScale.y < 0)
+        Vector3 bodyHolderScale = playerBody.transform.parent.localScale;
+        if (lookDir.x > 0f & bodyHolderScale.x < 0)
         {
             //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             //holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y * -1, ParentBone.transform.localScale.z);
+            playerBody.transform.parent.localScale = new Vector3(bodyHolderScale.x * -1, bodyHolderScale.y, bodyHolderScale.z);
         }
-        else if (lookDir.x < 0f & ParentBone.transform.localScale.y > 0)
+        else if (lookDir.x < 0f & bodyHolderScale.x > 0)
         {
             //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             // holster.transform.localScale = new Vector3(Mathf.Abs(holster.transform.localScale.x), holster.transform.localScale.y, holster.transform.localScale.z);
-            ParentBone.transform.localScale = new Vector3(ParentBone.transform.localScale.x, ParentBone.transform.localScale.y * -1, ParentBone.transform.localScale.z);
+            playerBody.transform.parent.localScale = new Vector3(bodyHolderScale.x * -1, bodyHolderScale.y, bodyHolderScale.z);
 
         }
     }
@@ -308,7 +315,7 @@ public class RiggedPlayerController : PlayerController
                     //line.transform.position = transform.position;
                     line.SetPosition(0, transform.position);
                     line.SetPosition(1, hitEnemy.transform.position);
-                    Destroy(line, 0.15f);
+                    Destroy(line, 0.2f);
                     hitEnemy.forceMoveToPosition(transform.position + pushDist * lookDir2D, 1f);
                     utilTimer.reset();
                     return;
@@ -320,7 +327,7 @@ public class RiggedPlayerController : PlayerController
             backupline.SetPosition(0, transform.position);
             Vector3 newPos = transform.position + pushOffset * lookDir2D;
             backupline.SetPosition(1, newPos + pushReach * lookDir2D);
-            Destroy(backupline, 0.15f);
+            Destroy(backupline, 0.2f);
             utilTimer.reset();
             return;
         }
@@ -333,7 +340,57 @@ public class RiggedPlayerController : PlayerController
             spawenProj.byPlayer = true;
             spawenProj.isParried = true;
             spawenProj.Setup(lookDir2D, 1,10);
+            utilTimer.reset();
+
         }
+        if (selectedUtility == Utility.CORPSE_MOVE)
+        {
+            if(storedCorpse == -100)
+            {
+                Vector2Int grdiPos = GameManager.Instance.worldPosToGridPos(transform.position, GameManager.Instance.grid);
+                storedCorpse = GameManager.Instance.removeCoprseAndReturnID(grdiPos);
+                if(storedCorpse == 0)
+                {
+                    storedCorpse = -100;
+                    return;
+                }
+                GameManager.Instance.removeCorpseAtWorldPos(transform.position);
+
+            }
+            else
+            {
+                Vector3 place =  GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, storedCorpse, 0).corpseWorldPos;
+                GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
+                newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[storedCorpse];
+                storedCorpse = -100;
+            }
+            utilTimer.reset();
+        }
+        if (selectedUtility == Utility.EXPLODE)
+        {
+            float expRadius = 1f;
+            float knockbackPower = 1;
+            effectsAnimator.Play("effect_explode");
+
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, expRadius);
+            //foreach collider in hitColliders
+            foreach (Collider2D coll in hitColliders)
+            {
+                //enemy
+                if (coll.gameObject.GetComponent<Enemy>() != null)
+                {
+                    Vector2 direction = transform.position - coll.gameObject.transform.position;
+
+                    Vector2 knockback = (direction.normalized * knockbackPower * -1);
+
+                    coll.gameObject.GetComponent<Enemy>().getHit(2f, knockback);
+                }
+                //player
+                takeDamage(1f, null);
+            }
+        }
+
+
 
 
     }

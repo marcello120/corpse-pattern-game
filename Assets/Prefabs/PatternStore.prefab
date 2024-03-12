@@ -60,4 +60,6 @@ MonoBehaviour:
   - key: 17
     corpse: {fileID: -872226365, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
   - key: 18
-    corpse: {fileID: 1184204215, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
+    corpse: {fileID: 21300000, guid: 7ce1bbea514050645b5501f0a5bea51a, type: 3}
+  - key: 19
+    corpse: {fileID: 21300000, guid: b402a726d1975f544a0a4370382d2d86, type: 3}

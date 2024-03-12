@@ -18,6 +18,7 @@ public class StrafingAStarMovement : AStarMovement
     public override void UpdatePath()
     {
 
+
         if (seeker.IsDone())
         { 
             if(chasing)

@@ -55,7 +55,7 @@ public class DamageSurface : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShadow")
         {
             RiggedPlayerController playerController = collision.gameObject.GetComponentInParent<RiggedPlayerController>();
-            playerController.takeDamage(attackPower, parent);
+            playerController.takeDamage(attackPower, null);
         }
     }
 }

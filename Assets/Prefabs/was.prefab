@@ -173,15 +173,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37294881170ba1440a397f4af8d0ba9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  animator: {fileID: 0}
+  hitSound: {fileID: 0}
+  speed: 0.5
   weaponAttackPower: 1
   weaponKnockback: 100
   baseWeaponReach: 3.35
   currentWeaponReach: 0
-  speed: 0.5
+  reach: 0.1
+  baseSize: {x: 0, y: 0, z: 0}
+  size: 1
   attackQueued: 0
   timeSinceAttack: 0
   canAttack: 1
+  attackState: 0
   swing: {fileID: 8663506858128612782, guid: 0eeeee1d4794b5940b8a233b8e9c0e8c, type: 3}
-  reach: 0.1
-  size: 1
-  actualWas: {fileID: 3655454372636065323}
+  weaponBody: {fileID: 3655454372636065323}

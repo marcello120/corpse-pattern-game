@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI successText;
     public TextMeshProUGUI successDeathText;
 
+    public TextMeshProUGUI deathScore;
+    public TextMeshProUGUI deathExtraCorpses;
+    public TextMeshProUGUI deathTimeBonus;
+
+
     public TextMeshProUGUI hightText;
 
     public GameObject corpseCleaner;
@@ -66,6 +71,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public float gameTime = 0;
+
+    public GameObject corpseMoundObj;
+
+
 
 
     // Start is called before the first frame update
@@ -111,12 +121,39 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private int calculateScore()
+    {
+        Debug.Log("SCORE E: " + score * 10 + " - " + getNumberOfCorpsesOnGrind() + " + " + getTimeBonus());
+        return (int)(score * 10 - getNumberOfCorpsesOnGrind() + getTimeBonus());
+    }
+
+    private int getTimeBonus()
+    {
+        return (int)(score / gameTime * 100);
+    }
+
+    private int getNumberOfCorpsesOnGrind()
+    {
+        int numberOfCorpses = 0;
+        for (int i = 0; i < grid.array.GetLength(0); i++)
+        {
+            for (int j = 0; j < grid.array.GetLength(1); j++)
+            {
+                if (grid.array[i, j] != 0)
+                {
+                    numberOfCorpses++;
+                }
+            }
+        }
+        return numberOfCorpses;
+    }
+
     void SpawnEnemies()
     {
-        while(enemyCount > currentEnemyCount)
+        while (enemyCount > currentEnemyCount)
         {
             Debug.Log("SPAWNING ENEMY");
-            SpawnSlime((int)(enemyCount-currentEnemyCount));
+            SpawnSlime((int)(enemyCount - currentEnemyCount));
         }
     }
 
@@ -124,17 +161,42 @@ public class GameManager : MonoBehaviour
     {
         //DoublerSpawner selected = doublerSpawners[UnityEngine.Random.Range(0, doublerSpawners.Count)];
 
-        doubler = SpawnWithCheck(doublerPrefab.gameObject,player.transform.position,8,10).GetComponent<Doubler>();
+        doubler = SpawnWithCheck(doublerPrefab.gameObject, player.transform.position, 8, 10).GetComponent<Doubler>();
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        gameTime += Time.fixedDeltaTime;
     }
 
-    public Vector3 AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber, int powerLevel)
+    public int removeCoprseAndReturnID(Vector2Int gridPos)
+    {
+        int coprpseNumberToReturn = grid.array[gridPos.x, gridPos.y];
+
+        grid.array[gridPos.x, gridPos.y] = 0;
+
+
+        return coprpseNumberToReturn;
+    }
+
+    public class CoprseInfoObject
+    {
+        public int coprseNumber;
+        public Vector3 corpseWorldPos;
+        public GameObject corpseMound;
+
+        public CoprseInfoObject(int coprseNumber, Vector3 corpseWorldPos, GameObject corpseMound)
+        {
+            this.coprseNumber = coprseNumber;
+            this.corpseWorldPos = corpseWorldPos;
+            this.corpseMound = corpseMound;
+        }
+    }
+
+
+    public CoprseInfoObject AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber, int powerLevel)
     {
         currentEnemyCount-=powerLevel;
 
@@ -143,7 +205,13 @@ public class GameManager : MonoBehaviour
         Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos, grid.gridCellSize);
 
         //add adjusted world position to grid
-        grid.addWorldPosToArray(adjustedPos, corpsenumber);
+        int newCorpseNum =  grid.addWorldPosToArray(adjustedPos, corpsenumber);
+
+        if(newCorpseNum == 999)
+        {
+            removeCorpseAtWorldPos(adjustedPos);
+            return new CoprseInfoObject(newCorpseNum, adjustedPos,corpseMoundObj);
+        }
 
         //check if pattern is found in grid
         List<Vector2Int> fitPatter = patternChecker.checkForPatternAndReturnPositions(pattern, grid.array);
@@ -191,7 +259,7 @@ public class GameManager : MonoBehaviour
         }
 
         //return the world position where the enemy should place the coprse
-        return adjustedPos;
+        return new CoprseInfoObject(newCorpseNum, adjustedPos,null);
     }
 
 
@@ -213,8 +281,12 @@ public class GameManager : MonoBehaviour
     public void incrementScore(int multi)
     {
         score = score + 1 * multi;
+        Debug.Log("SCORE:  " + calculateScore());
         successText.SetText("Score: " + score);
-        successDeathText.SetText(score.ToString());
+        successDeathText.SetText(calculateScore().ToString());
+        deathScore.SetText((score*10).ToString());
+        deathExtraCorpses.SetText(getNumberOfCorpsesOnGrind().ToString());
+        deathTimeBonus.SetText(getTimeBonus().ToString());
         if (score > highscore)
         {
             highscore = score;
@@ -252,11 +324,14 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("SPAWNING " + enemy.name);
 
-
+        if(player == null)
+        {
+            return;
+        }
         SpawnWithCheck(enemy.gameObject, player.transform.position, 8, 10);
     }
 
-    private Vector2Int worldPosToGridPos(Vector3 pos, Grid inputGrid)
+    public Vector2Int worldPosToGridPos(Vector3 pos, Grid inputGrid)
     {
         Vector3 intialLocation = Grid.adjustWoldPosToNearestCell(pos, inputGrid.gridCellSize);
         Vector3 initialGridPos = inputGrid.ConvetWorldPosToArrayPos(intialLocation);
