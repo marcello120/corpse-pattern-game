@@ -80,6 +80,10 @@ public class RiggedPlayerController : PlayerController
         animator = playerBody.GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
         UpdateHearts();
+        if (baseMoveSpeed == 0)
+        {
+            baseMoveSpeed = moveSpeed;
+        }
         
     }
 
@@ -474,6 +478,18 @@ public class RiggedPlayerController : PlayerController
     {
         Debug.Log("TAB pressed");
         patternGrid.toggleBig();
+    }
+    
+    public void Slow()
+    {
+        moveSpeed *= 0.1f;
+        Debug.Log("PLAYER SLOWED");
+    }
+
+    public void UnSlow()
+    {
+        moveSpeed = baseMoveSpeed;
+        Debug.Log("PLAYER UN SLOWED");
     }
 
     public void takeDamage(float damage, GameObject enemy)
