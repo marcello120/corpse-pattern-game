@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpseNumber: 0
+  slowStatus: {fileID: 11400000, guid: c80aa0d617c49b64cb8489d55b1310ca, type: 2}
 --- !u!95 &3152850821367181537
 Animator:
   serializedVersion: 5

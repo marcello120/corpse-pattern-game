@@ -198,6 +198,19 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         return false;
     }
 
+    public bool isSlowed()
+    {
+        if (statusHolder == null)
+        {
+            return false;
+        }
+        if (statusHolder.effects.Any(x => x != null && x.statusEffectName == "Slow"))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public bool canMove()
     {
         return (isDead || state == State.Dying || isStunned());

@@ -8,6 +8,7 @@ public class CorpseScript : MonoBehaviour
 
     Animator animator;
     SpriteRenderer spriteRenderer;
+    public SlowStatusEffect slowStatus;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,16 +42,30 @@ public class CorpseScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && corpseNumber == 99)
+        if (corpseNumber == 99)
         {
-            collision.gameObject.GetComponent<RiggedPlayerController>().Slow();
+            if (collision.tag == "Player")
+            {
+                collision.gameObject.GetComponent<RiggedPlayerController>().Slow();
+            }
+            if (collision.tag == "Enemy")
+            {
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                if (enemy != null && !enemy.isSlowed())
+                {
+                    enemy.addStatusEffect(Instantiate(slowStatus));
+
+                }
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && corpseNumber == 99)
-        {
-            collision.gameObject.GetComponent<RiggedPlayerController>().UnSlow();
+        if (corpseNumber == 99) {
+            if (collision.tag == "Player")
+            {
+                collision.gameObject.GetComponent<RiggedPlayerController>().UnSlow();
+            }
         }
     }
 

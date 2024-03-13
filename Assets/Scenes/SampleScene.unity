@@ -26441,7 +26441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106855896436148743, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
       propertyPath: selectedUtility
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106855896436148743, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
       propertyPath: pauseMenuAnimator
