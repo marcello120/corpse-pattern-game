@@ -14,7 +14,9 @@ public class RedSquare: Enemy
 
     public void Update()
     {
-        if(isStunned()  && state== State.Moving) 
+        commonUpdate();
+
+        if (isStunned()  && state== State.Moving) 
         {
             setState(State.Idle);
         }

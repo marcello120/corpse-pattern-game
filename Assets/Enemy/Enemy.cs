@@ -10,7 +10,6 @@ using Pathfinding;
 
 public abstract class Enemy : MonoBehaviour, IEnemy
 {
-    //hello
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
     protected AudioSource getHitSound;
@@ -25,6 +24,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public NearDeathStatusEffect nearDeathStatusEffect;
     public GameObject hitEffect;
     public int powerLevel = 1;
+    public GameObject drops;
 
     [Header("Stats")]
     public float maxHealth;
@@ -45,7 +45,9 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public StatusHolder statusHolder;
     public Animator animator;
     public List<State> moveStates = new List<State>() { State.Idle, State.Moving };
-  
+    public Vector3 restingPlace;
+
+
 
 
     public enum State
@@ -97,10 +99,21 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
     }
 
+    public void commonUpdate()
+    {
+        if (state == State.Dying)
+        {
+            if (Vector3.Distance(restingPlace, transform.position) > 0.1)
+            {
+                Vector3 dir = (restingPlace - transform.position).normalized;
+                moveInDirectionWithSpeedModifier(dir, 0.5f);
+            }
+        }
+    }
+
 
     public virtual void Death()
     {
-
         rb.velocity = Vector3.zero;
 
         GameManager.CoprseInfoObject cio = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, corpseNumber, powerLevel);
@@ -112,21 +125,28 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             cc.enabled = false;
         }
-        if(cio.coprseNumber == 999)
+        if (cio.coprseNumber == 999)
         {
             Instantiate(cio.corpseMound, place, Quaternion.identity);
             AstarPath.active.Scan();
         }
-        else if (corpse!=null)
+        else
+        if (corpse != null)
         {
             int corpseNum = cio.coprseNumber;
 
             GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
+            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNum];
             newCorpse.GetComponent<CorpseScript>().Init(corpseNum);
+            restingPlace = place;
         }
         else
         {
             Debug.LogError("Corspe must be set");
+        }
+        if (drops != null)
+        {
+            Instantiate(drops, place, Quaternion.identity);
         }
         isDead = true;
         setState(State.Dying);

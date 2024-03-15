@@ -5509,6 +5509,7 @@ MonoBehaviour:
   playerHealth: 5
   maxHealth: 5
   moveSpeed: 2
+  baseMoveSpeed: 2
   collisionOffset: 0.001
   movementFilter:
     useTriggers: 0

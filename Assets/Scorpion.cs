@@ -51,6 +51,7 @@ public class Scorpion : Enemy
     // Update is called once per frame
     void Update()
     {
+        commonUpdate();
         //IDLE- idle patrols - aggros player within zone
         //MOVING -if aggrod player moves to player's orbit
         //PREP - circles player, when ready saves player loc and attacks in dir
@@ -58,7 +59,7 @@ public class Scorpion : Enemy
         //Post attack - rest at loc for few secs
         //back to Idle after rest 
 
-        if(playerTransform== null)
+        if (playerTransform== null)
         {
             return;
         }

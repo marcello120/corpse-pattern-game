@@ -31,6 +31,8 @@ public class Necrophage : Enemy
     // Update is called once per frame
     void Update()
     {
+        commonUpdate();
+
         //if idle
         //if no corpse --> find nearest corpse
         //if no corpse --> moving
@@ -41,7 +43,7 @@ public class Necrophage : Enemy
         //if hit or player is within X radius --> moving 
         //if moving and timer is up --> idle
 
-        if(poweredUp)
+        if (poweredUp)
         {
             if(target ==null || target.tag!= "Player")
             {

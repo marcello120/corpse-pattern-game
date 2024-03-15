@@ -39,7 +39,9 @@ public class Invisible : Enemy
     // Update is called once per frame
     void Update()
     {
-        if(target == null)
+        commonUpdate();
+
+        if (target == null)
         {
             return;
         }
