@@ -157,12 +157,17 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         statusHolder.RemoveAll(this);
     }
 
-
     public virtual void getHit(float damage, Vector2 knockback)
+    {
+        getHit(damage, knockback, Vector3.zero);
+    }
+
+
+    public virtual void getHit(float damage, Vector2 knockback, Vector3 directtion)
     {
         if (hitEffect != null)
         {
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Instantiate(hitEffect, transform.position, Quaternion.FromToRotation(Vector3.right, directtion));
 
         }
 

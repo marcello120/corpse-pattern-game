@@ -83,13 +83,16 @@ public class WeaponSwing : MonoBehaviour
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
+                Debug.LogError("THIS IS NOT SUPPOSED TO HAPPEN ANYMORE");
+
                 enemy.getHit(weaponAttackPower, GetKnockBack(collision));
                 Vector2 contactpoint= collision.ClosestPoint(enemy.transform.position);
                 //Instantiate(hitEffect, contactpoint, Quaternion.identity);
             }
             else if(collision.GetComponent<EnemyHitbox>()!= null)
             {
-                collision.GetComponent<EnemyHitbox>().getHit(weaponAttackPower, GetKnockBack(collision));
+                Vector3 directionToEnemy = (collision.gameObject.transform.position - transform.parent.parent.position).normalized;
+                collision.GetComponent<EnemyHitbox>().getHit(weaponAttackPower, GetKnockBack(collision),directionToEnemy);
             }
 
         }

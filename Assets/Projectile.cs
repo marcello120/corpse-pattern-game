@@ -52,7 +52,8 @@ public class Projectile : MonoBehaviour
             EnemyHitbox hitbox = collision.gameObject.GetComponent<EnemyHitbox>();
             if(hitbox != null)
             {
-                hitbox.getHit(damage, GetKnockBack(collision));
+                Vector3 directionToEnemy = (hitbox.transform.position - transform.position).normalized;
+                hitbox.getHit(damage, GetKnockBack(collision),directionToEnemy);
             }
             Destroy(gameObject);
 

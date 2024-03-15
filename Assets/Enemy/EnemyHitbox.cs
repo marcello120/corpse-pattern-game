@@ -27,10 +27,10 @@ public class EnemyHitbox: MonoBehaviour
         parentEnemy.removeAllStatuses();
     }
 
-    public void getHit(float damage, Vector2 knockbac)
+    public void getHit(float damage, Vector2 knockbac, Vector3 direction)
     {
         if (parentEnemy == null) return;
-        parentEnemy.getHit(damage, knockbac);
+        parentEnemy.getHit(damage, knockbac, direction);
     }
 
 
