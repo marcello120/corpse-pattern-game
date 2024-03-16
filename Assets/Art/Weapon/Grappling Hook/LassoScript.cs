@@ -11,6 +11,7 @@ public class LassoScript : MonoBehaviour
     public Transform shootPoint;
     public bool isAttached;
     public bool isMoving;
+    public bool isComingBack;
 
     Vector2 Direction;
     GameObject hitTarget;
@@ -37,25 +38,42 @@ public class LassoScript : MonoBehaviour
 
         FaceMouse();
 
-        if (Input.GetKeyDown(KeyCode.E) && !isAttached)
-        {
-            Shoot();
-        }
-        if(hitTarget != null)
+        if (hitTarget != null)
         {
             rope.SetPosition(0, shootPoint.position);
             rope.SetPosition(1, hitTarget.transform.position);
         }
         float distance = Vector2.Distance(shootPoint.position, Claw.transform.position);
-        if (distance > maxClawDistance)
-        {
-            RecallClaw();
-        }
-        if (isMoving && distance < 0.5f)
-        {
-            StopClaw();
-        }
 
+        if (isMoving) //Ha kilottuk
+        {
+            if (distance > maxClawDistance && !isAttached) //Akkor nazzuk, hogy mikor kell visszahivni, de csak ha nincsmar rajta valami
+            {
+                RecallClaw();
+            }
+        }
+        else
+        {
+            if (isComingBack) //ha mar jon vissza
+            {
+                if (!isAttached)
+                {
+                    RecallClaw();
+                }
+
+                if (isMoving && distance < 0.5f) //es eleg kozel van, akkor allitsuk meg
+                {
+                    StopClaw();
+                }
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.E) && !isAttached) //Ha nincs kilove es nem jon vissza és nincs attacholva, akkor loje ki
+                {
+                    Shoot();
+                }
+            }
+        }
     }
 
     void FaceMouse()
@@ -64,7 +82,6 @@ public class LassoScript : MonoBehaviour
     }
     public void Attach()
     {
-        Debug.Log("Attached called in LassoScript");
         isAttached = true;
     }
 
@@ -72,6 +89,7 @@ public class LassoScript : MonoBehaviour
     {
         if (Claw != null)
         {
+            isMoving = true;
             if (bulletRigidbody != null)
             {
                 bulletRigidbody.velocity = transform.right * clawSpeed;
@@ -80,19 +98,20 @@ public class LassoScript : MonoBehaviour
             {
                 hitTarget = Claw;
                 rope.enabled = true;
-                isAttached = clawScript.attached;
             }
         }
     }
 
     void RecallClaw()
     {
+        isComingBack= true;
+        isMoving = false;
+
         Rigidbody2D bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
         if (bulletRigidbody != null)
         {
             bulletRigidbody.velocity = (shootPoint.position - hitTarget.transform.position).normalized * clawSpeed*2f;
         }
-        isMoving = true;
     }
     public void StopClaw()
     {
@@ -112,6 +131,7 @@ public class LassoScript : MonoBehaviour
             isAttached = false;
             hitTarget = null;
             isMoving = false;
+            isComingBack= false;
         }
     }
 }
