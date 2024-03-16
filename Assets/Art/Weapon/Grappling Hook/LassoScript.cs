@@ -89,6 +89,7 @@ public class LassoScript : MonoBehaviour
     {
         if (Claw != null)
         {
+            clawScript.Shot();
             isMoving = true;
             if (bulletRigidbody != null)
             {
@@ -102,7 +103,7 @@ public class LassoScript : MonoBehaviour
         }
     }
 
-    void RecallClaw()
+    public void RecallClaw()
     {
         isComingBack= true;
         isMoving = false;
@@ -132,6 +133,7 @@ public class LassoScript : MonoBehaviour
             hitTarget = null;
             isMoving = false;
             isComingBack= false;
+            clawScript.NotShot();
         }
     }
 }
