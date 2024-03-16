@@ -7,12 +7,14 @@ public class ClawScript : MonoBehaviour
     public GameObject Grappler;
     public LassoScript lasszo;
     public bool attached;
+    public bool isShot;
     private Transform targetHit;
 
     void Start()
     {
         lasszo = Grappler.GetComponent<LassoScript>();
         attached = false;
+        isShot = false;
     }
 
     void Update()
@@ -24,6 +26,15 @@ public class ClawScript : MonoBehaviour
         }
     }
 
+    public void Shot()
+    {
+        isShot = true;
+    }
+    public void NotShot()
+    {
+        isShot = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(!(other.gameObject.tag == "Player") || !(other.gameObject.layer == 10))
@@ -32,7 +43,7 @@ public class ClawScript : MonoBehaviour
         }
         if (!attached)
         {
-            if (other.CompareTag("Enemy") && !attached)
+            if (other.CompareTag("Enemy"))
             {
                 Enemy enemyScript = other.GetComponent<Enemy>();
 
@@ -42,8 +53,20 @@ public class ClawScript : MonoBehaviour
                     enemyScript.isStunned();
                 }
             }
-            // Attach the bullet to the enemy
-            AttachToEnemy(other.transform);
+            if ((other.gameObject.tag == "Wall") || !(other.gameObject.layer == 7))
+            {
+                if (isShot) //if the claw is shot
+                {
+                    // Bounch off of walls
+                    LassoScript lassoScript = other.GetComponentInParent<LassoScript>();
+                    lassoScript.RecallClaw();
+                }
+            }
+            if (isShot) //if the claw is shot
+            {
+                // Attach the bullet to the enemy
+                AttachToEnemy(other.transform);
+            }
         }
     }
 
@@ -63,6 +86,7 @@ public class ClawScript : MonoBehaviour
         // Set attached to true
         attached = true;
         lasszo.Attach();
+        isShot = false;
 
         // Optionally, disable the collider to prevent further collisions
         Collider2D col = GetComponent<Collider2D>();
