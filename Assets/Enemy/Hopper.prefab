@@ -1092,9 +1092,12 @@ MonoBehaviour:
   corpseNumber: 18
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
-  hitEffect: {fileID: 760885542224398573, guid: 6d6db0a3943b00c45893fdc6e18579d4, type: 3}
   powerLevel: 1
   drops: {fileID: 1426644854670453096, guid: ed156b7d2f13d324facc441659cca996, type: 3}
+  hitEffect: {fileID: 760885542224398573, guid: 6d6db0a3943b00c45893fdc6e18579d4, type: 3}
+  deathEffect: {fileID: 4553287630450876385, guid: 870dae54fd874c745a135601a2d1c344, type: 3}
+  hitSound: {fileID: 8300000, guid: 6431ceac1ab1a124ab5ad71d695feeb2, type: 3}
+  spawnSound: {fileID: 8300000, guid: 4d54f920ec8d37b459bfa226529e7f7e, type: 3}
   maxHealth: 2
   health: 2
   attackPower: 1

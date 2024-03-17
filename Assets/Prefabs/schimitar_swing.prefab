@@ -160,7 +160,8 @@ MonoBehaviour:
   knockbackPower: 100
   weaponAttackPower: 1
   timeToLive: 0
-  hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
+  hitEffect: {fileID: 8525990746615576120, guid: a9522845d6be25d4b9afd307dddeffdd, type: 3}
+  onWallHitSound: {fileID: 8300000, guid: 1d6bfe93da8db1f479a62d3a2e692971, type: 3}
 --- !u!95 &8663506858128612819
 Animator:
   serializedVersion: 5
@@ -194,7 +195,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5eae161c1122fb04aad91f5b7bbf5bd5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.571
   m_Pitch: 1
   Loop: 0
   Mute: 0

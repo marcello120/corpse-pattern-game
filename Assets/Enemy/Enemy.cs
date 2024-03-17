@@ -12,7 +12,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 {
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
-    protected AudioSource getHitSound;
+    protected AudioSource audioSource;
 
 
     [Header("Set these")]
@@ -22,9 +22,12 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public int corpseNumber = 1;
     public int flipBehaviour;
     public NearDeathStatusEffect nearDeathStatusEffect;
-    public GameObject hitEffect;
     public int powerLevel = 1;
     public GameObject drops;
+    public GameObject hitEffect;
+    public GameObject deathEffect;
+    public AudioClip hitSound;
+    public AudioClip spawnSound;
 
     [Header("Stats")]
     public float maxHealth;
@@ -46,6 +49,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public Animator animator;
     public List<State> moveStates = new List<State>() { State.Idle, State.Moving };
     public Vector3 restingPlace;
+    public float aliveTime;
 
 
 
@@ -90,12 +94,16 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         animator = body.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer= body.GetComponent<SpriteRenderer>();
-        getHitSound = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         TryGetComponent(out statusHolder);
 
         if(maxHealth == 0f)
         {
             maxHealth = health;
+        }
+        if(spawnSound!= null)
+        {
+           audioSource.PlayOneShot(spawnSound);
         }
     }
 
@@ -109,6 +117,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
                 moveInDirectionWithSpeedModifier(dir, 0.5f);
             }
         }
+        aliveTime += Time.deltaTime;
     }
 
 
@@ -148,6 +157,10 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             Instantiate(drops, place, Quaternion.identity);
         }
+        if (deathEffect != null)
+        {
+            Instantiate(deathEffect, place, Quaternion.identity);
+        }
         isDead = true;
         setState(State.Dying);
     }
@@ -168,12 +181,15 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         if (hitEffect != null)
         {
             Instantiate(hitEffect, transform.position, Quaternion.FromToRotation(Vector3.right, directtion));
-
+        }
+        if (hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound,0.3f);
         }
 
-        if (getHitSound!= null)
+        if (audioSource!= null)
         {
-            getHitSound.Play();
+            audioSource.Play();
         }
 
 

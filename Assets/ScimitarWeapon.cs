@@ -46,6 +46,7 @@ public class ScimitarWeapon : Weapon
 
         if (canAttack)
         {
+            CameraShake.Instance.Shake(0.33f, 0.3f);
             animator.SetTrigger("Attack");
 
             if (combostep == 0)

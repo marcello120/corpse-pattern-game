@@ -49,7 +49,7 @@ public class Weapon : MonoBehaviour, IWeapon
 
     public virtual void increaseReach(float reachIncreae)
     {
-        currentWeaponReach += reachIncreae;
+        currentWeaponReach *= (1+ reachIncreae);
         transform.localPosition = new Vector3(currentWeaponReach, transform.localPosition.y, weaponBody.transform.localPosition.z);
     }
 

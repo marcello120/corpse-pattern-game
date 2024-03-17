@@ -103,7 +103,7 @@ public class RiggedPlayerController : PlayerController
             {
                 dashTimer = 0;
                 canDash = true;
-                effectsAnimator.Play("effect_wheel");
+                playEffectDashReload();
             }
         }
 
@@ -180,10 +180,24 @@ public class RiggedPlayerController : PlayerController
 
             //flip sprite based on mouse position
             Flip(lookDir);
-
-
-
         }
+    }
+
+    private void playEffectDashReload()
+    {
+        effectsAnimator.Play("effect_wheel");
+    }
+    private void playEffectSlowCircle()
+    {
+        effectsAnimator.Play("effect_vortex");
+    }
+    private void playEffectPerfectDash()
+    {
+        effectsAnimator.Play("effect_flash");
+    }
+    private void playEffectExplode()
+    {
+        effectsAnimator.Play("effect_explode");
     }
 
     private void Flip(Vector3 lookDir)
@@ -241,7 +255,7 @@ public class RiggedPlayerController : PlayerController
         {
             Debug.Log("MASS_SLOW");
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
-            effectsAnimator.Play("effect_vortex");
+            playEffectSlowCircle();
             foreach (Collider2D hitCollider in hitColliders)
             {
                 if (hitCollider.gameObject.tag == "Enemy" && hitCollider.gameObject.GetComponent<Enemy>() != null)
@@ -374,7 +388,7 @@ public class RiggedPlayerController : PlayerController
         {
             float expRadius = 1f;
             float knockbackPower = 1;
-            effectsAnimator.Play("effect_explode");
+            playEffectExplode();
 
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, expRadius);
             //foreach collider in hitColliders
@@ -423,7 +437,7 @@ public class RiggedPlayerController : PlayerController
                 {
                     Debug.Log("PERFECT DODGE ON ");
                     invincible = true;
-                    effectsAnimator.Play("effect_flash");
+                    playEffectPerfectDash();
                     //set all
                     foreach (GameObject stuntarget in perfectDashDecider.isPerfect())
                     { 
@@ -456,6 +470,8 @@ public class RiggedPlayerController : PlayerController
             canDash = false;
         }
     }
+
+
 
     void OnFire()
     {

@@ -56,8 +56,8 @@ public class TheBomb : Enemy
             {
                 effects.SetBool("Prep", true);
                 setState(State.Attacking);
-                getHitSound.Stop();
-                getHitSound.PlayOneShot(ticktock);
+                audioSource.Stop();
+                audioSource.PlayOneShot(ticktock);
             }
             return;
         }
@@ -89,8 +89,8 @@ public class TheBomb : Enemy
 
     IEnumerator Explode()
     {
-        getHitSound.Stop();
-        getHitSound.PlayOneShot(boom);
+        audioSource.Stop();
+        audioSource.PlayOneShot(boom);
 
         yield return new WaitForSeconds(0.2f);
 
