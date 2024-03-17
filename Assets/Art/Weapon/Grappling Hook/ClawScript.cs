@@ -37,35 +37,37 @@ public class ClawScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!(other.gameObject.tag == "Player") || !(other.gameObject.layer == 10))
+        /*if(!(other.gameObject.tag == "Player") || !(other.gameObject.layer == 10))
         {
             return;
-        }
+        }*/
         if (!attached)
         {
-            if (other.CompareTag("Enemy"))
+            if (isShot) // Check if the claw is shot
             {
-                Enemy enemyScript = other.GetComponent<Enemy>();
+                if (other.CompareTag("Enemy"))
+                {
+                    // Attach the bullet to the enemy
+                    AttachToEnemy(other.transform);
 
-                if (enemyScript != null)
-                {
-                    // Set the enemy as stunned
-                    enemyScript.isStunned();
+                    Enemy enemyScript = other.GetComponent<Enemy>();
+                    if (enemyScript != null)
+                    {
+                        // Set the enemy as stunned
+                        enemyScript.isStunned();
+                    }
                 }
-            }
-            if ((other.gameObject.tag == "Wall") || !(other.gameObject.layer == 7))
-            {
-                if (isShot) //if the claw is shot
+                else if (other.CompareTag("Wall") || other.gameObject.layer == 11)
                 {
-                    // Bounch off of walls
+                    // Bounce off walls
                     LassoScript lassoScript = other.GetComponentInParent<LassoScript>();
                     lassoScript.RecallClaw();
                 }
-            }
-            if (isShot) //if the claw is shot
-            {
-                // Attach the bullet to the enemy
-                AttachToEnemy(other.transform);
+                else
+                {
+                    // Attach the bullet to the enemy
+                    AttachToEnemy(other.transform);
+                }
             }
         }
     }
