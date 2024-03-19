@@ -35,13 +35,11 @@ public class ClawScript : MonoBehaviour
         isShot = false;
     }
 
+   
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("OnTriggerEnter2D called");
-        if (!(other.gameObject.tag == "Player") || !(other.gameObject.layer == 10))
-        {
-            return;
-        }
         Debug.Log(other.gameObject.name);
         Debug.Log(other.tag);
 
@@ -59,11 +57,10 @@ public class ClawScript : MonoBehaviour
                     enemyScript.isStunned();
                 }
             }
-            else if (other.CompareTag("Wall") || other.gameObject.layer == 11)
+            else if (other.CompareTag("Wall"))
             {
                 // Bounce off walls
-                LassoScript lassoScript = other.GetComponentInParent<LassoScript>();
-                lassoScript.RecallClaw();
+                lasszo.RecallClaw();
             }
             else
             {
