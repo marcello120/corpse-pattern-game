@@ -35,43 +35,44 @@ public class ClawScript : MonoBehaviour
         isShot = false;
     }
 
+   
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!(other.gameObject.tag == "Player") || !(other.gameObject.layer == 10))
-        {
-            return;
-        }
-        if (!attached)
+        Debug.Log("OnTriggerEnter2D called");
+        Debug.Log(other.gameObject.name);
+        Debug.Log(other.tag);
+
+        if (!attached && isShot) // Check if the claw is shot and not attached
         {
             if (other.CompareTag("Enemy"))
             {
-                Enemy enemyScript = other.GetComponent<Enemy>();
+                // Attach the bullet to the enemy
+                AttachToEnemy(other.transform);
 
+                Enemy enemyScript = other.GetComponent<Enemy>();
                 if (enemyScript != null)
                 {
                     // Set the enemy as stunned
                     enemyScript.isStunned();
                 }
             }
-            if ((other.gameObject.tag == "Wall") || !(other.gameObject.layer == 7))
+            else if (other.CompareTag("Wall"))
             {
-                if (isShot) //if the claw is shot
-                {
-                    // Bounch off of walls
-                    LassoScript lassoScript = other.GetComponentInParent<LassoScript>();
-                    lassoScript.RecallClaw();
-                }
+                // Bounce off walls
+                lasszo.RecallClaw();
             }
-            if (isShot) //if the claw is shot
+            else
             {
                 // Attach the bullet to the enemy
-                AttachToEnemy(other.transform);
+                //AttachToEnemy(other.transform);
             }
         }
     }
 
     private void AttachToEnemy(Transform enemyTransform)
     {
+        Debug.Log("AttachToEnemy called");
         // Disable physics interactions
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)

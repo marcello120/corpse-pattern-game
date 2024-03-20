@@ -20,6 +20,17 @@ public class LassoScript : MonoBehaviour
     public ClawScript clawScript;
     public Rigidbody2D bulletRigidbody;
 
+    // New variables for rope drawing
+    [Header("Rope Drawing Settings:")]
+    public AnimationCurve ropeAnimationCurve;
+    [Range(0.01f, 4)]
+    [SerializeField] private float waveSize = 2f;
+    public AnimationCurve ropeProgressionCurve;
+    [Range(1, 50)]
+    [SerializeField] private float ropeProgressionSpeed = 1;
+
+    float moveTime = 0;
+
     void Start()
     {
         rope.enabled = false;
@@ -47,7 +58,7 @@ public class LassoScript : MonoBehaviour
 
         if (isMoving) //Ha kilottuk
         {
-            if (distance > maxClawDistance && !isAttached) //Akkor nazzuk, hogy mikor kell visszahivni, de csak ha nincsmar rajta valami
+            if (distance > maxClawDistance && !isAttached) //Akkor nezzuk, hogy mikor kell visszahivni, de csak ha nincsmar rajta valami
             {
                 RecallClaw();
             }
@@ -73,6 +84,30 @@ public class LassoScript : MonoBehaviour
                     Shoot();
                 }
             }
+        }
+        if (isMoving)
+        {
+            moveTime += Time.deltaTime;
+            //DrawRope();
+        }
+    }
+    void DrawRope()
+    {
+        Vector2 shootPointPosition = shootPoint.position;
+        Vector2 clawPosition = Claw.transform.position;
+
+        // Calculate delta based on the time since the claw was shot
+        float delta = Mathf.Clamp01(moveTime / ropeProgressionSpeed);
+
+        // Loop through points on the rope and update their positions
+        for (int i = 0; i < rope.positionCount; i++)
+        {
+            float t = (float)i / (rope.positionCount - 1);
+            Vector2 offset = Vector2.Perpendicular(clawPosition - shootPointPosition).normalized * ropeAnimationCurve.Evaluate(t) * waveSize;
+            Vector2 intermediatePosition = Vector2.Lerp(shootPointPosition, clawPosition, t) + offset;
+            Vector2 finalPosition = Vector2.Lerp(shootPointPosition, intermediatePosition, delta);
+
+            rope.SetPosition(i, finalPosition);
         }
     }
 
@@ -108,7 +143,8 @@ public class LassoScript : MonoBehaviour
         isComingBack= true;
         isMoving = false;
 
-        Rigidbody2D bulletRigidbody = Claw.GetComponent<Rigidbody2D>();
+        bulletRigidbody.velocity = Vector2.zero;
+
         if (bulletRigidbody != null)
         {
             bulletRigidbody.velocity = (shootPoint.position - hitTarget.transform.position).normalized * clawSpeed*2f;
