@@ -14,7 +14,9 @@ public class RedSquare: Enemy
 
     public void Update()
     {
-        if(isStunned()  && state== State.Moving) 
+        commonUpdate();
+
+        if (isStunned()  && state== State.Moving) 
         {
             setState(State.Idle);
         }
@@ -24,11 +26,11 @@ public class RedSquare: Enemy
         }
     }
 
-    public override void getHit(float damage, Vector2 knockback)
+    public override void getHit(float damage, Vector2 knockback, Vector3 directtion)
     {
         if (isStunned())
         {
-            base.getHit(damage, knockback);
+            base.getHit(damage, knockback, directtion);
         }
     }
 }

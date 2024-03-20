@@ -295,7 +295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7355741024632167780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.993819, y: -0.9302242, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -325,6 +325,7 @@ MonoBehaviour:
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
   powerLevel: 3
+  drops: {fileID: 0}
   maxHealth: 4
   health: 4
   attackPower: 1
@@ -337,6 +338,7 @@ MonoBehaviour:
   statusHolder: {fileID: 0}
   animator: {fileID: 0}
   moveStates: 0100000002000000
+  restingPlace: {x: 0, y: 0, z: 0}
 --- !u!61 &7355741024632167777
 BoxCollider2D:
   m_ObjectHideFlags: 0

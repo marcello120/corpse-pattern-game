@@ -20,8 +20,12 @@ public class StrafingAStarMovement : AStarMovement
 
 
         if (seeker.IsDone())
-        { 
-            if(chasing)
+        {
+            if (enemy.target == null)
+            {
+                return;
+            }
+            if (chasing)
             {
                 seeker.StartPath(transform.position, enemy.target.position, OnPathComplete);
             }

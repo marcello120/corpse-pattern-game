@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280364478102889716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.99, y: -2.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -61,6 +61,7 @@ MonoBehaviour:
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   hitEffect: {fileID: 0}
   powerLevel: 1
+  drops: {fileID: 0}
   maxHealth: 2
   health: 2
   attackPower: 1
@@ -73,6 +74,7 @@ MonoBehaviour:
   statusHolder: {fileID: 0}
   animator: {fileID: 0}
   moveStates: 0100000002000000
+  restingPlace: {x: 0, y: 0, z: 0}
   corpseConsumetTime: 15
   consumeTimer: 0
   chaseTime: 15

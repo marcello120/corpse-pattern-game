@@ -42,7 +42,9 @@ public class Ranged : Enemy
     // Update is called once per frame
     void Update()
     {
-        if(playerTransform== null)
+        commonUpdate();
+
+        if (playerTransform== null)
         {
             return;
         }

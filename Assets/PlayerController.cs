@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     //public float currentMaxHealt = 5;
 
     public float moveSpeed = 1f;
+    public float baseMoveSpeed = 1f;
     public float collisionOffset = 0.001f;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;

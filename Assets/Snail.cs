@@ -10,4 +10,8 @@ public class Snail : Enemy
         setState(State.Moving);
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
+    private void Update()
+    {
+        commonUpdate();
+    }
 }

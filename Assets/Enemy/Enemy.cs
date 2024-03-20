@@ -10,10 +10,9 @@ using Pathfinding;
 
 public abstract class Enemy : MonoBehaviour, IEnemy
 {
-    //hello
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
-    protected AudioSource getHitSound;
+    protected AudioSource audioSource;
 
 
     [Header("Set these")]
@@ -23,8 +22,12 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public int corpseNumber = 1;
     public int flipBehaviour;
     public NearDeathStatusEffect nearDeathStatusEffect;
-    public GameObject hitEffect;
     public int powerLevel = 1;
+    public GameObject drops;
+    public GameObject hitEffect;
+    public GameObject deathEffect;
+    public AudioClip hitSound;
+    public AudioClip spawnSound;
 
     [Header("Stats")]
     public float maxHealth;
@@ -45,7 +48,10 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public StatusHolder statusHolder;
     public Animator animator;
     public List<State> moveStates = new List<State>() { State.Idle, State.Moving };
-  
+    public Vector3 restingPlace;
+    public float aliveTime;
+
+
 
 
     public enum State
@@ -88,19 +94,35 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         animator = body.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer= body.GetComponent<SpriteRenderer>();
-        getHitSound = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         TryGetComponent(out statusHolder);
 
         if(maxHealth == 0f)
         {
             maxHealth = health;
         }
+        if(spawnSound!= null)
+        {
+           audioSource.PlayOneShot(spawnSound);
+        }
+    }
+
+    public void commonUpdate()
+    {
+        if (state == State.Dying)
+        {
+            if (Vector3.Distance(restingPlace, transform.position) > 0.1)
+            {
+                Vector3 dir = (restingPlace - transform.position).normalized;
+                moveInDirectionWithSpeedModifier(dir, 0.5f);
+            }
+        }
+        aliveTime += Time.deltaTime;
     }
 
 
     public virtual void Death()
     {
-
         rb.velocity = Vector3.zero;
 
         GameManager.CoprseInfoObject cio = GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, corpseNumber, powerLevel);
@@ -112,22 +134,32 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             cc.enabled = false;
         }
-        if(cio.coprseNumber == 999)
+        if (cio.coprseNumber == 999)
         {
             Instantiate(cio.corpseMound, place, Quaternion.identity);
             AstarPath.active.Scan();
         }
-        else if (corpse!=null)
+        else
+        if (corpse != null)
         {
             int corpseNum = cio.coprseNumber;
 
             GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
             newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNum];
             newCorpse.GetComponent<CorpseScript>().Init(corpseNum);
+            restingPlace = place;
         }
         else
         {
             Debug.LogError("Corspe must be set");
+        }
+        if (drops != null)
+        {
+            Instantiate(drops, place, Quaternion.identity);
+        }
+        if (deathEffect != null)
+        {
+            Instantiate(deathEffect, place, Quaternion.identity);
         }
         isDead = true;
         setState(State.Dying);
@@ -138,18 +170,26 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         statusHolder.RemoveAll(this);
     }
 
-
     public virtual void getHit(float damage, Vector2 knockback)
+    {
+        getHit(damage, knockback, Vector3.zero);
+    }
+
+
+    public virtual void getHit(float damage, Vector2 knockback, Vector3 directtion)
     {
         if (hitEffect != null)
         {
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
-
+            Instantiate(hitEffect, transform.position, Quaternion.FromToRotation(Vector3.right, directtion));
+        }
+        if (hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound,0.3f);
         }
 
-        if (getHitSound!= null)
+        if (audioSource!= null)
         {
-            getHitSound.Play();
+            audioSource.Play();
         }
 
 
@@ -193,6 +233,19 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             return false;
         }
         if (statusHolder.effects.Any(x => x!=null && x.statusEffectName=="Stun"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool isSlowed()
+    {
+        if (statusHolder == null)
+        {
+            return false;
+        }
+        if (statusHolder.effects.Any(x => x != null && x.statusEffectName == "Slow"))
         {
             return true;
         }

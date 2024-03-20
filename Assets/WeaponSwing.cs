@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.Universal.Internal;
 
 public class WeaponSwing : MonoBehaviour
 {
@@ -12,11 +8,13 @@ public class WeaponSwing : MonoBehaviour
 
     private bool isActive;
 
-    private GameObject player;
-
     private PolygonCollider2D polycollider;
 
     public GameObject hitEffect;
+
+    public AudioClip onWallHitSound;
+
+    AudioSource audioSource;
 
     
 
@@ -26,8 +24,10 @@ public class WeaponSwing : MonoBehaviour
         polycollider = GetComponent<PolygonCollider2D>();
         polycollider.enabled = false;
         isActive = false;
-        player = GameObject.FindGameObjectWithTag("Player");
+        audioSource= GetComponent<AudioSource>();
+
     }
+
 
     public void EndAttack()
     {
@@ -44,12 +44,6 @@ public class WeaponSwing : MonoBehaviour
     public void DestorySelf()
     {
         Destroy(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 1f * Time.deltaTime);
     }
 
     public void InitWeaponAttack(float knockbackIN, float weaponAttackPowerIN)
@@ -83,13 +77,20 @@ public class WeaponSwing : MonoBehaviour
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
+                Debug.LogError("THIS IS NOT SUPPOSED TO HAPPEN ANYMORE");
+
                 enemy.getHit(weaponAttackPower, GetKnockBack(collision));
-                Vector2 contactpoint= collision.ClosestPoint(enemy.transform.position);
-                //Instantiate(hitEffect, contactpoint, Quaternion.identity);
+
             }
             else if(collision.GetComponent<EnemyHitbox>()!= null)
             {
-                collision.GetComponent<EnemyHitbox>().getHit(weaponAttackPower, GetKnockBack(collision));
+                Vector3 directionToEnemy = (collision.gameObject.transform.position - transform.parent.parent.position).normalized;
+                collision.GetComponent<EnemyHitbox>().getHit(weaponAttackPower, GetKnockBack(collision),directionToEnemy);
+                Vector2 contactpoint = collision.ClosestPoint(transform.position);
+                if (hitEffect != null)
+                {
+                    Instantiate(hitEffect, contactpoint, Quaternion.identity);
+                }
             }
 
         }
@@ -98,5 +99,18 @@ public class WeaponSwing : MonoBehaviour
             collision.GetComponent<Projectile>().Parried();
 
         }
+        if (collision.tag == "Wall" && isActive)
+        {
+            Vector2 contactpoint = collision.ClosestPoint(transform.position);
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, contactpoint, Quaternion.identity);
+            }
+            //if(onWallHitSound!= null)
+            //{
+            //    audioSource.PlayOneShot(onWallHitSound);
+            //}
+        }
+
     }
 }
