@@ -406,9 +406,12 @@ MonoBehaviour:
   corpseNumber: 12
   flipBehaviour: 1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
-  hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
-  powerLevel: 2
+  powerLevel: 3
   drops: {fileID: 0}
+  hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
+  deathEffect: {fileID: 0}
+  hitSound: {fileID: 0}
+  spawnSound: {fileID: 0}
   maxHealth: 3
   health: 3
   attackPower: 2
@@ -422,6 +425,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   moveStates: 0100000002000000
   restingPlace: {x: 0, y: 0, z: 0}
+  aliveTime: 0
   roamTarget: {fileID: 4112866766781027947, guid: bf7e01a002c4fc24a9eae746a3206a14, type: 3}
   playerTransform: {fileID: 0}
   chargeSpeed: 7.5

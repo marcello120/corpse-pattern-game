@@ -524,13 +524,13 @@ public class RiggedPlayerController : PlayerController
         Vector2 knockback;
         if (enemy != null)
         {
-            knockback = (transform.position - enemy.gameObject.transform.position).normalized * 300;
+            knockback = (transform.position - enemy.gameObject.transform.position).normalized * 200;
         }
         else
         {
             // Generate a random knockback direction if the enemy is null
             float randomAngle = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
-            knockback = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * 300;
+            knockback = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * 200;
         }
         rb.AddForce(knockback);
         playerHealth -= damage;

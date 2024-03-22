@@ -163,6 +163,13 @@ MonoBehaviour:
   moveStates: 0100000002000000
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
+  attackPrepTimer:
+    time: 0.75
+    elapsedtime: 0
+  postAttackTimer:
+    time: 4
+    elapsedtime: 0
+  clawEffect: {fileID: 6710139492206580332, guid: 538519c917a771e47b53318e50c233ee, type: 3}
 --- !u!114 &7125137087411795778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,8 +531,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7125137087579084150}
   - component: {fileID: 7125137087579084146}
-  - component: {fileID: 7125137087579084145}
-  - component: {fileID: 7125137087579084152}
+  - component: {fileID: 2644216248056060243}
+  - component: {fileID: 5745208851926128179}
   m_Layer: 14
   m_Name: DMGzone
   m_TagString: Untagged
@@ -569,7 +576,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7125137087579084145
+--- !u!114 &2644216248056060243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -582,19 +589,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentEnemy: {fileID: 0}
---- !u!58 &7125137087579084152
-CircleCollider2D:
+--- !u!60 &5745208851926128179
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7125137087579084151}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.13
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.012848556, y: 0.017980963}
+      - {x: 0.20195764, y: -0.18502402}
+      - {x: 0.38798398, y: 0.018512607}
+      - {x: 0.19845426, y: 0.22804087}
