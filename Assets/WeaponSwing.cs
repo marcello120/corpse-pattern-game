@@ -111,6 +111,21 @@ public class WeaponSwing : MonoBehaviour
             //    audioSource.PlayOneShot(onWallHitSound);
             //}
         }
+        //IF DESCTUCIBLE
+        if (collision.tag == "Destructible" && isActive)
+        {
+            Vector2 contactpoint = collision.ClosestPoint(transform.position);
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, contactpoint, Quaternion.identity);
+            }
+            Destructible destructible= collision.GetComponent<Destructible>();
+            if(destructible != null)
+            {
+                destructible.hitDestructible(weaponAttackPower);
+            }
+        }
+
 
     }
 }

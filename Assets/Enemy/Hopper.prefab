@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 892142823974740553}
   - component: {fileID: 5039742561100875017}
   - component: {fileID: 3500128615615184838}
+  - component: {fileID: 4818165910614068065}
   m_Layer: 17
   m_Name: BallBody
   m_TagString: Enemy
@@ -113,6 +114,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentEnemy: {fileID: 0}
+--- !u!210 &4818165910614068065
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303696664405621429}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
 --- !u!1 &776870077181216797
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +260,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8191463516901801530}
   m_Bounds:
-    m_Center: {x: 0.00023406744, y: -0.00000023841858, z: 0}
+    m_Center: {x: 0.00023466349, y: -0.00000035762787, z: 0}
     m_Extent: {x: 0.56317526, y: 0.60000026, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -357,7 +369,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 3540123127473268525, guid: 7587b50140d036546aea73dca4e1e2cd, type: 3}
   m_Color: {r: 0, g: 0.10980393, b: 1, a: 1}
   m_FlipX: 0
@@ -385,7 +397,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8973338544340348514}
   m_Bounds:
-    m_Center: {x: -0.00083592534, y: -0.00000023841858, z: 0}
+    m_Center: {x: -0.0008353293, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.42916507, y: 0.5450001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -670,7 +682,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7408352019041378432, guid: 7587b50140d036546aea73dca4e1e2cd, type: 3}
   m_Color: {r: 0, g: 0.10980393, b: 1, a: 1}
   m_FlipX: 0
@@ -699,7 +711,7 @@ MonoBehaviour:
   - {fileID: 2546676381263254696}
   - {fileID: 4381052943662453074}
   m_Bounds:
-    m_Center: {x: -0.016309023, y: 0.10438603, z: 0}
+    m_Center: {x: -0.016309261, y: 0.10438603, z: 0}
     m_Extent: {x: 0.6056278, y: 0.6270189, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -777,7 +789,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 2
   m_Sprite: {fileID: -4980767356872351607, guid: 7587b50140d036546aea73dca4e1e2cd, type: 3}
   m_Color: {r: 0, g: 0.10980393, b: 1, a: 1}
   m_FlipX: 0
@@ -806,8 +818,8 @@ MonoBehaviour:
   - {fileID: 2022359492193736495}
   - {fileID: 4381052943662453074}
   m_Bounds:
-    m_Center: {x: 0.02095759, y: -0.0053015947, z: 0}
-    m_Extent: {x: 2.0082486, y: 1.3742483, z: 0}
+    m_Center: {x: 0.020958304, y: -0.005301714, z: 0}
+    m_Extent: {x: 2.0082483, y: 1.3742483, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -915,7 +927,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 3186721798709932986, guid: 7587b50140d036546aea73dca4e1e2cd, type: 3}
   m_Color: {r: 0, g: 0.10980393, b: 1, a: 1}
   m_FlipX: 0
@@ -943,7 +955,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6792556014297359119}
   m_Bounds:
-    m_Center: {x: 0.2297959, y: 0.12441409, z: 0}
+    m_Center: {x: 0.2297965, y: 0.12441403, z: 0}
     m_Extent: {x: 0.40812993, y: 0.8227232, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1089,10 +1101,10 @@ MonoBehaviour:
   body: {fileID: 303696664405621429}
   enemyname: Scarab
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
-  corpseNumber: 18
+  corpseNumber: 21
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
-  powerLevel: 1
+  powerLevel: 2
   drops: {fileID: 1426644854670453096, guid: ed156b7d2f13d324facc441659cca996, type: 3}
   hitEffect: {fileID: 760885542224398573, guid: 6d6db0a3943b00c45893fdc6e18579d4, type: 3}
   deathEffect: {fileID: 4553287630450876385, guid: 870dae54fd874c745a135601a2d1c344, type: 3}
@@ -1111,6 +1123,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   moveStates: 0100000002000000
   restingPlace: {x: 0, y: 0, z: 0}
+  aliveTime: 0
 --- !u!58 &6830850734151678585
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1463,7 +1476,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 5564021530882999430, guid: 7587b50140d036546aea73dca4e1e2cd, type: 3}
   m_Color: {r: 0, g: 0.10980393, b: 1, a: 1}
   m_FlipX: 0
@@ -1491,7 +1504,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3629310523749715127}
   m_Bounds:
-    m_Center: {x: 0.11809856, y: -0.001484096, z: 0}
+    m_Center: {x: 0.118098855, y: -0.001484096, z: 0}
     m_Extent: {x: 0.7947387, y: 0.6372037, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

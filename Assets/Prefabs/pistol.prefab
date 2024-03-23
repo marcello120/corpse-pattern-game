@@ -129,7 +129,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d3060b240da623d4f807c2deaa77e3b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,8 +173,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0.103087686, b: 0, a: 1}
+      key1: {r: 1, g: 0.49217367, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -226,7 +226,69 @@ MonoBehaviour:
   shootPoint: {fileID: 6961115325552743845}
   isAttached: 0
   isMoving: 0
+  isComingBack: 0
   rope: {fileID: 6961115324512247675}
+  clawScript: {fileID: 1961520897921364796}
+  bulletRigidbody: {fileID: 4459783669945077803}
+  ropeAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0022354126
+      value: 0.023590088
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3264673
+      value: 0.24233305
+      inSlope: -0.03884492
+      outSlope: -0.03884492
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20476292
+    - serializedVersion: 3
+      time: 1.0125427
+      value: -0.014060974
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  waveSize: 4
+  ropeProgressionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ropeProgressionSpeed: 10
 --- !u!1 &6961115325552743844
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +298,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6961115325552743845}
+  - component: {fileID: 3628618593038929705}
+  - component: {fileID: 2950166656951160297}
   m_Layer: 10
   m_Name: ShootPoint
   m_TagString: Untagged
@@ -259,6 +323,34 @@ Transform:
   m_Father: {fileID: 6961115324512247674}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3628618593038929705
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961115325552743844}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &2950166656951160297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961115325552743844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e945ce579643e74a85818c6dbe28c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6961115325475120461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -349,8 +441,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7956807135766312673, guid: 70fa1f8225f11624ab6bfe442336011b, type: 3}
   m_PrefabInstance: {fileID: 6961115325475120461}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1961520897921364796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8908790064740521585, guid: 70fa1f8225f11624ab6bfe442336011b, type: 3}
+  m_PrefabInstance: {fileID: 6961115325475120461}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078216763828343724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6975559cf42c60f4f90476259a5f1618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2604628843596377423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4953776675590801410, guid: 70fa1f8225f11624ab6bfe442336011b, type: 3}
+  m_PrefabInstance: {fileID: 6961115325475120461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &4459783669945077803 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 6736976160205501798, guid: 70fa1f8225f11624ab6bfe442336011b, type: 3}
   m_PrefabInstance: {fileID: 6961115325475120461}
   m_PrefabAsset: {fileID: 0}

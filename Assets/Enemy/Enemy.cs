@@ -117,7 +117,10 @@ public abstract class Enemy : MonoBehaviour, IEnemy
                 moveInDirectionWithSpeedModifier(dir, 0.5f);
             }
         }
-        aliveTime += Time.deltaTime;
+        else 
+        {
+            aliveTime += Time.deltaTime;
+        }
     }
 
 
@@ -162,6 +165,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             Instantiate(deathEffect, place, Quaternion.identity);
         }
         isDead = true;
+        rb.velocity = Vector3.zero;
         setState(State.Dying);
     }
 
@@ -172,6 +176,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void getHit(float damage, Vector2 knockback)
     {
+        Debug.LogError("THIS IS NOT SUPPOSED TO HAPPEN");
         getHit(damage, knockback, Vector3.zero);
     }
 

@@ -139,10 +139,10 @@ public class Necrophage : Enemy
     }
 
  
-    public override void getHit(float damage, Vector2 knockback)
+    public override void getHit(float damage, Vector2 knockback, Vector3 directtion)
     {
         setState(State.Moving);
-        base.getHit(damage, knockback);
+        base.getHit(damage, knockback, directtion);
         rb.mass = baseMass;
         if(health == 1 && poweredUp)
         {
