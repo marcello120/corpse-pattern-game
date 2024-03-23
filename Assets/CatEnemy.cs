@@ -24,22 +24,27 @@ public class CatEnemy : Enemy
         colli = GetComponentInChildren<PolygonCollider2D>();
     }
 
+    private void invertSpeed(float distToPlayer)
+    {
+        if (isPlayerMovingTowardsMe(target) && movemetSpeed > 0 && distToPlayer < 10f)
+        {
+            movemetSpeed *= -1;
+        }
+        if (!isPlayerMovingTowardsMe(target) && movemetSpeed < 0)
+        {
+            movemetSpeed *= -1;
+        }
+    }
+
     private void Update()
     {
         commonUpdate();
 
         if(state== State.Moving)
         {
-            var distToPlayer = Vector3.Distance(transform.position, target.position);
-            if (isPlayerMovingTowardsMe(target) && movemetSpeed > 0 && distToPlayer < 10f)
-            {
-                movemetSpeed *= -1;
-            }
-            if (!isPlayerMovingTowardsMe(target) && movemetSpeed < 0)
-            {
-                movemetSpeed *= -1;
-            }
+            float distToPlayer = Vector3.Distance(transform.position, target.position);
 
+            invertSpeed(distToPlayer);
             if (distToPlayer < 0.4)
             {
                 setState(State.Attacking);
@@ -84,6 +89,14 @@ public class CatEnemy : Enemy
             }
         }
 
+    }
+    public override void Death()
+    {
+        if ( movemetSpeed < 0)
+        {
+            movemetSpeed *= -1;
+        }
+        base.Death();
     }
 
     IEnumerator attack()

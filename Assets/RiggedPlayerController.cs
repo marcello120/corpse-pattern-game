@@ -244,6 +244,10 @@ public class RiggedPlayerController : PlayerController
         movementInput = movementValue.Get<Vector2>();
     }
 
+    public void setUtility(Utility ability)
+    {
+        selectedUtility = ability;
+    }
     void OnUtility()
     {
         if (!utilTimer.isDone())
@@ -706,5 +710,4 @@ public class RiggedPlayerController : PlayerController
             }
         }
     }
-
 }
