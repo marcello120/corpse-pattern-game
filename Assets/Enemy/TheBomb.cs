@@ -105,7 +105,7 @@ public class TheBomb : Enemy
 
                 Vector2 knockback =  (direction.normalized * knockbackPower * -1);
 
-                coll.gameObject.GetComponent<Enemy>().getHit(attackPower, knockback);
+                coll.gameObject.GetComponent<Enemy>().getHit(attackPower, knockback,direction);
             }
             //player
             if (coll.gameObject.GetComponent<RiggedPlayerController>() != null)

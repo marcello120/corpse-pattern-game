@@ -320,7 +320,7 @@ MonoBehaviour:
   body: {fileID: 7355741024479778585}
   enemyname: Snail
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
-  corpseNumber: 15
+  corpseNumber: 41
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   powerLevel: 4

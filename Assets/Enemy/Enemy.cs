@@ -176,6 +176,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void getHit(float damage, Vector2 knockback)
     {
+        Debug.LogError("THIS IS NOT SUPPOSED TO HAPPEN");
         getHit(damage, knockback, Vector3.zero);
     }
 

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4923746288615618640
 Transform:
   m_ObjectHideFlags: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corpseNumber: 0
   slowStatus: {fileID: 11400000, guid: c80aa0d617c49b64cb8489d55b1310ca, type: 2}
+  light2d: {fileID: 5145799886891352286}
 --- !u!95 &3152850821367181537
 Animator:
   serializedVersion: 5

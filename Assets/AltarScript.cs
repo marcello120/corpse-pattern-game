@@ -13,6 +13,15 @@ public class AltarScript : MonoBehaviour
     public SpriteRenderer utiltiyView;
     public GameObject coprseDetecter;
 
+    [Header("Effects")]
+    public GameObject positiveEffect;
+    public GameObject negativeEffect;
+
+    [Header("Sounds")]
+    public AudioClip positivieClip;
+    public AudioClip negativeClip;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,11 +55,14 @@ public class AltarScript : MonoBehaviour
                     {
                         RiggedPlayerController rigged = riggedPlayerController.GetComponent<RiggedPlayerController>();
                         rigged.setUtility(ability);
+                        GameObject effect = Instantiate(positiveEffect,transform.position, Quaternion.identity);
+                        effect.transform.localScale = effect.transform.localScale * 0.4f;
                     }
                 }
                 else
                 {
-                    //wrong corpse
+                    GameObject effect = Instantiate(negativeEffect, transform.position, Quaternion.identity);
+                    effect.transform.localScale = effect.transform.localScale * 0.4f;
                 }
             }
         }
