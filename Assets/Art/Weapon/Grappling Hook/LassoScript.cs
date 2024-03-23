@@ -72,7 +72,7 @@ public class LassoScript : MonoBehaviour
                     RecallClaw();
                 }
 
-                if (isMoving && distance < 0.5f) //es eleg kozel van, akkor allitsuk meg
+                if (distance < 0.5f) //es eleg kozel van, akkor allitsuk meg
                 {
                     StopClaw();
                 }
@@ -82,6 +82,11 @@ public class LassoScript : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E) && !isAttached) //Ha nincs kilove es nem jon vissza és nincs attacholva, akkor loje ki
                 {
                     Shoot();
+                }
+                else if(Input.GetKeyDown(KeyCode.E) && isAttached) //Ha ki van love es attacholva van, de le akarunk valni rola, akkor hivja vissza
+                {
+                    Debug.Log("VISSZA!");
+                    RecallClaw();
                 }
             }
         }
@@ -119,6 +124,10 @@ public class LassoScript : MonoBehaviour
     {
         isAttached = true;
     }
+    public void NotMoving()
+    {
+        isMoving= false;
+    }
 
     void Shoot()
     {
@@ -140,14 +149,21 @@ public class LassoScript : MonoBehaviour
 
     public void RecallClaw()
     {
-        isComingBack= true;
+        clawScript.NotAttached();
+        isComingBack = true;
         isMoving = false;
 
-        bulletRigidbody.velocity = Vector2.zero;
-
+        // Ensure bulletRigidbody is assigned and not null
         if (bulletRigidbody != null)
         {
-            bulletRigidbody.velocity = (shootPoint.position - hitTarget.transform.position).normalized * clawSpeed*2f;
+            // Calculate velocity to move the claw back to the shootPoint
+            Vector2 direction = (shootPoint.position - Claw.transform.position).normalized;
+            bulletRigidbody.velocity = direction * clawSpeed;
+            Debug.Log("Recalling claw");
+        }
+        else
+        {
+            Debug.LogError("Bullet Rigidbody is not assigned in RecallClaw function.");
         }
     }
     public void StopClaw()
@@ -170,6 +186,7 @@ public class LassoScript : MonoBehaviour
             isMoving = false;
             isComingBack= false;
             clawScript.NotShot();
+            clawScript.NotAttached();
         }
     }
 }

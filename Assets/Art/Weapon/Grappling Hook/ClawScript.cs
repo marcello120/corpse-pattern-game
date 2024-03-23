@@ -34,8 +34,10 @@ public class ClawScript : MonoBehaviour
     {
         isShot = false;
     }
-
-   
+    public void NotAttached()
+    {
+        attached = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -87,6 +89,7 @@ public class ClawScript : MonoBehaviour
         // Set attached to true
         attached = true;
         lasszo.Attach();
+        lasszo.NotMoving();
         isShot = false;
 
         // Optionally, disable the collider to prevent further collisions
@@ -101,5 +104,4 @@ public class ClawScript : MonoBehaviour
         // Reset local position to zero
         transform.localPosition = Vector3.zero;
     }
-    
 }
