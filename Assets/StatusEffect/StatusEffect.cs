@@ -41,6 +41,10 @@ public abstract class StatusEffect : ScriptableObject
 
     public override bool Equals(object obj)
     {
+        if(this == null)
+        {
+            return false;
+        }
         var item = obj as StatusEffect;
 
         if (item == null)

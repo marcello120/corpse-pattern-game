@@ -97,7 +97,10 @@ public class GameManager : MonoBehaviour
         obstacles = new Grid(width, height, gridCellSize, 0);
 
         //set pattern
-        pattern = patternStore.getRandomEasyPattern();
+        //pattern = patternStore.getRandomEasyPattern();
+        pattern = new int[1, 3] {
+            {1,10,1}
+        };
         patternGrid.setPattern(pattern);
         highscore = PlayerPrefs.GetInt("HighScore", 0);
 

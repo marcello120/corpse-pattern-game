@@ -125,7 +125,5 @@ public class WeaponSwing : MonoBehaviour
                 destructible.hitDestructible(weaponAttackPower);
             }
         }
-
-
     }
 }

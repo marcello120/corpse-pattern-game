@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14959edaf4b527a49a8764ded69d082a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptedCoprseCode: 21
+  acceptedCoprseCode: 11
   ability: 2
   coprseView: {fileID: 8225561770553124135}
   utiltiyView: {fileID: 8225561769766214129}

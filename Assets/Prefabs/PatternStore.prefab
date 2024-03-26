@@ -69,3 +69,13 @@ MonoBehaviour:
     corpse: {fileID: -872226365, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
   - key: 99
     corpse: {fileID: 21300000, guid: 9e2189bd320b6b3438c540a433b82d32, type: 3}
+  - key: 10
+    corpse: {fileID: 489567949, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+  - key: 20
+    corpse: {fileID: -83177709, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+  - key: 30
+    corpse: {fileID: 2070876881, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+  - key: 40
+    corpse: {fileID: 31689751, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+  - key: 50
+    corpse: {fileID: 2105997660, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}

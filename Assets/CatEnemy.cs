@@ -39,6 +39,10 @@ public class CatEnemy : Enemy
     private void Update()
     {
         commonUpdate();
+        if(target == null)
+        {
+            return;
+        }
 
         if(state== State.Moving)
         {
