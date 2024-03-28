@@ -1247,9 +1247,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -5967,9 +5967,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -10687,9 +10687,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -15407,9 +15407,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -20127,9 +20127,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -24847,9 +24847,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -29567,9 +29567,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -34287,9 +34287,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -39007,9 +39007,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -43727,9 +43727,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -48447,9 +48447,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -53167,9 +53167,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -57887,9 +57887,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -62607,9 +62607,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -67336,8 +67336,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.627451, g: 0.73333335, b: 1, a: 0}
-        key1: {r: 0.9411765, g: 0.57221955, b: 0, a: 1}
-        key2: {r: 0.8962264, g: 0.86439806, b: 0, a: 1}
+        key1: {r: 0.32156864, g: 0, b: 0.9411765, a: 1}
+        key2: {r: 0.22352941, g: 0, b: 0.4392157, a: 1}
         key3: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
@@ -67345,7 +67345,7 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
         ctime1: 7710
-        ctime2: 33153
+        ctime2: 34310
         ctime3: 58018
         ctime4: 58018
         ctime5: 53006
@@ -70802,7 +70802,6 @@ GameObject:
   - component: {fileID: 4467698798578808}
   - component: {fileID: 108164401078039248}
   - component: {fileID: 114754700368619626}
-  - component: {fileID: 3076258892585400390}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -70836,7 +70835,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.6472527, b: 0, a: 1}
+  m_Color: {r: 0.7355926, g: 0.30368727, b: 1.007353, a: 1}
   m_Intensity: 3
   m_Range: 8
   m_SpotAngle: 30
@@ -70903,26 +70902,6 @@ MonoBehaviour:
   delay: 0.1
   finalIntensity: 0
   autodestruct: 1
---- !u!114 &3076258892585400390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761275570023184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1765709634647938
 GameObject:
   m_ObjectHideFlags: 0
@@ -72134,9 +72113,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.95534074, b: 0.7647059, a: 1}
-        key2: {r: 0.9411765, g: 0.7836929, b: 0, a: 0}
-        key3: {r: 0.46226418, g: 0.3045442, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -76782,9 +76761,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -80268,7 +80247,7 @@ GameObject:
   - component: {fileID: 199223780631540688}
   - component: {fileID: 114551767184087894}
   m_Layer: 0
-  m_Name: CFX2_WWExplosion_C
+  m_Name: purple fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86255,9 +86234,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9930561, b: 0.7647059, a: 1}
-        key2: {r: 1, g: 0.7848824, b: 0, a: 0}
-        key3: {r: 1, g: 0.40117237, b: 0, a: 0}
+        key1: {r: 0.9870182, g: 0.7647059, b: 1, a: 1}
+        key2: {r: 0.7724138, g: 0, b: 0.9411765, a: 0}
+        key3: {r: 0.30593625, g: 0, b: 0.43921566, a: 0}
         key4: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key5: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}

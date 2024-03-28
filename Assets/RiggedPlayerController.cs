@@ -74,6 +74,11 @@ public class RiggedPlayerController : PlayerController
 
     public GameObject playerBody;
 
+    public MuliTimer chargeTimer;
+
+    public bool isChargingAttack;
+
+    public GameObject chargeCompleteEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +100,18 @@ public class RiggedPlayerController : PlayerController
         if (!utilTimer.isDone())
         {
             utilTimer.update(Time.deltaTime);
+        }
+        if (isChargingAttack)
+        {
+            if (!chargeTimer.isDone())
+            {
+                chargeTimer.update(Time.deltaTime);
+                if (chargeTimer.isDone())
+                {
+                    Instantiate(chargeCompleteEffect, transform);
+                }
+
+            }
         }
 
         //toggle dash
@@ -499,17 +516,39 @@ public class RiggedPlayerController : PlayerController
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (canAttack && context.performed)
+
+        if (canAttack)
         {
-            //animator.SetTrigger("swordAttack");
-            holster.Attack();
-            if(canMove && !stunned)
+            if(context.canceled)
             {
-                mousePosition = Input.mousePosition;
-                Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
-                rb.velocity = lookDir * 0.5f;
+                if(isChargingAttack && chargeTimer.isDone())
+                {
+                    holster.HeavyAttack();
+
+                }
+                else
+                {
+                    holster.Attack();
+
+                }
+                chargeTimer.reset();
+                isChargingAttack = false;
+
+                //animator.SetTrigger("swordAttack");
+                if (canMove && !stunned)
+                {
+                    mousePosition = Input.mousePosition;
+                    Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+                    rb.velocity = lookDir * 0.5f;
+
+                }
 
             }
+            if (context.started)
+            {
+                isChargingAttack= true;
+            }
+           
         }
 
     }

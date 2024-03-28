@@ -40,9 +40,34 @@ public class ScimitarWeapon : Weapon
         }
     }
 
+    public override void HeavyAttack()
+    {
+        if (canAttack)
+        {
+            CameraShake.Instance.Shake(0.33f, 0.3f);
+            animator.SetTrigger("HeavyAttack");
+
+            comboTimer.reset();
+            WeaponSwing effect = Instantiate(swing, transform);
+            effect.InitWeaponAttack(weaponKnockback, weaponAttackPower);
+            effect.transform.localScale *= size * 1.5f;
+            effect.transform.localPosition = new Vector3(effect.transform.localPosition.x, effect.transform.localPosition.y);
+            effect.transform.localScale = new Vector3(effect.transform.localScale.x, effect.transform.localScale.y);
+
+            comboTimer.reset();
+            WeaponSwing effect2 = Instantiate(swing, transform);
+            effect2.transform.localPosition = new Vector3(effect2.transform.localPosition.x -0.75f, effect2.transform.localPosition.y);
+            effect2.InitWeaponAttack(weaponKnockback, weaponAttackPower);
+            effect2.transform.localScale *= size * 1.5f;
+            effect2.transform.localScale = new Vector3(effect.transform.localScale.x*-1f, effect.transform.localScale.y);
+
+            combostep = 0;
+            return;
+        }
+    }
+
     public override void Attack()
     {
-
 
         if (canAttack)
         {

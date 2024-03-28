@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject corpseMoundObj;
 
+    public GameObject scoreEffect;
+
 
 
 
@@ -248,7 +250,10 @@ public class GameManager : MonoBehaviour
             }
             success = true;
             Debug.Log("SUCCESS");
-
+            Vector2Int middle = fitPatter[(fitPatter.Count-1) / 2];
+            float size = pattern.GetLength(0) > pattern.GetLength(1) ? pattern.GetLength(0) : pattern.GetLength(1);
+            GameObject effect =Instantiate(scoreEffect, grid.getWorldPositionGridWithOffset(middle.x, middle.y) + new Vector3(gridCellSize / 2, gridCellSize / 2), Quaternion.identity);
+            effect.transform.localScale = effect.transform.localScale * size;
             //get new random pattern from store
             pattern = patternStore.getRandomEasyPattern();
             pattern = patternStore.spiceItUp(pattern, 7);

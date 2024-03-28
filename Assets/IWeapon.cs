@@ -5,6 +5,9 @@ using UnityEngine;
 public interface IWeapon
 {
     public void Attack();
+
+    public void HeavyAttack();
+
     void increaseReach(float reachIncreae);
     public bool isAttacking();
 

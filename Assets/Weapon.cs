@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,4 +65,7 @@ public class Weapon : MonoBehaviour, IWeapon
         return attackState;
     }
 
+    public virtual void HeavyAttack()
+    {
+    }
 }
