@@ -42,4 +42,20 @@ void FixedUpdate()
 
     }
 
+    public override void HeavyAttack()
+    {
+        if (canAttack)
+        {
+            animator.SetTrigger("HeavyAttack");
+
+
+            WeaponSwing effect = Instantiate(swing, transform);
+            effect.InitWeaponAttack(weaponKnockback, weaponAttackPower);
+            effect.transform.localPosition += new Vector3(0.5f, 0f);
+            effect.transform.localScale *= size * 0.7f;
+
+            canAttack = false;
+        }
+    }
+
 }

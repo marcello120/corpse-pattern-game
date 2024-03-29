@@ -80267,6 +80267,7 @@ GameObject:
   - component: {fileID: 198681264470032530}
   - component: {fileID: 199223780631540688}
   - component: {fileID: 114551767184087894}
+  - component: {fileID: 8981105955402714617}
   m_Layer: 0
   m_Name: Coprse Clear
   m_TagString: Untagged
@@ -85008,6 +85009,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!95 &8981105955402714617
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965343156803978}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1972699721817900
 GameObject:
   m_ObjectHideFlags: 0
