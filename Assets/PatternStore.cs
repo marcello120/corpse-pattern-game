@@ -1,6 +1,8 @@
+using Pathfinding.Ionic.Zip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -8,16 +10,330 @@ public  class PatternStore: MonoBehaviour
 {
     public List<CorpseConfig> corpseConfigs;
 
-    public Dictionary<int, Sprite> configs = new Dictionary<int, Sprite>();
+    public List<CorpsePattern> corpsePatterns2 = new List<CorpsePattern>
+    {
+          new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[1, 3]
+            {
+                {1,1,1}
+            },
+            "vertical line",
+            null
+        )
+    };
 
-    public List<int[,]> patterns;
-    public List<int[,]> easyPatterns;
-    public List<int[,]> mediumPatterns;
-    public List<int[,]> hardPatterns;
+
+    public List<CorpsePattern> corpsePatterns = new List<CorpsePattern>
+    {
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[1, 3]
+            {
+                {1,1,1}
+            },
+            "vertical line",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[3, 1]
+            {
+                {1},
+                {1},
+                {1}
+            },
+            "horizontal line",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[2, 2]
+            {
+                {1,1},
+                {1,-1}
+            },
+            "top right corner",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[2, 2]
+            {
+                {1,1},
+                {-1,1}
+            },
+            "bottom right corner",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[2, 2]
+            {
+                {1,-1},
+                {1,1}
+            },
+            "top left corner",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[2, 2]
+            {
+                {-1,1},
+                {1,1}
+            },
+            "bottom left corner",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[5, 2]
+            {
+                {-1,1},
+                {1,-1},
+                {-1,1},
+                {1,-1},
+                {-1,1}
+            },
+            "wave",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[4, 2]
+            {
+                {1,1},
+                {1,-1},
+                {1,-1},
+                {1,-1}
+            },
+            "snake",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[2, 3]
+            {
+                {1,1,1},
+                {1,-1,-1}
+            },
+            "reed",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[3, 3]
+            {
+                {-1,1,-1},
+                {1,-1,1},
+                {-1,1,-1}
+            },
+            "eye",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[3, 3]
+            {
+                {1,-1,1},
+                {-1,1,-1},
+                {1,-1,1}
+            },
+            "star",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.HARD,
+            new int[4, 4]
+            {
+                {1,1,1,1 },
+                {1,-1,-1,1 },
+                {1,-1,-1,1 },
+                {1,1,1,1 }
+            },
+            "circle",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.HARD,
+            new int[4, 4]
+            {
+                {-1,-1,1,-1 },
+                {1,1,1,1 },
+                {1,1,1,1 },
+                {-1,-1,1,-1 }
+            },
+            "up arrow",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.HARD,
+            new int[4, 4]
+            {
+                {-1,1,1,-1 },
+                {-1,1,1,-1 },
+                {1,1,1,1 },
+                {-1,1,1,-1 }
+            },
+            "right arrow",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[3, 3]
+            {
+                {1,1,1},
+                {1,-1,-1},
+                {1,1,1}
+            },
+            "u",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[3, 3]
+            {
+                {1,-1,-1},
+                {1,1,1},
+                {1,-1,-1}
+            },
+            "fountain",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[2, 2]
+            {
+                {12,1},
+                {-1,1}
+            },
+            "div2011",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[4, 3]
+            {
+                {-1,1,1 },
+                {1,-1,1 },
+                {1,-1,1 },
+                {-1,1,1 }
+            },
+            "bowl",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[3, 4]
+            {
+                {-1,-1,-1,1 },
+                {1,1,1,1 },
+                {-1,1,1,-1 }
+            },
+            "bird",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[3, 4]
+            {
+                {1,-1,1,-1 },
+                {-1,1,-1,1 },
+                {1,-1,1,-1 }
+            },
+            "twist",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[3, 3]
+            {
+                {1,-1,-1},
+                {1,-1,1},
+                {1,1,-1}
+            },
+            "hand",
+            null
+        ),
+        new CorpsePattern
+        (
+            CorpsePattern.Difficulty.MEDIUM,
+            new int[4, 3]
+            {
+                {1,-1,-1 },
+                {1,1,1 },
+                {1,1,-1 },
+                {1,1,-1 }
+            },
+            "sphinx",
+            null
+        ),
+         new CorpsePattern
+        (
+            CorpsePattern.Difficulty.EASY,
+            new int[3, 3]
+            {
+                {1,-1,1},
+                {-1,1,-1},
+                {1,-1,1}
+            },
+            "Diagonal Cross",
+            null
+        )
+    };
+
+
+    public Dictionary<int, Sprite> configs = new Dictionary<int, Sprite>();
 
 
     public static PatternStore Instance;
 
+    [Serializable]
+    public class CorpsePattern
+    {
+        public enum Difficulty {
+            EASY,
+            MEDIUM,
+            HARD
+        }
+
+        public Difficulty difficulty;
+        public int[,] pattern;
+        public string name;
+        public Sprite glif;
+
+        public CorpsePattern( Difficulty difficulty, int[,] pattern, string name, Sprite glif)
+        {
+            this.difficulty = difficulty;
+            this.pattern = pattern;
+            this.name = name;
+            this.glif = glif;
+        }
+
+    }
 
     public void Awake()
     {
@@ -31,211 +347,25 @@ public  class PatternStore: MonoBehaviour
             configs.Add(item.key, item.corpse);
         }
 
-
-
-        patterns = new List<int[,]>();
-        easyPatterns = new List<int[,]>();
-        mediumPatterns= new List<int[,]>();
-        hardPatterns = new List<int[,]>();
-
-
-        int[,] verticalLine = new int[1, 3] {
-            {1,1,1}
-        };
-        easyPatterns.Add(verticalLine);
-
-
-        int[,] horizontalLine = new int[3, 1] {
-            {1},
-            {1},
-            {1}
-        };
-        easyPatterns.Add(horizontalLine);
-
-        int[,] toprightcorner = new int[2, 2] {
-            {1,1},
-            {1,-1}
-        };
-        easyPatterns.Add(toprightcorner);
-
-        int[,] bottomrightcorner = new int[2, 2] {
-            {1,1},
-            {-1,1}
-        };
-        easyPatterns.Add(bottomrightcorner);
-
-        int[,] topleftcorner = new int[2, 2] {
-            {1,-1},
-            {1,1}
-        };
-        easyPatterns.Add(topleftcorner);
-
-        int[,] bottomleftcorner = new int[2, 2] {
-            {-1,1},
-            {1,1}
-        };
-        easyPatterns.Add(bottomleftcorner);
-
-        int[,] wave = new int[5, 2] {
-            {-1,1},
-            {1,-1},
-            {-1,1},
-            {1,-1},
-            {-1,1}
-        };
-        mediumPatterns.Add(wave);
-
-        int[,] snake = new int[4, 2] {
-            {1,1},
-            {1,-1},
-            {1,-1},
-            {1,-1}
-        };
-        mediumPatterns.Add(snake);
-
-        int[,] reed = new int[2, 3] {
-            {1,1,1},
-            {1,-1,-1}
-        };
-        mediumPatterns.Add(reed);
-
-        int[,] eye = new int[3, 3] {
-            {-1,1,-1},
-            {1,-1,1},
-            {-1,1,-1},
-        };
-        mediumPatterns.Add(eye);
-
-        int[,] star = new int[3, 3] {
-            {1,-1,1},
-            {-1,1,-1},
-            {1,-1,1},
-        };
-        mediumPatterns.Add(star);
-
-        int[,] circle = new int[4, 4] {
-            {1,1,1,1 },
-            {1,-1,-1,1 },
-            {1,-1,-1,1 },
-            {1,1,1,1 }
-        };
-        hardPatterns.Add(circle);
-
-        int[,] upArrow = new int[4, 4] {
-            {-1,-1,1,-1 },
-            {1,1,1,1 },
-            {1,1,1,1 },
-            {-1,-1,1,-1 }
-        };
-        hardPatterns.Add(upArrow);
-
-        int[,] rightArrow = new int[4, 4] {
-            {-1,1,1,-1 },
-            {-1,1,1,-1 },
-            {1,1,1,1 },
-            {-1,1,1,-1 }
-        };
-        hardPatterns.Add(rightArrow);
-
-        int[,] u = new int[3, 3] {
-            {1,1,1},
-            {1,-1,-1},
-            {1,1,1},
-        };
-        mediumPatterns.Add(u);
-
-        int[,] fountain = new int[3, 3] {
-            {1,-1,-1},
-            {1,1,1},
-            {1,-1,-1},
-        };
-        mediumPatterns.Add(fountain);
-
-        int[,] div2011 = new int[2, 2] {
-            {12,1},
-            {-1,1}
-        };
-        mediumPatterns.Add(div2011);
-
-        int[,] bowl = new int[4, 3] {
-            {-1,1,1 },
-            {1,-1,1 },
-            {1,-1,1 },
-            {-1,1,1 }
-
-        };
-        mediumPatterns.Add(bowl);
-
-
-        int[,] bird = new int[3, 4] {
-            {-1,-1,-1,1 },
-            {1,1,1,1 },
-            {-1,1,1,-1 },
-
-        };
-        mediumPatterns.Add(bird);
-
-        int[,] twist = new int[3, 4] {
-            {1,-1,1,-1 },
-            {-1,1,-1,1 },
-            {1,-1,1,-1 },
-
-        };
-        mediumPatterns.Add(twist);
-
-        int[,] hand = new int[3, 3] {
-            {1,-1,-1},
-            {1,-1,1},
-            {1,1,-1},
-        };
-        mediumPatterns.Add(hand);
-
-
-        int[,] sphinx = new int[4, 3] {
-            {1,-1,-1 },
-            {1,1,1 },
-            {1,1,-1 },
-            {1,1,-1 }
-
-        };
-        mediumPatterns.Add(sphinx);
-
-
-        /*        { -1,-1,-1,-1 },
-                    { -1,-1,-1,-1 },
-                    { -1,-1,-1,-1 },
-                    { -1,-1,-1,-1 }*/
-
-
-        patterns.AddRange(easyPatterns);
-        patterns.AddRange(mediumPatterns);
-        patterns.AddRange(hardPatterns);
-
     }
 
-    public int[,] getRandomPattern()
+    public CorpsePattern GetRandomPatternWithDifficulty(CorpsePattern.Difficulty difficulty)
     {
-        int max = patterns.Count;
-        return patterns[UnityEngine.Random.Range(0, max)];
+        var hardPatterns = corpsePatterns.Where(pattern => pattern.difficulty == difficulty).ToList();
+
+        if (hardPatterns.Count == 0)
+        {
+            return null;
+        }
+
+        return hardPatterns[UnityEngine.Random.Range(0, hardPatterns.Count)];
     }
 
-    public int[,] getRandomEasyPattern()
+    public CorpsePattern getRandomPattern()
     {
-        int max = easyPatterns.Count;
-        return easyPatterns[UnityEngine.Random.Range(0, max)];
+        return corpsePatterns[UnityEngine.Random.Range(0, corpsePatterns.Count)];
     }
 
-    public int[,] getRandomMediumPattern()
-    {
-        int max = mediumPatterns.Count;
-        return mediumPatterns[UnityEngine.Random.Range(0, max)];
-    }
-
-    public int[,] getRandomHardPattern()
-    {
-        int max = hardPatterns.Count;
-        return hardPatterns[UnityEngine.Random.Range(0, max)];
-    }
 
     public int[,] spiceItUp(int[,] inpattern, int spiceChance)
     {

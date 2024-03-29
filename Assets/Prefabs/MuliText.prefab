@@ -262,9 +262,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d590eb77733ae44793768dcc133b235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Hieromancer
+  text: RESUME
   textSize: 100
   muliLetter: {fileID: 8206018334798923543, guid: c13ae3766e6318e47a3b8895846b6f42, type: 3}
+  swithTime: 0.1
+  minResolveTime: 20
+  maxResolveTime: 50
 --- !u!1 &1597601413619554223
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,12 +321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1597601412908150478}
   image: {fileID: 1597601412784191489}
-  resolveTimer:
-    time: 4
-    elapsedtime: 0
-  switchTimer:
-    time: 0.1
-    elapsedtime: 0
+  switchTime: 0
+  resolveCount: 0
   settled: 0
   sprites: []
 --- !u!1001 &7478913515260013117

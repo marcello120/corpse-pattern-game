@@ -7,6 +7,9 @@ public class MuliText : MonoBehaviour
     public string text;
     public float textSize;
     public GameObject muliLetter;
+    public float swithTime;
+    public float minResolveTime;
+    public float maxResolveTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +22,8 @@ public class MuliText : MonoBehaviour
             newLetter.transform.localScale = Vector3.one;
             MuliLetter newMuliLetter = newLetter.GetComponent<MuliLetter>();
             newMuliLetter.text.SetText(text[i].ToString());
-            newMuliLetter.resolveTimer = new MuliTimer(Random.Range(3f,7f));
+            newMuliLetter.switchTime = swithTime;
+            newMuliLetter.resolveCount = Random.Range(minResolveTime, maxResolveTime);
         }
     }
 

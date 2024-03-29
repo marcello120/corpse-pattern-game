@@ -98,8 +98,20 @@ public class GameManager : MonoBehaviour
 
         obstacles = new Grid(width, height, gridCellSize, 0);
 
+
+
+        //DEBUG THIS SHIT
+        //foreach (PatternStore.CorpsePattern cp in PatternStore.Instance.corpsePatterns)
+        //{
+        //    int[,] selected = cp.pattern;
+        //    Debug.Log("IM COOKIN HERE " + cp.name);
+        //    selected = patternStore.spiceItUp(selected, 1);
+        //    patternGrid.setPattern(selected);
+
+        //}
+
         //set pattern
-        //pattern = patternStore.getRandomEasyPattern();
+        //pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).pattern;
         pattern = new int[1, 3] {
             {1,10,1}
         };
@@ -255,7 +267,7 @@ public class GameManager : MonoBehaviour
             GameObject effect =Instantiate(scoreEffect, grid.getWorldPositionGridWithOffset(middle.x, middle.y) + new Vector3(gridCellSize / 2, gridCellSize / 2), Quaternion.identity);
             effect.transform.localScale = effect.transform.localScale * size;
             //get new random pattern from store
-            pattern = patternStore.getRandomEasyPattern();
+            pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).pattern;
             pattern = patternStore.spiceItUp(pattern, 7);
 
             //set new pattern on UI
