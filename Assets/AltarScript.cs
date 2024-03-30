@@ -28,7 +28,7 @@ public class AltarScript : MonoBehaviour
     {
         if(acceptedCoprseCode != -1)
         {
-            coprseView.sprite = PatternStore.Instance.configs[acceptedCoprseCode];
+            coprseView.sprite = CorpseStore.Instance.configs[acceptedCoprseCode];
         }
     }
 

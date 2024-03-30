@@ -420,7 +420,7 @@ public class RiggedPlayerController : PlayerController
             {
                 Vector3 place =  GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, storedCorpse, 0).corpseWorldPos;
                 GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
-                newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[storedCorpse];
+                newCorpse.GetComponent<SpriteRenderer>().sprite = CorpseStore.Instance.configs[storedCorpse];
                 storedCorpse = -100;
             }
             utilTimer.reset();

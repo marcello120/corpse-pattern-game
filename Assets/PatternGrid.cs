@@ -66,7 +66,7 @@ public class PatternGrid : MonoBehaviour
                 int corpseNum = pattern[x, y];
                 if (corpseNum != 0 && corpseNum != -1)
                 {
-                    newImage.sprite = PatternStore.Instance.configs[corpseNum];
+                    newImage.sprite = CorpseStore.Instance.configs[corpseNum];
                     newImage.color = new Color(1, 1, 1, 1);
                 }
 

@@ -148,7 +148,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             int corpseNum = cio.coprseNumber;
 
             GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
-            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNum];
+            newCorpse.GetComponent<SpriteRenderer>().sprite = CorpseStore.Instance.configs[corpseNum];
             newCorpse.GetComponent<CorpseScript>().Init(corpseNum);
             restingPlace = place;
         }

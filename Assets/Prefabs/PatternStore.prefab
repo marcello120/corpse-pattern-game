@@ -44,38 +44,230 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3118f1142a99c47a1d2b093b785567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corpseConfigs:
-  - key: 1
-    corpse: {fileID: 1653460117, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  - key: 11
-    corpse: {fileID: 21300000, guid: b1a234136af824f439374ffd7577beb3, type: 3}
-  - key: 12
-    corpse: {fileID: 21300000, guid: 1ed2692aaef197b4db2064c10a6e0ee3, type: 3}
-  - key: 21
-    corpse: {fileID: 21300000, guid: 7ce1bbea514050645b5501f0a5bea51a, type: 3}
-  - key: 22
-    corpse: {fileID: 335477034, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  - key: 31
-    corpse: {fileID: 1561405288, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  - key: 32
-    corpse: {fileID: 1571571341, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  - key: 33
-    corpse: {fileID: 21300000, guid: b402a726d1975f544a0a4370382d2d86, type: 3}
-  - key: 41
-    corpse: {fileID: 18854473, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  - key: 42
-    corpse: {fileID: 1182659836, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  - key: 43
-    corpse: {fileID: -872226365, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
-  - key: 99
-    corpse: {fileID: 21300000, guid: 9e2189bd320b6b3438c540a433b82d32, type: 3}
-  - key: 10
-    corpse: {fileID: 489567949, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
-  - key: 20
-    corpse: {fileID: -83177709, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
-  - key: 30
-    corpse: {fileID: 2070876881, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
-  - key: 40
-    corpse: {fileID: 31689751, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
-  - key: 50
-    corpse: {fileID: 2105997660, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+  corpsePatterns:
+  - difficulty: 0
+    name: vertical line
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 1, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000
+      - row: 01000000
+      - row: 01000000
+  - difficulty: 0
+    name: horizontal line
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 1}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 010000000100000001000000
+  - difficulty: 0
+    name: top right corner
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 2, y: 2}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 0100000001000000
+      - row: 01000000ffffffff
+  - difficulty: 0
+    name: bottom right corner
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 2, y: 2}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000ffffffff
+      - row: 0100000001000000
+  - difficulty: 0
+    name: top left corner
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 2, y: 2}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 0100000001000000
+      - row: ffffffff01000000
+  - difficulty: 0
+    name: bottom left corner
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 2, y: 2}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: ffffffff01000000
+      - row: 0100000001000000
+  - difficulty: 1
+    name: wave
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 5, y: 2}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: ffffffff01000000ffffffff01000000ffffffff
+      - row: 01000000ffffffff01000000ffffffff01000000
+  - difficulty: 1
+    name: snake
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 4, y: 2}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000010000000100000001000000
+      - row: 01000000ffffffffffffffffffffffff
+  - difficulty: 1
+    name: reed
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 2, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 0100000001000000
+      - row: 01000000ffffffff
+      - row: 01000000ffffffff
+  - difficulty: 1
+    name: eye
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: ffffffff01000000ffffffff
+      - row: 01000000ffffffff01000000
+      - row: ffffffff01000000ffffffff
+  - difficulty: 1
+    name: star
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000ffffffff01000000
+      - row: ffffffff01000000ffffffff
+      - row: 01000000ffffffff01000000
+  - difficulty: 2
+    name: circle
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 4, y: 4}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000010000000100000001000000
+      - row: 01000000ffffffffffffffff01000000
+      - row: 01000000ffffffffffffffff01000000
+      - row: 01000000010000000100000001000000
+  - difficulty: 2
+    name: up arrow
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 4, y: 4}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: ffffffff0100000001000000ffffffff
+      - row: ffffffff0100000001000000ffffffff
+      - row: 01000000010000000100000001000000
+      - row: ffffffff0100000001000000ffffffff
+  - difficulty: 2
+    name: right arrow
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 4, y: 4}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: ffffffffffffffff01000000ffffffff
+      - row: 01000000010000000100000001000000
+      - row: 01000000010000000100000001000000
+      - row: ffffffffffffffff01000000ffffffff
+  - difficulty: 1
+    name: u
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 010000000100000001000000
+      - row: 01000000ffffffff01000000
+      - row: 01000000ffffffff01000000
+  - difficulty: 1
+    name: fountain
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 010000000100000001000000
+      - row: ffffffff01000000ffffffff
+      - row: ffffffff01000000ffffffff
+  - difficulty: 1
+    name: div2011
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 2, y: 2}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 0c000000ffffffff
+      - row: 0100000001000000
+  - difficulty: 1
+    name: bowl
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 4, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: ffffffff0100000001000000ffffffff
+      - row: 01000000ffffffffffffffff01000000
+      - row: 01000000010000000100000001000000
+  - difficulty: 1
+    name: bird
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 4}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: ffffffff01000000ffffffff
+      - row: ffffffff0100000001000000
+      - row: ffffffff0100000001000000
+      - row: 0100000001000000ffffffff
+  - difficulty: 1
+    name: twist
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 4}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000ffffffff01000000
+      - row: ffffffff01000000ffffffff
+      - row: 01000000ffffffff01000000
+      - row: ffffffff01000000ffffffff
+  - difficulty: 1
+    name: hand
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 010000000100000001000000
+      - row: ffffffffffffffff01000000
+      - row: ffffffff01000000ffffffff
+  - difficulty: 1
+    name: sphinx
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 4, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000010000000100000001000000
+      - row: ffffffff010000000100000001000000
+      - row: ffffffff01000000ffffffffffffffff
+  - difficulty: 0
+    name: Diagonal Cross
+    glif: {fileID: 0}
+    arrayInt:
+      gridSize: {x: 3, y: 3}
+      cellSize: {x: 32, y: 16}
+      cells:
+      - row: 01000000ffffffff01000000
+      - row: ffffffff01000000ffffffff
+      - row: 01000000ffffffff01000000

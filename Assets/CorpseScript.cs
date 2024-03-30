@@ -35,7 +35,7 @@ public class CorpseScript : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         corpseNumber = coprseNumIn;
-        spriteRenderer.sprite = PatternStore.Instance.configs[corpseNumber];
+        spriteRenderer.sprite = CorpseStore.Instance.configs[corpseNumber];
 
 
 

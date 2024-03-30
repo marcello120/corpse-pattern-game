@@ -111,10 +111,7 @@ public class GameManager : MonoBehaviour
         //}
 
         //set pattern
-        //pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).pattern;
-        pattern = new int[1, 3] {
-            {1,10,1}
-        };
+        pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).getPatternFrom2DArray();
         patternGrid.setPattern(pattern);
         highscore = PlayerPrefs.GetInt("HighScore", 0);
 
@@ -267,8 +264,8 @@ public class GameManager : MonoBehaviour
             GameObject effect =Instantiate(scoreEffect, grid.getWorldPositionGridWithOffset(middle.x, middle.y) + new Vector3(gridCellSize / 2, gridCellSize / 2), Quaternion.identity);
             effect.transform.localScale = effect.transform.localScale * size;
             //get new random pattern from store
-            pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).pattern;
-            pattern = patternStore.spiceItUp(pattern, 7);
+            pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).getPatternFrom2DArray();
+            pattern = CorpseStore.Instance.spiceItUp(pattern, 7);
 
             //set new pattern on UI
             patternGrid.setPattern(pattern);

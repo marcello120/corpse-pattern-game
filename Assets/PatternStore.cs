@@ -1,30 +1,11 @@
-using Pathfinding.Ionic.Zip;
+using Array2DEditor;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public  class PatternStore: MonoBehaviour
 {
-    public List<CorpseConfig> corpseConfigs;
-
-    public List<CorpsePattern> corpsePatterns2 = new List<CorpsePattern>
-    {
-          new CorpsePattern
-        (
-            CorpsePattern.Difficulty.EASY,
-            new int[1, 3]
-            {
-                {1,1,1}
-            },
-            "vertical line",
-            null
-        )
-    };
-
-
     public List<CorpsePattern> corpsePatterns = new List<CorpsePattern>
     {
         new CorpsePattern
@@ -306,9 +287,6 @@ public  class PatternStore: MonoBehaviour
     };
 
 
-    public Dictionary<int, Sprite> configs = new Dictionary<int, Sprite>();
-
-
     public static PatternStore Instance;
 
     [Serializable]
@@ -324,6 +302,8 @@ public  class PatternStore: MonoBehaviour
         public int[,] pattern;
         public string name;
         public Sprite glif;
+        [SerializeField]
+        public Array2DInt arrayInt;
 
         public CorpsePattern( Difficulty difficulty, int[,] pattern, string name, Sprite glif)
         {
@@ -331,6 +311,12 @@ public  class PatternStore: MonoBehaviour
             this.pattern = pattern;
             this.name = name;
             this.glif = glif;
+            arrayInt = new Array2DInt(pattern);
+        }
+
+        public int[,] getPatternFrom2DArray()
+        {
+            return arrayInt.toIntArrary();
         }
 
     }
@@ -341,11 +327,14 @@ public  class PatternStore: MonoBehaviour
         {
             Instance = this;
         }
+        //foreach (var item in corpsePatterns)
+        //{
+        //    if(item.arrayInt.getGridSize() != Vector2Int.one)
+        //    {
+        //        item.pattern = item.arrayInt.toIntArrary();
+        //    }
+        //}
 
-        foreach (var item in corpseConfigs)
-        {
-            configs.Add(item.key, item.corpse);
-        }
 
     }
 
@@ -366,29 +355,18 @@ public  class PatternStore: MonoBehaviour
         return corpsePatterns[UnityEngine.Random.Range(0, corpsePatterns.Count)];
     }
 
-
-    public int[,] spiceItUp(int[,] inpattern, int spiceChance)
+    public CorpsePattern GetPatternByName(string name)
     {
-        int rows = inpattern.GetLength(0);
-        int cols = inpattern.GetLength(1);
-
-        int[,] spiced = new int[rows, cols];
-
-        for (int i = 0; i < rows; i++)
+        var patternlist = corpsePatterns.Where(pattern => pattern.name == name).ToList();
+        if(patternlist.Count == 0)
         {
-            for (int j = 0; j < cols; j++)
-            {
-                if (UnityEngine.Random.Range(1, spiceChance) == 1 && inpattern[i, j]!= -1 && inpattern[i, j]!= 0)
-                {
-                    spiced[i, j] = corpseConfigs[UnityEngine.Random.Range(0, corpseConfigs.Count)].key;
-                }
-                else
-                {
-                    spiced[i, j] = inpattern[i, j];
-                }
-            }
+            return null;
         }
-        return spiced;
+        else
+        {
+            return patternlist[0];
+        }
+
     }
 
     public static int[,] Rotate(int[,] input)
