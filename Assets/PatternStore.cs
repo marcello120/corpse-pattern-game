@@ -316,7 +316,9 @@ public  class PatternStore: MonoBehaviour
 
         public int[,] getPatternFrom2DArray()
         {
-            return arrayInt.toIntArrary();
+            return ReverseColumns(arrayInt.toIntArrary());
+            //return arrayInt.toIntArrary();
+
         }
 
     }
@@ -367,6 +369,40 @@ public  class PatternStore: MonoBehaviour
             return patternlist[0];
         }
 
+    }
+
+    static int[,] ReverseColumns(int[,] array)
+    {
+        int rows = array.GetLength(0);
+        int columns = array.GetLength(1);
+        int[,] reversedArray = new int[rows, columns];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                reversedArray[i, columns - 1 - j] = array[i, j];
+            }
+        }
+
+        return reversedArray;
+    }
+
+    static int[,] ReverseRows(int[,] array)
+    {
+        int rows = array.GetLength(0);
+        int columns = array.GetLength(1);
+        int[,] reversedArray = new int[rows, columns];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                reversedArray[rows - 1 - i, j] = array[i, j];
+            }
+        }
+
+        return reversedArray;
     }
 
     public static int[,] Rotate(int[,] input)

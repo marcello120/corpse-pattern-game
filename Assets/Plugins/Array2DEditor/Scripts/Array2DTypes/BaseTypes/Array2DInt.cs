@@ -24,10 +24,12 @@ namespace Array2DEditor
                 // Iterate over each column of the given array
                 for (int j = 0; j < array.GetLength(0); j++)
                 {
-                    // Assign the value from the given array to the corresponding cell
+                    // Assign the value from the given array to the corresponding cell with world space rotation
                     cells[i][j] = array[j, i];
                 }
             }
+
+            Array.Reverse(cells);
 
             this.gridSize = new Vector2Int(array.GetLength(0),array.GetLength(1));
         }

@@ -111,7 +111,8 @@ public class GameManager : MonoBehaviour
         //}
 
         //set pattern
-        pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).getPatternFrom2DArray();
+        pattern = patternStore.GetPatternByName("snake").getPatternFrom2DArray();
+        //pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).getPatternFrom2DArray();
         patternGrid.setPattern(pattern);
         highscore = PlayerPrefs.GetInt("HighScore", 0);
 
