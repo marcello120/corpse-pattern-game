@@ -180,6 +180,13 @@ public class LassoScript : MonoBehaviour
             Claw.transform.localPosition = Vector3.zero;
             Claw.transform.localRotation = Quaternion.identity;
 
+            // Enable the CircleCollider2D component
+            CircleCollider2D clawCollider = Claw.GetComponent<CircleCollider2D>();
+            if (clawCollider != null)
+            {
+                clawCollider.enabled = true;
+            }
+
             rope.enabled = false;
             isAttached = false;
             hitTarget = null;
