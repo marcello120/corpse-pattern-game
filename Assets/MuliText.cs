@@ -15,7 +15,6 @@ public class MuliText : MonoBehaviour
     {
         for (int i = 0; i < text.Length; i++)
         {
-            Debug.Log(text[i]);
             GameObject newLetter = Instantiate(muliLetter, Vector3.zero, Quaternion.identity);
             newLetter.transform.parent = transform;
             newLetter.GetComponent<RectTransform>().anchoredPosition = Vector3.zero + new Vector3(textSize*i/2,0);
