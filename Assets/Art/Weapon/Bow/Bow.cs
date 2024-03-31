@@ -6,7 +6,9 @@ using UnityEngine;
 public class Bow : MonoBehaviour
 {
     public GameObject arrow;
-    public float launchForce; //Ezt változtassuk a lenyomással, illetve a number a Points
+    public float chargeSpeed;
+    public float launchForce;
+    private float originalLaunchForce;
     public Transform shootPoint;
 
     public GameObject point;
@@ -20,6 +22,8 @@ public class Bow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originalLaunchForce = launchForce;
+
         points= new GameObject[numOfPoints];
         for(int i = 0; i < numOfPoints; i++)
         {
@@ -35,7 +39,13 @@ public class Bow : MonoBehaviour
         direction = mousePosition- bowPosition;
         transform.right = direction;
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q)) //while you are holding down the Q charge the Bow
+        {
+            // Gradually increase launchForce and the numOfPoints up to a maximum of 2 times the original
+            launchForce = Mathf.Min(launchForce + (chargeSpeed * Time.deltaTime), 2f * originalLaunchForce);
+
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             Shoot();
         }
@@ -50,6 +60,9 @@ public class Bow : MonoBehaviour
     {
         GameObject newArrow = Instantiate(arrow, shootPoint.position, shootPoint.rotation);
         newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
+
+        //reset launchforce and numofPoints
+        launchForce = originalLaunchForce;
     }
 
     Vector2 PointPosition(float f)
