@@ -52,7 +52,8 @@ public class RiggedPlayerController : PlayerController
         RANGED_SHOT,
         CORPSE_MOVE,
         PUSH_FORWARD,
-        EXPLODE
+        EXPLODE,
+        TRAP
     }
 
     [Header("Util")]
@@ -71,6 +72,8 @@ public class RiggedPlayerController : PlayerController
     //default -100
     public int storedCorpse = -100;
     public GameObject corpse;
+
+    public GameObject trap;
 
     public GameObject playerBody;
 
@@ -448,6 +451,12 @@ public class RiggedPlayerController : PlayerController
                 takeDamage(1f, null);
             }
         }
+        if (selectedUtility == Utility.TRAP && context.canceled)
+        {
+            Instantiate(trap,transform.position,Quaternion.identity);
+            utilTimer.reset();
+        }
+
 
 
 

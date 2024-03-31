@@ -5683,14 +5683,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6272
   utilTimer:
-    time: 0
+    time: 2
     elapsedtime: 0
   utilHoldTime: 0
   pullLine: {fileID: 6010421079866859731, guid: a859f2c30b8638340ba1fb9c90ed00a4, type: 3}
   projectile: {fileID: 1013748439425590854, guid: 5bbeeed0d20a7904db1afb2b0f26c1ab, type: 3}
   storedCorpse: -100
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
+  trap: {fileID: 762703005621402843, guid: 64a18686d51ea5645b37e4c49b8150ff, type: 3}
   playerBody: {fileID: 7636291458337714648}
+  chargeTimer:
+    time: 1
+    elapsedtime: 0
+  isChargingAttack: 0
+  chargeCompleteEffect: {fileID: 6263782476919498309, guid: cec2f799d34dd4a4c8c6aa77b91b474b, type: 3}
   hearts:
   - {fileID: 0}
   - {fileID: 0}

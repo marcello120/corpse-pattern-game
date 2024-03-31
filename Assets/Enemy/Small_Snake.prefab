@@ -152,7 +152,7 @@ MonoBehaviour:
   maxHealth: 1
   health: 1
   attackPower: 1
-  movemetSpeed: 100
+  movemetSpeed: 75
   state: 0
   isDead: 0
   stunned: 0
