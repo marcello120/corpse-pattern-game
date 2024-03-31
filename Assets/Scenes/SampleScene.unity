@@ -1384,10 +1384,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 4890919897825613307, guid: 248e0ce3268eb5b4c9dc083cfef4ee71, type: 3}
+  chargeSpeed: 2
   launchForce: 2
   shootPoint: {fileID: 435544747}
   point: {fileID: 7892518307501304731, guid: bdeffa8b1da58174e8dcf4f1ad58d78b, type: 3}
-  numOfPoints: 100
+  numOfPoints: 10
   spaceBetweenPoints: 0.1
   gravityScale: 0.15
 --- !u!212 &178563562

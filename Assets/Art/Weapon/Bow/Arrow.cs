@@ -4,6 +4,8 @@ public class Arrow : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool hasHit = false;
+    private Quaternion stoppedRotation;
+    private float timeSinceStart = 0f;
 
     private void Start()
     {
@@ -16,6 +18,13 @@ public class Arrow : MonoBehaviour
         {
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            timeSinceStart += Time.deltaTime;
+
+            if (timeSinceStart >= 3f)
+            {
+                StopArrowMovement();
+            }
         }
     }
 
@@ -34,14 +43,13 @@ public class Arrow : MonoBehaviour
                     collider.enabled = false;
                 }
 
-                // Calculate the midpoint between arrow's current position and enemy's position
+                // Calculate the midpoint between arrow's current position and enemy's position & Set the arrow's position to the midpoint
                 Vector3 midpoint = (transform.position + col.transform.position) * 0.5f;
-
-                // Set the arrow's position to the midpoint
                 transform.position = midpoint;
 
-                // Set the arrow's parent to the enemy
                 transform.parent = col.transform;
+
+                stoppedRotation = transform.rotation;
 
                 // Disable Rigidbody to prevent unwanted physics interactions
                 if (rb != null)
@@ -64,7 +72,7 @@ public class Arrow : MonoBehaviour
                 Transform enemyTransform = col.transform;
                 transform.parent = enemyTransform;
 
-                // felezzük a távot a becsapódás és az enemy között
+                stoppedRotation = transform.rotation;
 
                 // Disable Rigidbody to prevent unwanted physics interactions
                 if (rb != null)
@@ -74,7 +82,16 @@ public class Arrow : MonoBehaviour
             }
         }
     }
-   
+
+    private void StopArrowMovement()
+    {
+        hasHit = true;
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 0f;
+        transform.rotation = stoppedRotation;
+        // Maybe disable collision?
+    }
+
     /*Enemy enemy = collision.GetComponent<Enemy>();
    if(collision.GetComponent<EnemyHitbox>()!= null)
             {
@@ -86,4 +103,4 @@ public class Arrow : MonoBehaviour
                     Instantiate(hitEffect, contactpoint, Quaternion.identity);
 }
             }*/
- }
+}
