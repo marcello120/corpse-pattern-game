@@ -39,7 +39,7 @@ public class PatternGrid : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
 
 
-        pattern = PatternStore.Rotate(pattern);
+        //pattern = PatternStore.Rotate(pattern);
 
         storedPattern = pattern;
 

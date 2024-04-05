@@ -86,6 +86,14 @@ public class Holster : MonoBehaviour
         }
     }
 
+    public void Charge(float amount)
+    {
+        if (weapon != null)
+        {
+            weapon.Charge(amount);
+        }
+    }
+
     public void HeavyAttack()
     {
         if (weapon != null)

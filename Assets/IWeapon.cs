@@ -8,6 +8,8 @@ public interface IWeapon
 
     public void HeavyAttack();
 
+    public void Charge(float amount);
+
     void increaseReach(float reachIncreae);
     public bool isAttacking();
 

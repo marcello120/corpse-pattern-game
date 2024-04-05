@@ -109,6 +109,7 @@ public class RiggedPlayerController : PlayerController
             if (!chargeTimer.isDone())
             {
                 chargeTimer.update(Time.deltaTime);
+                holster.Charge(Time.deltaTime);
                 if (chargeTimer.isDone())
                 {
                     Instantiate(chargeCompleteEffect, transform);
