@@ -139,8 +139,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
         if (cio.coprseNumber == 999)
         {
-            Instantiate(cio.corpseMound, place, Quaternion.identity);
-            AstarPath.active.Scan();
+            var corpseMound = Instantiate(cio.corpseMound, place, Quaternion.identity);
+            var guo = new GraphUpdateObject(corpseMound.GetComponent<Collider2D>().bounds);
+            guo.updatePhysics = true;
+            AstarPath.active.UpdateGraphs(guo);
+            //AstarPath.active.Scan();
         }
         else
         if (corpse != null)
@@ -148,7 +151,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             int corpseNum = cio.coprseNumber;
 
             GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
-            newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[corpseNum];
+            newCorpse.GetComponent<SpriteRenderer>().sprite = CorpseStore.Instance.configs[corpseNum];
             newCorpse.GetComponent<CorpseScript>().Init(corpseNum);
             restingPlace = place;
         }

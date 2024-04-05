@@ -8,4 +8,10 @@ public class CorpseConfig
 {
     public int key;
     public Sprite corpse;
+
+    public CorpseConfig(int key, Sprite corpse)
+    {
+        this.key = key;
+        this.corpse = corpse;
+    }
 }

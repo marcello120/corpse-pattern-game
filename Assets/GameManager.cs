@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject corpseMoundObj;
 
+    public GameObject scoreEffect;
+
 
 
 
@@ -96,8 +98,21 @@ public class GameManager : MonoBehaviour
 
         obstacles = new Grid(width, height, gridCellSize, 0);
 
+
+
+        //DEBUG THIS SHIT
+        //foreach (PatternStore.CorpsePattern cp in PatternStore.Instance.corpsePatterns)
+        //{
+        //    int[,] selected = cp.pattern;
+        //    Debug.Log("IM COOKIN HERE " + cp.name);
+        //    selected = patternStore.spiceItUp(selected, 1);
+        //    patternGrid.setPattern(selected);
+
+        //}
+
         //set pattern
-        pattern = patternStore.getRandomEasyPattern();
+        pattern = patternStore.GetPatternByName("hand").getPatternFrom2DArray();
+        //pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).getPatternFrom2DArray();
         patternGrid.setPattern(pattern);
         highscore = PlayerPrefs.GetInt("HighScore", 0);
 
@@ -245,10 +260,13 @@ public class GameManager : MonoBehaviour
             }
             success = true;
             Debug.Log("SUCCESS");
-
+            Vector2Int middle = fitPatter[(fitPatter.Count-1) / 2];
+            float size = pattern.GetLength(0) > pattern.GetLength(1) ? pattern.GetLength(0) : pattern.GetLength(1);
+            GameObject effect =Instantiate(scoreEffect, grid.getWorldPositionGridWithOffset(middle.x, middle.y) + new Vector3(gridCellSize / 2, gridCellSize / 2), Quaternion.identity);
+            effect.transform.localScale = effect.transform.localScale * size;
             //get new random pattern from store
-            pattern = patternStore.getRandomEasyPattern();
-            pattern = patternStore.spiceItUp(pattern, 7);
+            pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).getPatternFrom2DArray();
+            pattern = CorpseStore.Instance.spiceItUp(pattern, 7);
 
             //set new pattern on UI
             patternGrid.setPattern(pattern);

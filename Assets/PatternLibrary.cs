@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class PatternLibrary : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class PatternLibrary : MonoBehaviour
         patternStore = PatternStore.Instance;
         rectTransform = GetComponent<RectTransform>();
 
-        List<int[,]> patterns = patternStore.patterns;
+        List<int[,]> patterns = patternStore.corpsePatterns.Select(c => c.pattern).ToList();;
 
         for (int i = 0; i < patterns.Count; i++)
         {

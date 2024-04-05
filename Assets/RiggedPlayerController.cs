@@ -52,7 +52,8 @@ public class RiggedPlayerController : PlayerController
         RANGED_SHOT,
         CORPSE_MOVE,
         PUSH_FORWARD,
-        EXPLODE
+        EXPLODE,
+        TRAP
     }
 
     [Header("Util")]
@@ -63,6 +64,8 @@ public class RiggedPlayerController : PlayerController
 
     public MuliTimer utilTimer;
 
+    public float utilHoldTime;
+
     public GameObject pullLine;
     public Projectile projectile;
 
@@ -70,8 +73,15 @@ public class RiggedPlayerController : PlayerController
     public int storedCorpse = -100;
     public GameObject corpse;
 
+    public GameObject trap;
+
     public GameObject playerBody;
 
+    public MuliTimer chargeTimer;
+
+    public bool isChargingAttack;
+
+    public GameObject chargeCompleteEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +103,18 @@ public class RiggedPlayerController : PlayerController
         if (!utilTimer.isDone())
         {
             utilTimer.update(Time.deltaTime);
+        }
+        if (isChargingAttack)
+        {
+            if (!chargeTimer.isDone())
+            {
+                chargeTimer.update(Time.deltaTime);
+                if (chargeTimer.isDone())
+                {
+                    Instantiate(chargeCompleteEffect, transform);
+                }
+
+            }
         }
 
         //toggle dash
@@ -239,23 +261,41 @@ public class RiggedPlayerController : PlayerController
 
     }
 
-    void OnMove(InputValue movementValue)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        movementInput = movementValue.Get<Vector2>();
+        Debug.Log("LOFASZ fire " + context);
+
+        if (context.performed)
+        {
+            movementInput = context.ReadValue<Vector2>();
+        }
+        if (context.canceled)
+        {
+            movementInput = Vector2.zero;
+        }
     }
 
     public void setUtility(Utility ability)
     {
         selectedUtility = ability;
     }
-    void OnUtility()
+    public void OnUtility(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            utilHoldTime= Time.time;
+        }
+        if (context.canceled)
+        {
+            utilHoldTime = 0;
+        }
+
         if (!utilTimer.isDone())
         {
             return;
         }
 
-        if(selectedUtility == Utility.MASS_SLOW)
+        if(selectedUtility == Utility.MASS_SLOW && context.canceled)
         {
             Debug.Log("MASS_SLOW");
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
@@ -272,7 +312,7 @@ public class RiggedPlayerController : PlayerController
             utilTimer.reset();
             return;
         }
-        if (selectedUtility == Utility.PULL)
+        if (selectedUtility == Utility.PULL && context.canceled)
         {
             Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
             Vector3 lookDir2D = new Vector3(lookDir.x, lookDir.y);
@@ -312,7 +352,7 @@ public class RiggedPlayerController : PlayerController
             utilTimer.reset();
             return;
         }
-        if (selectedUtility == Utility.PUSH_FORWARD)
+        if (selectedUtility == Utility.PUSH_FORWARD && context.canceled)
         {
             Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
             Vector3 lookDir2D = new Vector3(lookDir.x, lookDir.y);
@@ -353,7 +393,7 @@ public class RiggedPlayerController : PlayerController
             utilTimer.reset();
             return;
         }
-        if (selectedUtility == Utility.RANGED_SHOT)
+        if (selectedUtility == Utility.RANGED_SHOT && context.canceled)
         {
             Debug.Log("RANGED_SHOT");
             Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
@@ -365,7 +405,7 @@ public class RiggedPlayerController : PlayerController
             utilTimer.reset();
 
         }
-        if (selectedUtility == Utility.CORPSE_MOVE)
+        if (selectedUtility == Utility.CORPSE_MOVE && context.canceled)
         {
             if(storedCorpse == -100)
             {
@@ -383,12 +423,12 @@ public class RiggedPlayerController : PlayerController
             {
                 Vector3 place =  GameManager.Instance.AddWorldPosToGridAndReturnAdjustedPos(transform.position, storedCorpse, 0).corpseWorldPos;
                 GameObject newCorpse = Instantiate(corpse, place, Quaternion.identity);
-                newCorpse.GetComponent<SpriteRenderer>().sprite = PatternStore.Instance.configs[storedCorpse];
+                newCorpse.GetComponent<SpriteRenderer>().sprite = CorpseStore.Instance.configs[storedCorpse];
                 storedCorpse = -100;
             }
             utilTimer.reset();
         }
-        if (selectedUtility == Utility.EXPLODE)
+        if (selectedUtility == Utility.EXPLODE && context.canceled)
         {
             float expRadius = 1f;
             float knockbackPower = 1;
@@ -411,17 +451,23 @@ public class RiggedPlayerController : PlayerController
                 takeDamage(1f, null);
             }
         }
+        if (selectedUtility == Utility.TRAP && context.canceled)
+        {
+            Instantiate(trap,transform.position,Quaternion.identity);
+            utilTimer.reset();
+        }
+
 
 
 
 
     }
 
-    void OnJump()
+    public void OnJump(InputAction.CallbackContext context)
     {
         Debug.Log("JUMP");
         //check if we can move
-        if (canMove & !stunned & canDash)
+        if (canMove && !stunned && canDash && context.performed)
         {
             animator.SetTrigger("Dash");
             rb.velocity = Vector2.zero;
@@ -477,27 +523,52 @@ public class RiggedPlayerController : PlayerController
 
 
 
-    void OnFire()
+    public void OnFire(InputAction.CallbackContext context)
     {
+
         if (canAttack)
         {
-            //animator.SetTrigger("swordAttack");
-            holster.Attack();
-            if(canMove && !stunned)
+            if(context.canceled)
             {
-                mousePosition = Input.mousePosition;
-                Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
-                rb.velocity = lookDir * 0.5f;
+                if(isChargingAttack && chargeTimer.isDone())
+                {
+                    holster.HeavyAttack();
+
+                }
+                else
+                {
+                    holster.Attack();
+
+                }
+                chargeTimer.reset();
+                isChargingAttack = false;
+
+                //animator.SetTrigger("swordAttack");
+                if (canMove && !stunned)
+                {
+                    mousePosition = Input.mousePosition;
+                    Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+                    rb.velocity = lookDir * 0.5f;
+
+                }
 
             }
+            if (context.started)
+            {
+                isChargingAttack= true;
+            }
+           
         }
 
     }
 
-    void OnTab()
+    public void OnTab(InputAction.CallbackContext context)
     {
-        Debug.Log("TAB pressed");
-        patternGrid.toggleBig();
+        if (context.performed)
+        {
+            Debug.Log("TAB pressed");
+            patternGrid.toggleBig();
+        }
     }
     
     public void Slow()
@@ -580,7 +651,15 @@ public class RiggedPlayerController : PlayerController
     private bool isAnimating = false;
     private bool canToggle = true;
 
-    public void OnEscape()
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Resume();
+        }
+    }
+
+    public void Resume()
     {
         if (gameIsPaused)
         {

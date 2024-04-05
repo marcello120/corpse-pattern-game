@@ -63,7 +63,7 @@ public class PatternChecker
             for (int j = 0; j < subArray.GetLength(1); j++)
             {
                 //1 is genric corpse. spec corpses are >10
-                if (subArray[i, j] == inPattern[i, j] || (inPattern[i, j]==1 && subArray[i, j]> 10))
+                if (subArray[i, j] == inPattern[i, j] || (inPattern[i, j]==1 && subArray[i, j]> 10) || tierEqual(inPattern[i, j], subArray[i,j]))
                 {
                     int xpos = i + xOffset;
                     int ypos = j + yOffset;
@@ -118,15 +118,24 @@ public class PatternChecker
             for (int j = 0; j < array1.GetLength(1); j++)
             {
                 //1 means any corpse, coprses are >10
-                if (array1[i, j] != array2[i, j] && (array1[i, j] != 1 || array2[i, j] <= 10))
-                    {
-                        return false;
+                if (array1[i, j] != array2[i, j] && (array1[i, j] != 1 || array2[i, j] <= 10) && !tierEqual(array1[i, j], array2[i,j]))
+                {
+                    return false;
                 }
             }
         }
 
         return true;
 
+    }
+
+    private bool tierEqual(int v1, int v2)
+    {
+        if (v1 % 10 == 0 && v2 > 10)
+        {
+            return v2/10 == v1/10;
+        }
+        return false;
     }
 
     private int[,] resolveWildCards(int[,] inPattern, int[,] bigArr, int wildcard)

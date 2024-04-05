@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class MuliLetter : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public Image image;
 
-    public MuliTimer resolveTimer = new MuliTimer(5f);
-    public MuliTimer switchTimer = new MuliTimer(0.1f);
+    public float switchTime;
+    public float resolveCount;
 
     public bool settled = false;
 
@@ -20,36 +21,32 @@ public class MuliLetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sprites = Resources.LoadAll<Sprite>("Hiero");
+        sprites = Resources.LoadAll<Sprite>("Glifs");
         text.enabled = false;
         image.sprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
+        StartCoroutine(doTheThing());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!settled)
-        {
-            if (switchTimer.isDone())
+
+    }
+
+    void OnEnable(){
+        //StartCoroutine(doTheThing());
+    }
+
+    IEnumerator doTheThing()
+    {
+            for (int i = 0; i < resolveCount; i++)
             {
-                switchTimer.reset();
-                //change sprite
-                image.sprite = sprites[UnityEngine.Random.Range(0,sprites.Length)];
+                image.sprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
+                yield return new WaitForSecondsRealtime(switchTime);
             }
-            else
-            {
-                switchTimer.update(Time.deltaTime);
-            }
-            if (resolveTimer.isDone())
-            {
-                settled= true;
-                image.enabled= false;
-                text.enabled = true;
-            }
-            else
-            {
-                resolveTimer.update(Time.deltaTime);
-            }
-        }  
+            settled = true;
+            image.enabled = false;
+            text.enabled = true;
     }
 }
