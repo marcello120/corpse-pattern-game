@@ -6,7 +6,6 @@ using System.Linq;
 
 public class PatternLibrary : MonoBehaviour
 {
-    PatternStore patternStore;
     public PatternGrid patternGrid;
     RectTransform rectTransform;
 
@@ -14,10 +13,9 @@ public class PatternLibrary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        patternStore = PatternStore.Instance;
         rectTransform = GetComponent<RectTransform>();
 
-        List<int[,]> patterns = patternStore.corpsePatterns.Select(c => c.pattern).ToList();;
+        List<int[,]> patterns = PatternStore.Instance.corpsePatterns.Select(c => c.pattern).ToList();;
 
         for (int i = 0; i < patterns.Count; i++)
         {

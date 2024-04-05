@@ -137,7 +137,8 @@ public class LassoScript : MonoBehaviour
             isMoving = true;
             if (bulletRigidbody != null)
             {
-                bulletRigidbody.velocity = transform.right * clawSpeed;
+                //bulletRigidbody.velocity = transform.right * clawSpeed;
+                bulletRigidbody.AddForce(transform.right * clawSpeed * 10000000);
             }
             if (clawScript != null)
             {

@@ -68,4 +68,9 @@ public class Weapon : MonoBehaviour, IWeapon
     public virtual void HeavyAttack()
     {
     }
+
+    public virtual void Charge(float amount)
+    {
+        
+    }
 }

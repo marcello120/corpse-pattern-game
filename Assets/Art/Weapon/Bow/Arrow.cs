@@ -9,6 +9,9 @@ public class Arrow : MonoBehaviour
     private float timeSinceHit = 0f;
     public float timeAfterFadeOut = 10f;
     public float fadeOutSpeed = 3f;
+    public float attackPower = 1f;
+
+
 
     private void Start()
     {
@@ -48,16 +51,16 @@ public class Arrow : MonoBehaviour
     {
         if (!hasHit)
         {
-            if (col.CompareTag("Enemy"))
+            if (col.CompareTag("Enemy") && col.gameObject.layer == LayerMask.NameToLayer("EnemyBody"))
             {
                 hasHit = true;
 
-                // Disable the collider to prevent further collisions
-                Collider2D collider = GetComponent<Collider2D>();
-                if (collider != null)
-                {
-                    collider.enabled = false;
-                }
+                //// Disable the collider to prevent further collisions
+                //Collider2D collider = GetComponent<Collider2D>();
+                //if (collider != null)
+                //{
+                //    collider.enabled = false;
+                //}
 
                 // Calculate the midpoint between arrow's current position and enemy's position & Set the arrow's position to the midpoint
                 Vector3 midpoint = (transform.position + col.transform.position) * 0.5f;
@@ -67,23 +70,23 @@ public class Arrow : MonoBehaviour
 
                 stoppedRotation = transform.rotation;
 
-                // Disable Rigidbody to prevent unwanted physics interactions
-                if (rb != null)
-                {
-                    Destroy(rb);
-                }
 
-                Enemy enemy = col.GetComponent<Enemy>();
-                if(col.GetComponent<EnemyHitbox>()!= null)
+                if (col.GetComponent<EnemyHitbox>()!= null)
                 {
-                Vector3 directionToEnemy = (col.gameObject.transform.position - transform.parent.parent.position).normalized;
-                col.GetComponent<EnemyHitbox>().getHit(1f , Vector2.right, directionToEnemy); //Az 1f és a Vector2.right csak dummy ertek
+                    Vector3 directionToEnemy = (col.gameObject.transform.position - transform.parent.parent.position).normalized;
+                    col.GetComponent<EnemyHitbox>().getHit(attackPower, Vector2.right, directionToEnemy); //Az 1f és a Vector2.right csak dummy ertek
                     Vector2 contactpoint = col.ClosestPoint(transform.position);
 
                     /*if (hitEffect != null)
                     {
                        Instantiate(hitEffect, contactpoint, Quaternion.identity);
                     }*/
+                }
+
+                // Disable Rigidbody to prevent unwanted physics interactions
+                if (rb != null)
+                {
+                    Destroy(rb);
                 }
             }
             else if (col.CompareTag("Wall"))
@@ -100,13 +103,44 @@ public class Arrow : MonoBehaviour
                 // Set the arrow's parent to the enemy
                 Transform enemyTransform = col.transform;
                 transform.parent = enemyTransform;
-
                 stoppedRotation = transform.rotation;
 
                 // Disable Rigidbody to prevent unwanted physics interactions
                 if (rb != null)
                 {
                     Destroy(rb);
+                }
+            }
+            if (col.tag == "Destructible")
+            {
+                hasHit = true;
+
+                Collider2D collider = GetComponent<Collider2D>();
+                if (collider != null)
+                {
+                    collider.enabled = false;
+                }
+
+                // Set the arrow's parent to the enemy
+                Transform enemyTransform = col.transform;
+                transform.parent = enemyTransform;
+                stoppedRotation = transform.rotation;
+
+                // Disable Rigidbody to prevent unwanted physics interactions
+                if (rb != null)
+                {
+                    Destroy(rb);
+                }
+
+                Vector2 contactpoint = col.ClosestPoint(transform.position);
+                //if (hitEffect != null)
+                //{
+                //    Instantiate(hitEffect, contactpoint, Quaternion.identity);
+                //}
+                Destructible destructible = col.GetComponent<Destructible>();
+                if (destructible != null)
+                {
+                    destructible.hitDestructible(attackPower);
                 }
             }
         }
