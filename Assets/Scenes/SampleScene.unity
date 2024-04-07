@@ -2287,6 +2287,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &226448168 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4869980201769278649, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
+  m_PrefabInstance: {fileID: 7636291456864088470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &248422167 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3096969235020821989, guid: 50ec77df382f4c1499bf2d7860a80ef6, type: 3}
@@ -36966,6 +36971,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 1.499882
       objectReference: {fileID: 0}
+    - target: {fileID: 5112992518243586849, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5126160972630417331, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: 0.065353036
@@ -37534,6 +37543,18 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 1858105183}
+    - target: {fileID: 9214580551787833304, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.129
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214580551787833305, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
+      propertyPath: arrowSprite
+      value: 
+      objectReference: {fileID: 226448168}
+    - target: {fileID: 9214580551787833305, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
+      propertyPath: shootCoolDown
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
 --- !u!1001 &8014337247156778671

@@ -23,7 +23,8 @@ public class Arrow : MonoBehaviour
         if (!hasHit) //Ha ki van love, de nem talalt semmit
         {
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            stoppedRotation =  Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = stoppedRotation;
 
             timeSinceStart += Time.deltaTime;
 
