@@ -47,7 +47,7 @@ public class LassoScript : MonoBehaviour
 
         Direction = mousePos - (Vector2)transform.position;
 
-        FaceMouse();
+        //FaceMouse();
 
         if (hitTarget != null)
         {
@@ -138,7 +138,7 @@ public class LassoScript : MonoBehaviour
             if (bulletRigidbody != null)
             {
                 //bulletRigidbody.velocity = transform.right * clawSpeed;
-                bulletRigidbody.AddForce(transform.right * clawSpeed * 10000000);
+                bulletRigidbody.AddForce(transform.right * clawSpeed);
             }
             if (clawScript != null)
             {

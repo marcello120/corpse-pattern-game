@@ -526,6 +526,10 @@ public class RiggedPlayerController : PlayerController
 
     public void OnFire(InputAction.CallbackContext context)
     {
+        if (gameIsPaused)
+        {
+            return;
+        }
 
         if (canAttack)
         {
