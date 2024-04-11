@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -53,7 +54,8 @@ public class RiggedPlayerController : PlayerController
         CORPSE_MOVE,
         PUSH_FORWARD,
         EXPLODE,
-        TRAP
+        TRAP,
+        GRAPPLING_HOOK,
     }
 
     [Header("Util")]
@@ -74,6 +76,9 @@ public class RiggedPlayerController : PlayerController
     public GameObject corpse;
 
     public GameObject trap;
+
+    public MuliHook mulihook;
+
 
     public GameObject playerBody;
 
@@ -456,6 +461,23 @@ public class RiggedPlayerController : PlayerController
         {
             Instantiate(trap,transform.position,Quaternion.identity);
             utilTimer.reset();
+        }
+        if (selectedUtility == Utility.GRAPPLING_HOOK && context.canceled)
+        {
+            if(mulihook == null)
+            {
+                return;
+            }
+
+            if(mulihook.state == MuliHook.HookState.Ready)
+            {
+                mulihook.shoot();
+            }
+            else
+            {
+                mulihook.retreat();
+            }
+
         }
 
 

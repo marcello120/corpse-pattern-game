@@ -138,7 +138,7 @@ public class LassoScript : MonoBehaviour
             if (bulletRigidbody != null)
             {
                 //bulletRigidbody.velocity = transform.right * clawSpeed;
-                bulletRigidbody.AddForce(transform.right * clawSpeed);
+                bulletRigidbody.AddForce(Direction   * clawSpeed);
             }
             if (clawScript != null)
             {
@@ -158,8 +158,8 @@ public class LassoScript : MonoBehaviour
         if (bulletRigidbody != null)
         {
             // Calculate velocity to move the claw back to the shootPoint
-            Vector2 direction = (shootPoint.position - Claw.transform.position).normalized;
-            bulletRigidbody.velocity = direction * clawSpeed;
+            Vector2 dir = (shootPoint.position - Claw.transform.position).normalized;
+            bulletRigidbody.velocity = dir * clawSpeed * 0.000001f;
             Debug.Log("Recalling claw");
         }
         else
