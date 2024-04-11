@@ -24,6 +24,10 @@ public class ClawScript : MonoBehaviour
             // Update the bullet's position based on the attached target
             transform.position = targetHit.position;
         }
+        if(!attached && !isShot)
+        {
+            transform.position = transform.parent.position;
+        }
     }
 
     public void Shot()
@@ -38,6 +42,8 @@ public class ClawScript : MonoBehaviour
     {
         attached = false;
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -99,9 +105,10 @@ public class ClawScript : MonoBehaviour
             col.enabled = false;
         }
         // Parent the bullet to the enemy
-        transform.parent = enemyTransform;
+        //transform.parent = enemyTransform;
 
-        // Reset local position to zero
-        transform.localPosition = Vector3.zero;
+        //// Reset local position to zero
+        //transform.localPosition = Vector3.zero;
+
     }
 }

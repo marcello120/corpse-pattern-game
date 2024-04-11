@@ -15,7 +15,7 @@ public class PatternLibrary : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
 
-        List<int[,]> patterns = PatternStore.Instance.corpsePatterns.Select(c => c.pattern).ToList();;
+        List<int[,]> patterns = PatternStore.Instance.corpsePatterns.Select(c => c.getPatternFrom2DArray()).ToList();;
 
         for (int i = 0; i < patterns.Count; i++)
         {
