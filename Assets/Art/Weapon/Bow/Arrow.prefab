@@ -122,6 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeAfterFadeOut: 10
   fadeOutSpeed: 2
+  attackPower: 1
+  knockbackPower: 1000
 --- !u!61 &296986359018527556
 BoxCollider2D:
   m_ObjectHideFlags: 0
