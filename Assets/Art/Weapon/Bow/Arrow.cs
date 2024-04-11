@@ -10,6 +10,7 @@ public class Arrow : MonoBehaviour
     public float timeAfterFadeOut = 10f;
     public float fadeOutSpeed = 3f;
     public float attackPower = 1f;
+    public float knockbackPower;
 
 
 
@@ -75,7 +76,7 @@ public class Arrow : MonoBehaviour
                 if (col.GetComponent<EnemyHitbox>()!= null)
                 {
                     Vector3 directionToEnemy = (col.gameObject.transform.position - transform.parent.parent.position).normalized;
-                    col.GetComponent<EnemyHitbox>().getHit(attackPower, Vector2.right, directionToEnemy); //Az 1f és a Vector2.right csak dummy ertek
+                    col.GetComponent<EnemyHitbox>().getHit(attackPower, GetKnockBack(col), directionToEnemy); //A hit effect itt torolheto, nem?
                     Vector2 contactpoint = col.ClosestPoint(transform.position);
 
                     /*if (hitEffect != null)
@@ -160,5 +161,14 @@ public class Arrow : MonoBehaviour
         {
             collider.enabled = false;
         }
+    }
+
+    private Vector2 GetKnockBack(Collider2D collision)
+    {
+        Vector3 parentPosition = gameObject.GetComponentInParent<Transform>().position;
+
+        Vector2 direction = parentPosition - collision.gameObject.transform.position;
+
+        return (direction.normalized * knockbackPower * -1);
     }
 }
