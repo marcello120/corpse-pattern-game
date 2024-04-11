@@ -7,8 +7,12 @@ public class BowWeapon : Weapon
     public GameObject arrow;
     public float chargeSpeed;
     public float launchForce;
+    public float shootCoolDown = 3f;
+    private float shootTimeCount;
+    private bool canShoot = true;
     private float originalLaunchForce;
     public Transform shootPoint;
+    public GameObject arrowSprite;
 
     public GameObject point;
     GameObject[] points;
@@ -34,12 +38,23 @@ public class BowWeapon : Weapon
     // Update is called once per frame
     void Update()
     {
+        if(!canShoot) //Shoot CD
+        {
+            arrowSprite.SetActive(false);
+            shootTimeCount += Time.deltaTime;
+            if(shootTimeCount > shootCoolDown)
+            {
+                canShoot = true;
+                shootTimeCount= 0;
+            }
+        }
+        else
+        {
+            arrowSprite.SetActive(true);
+        }
+
         for (int i = 0; i < numOfPoints; i++)
         {
-            if(launchForce > 2.3)
-            {
-                Debug.Log("HELLO");
-            }
             points[i].transform.localPosition = PointPosition(i * spaceBetweenPoints);
             Color objectColor = points[i].GetComponent<Renderer>().material.color;
             float fadeAmount = launchForce / (originalLaunchForce * 2) - 0.5f;
@@ -51,8 +66,10 @@ public class BowWeapon : Weapon
 
     public override void Charge(float amount)
     {
-        launchForce = Mathf.Min(launchForce + (chargeSpeed * amount), 2f * originalLaunchForce);
-
+        if (canShoot)
+        {
+            launchForce = Mathf.Min(launchForce + (chargeSpeed * amount), 2f * originalLaunchForce);
+        }
     }
 
     public override void Attack()
@@ -62,11 +79,16 @@ public class BowWeapon : Weapon
 
     void Shoot()
     {
-        GameObject newArrow = Instantiate(arrow, shootPoint.position, shootPoint.rotation);
-        newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
+        if (canShoot)
+        {
+            GameObject newArrow = Instantiate(arrow, shootPoint.position, shootPoint.rotation);
+            newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
 
-        //reset launchforce and numofPoints
-        launchForce = originalLaunchForce;
+            //reset launchforce and numofPoints
+            launchForce = originalLaunchForce;
+
+            canShoot= false;
+        }
     }
 
     Vector2 PointPosition(float f)
