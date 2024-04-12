@@ -111,9 +111,10 @@ public class GameManager : MonoBehaviour
         //}
 
         //set pattern
-        pattern = patternStore.GetPatternByName("hoe").getPatternFrom2DArray();
+        PatternStore.CorpsePattern corpsePattern = patternStore.GetPatternByName("hoe");
+        pattern = corpsePattern.getPatternFrom2DArray();
         //pattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY).getPatternFrom2DArray();
-        patternGrid.setPattern(pattern);
+        patternGrid.setPattern(corpsePattern.getOtherPatternFrom2DArray());
         highscore = PlayerPrefs.GetInt("HighScore", 0);
 
         successText.SetText("Score: " + 0);
