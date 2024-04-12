@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -11,8 +12,8 @@ public class Arrow : MonoBehaviour
     public float fadeOutSpeed = 3f;
     public float attackPower = 1f;
     public float knockbackPower;
-
-
+    public float speed;
+    public GameObject impactParticles;
 
     private void Start()
     {
@@ -23,6 +24,8 @@ public class Arrow : MonoBehaviour
     {
         if (!hasHit) //Ha ki van love, de nem talalt semmit
         {
+            StartCoroutine(CalculateSpeed());
+
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
             stoppedRotation =  Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = stoppedRotation;
@@ -107,6 +110,8 @@ public class Arrow : MonoBehaviour
                 transform.parent = enemyTransform;
                 stoppedRotation = transform.rotation;
 
+                SpawnImpactParticles(transform.position, col.transform.position);
+
                 // Disable Rigidbody to prevent unwanted physics interactions
                 if (rb != null)
                 {
@@ -169,6 +174,19 @@ public class Arrow : MonoBehaviour
 
         Vector2 direction = parentPosition - collision.gameObject.transform.position;
 
-        return (direction.normalized * knockbackPower * -1);
+        return (direction.normalized * knockbackPower * speed * -1);
+    }
+
+    IEnumerator CalculateSpeed()
+    {
+        Vector3 lastPos = transform.position;
+        yield return new WaitForFixedUpdate();
+        speed = (lastPos - transform.position).magnitude / Time.deltaTime;
+    }
+
+    public void SpawnImpactParticles(Vector3 spawnPos, Vector3 direction)
+    {
+        Quaternion rotation = Quaternion.FromToRotation(Vector2.right, direction);
+        Instantiate(impactParticles, spawnPos, rotation);
     }
 }

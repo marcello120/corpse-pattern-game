@@ -123,7 +123,9 @@ MonoBehaviour:
   timeAfterFadeOut: 10
   fadeOutSpeed: 2
   attackPower: 1
-  knockbackPower: 1000
+  knockbackPower: 500
+  speed: 0
+  impactParticles: {fileID: 3432958286849152088, guid: 0fc69770e68ca4d40b0c5a32a3cf1745, type: 3}
 --- !u!61 &296986359018527556
 BoxCollider2D:
   m_ObjectHideFlags: 0
