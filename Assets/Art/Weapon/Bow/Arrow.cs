@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -11,8 +12,10 @@ public class Arrow : MonoBehaviour
     public float fadeOutSpeed = 3f;
     public float attackPower = 1f;
     public float knockbackPower;
-
-
+    public float speed;
+    public GameObject impactParticles;
+    public GameObject arrowHead;
+    public Sprite stoppedSprite;
 
     private void Start()
     {
@@ -23,6 +26,8 @@ public class Arrow : MonoBehaviour
     {
         if (!hasHit) //Ha ki van love, de nem talalt semmit
         {
+            StartCoroutine(CalculateSpeed());
+
             float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
             stoppedRotation =  Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = stoppedRotation;
@@ -79,10 +84,16 @@ public class Arrow : MonoBehaviour
                     col.GetComponent<EnemyHitbox>().getHit(attackPower, GetKnockBack(col), directionToEnemy); //A hit effect itt torolheto, nem?
                     Vector2 contactpoint = col.ClosestPoint(transform.position);
 
-                    /*if (hitEffect != null)
+                    //spawn effect particles
+                    Vector3 direction = col.transform.position - arrowHead.transform.position;
+                    SpawnImpactParticles(arrowHead.transform.position, -direction.normalized);
+
+                    // Change the sprite
+                    SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null && stoppedSprite != null)
                     {
-                       Instantiate(hitEffect, contactpoint, Quaternion.identity);
-                    }*/
+                        spriteRenderer.sprite = stoppedSprite;
+                    }
                 }
 
                 // Disable Rigidbody to prevent unwanted physics interactions
@@ -107,6 +118,17 @@ public class Arrow : MonoBehaviour
                 transform.parent = enemyTransform;
                 stoppedRotation = transform.rotation;
 
+                //spawn effect particles
+                Vector3 direction = col.transform.position - arrowHead.transform.position;
+                SpawnImpactParticles(arrowHead.transform.position, -direction.normalized);
+
+                // Change the sprite
+                SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null && stoppedSprite != null)
+                {
+                    spriteRenderer.sprite = stoppedSprite;
+                }
+
                 // Disable Rigidbody to prevent unwanted physics interactions
                 if (rb != null)
                 {
@@ -128,6 +150,17 @@ public class Arrow : MonoBehaviour
                 transform.parent = enemyTransform;
                 stoppedRotation = transform.rotation;
 
+                //spawn effect particles
+                Vector3 direction = col.transform.position - arrowHead.transform.position;
+                SpawnImpactParticles(arrowHead.transform.position, -direction.normalized);
+
+                // Change the sprite
+                SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null && stoppedSprite != null)
+                {
+                    spriteRenderer.sprite = stoppedSprite;
+                }
+
                 // Disable Rigidbody to prevent unwanted physics interactions
                 if (rb != null)
                 {
@@ -135,10 +168,6 @@ public class Arrow : MonoBehaviour
                 }
 
                 Vector2 contactpoint = col.ClosestPoint(transform.position);
-                //if (hitEffect != null)
-                //{
-                //    Instantiate(hitEffect, contactpoint, Quaternion.identity);
-                //}
                 Destructible destructible = col.GetComponent<Destructible>();
                 if (destructible != null)
                 {
@@ -155,6 +184,13 @@ public class Arrow : MonoBehaviour
         rb.gravityScale = 0f;
         transform.rotation = stoppedRotation;
 
+        // Change the sprite
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null && stoppedSprite != null)
+        {
+            spriteRenderer.sprite = stoppedSprite;
+        }
+
         // Disable the collider to prevent further collisions
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null)
@@ -169,6 +205,19 @@ public class Arrow : MonoBehaviour
 
         Vector2 direction = parentPosition - collision.gameObject.transform.position;
 
-        return (direction.normalized * knockbackPower * -1);
+        return (direction.normalized * knockbackPower * speed * -1);
+    }
+
+    IEnumerator CalculateSpeed()
+    {
+        Vector3 lastPos = transform.position;
+        yield return new WaitForFixedUpdate();
+        speed = (lastPos - transform.position).magnitude / Time.deltaTime;
+    }
+
+    public void SpawnImpactParticles(Vector3 spawnPos, Vector3 direction)
+    {
+        Quaternion rotation = Quaternion.FromToRotation(Vector2.right, direction);
+        Instantiate(impactParticles, spawnPos, rotation);
     }
 }
