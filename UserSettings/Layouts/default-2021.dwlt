@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 17
+  controlID: 111
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1223,10 +1223,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 707}
+      scrollPos: {x: 0, y: 723}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: aceaffff02fbffff
+      m_ExpandedIDs: 08fbffff50790000a2790000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1564,9 +1564,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.631555, y: -5.893186, z: -0.000000029802322}
+    m_Target: {x: -2.0256665, y: -5.2829347, z: 0.019894896}
     speed: 2
-    m_Value: {x: -0.6315555, y: -5.893186, z: 0.00000023646703}
+    m_Value: {x: -2.0256665, y: -5.2829347, z: 0.019894896}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1617,9 +1617,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.38554257
+    m_Target: 1.7888029
     speed: 2
-    m_Value: 0.38554293
+    m_Value: 1.7888029
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -3228,22 +3228,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art/Weapon/Torch
+    - Assets/Art/Weapon
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Art/Weapon/Torch
+  - Assets/Art/Weapon
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\mikie\Documents\GitHub\corpse-pattern-game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 395}
-    m_SelectedIDs: 389a0000
-    m_LastClickedID: 39480
-    m_ExpandedIDs: 00000000e8980000ea980000ec980000ee980000f0980000f2980000f4980000f6980000f8980000fa980000fc980000fe980000009900000299000004990000069900000899000000ca9a3bffffff7f
+    m_SelectedIDs: 04990000
+    m_LastClickedID: 39172
+    m_ExpandedIDs: 00000000ec980000ee980000f0980000f2980000f4980000f6980000f8980000fa980000fc980000fe98000000990000029900000499000006990000089900000a9900000c99000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3271,7 +3271,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e8980000ea980000ec980000ee980000f0980000f2980000f4980000f6980000f8980000fa980000fc980000fe9800000099000002990000049900000699000008990000
+    m_ExpandedIDs: 00000000ec980000ee980000f0980000f2980000f4980000f6980000f8980000fa980000fc980000fe98000000990000029900000499000006990000089900000a9900000c990000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
