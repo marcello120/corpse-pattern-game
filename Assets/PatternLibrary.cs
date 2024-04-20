@@ -15,7 +15,7 @@ public class PatternLibrary : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
 
-        List<int[,]> patterns = PatternStore.Instance.corpsePatterns.Select(c => c.getPatternFrom2DArray()).ToList();;
+        List<int[,]> patterns = PatternStore.Instance.corpsePatterns.Select(c => c.getOtherPatternFrom2DArray()).ToList();;
 
         for (int i = 0; i < patterns.Count; i++)
         {
@@ -31,7 +31,7 @@ public class PatternLibrary : MonoBehaviour
 }
 
 // Update is called once per frame
-void Update()
+    void Update()
     {
         
     }

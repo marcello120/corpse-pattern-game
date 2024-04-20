@@ -318,7 +318,12 @@ public  class PatternStore: MonoBehaviour
         {
             return ReverseColumns(arrayInt.toIntArrary());
             //return arrayInt.toIntArrary();
+        }
 
+        public int[,] getOtherPatternFrom2DArray()
+        {
+            return arrayInt.toUnShiftedIntArrary();
+            //return arrayInt.toIntArrary();
         }
 
     }

@@ -56,5 +56,18 @@ namespace Array2DEditor
             }
             return result;
         }
+
+        public int[,] toUnShiftedIntArrary()
+        {
+            int[,] result = new int[this.GridSize.y, this.GridSize.x];
+            for (int i = 0; i < this.GridSize.x; i++)
+            {
+                for (int j = 0; j < this.GridSize.y; j++)
+                {
+                    result[j, i] = GetCell(i, j);
+                }
+            }
+            return result;
+        }
     }
 }
