@@ -45,9 +45,8 @@ public class Tentacle2 : MonoBehaviour
         {
             if (bodyParts[i] == null)
             {
-                bodyParts[i] = bodyParts[i + 1];
+                //bodyParts[i] = bodyParts[i + 1];
                 //bodyParts[i] = null; !!!VESZÉLYES!!!
-                i = i - 1;
             }
         }
         
