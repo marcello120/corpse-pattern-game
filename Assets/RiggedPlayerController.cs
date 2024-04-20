@@ -214,7 +214,15 @@ public class RiggedPlayerController : PlayerController
     private void playEffectDashReload()
     {
         effectsAnimator.Play("effect_wheel");
+        //insatatiate vfx
     }
+
+    //private void playEffectInvincEnd()
+    //{
+    //    effectsAnimator.Play("effect_wheel");
+    //    //insatatiate vfx
+    //}
+
     private void playEffectSlowCircle()
     {
         effectsAnimator.Play("effect_vortex");
