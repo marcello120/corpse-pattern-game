@@ -21,6 +21,8 @@ public class AStarMovement : MonoBehaviour
 
     public float nextWayPointDist = 0.2f;
 
+    public float refreshTime = 0.5f;
+
 
     public void init()
     {
@@ -28,7 +30,7 @@ public class AStarMovement : MonoBehaviour
 
         seeker = GetComponent<Seeker>();
 
-        InvokeRepeating(nameof(UpdatePath), 0f, 0.5f);
+        InvokeRepeating(nameof(UpdatePath), 0f, refreshTime);
     }
 
 
