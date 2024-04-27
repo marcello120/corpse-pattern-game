@@ -50,6 +50,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public List<State> moveStates = new List<State>() { State.Idle, State.Moving };
     public Vector3 restingPlace;
     public float aliveTime;
+    public bool stunnable = true;
 
 
 
@@ -186,6 +187,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public virtual void getHit(float damage, Vector2 knockback, Vector3 directtion)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         if (hitEffect != null)
         {
             Instantiate(hitEffect, transform.position, Quaternion.FromToRotation(Vector3.right, directtion));
@@ -199,7 +205,6 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             audioSource.Play();
         }
-
 
         health -= damage;
         if (health <= 0)
@@ -227,7 +232,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public void damagePlayer(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player"&& !isDead)
         {
             RiggedPlayerController playerController = collision.gameObject.GetComponent<RiggedPlayerController>();
             playerController.takeDamage(attackPower, this.gameObject);

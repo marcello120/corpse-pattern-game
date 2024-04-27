@@ -8,6 +8,11 @@ public class EnemyHitbox: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    public virtual void Init()
+    {
         parentEnemy = GetComponentInParent<Enemy>();
     }
 
@@ -27,7 +32,7 @@ public class EnemyHitbox: MonoBehaviour
         parentEnemy.removeAllStatuses();
     }
 
-    public void getHit(float damage, Vector2 knockbac, Vector3 direction)
+    public virtual void getHit(float damage, Vector2 knockbac, Vector3 direction)
     {
         if (parentEnemy == null) return;
         parentEnemy.getHit(damage, knockbac, direction);

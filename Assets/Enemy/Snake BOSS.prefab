@@ -329,10 +329,10 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 6431ceac1ab1a124ab5ad71d695feeb2, type: 3}
   spawnSound: {fileID: 0}
-  maxHealth: 50
-  health: 50
-  attackPower: 0
-  movemetSpeed: 25000
+  maxHealth: 200
+  health: 200
+  attackPower: 1
+  movemetSpeed: 0.85
   state: 0
   isDead: 0
   stunned: 0
@@ -343,13 +343,26 @@ MonoBehaviour:
   moveStates: 0100000002000000
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
-  segment: {fileID: 564295028798407005, guid: 630d8f63390d0494ea497eda873051ff, type: 3}
+  stunnable: 0
+  segment: {fileID: 5951939306447471233, guid: 630d8f63390d0494ea497eda873051ff, type: 3}
   segmentList: []
-  initialSize: 10
-  segmentDistance: 0.4
-  frequency: 1
-  magnitude: 1
-  dirdir: {x: 0, y: 0}
+  initialSize: 20
+  segmentDistance: 0.5
+  frequency: 2
+  magnitude: 0.012
+  dirToPlayer: {x: 0, y: 0, z: 0}
+  roamTarget: {fileID: 4112866766781027947, guid: bf7e01a002c4fc24a9eae746a3206a14, type: 3}
+  sinceCharge: 0
+  chargeLimit: 18
+  chargeTime: 2
+  chargeTimer: 0
+  charging: 0
+  chargeDistance: 2.5
+  originalSnake: 0
+  selfObject: {fileID: 7059493799980615791}
+  segmentHealth: 10
+  headHealth: 20
+  stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
 --- !u!61 &7059493799980615786
 BoxCollider2D:
   m_ObjectHideFlags: 0

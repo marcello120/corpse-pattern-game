@@ -257,8 +257,10 @@ public class RiggedPlayerController : PlayerController
 
     public void Stun(Enemy enemy)
     {
-        enemy.addStatusEffect(Instantiate(stunStatusEffect));
-
+        if (enemy.stunnable)
+        {
+            enemy.addStatusEffect(Instantiate(stunStatusEffect));
+        }
     }
 
     public void Slow(Enemy enemy)
@@ -277,8 +279,6 @@ public class RiggedPlayerController : PlayerController
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("LOFASZ fire " + context);
-
         if (context.performed)
         {
             movementInput = context.ReadValue<Vector2>();
