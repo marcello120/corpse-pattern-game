@@ -83,7 +83,10 @@ public class SnakeBoss : Enemy
         for (int i = 0; i < newSegmentList.Count; i++)
         {
             //SnakeBossSegment newSegment = newSegmentList[i];
-            SnakeBossSegment newSegment = Instantiate(newSegmentList[i]);
+            GameObject gameObject = Instantiate(newSegmentList[i].gameObject);
+            SnakeBossSegment newSegment = gameObject.GetComponent<SnakeBossSegment>();
+            newSegment.enabled = true;
+            gameObject.GetComponent<Collider2D>().enabled = true;
             newSegment.snakeBoss = this;
 
             if (segmentList.Count == 0)
@@ -115,6 +118,7 @@ public class SnakeBoss : Enemy
         } else
         if (index == segmentList.Count - 1)
         {
+            //TODO: instatiate small sanke
             segmentList.RemoveAt(segmentList.Count - 1);
             Destroy(snakeBossSegment.gameObject);
             return;
