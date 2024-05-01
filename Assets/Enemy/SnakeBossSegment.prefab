@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 416519815074114012}
   - component: {fileID: 5951939306447471233}
   - component: {fileID: 873138423209970115}
+  - component: {fileID: 34753299709111557}
   m_Layer: 20
   m_Name: SnakeBossSegment
   m_TagString: Enemy
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 564295028798407005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.45351475, z: 0.45351475}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 0.4535148, z: 0.4535148}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -101,6 +102,9 @@ MonoBehaviour:
   parentEnemy: {fileID: 0}
   health: 0
   snakeBoss: {fileID: 0}
+  animator: {fileID: 0}
+  spawnOnDeath: {fileID: 0}
+  hiteffect: {fileID: 4553287630450876385, guid: 7fa716e73c6ffdb41af177577c4425e8, type: 3}
 --- !u!70 &873138423209970115
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,3 +121,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0044209366, y: -0.0000017754435}
   m_Size: {x: 0.8346194, y: 0.5340045}
   m_Direction: 1
+--- !u!95 &34753299709111557
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564295028798407005}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3753f9a3e32ed104986a0843c04385c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

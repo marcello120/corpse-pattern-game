@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SnakeBoss : Enemy
@@ -43,6 +44,10 @@ public class SnakeBoss : Enemy
 
     public StatusEffect stunStatusEffect;
 
+    public GameObject smallSnake;
+
+    public List<SnakeBoss> othersnakes;
+
     public void Start()
     {
         base.Init();
@@ -69,7 +74,21 @@ public class SnakeBoss : Enemy
             }
         }
 
+        health = segmentList.Sum(seg=>seg.health) + headHealth;
+
+        InvokeRepeating(nameof(checkForSnakes), 0f, 10f);
+
+
     }
+
+
+    public void checkForSnakes()
+    {
+        othersnakes.Clear();
+        othersnakes.AddRange(GameObject.FindObjectsOfType(typeof(SnakeBoss)));
+
+    }
+
 
     public void SplitInit(List<SnakeBossSegment> newSegmentList)
     {
@@ -83,7 +102,11 @@ public class SnakeBoss : Enemy
         for (int i = 0; i < newSegmentList.Count; i++)
         {
             //SnakeBossSegment newSegment = newSegmentList[i];
-            SnakeBossSegment newSegment = Instantiate(newSegmentList[i]);
+            GameObject gameObject = Instantiate(newSegmentList[i].gameObject);
+            SnakeBossSegment newSegment = gameObject.GetComponent<SnakeBossSegment>();
+            newSegment.enabled = true;
+            gameObject.GetComponent<Collider2D>().enabled = true;
+            gameObject.GetComponent<Animator>().enabled = true;
             newSegment.snakeBoss = this;
 
             if (segmentList.Count == 0)
@@ -109,14 +132,18 @@ public class SnakeBoss : Enemy
         } else
         if (index == 0)
         {
+            if(segmentList.Count == 1)
+            {
+                Death();
+            }
             segmentList.RemoveAt(0);
-            Destroy(snakeBossSegment.gameObject);
+            snakeBossSegment.Kill(smallSnake);
             return;
         } else
         if (index == segmentList.Count - 1)
         {
+            snakeBossSegment.Kill(smallSnake);
             segmentList.RemoveAt(segmentList.Count - 1);
-            Destroy(snakeBossSegment.gameObject);
             return;
         }
         Split(index);
@@ -179,6 +206,15 @@ public class SnakeBoss : Enemy
     {
         commonUpdate();
 
+        if(dirToPlayer.x < 0 && spriteRenderer.flipY == false && !charging)
+        {
+            spriteRenderer.flipY = true;
+        }
+        if (dirToPlayer.x > 0 && spriteRenderer.flipY == true && !charging)
+        {
+            spriteRenderer.flipY = false;
+        }
+
         if (target == null)
         {
             return;
@@ -210,7 +246,7 @@ public class SnakeBoss : Enemy
         {
             Charge();
         }
-        else if (Vector3.Distance(segmentList[segmentList.Count - 1].transform.position, transform.position) < 1.4 && !charging && sinceCharge > chargeLimit)
+        else if ( segmentList.Count>1 && Vector3.Distance(segmentList[segmentList.Count - 1].transform.position, transform.position) < 1.4 && !charging && sinceCharge > chargeLimit)
         {
             Charge();
         }
@@ -244,7 +280,16 @@ public class SnakeBoss : Enemy
 
 
         var pos = transform.position;
-        pos += dirToPlayer * Time.deltaTime * movemetSpeed;
+
+        Vector3 adjustedDir = dirToPlayer;
+
+        for (int i = 0; i < othersnakes.Count; i++)
+        {
+            Vector3 dirToOther = (transform.position - othersnakes[i].transform.position).normalized * 0.33f;
+            adjustedDir += dirToOther;
+        }
+
+        pos += adjustedDir * Time.deltaTime * movemetSpeed;
         Vector3 axis = target.position - transform.position;
         axis = Quaternion.Euler(0, 0, 90) * axis;
         transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
@@ -279,7 +324,7 @@ public class SnakeBoss : Enemy
 
             //if (Vector3.Distance(targetTransfrom.position, currentSegment.transform.position) > segmentDistance || i == 0)
             //{
-            currentSegment.transform.position = Vector2.Lerp(currentSegment.transform.position, targetPos, 4f * Time.fixedDeltaTime);
+            currentSegment.transform.position = Vector2.Lerp(currentSegment.transform.position, targetPos, 8f * Time.fixedDeltaTime);
             //currentSegment.transform.position = Vector3.MoveTowards(currentSegment.transform.position, targetTransfrom.position, 2f * Time.fixedDeltaTime);
             //}
         }
@@ -319,7 +364,8 @@ public class SnakeBoss : Enemy
             audioSource.Play();
         }
 
-        health -= dmg;
+        health = segmentList.Sum(seg => seg.health) + headHealth;
+
         if (health <= 0)
         {
             Death();
@@ -327,9 +373,12 @@ public class SnakeBoss : Enemy
     }
 
 
-
     public override void getHit(float damage, Vector2 knockback, Vector3 directtion)
     {
+        if (segmentList.Count <= 1)
+        {
+            health -= damage;
+        }
         //this is head hit
         headHealth -= damage;
         if(headHealth < 0)
