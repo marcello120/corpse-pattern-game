@@ -16099,7 +16099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819207386803349825, guid: b758377ee91f52f48bba35462c0583fb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 819207386803349826, guid: b758377ee91f52f48bba35462c0583fb, type: 3}
       propertyPath: m_Size.x
@@ -44735,6 +44735,10 @@ PrefabInstance:
       value: -0.0147019625
       objectReference: {fileID: 0}
     - target: {fileID: 7059493799980615776, guid: 61f9517725050db4daf9ab72cdc6e3a9, type: 3}
+      propertyPath: smallSnake
+      value: 
+      objectReference: {fileID: 7841276403780925220, guid: 956ae3c0f1bf8ad45874875185c34084, type: 3}
+    - target: {fileID: 7059493799980615776, guid: 61f9517725050db4daf9ab72cdc6e3a9, type: 3}
       propertyPath: initialSize
       value: 21
       objectReference: {fileID: 0}
@@ -47246,6 +47250,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106855896436148743, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106855896436148743, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
       propertyPath: deathMenuUI
       value: 
       objectReference: {fileID: 163843829}
@@ -47257,6 +47265,10 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 1077636043}
+    - target: {fileID: 6106855896436148743, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
+      propertyPath: playerHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6106855896436148743, guid: 8ea4e8e4a604cab4fa868b396027b26c, type: 3}
       propertyPath: selectedUtility
       value: 7
