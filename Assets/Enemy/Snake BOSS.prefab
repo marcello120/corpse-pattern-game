@@ -358,11 +358,13 @@ MonoBehaviour:
   chargeTimer: 0
   charging: 0
   chargeDistance: 2.5
-  originalSnake: 0
+  originalSnake: 1
   selfObject: {fileID: 7059493799980615791}
   segmentHealth: 10
   headHealth: 20
   stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
+  smallSnake: {fileID: 0}
+  othersnakes: []
 --- !u!61 &7059493799980615786
 BoxCollider2D:
   m_ObjectHideFlags: 0

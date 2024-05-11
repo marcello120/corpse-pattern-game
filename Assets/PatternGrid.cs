@@ -36,6 +36,9 @@ public class PatternGrid : MonoBehaviour
 
     public void setPattern(int[,] pattern)
     {
+
+        pattern = RotateLeft(pattern);
+
         rectTransform = GetComponent<RectTransform>();
 
 
@@ -80,6 +83,23 @@ public class PatternGrid : MonoBehaviour
             makeBig();
         }
         
+    }
+
+    public int[,] RotateLeft(int[,] matrix)
+    {
+        int rows = matrix.GetLength(0);
+        int cols = matrix.GetLength(1);
+        int[,] rotatedMatrix = new int[cols, rows];
+
+        for (int i = 0; i < cols; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                rotatedMatrix[i, j] = matrix[j, cols - 1 - i];
+            }
+        }
+
+        return rotatedMatrix;
     }
 
 
