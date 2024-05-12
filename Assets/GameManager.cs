@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject boss;
 
+    public bool bossmode = false;
+
     public TextMeshProUGUI successText;
     public TextMeshProUGUI successDeathText;
 
@@ -192,7 +194,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (currentLevel == Level.LEVEL1 && boss==null)
+        if (currentLevel == Level.LEVEL1 && !bossmode)
         {
             while (enemyCount > currentEnemyCount)
             {
@@ -301,20 +303,21 @@ public class GameManager : MonoBehaviour
             {
                 if (patternList.Count() < 1)
                 {
-                    if(boss == null)
+                    if(!bossmode)
                     {
                         //spawn snakeboss
-                        boss = Instantiate(snakeBoss.gameObject, Vector3.zero, Quaternion.identity); ;
+                        boss = Instantiate(snakeBoss.gameObject, Vector3.zero, Quaternion.identity);
+                        bossmode = true;
                     }
                     else
                     {
-                        if(corpsenumber == 111 && GameObject.FindObjectsOfType(typeof(SnakeBoss)).Count() <1)
+                        if(corpsenumber == 111 && GameObject.FindObjectsOfType(typeof(SnakeBoss)).Count() == 1)
                         {
                             //killed last snake. Level Complete
                             Debug.LogError("YOU WIN");
                         }
                     }
-                    pattern = (new int[2, 2] { {-1,-1}, {-1,-1} });
+                    pattern = (new int[1, 1] { {111} });
                 }
                 else
                 {

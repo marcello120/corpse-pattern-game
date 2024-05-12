@@ -20,6 +20,11 @@ public class StatusHolder : MonoBehaviour
     {
         int index = effects.FindIndex(f => f!=null &&  f.statusEffectName == effect.statusEffectName);
 
+        if(enemy == null)
+        {
+            return false;
+        }
+
         if (index >= 0)
         {
             Debug.Log(effect.name + " aready in status for " + enemy.name);

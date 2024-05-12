@@ -285,8 +285,12 @@ public class SnakeBoss : Enemy
 
         for (int i = 0; i < othersnakes.Count; i++)
         {
-            Vector3 dirToOther = (transform.position - othersnakes[i].transform.position).normalized * 0.33f;
-            adjustedDir += dirToOther;
+            if (othersnakes[i] != null)
+            {
+                Vector3 dirToOther = (transform.position - othersnakes[i].transform.position).normalized * 0.33f;
+                adjustedDir += dirToOther;
+            }
+
         }
 
         pos += adjustedDir * Time.deltaTime * movemetSpeed;

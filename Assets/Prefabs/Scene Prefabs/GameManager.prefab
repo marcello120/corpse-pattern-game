@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4786affc0a710df43bad8290c38e197e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 1
+  boss: {fileID: 0}
+  bossmode: 0
   successText: {fileID: 0}
   successDeathText: {fileID: 0}
   deathScore: {fileID: 0}
@@ -53,19 +56,19 @@ MonoBehaviour:
   deathTimeBonus: {fileID: 0}
   hightText: {fileID: 0}
   corpseCleaner: {fileID: 8401404227447141671, guid: d99d496fba4eb5a44831f719535b0263, type: 3}
-  rock: {fileID: 0}
+  rock: {fileID: 3392315685503113363, guid: f085742aa792cdf4089be9691af86997, type: 3}
   patternGrid: {fileID: 0}
   scoreSound: {fileID: 784164780926356821}
-  width: 22
-  height: 12
-  gridCellSize: 0.16
+  width: 28
+  height: 18
+  gridCellSize: 0.5
   success: 0
   score: 0
   highscore: 0
   spawnerParent: {fileID: 0}
-  enemyCount: 2
-  currentEnemyCount: 1
-  doublerPrefab: {fileID: 0}
+  enemyCount: 5
+  currentEnemyCount: 0
+  doublerPrefab: {fileID: 7555774696410199852, guid: 8ddb59d90cf63cc44a6635e668d6e589, type: 3}
   doubler: {fileID: 0}
   doublerSpawners: []
   doublerSpawnerParent: {fileID: 0}
@@ -73,6 +76,9 @@ MonoBehaviour:
   powerUpSelection: {fileID: 0}
   gameTime: 0
   corpseMoundObj: {fileID: 6848862316599546136, guid: 59e4f13ad97a68142b4a1dfe7750a221, type: 3}
+  scoreEffect: {fileID: 1965343156803978, guid: 8fe458f1a1ba6e74390070bd1c173f50, type: 3}
+  patternList: []
+  snakeBoss: {fileID: 7059493799980615791, guid: 61f9517725050db4daf9ab72cdc6e3a9, type: 3}
 --- !u!82 &5297149557472241942
 AudioSource:
   m_ObjectHideFlags: 0
@@ -181,7 +187,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c4aabbb4bf47b4143b9d6c224a366bef, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.833
   m_Pitch: 1
   Loop: 0
   Mute: 0
