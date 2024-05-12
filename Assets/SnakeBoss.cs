@@ -285,8 +285,12 @@ public class SnakeBoss : Enemy
 
         for (int i = 0; i < othersnakes.Count; i++)
         {
-            Vector3 dirToOther = (transform.position - othersnakes[i].transform.position).normalized * 0.33f;
-            adjustedDir += dirToOther;
+            if (othersnakes[i] != null)
+            {
+                Vector3 dirToOther = (transform.position - othersnakes[i].transform.position).normalized * 0.33f;
+                adjustedDir += dirToOther;
+            }
+
         }
 
         pos += adjustedDir * Time.deltaTime * movemetSpeed;
@@ -322,9 +326,16 @@ public class SnakeBoss : Enemy
 
             Vector3 targetPos = targetTransfrom.position - targetTransfrom.right * segmentDistance * 0.9f;
 
+            float followSpeed = 8f;
+
+            if (charging)
+            {
+                followSpeed = 16f;
+            }
+
             //if (Vector3.Distance(targetTransfrom.position, currentSegment.transform.position) > segmentDistance || i == 0)
             //{
-            currentSegment.transform.position = Vector2.Lerp(currentSegment.transform.position, targetPos, 8f * Time.fixedDeltaTime);
+            currentSegment.transform.position = Vector2.Lerp(currentSegment.transform.position, targetPos, followSpeed * Time.fixedDeltaTime);
             //currentSegment.transform.position = Vector3.MoveTowards(currentSegment.transform.position, targetTransfrom.position, 2f * Time.fixedDeltaTime);
             //}
         }

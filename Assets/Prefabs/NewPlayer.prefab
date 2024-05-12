@@ -5621,8 +5621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a02737bc1d7892449fc7e75a064225f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 5
-  maxHealth: 5
+  playerHealth: 10
+  maxHealth: 10
   moveSpeed: 2
   baseMoveSpeed: 2
   collisionOffset: 0.001
@@ -5681,13 +5681,13 @@ MonoBehaviour:
   stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
   powerUps: []
   patternGrid: {fileID: 0}
-  selectedUtility: 1
+  selectedUtility: 7
   interactLayerMask:
     serializedVersion: 2
     m_Bits: 6272
   utilTimer:
     time: 2
-    elapsedtime: 0
+    elapsedtime: 2
   utilHoldTime: 0
   pullLine: {fileID: 6010421079866859731, guid: a859f2c30b8638340ba1fb9c90ed00a4, type: 3}
   projectile: {fileID: 1013748439425590854, guid: 5bbeeed0d20a7904db1afb2b0f26c1ab, type: 3}
@@ -5793,7 +5793,7 @@ AudioSource:
   Priority: 138
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 2.3409262
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -6059,7 +6059,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1.8266306
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

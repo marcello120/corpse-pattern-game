@@ -320,7 +320,7 @@ MonoBehaviour:
   body: {fileID: 7059493799797424658}
   enemyname: SnakeBoss
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
-  corpseNumber: 21
+  corpseNumber: 111
   flipBehaviour: 0
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   powerLevel: 1
@@ -346,7 +346,7 @@ MonoBehaviour:
   stunnable: 0
   segment: {fileID: 5951939306447471233, guid: 630d8f63390d0494ea497eda873051ff, type: 3}
   segmentList: []
-  initialSize: 20
+  initialSize: 10
   segmentDistance: 0.5
   frequency: 2
   magnitude: 0.012
@@ -358,11 +358,13 @@ MonoBehaviour:
   chargeTimer: 0
   charging: 0
   chargeDistance: 2.5
-  originalSnake: 0
+  originalSnake: 1
   selfObject: {fileID: 7059493799980615791}
   segmentHealth: 10
   headHealth: 20
   stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
+  smallSnake: {fileID: 7841276403780925220, guid: 956ae3c0f1bf8ad45874875185c34084, type: 3}
+  othersnakes: []
 --- !u!61 &7059493799980615786
 BoxCollider2D:
   m_ObjectHideFlags: 0
