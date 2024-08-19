@@ -52,6 +52,11 @@ public class EnemyStore : MonoBehaviour
         }
     }
 
+    public Enemy getEnemyByCorpseCode(int corpseCode)
+    {
+       return enemies.Where(o => o.corpseNumber == corpseCode).FirstOrDefault();
+    }
+
     public List<Enemy> getShuffledList(Enemy[] enemyArray)
     {
         System.Random random = new System.Random();

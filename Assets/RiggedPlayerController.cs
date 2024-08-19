@@ -48,6 +48,7 @@ public class RiggedPlayerController : PlayerController
 
     public enum Utility
     {
+        NONE,
         MASS_SLOW,
         PULL,
         RANGED_SHOT,

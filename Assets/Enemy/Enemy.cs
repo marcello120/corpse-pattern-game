@@ -357,17 +357,18 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             health += newMaxHealth - maxHealth;
             transform.localScale *= (factor * 0.66f);
+            powerLevel += 1;
 
         }
         else
         {
             transform.localScale *= (factor * 1.5f);
+            powerLevel -= 1;
         }
         maxHealth = newMaxHealth;
 
         attackPower *= factor;
         movemetSpeed *= factor;
-        powerLevel += 1;
     }
 
     public void handleFlip(int flipBehaviour, Vector3 directionToTarget)

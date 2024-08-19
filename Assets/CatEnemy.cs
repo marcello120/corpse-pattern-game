@@ -28,11 +28,11 @@ public class CatEnemy : Enemy
     {
         if (isPlayerMovingTowardsMe(target) && movemetSpeed > 0 && distToPlayer < 10f)
         {
-            movemetSpeed *= -1;
+            movemetSpeed *= -0.75f;
         }
         if (!isPlayerMovingTowardsMe(target) && movemetSpeed < 0)
         {
-            movemetSpeed *= -1;
+            movemetSpeed *= -1.33333333f;
         }
     }
 
