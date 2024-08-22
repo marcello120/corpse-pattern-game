@@ -295,7 +295,7 @@ public  class PatternStore: MonoBehaviour
         public enum Difficulty {
             EASY,
             MEDIUM,
-            HARD
+            HARD,
         }
 
         public Difficulty difficulty;

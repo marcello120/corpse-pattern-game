@@ -24,7 +24,7 @@ public class WindBlock : MonoBehaviour
     {
         objectTransform = transform; // Initialize objectTransform in the Start method
 
-        parentTransform = GameObject.Find("WindWall").transform; // Find WindWall object
+        parentTransform = transform; // Find WindWall object
         windAnimatorTransform = parentTransform.Find("Wind_Animator");
         if (windAnimatorTransform != null)
         {

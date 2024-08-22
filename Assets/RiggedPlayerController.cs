@@ -46,8 +46,18 @@ public class RiggedPlayerController : PlayerController
 
     public PatternGrid patternGrid;
 
+    public enum WeaponEnum
+    {
+        NONE,
+        WAS,
+        BOW,
+        SPEAR,
+        SWORD
+    }
+
     public enum Utility
     {
+        NONE,
         MASS_SLOW,
         PULL,
         RANGED_SHOT,
@@ -99,7 +109,45 @@ public class RiggedPlayerController : PlayerController
         {
             baseMoveSpeed = moveSpeed;
         }
+        selectWeapon();
         
+    }
+
+    private void selectWeapon()
+    {
+        WeaponEnum weaponEnum = StaticData.chosenWeapon;
+        if (weaponEnum != WeaponEnum.NONE)
+        {
+            foreach (Transform child in holster.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            GameObject selectedWeapon;
+            if (weaponEnum == WeaponEnum.WAS)
+            {
+                selectedWeapon = holster.transform.Find("was").gameObject;
+            }
+            else if (weaponEnum == WeaponEnum.SWORD)
+            {
+                selectedWeapon = holster.transform.Find("scimitar").gameObject;
+            }
+            else if (weaponEnum == WeaponEnum.SPEAR)
+            {
+                selectedWeapon = holster.transform.Find("spear").gameObject;
+            }
+            else if (weaponEnum == WeaponEnum.BOW)
+            {
+                selectedWeapon = holster.transform.Find("bow").gameObject;
+            }
+            else
+            {
+                Debug.LogError("Weapon selection is fucked");
+                selectedWeapon = holster.transform.Find("was").gameObject;
+            }
+
+            selectedWeapon.SetActive(true);
+            holster.weapon = selectedWeapon.GetComponent<Weapon>();
+        }
     }
 
     private void FixedUpdate()
@@ -672,6 +720,7 @@ public class RiggedPlayerController : PlayerController
     public void Defeat()
     {
         Destroy(gameObject);
+        GameManager.Instance.Lose();
         deathMenuUI.SetActive(true);
     }
 

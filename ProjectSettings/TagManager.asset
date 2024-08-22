@@ -12,6 +12,7 @@ TagManager:
   - Doubler
   - Projectile
   - Destructible
+  - PowerUp
   layers:
   - Default
   - TransparentFX

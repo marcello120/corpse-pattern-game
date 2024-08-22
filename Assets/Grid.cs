@@ -33,14 +33,14 @@ public class Grid
             for (int y = 0; y < array.GetLength(1); y++)
             {
                 //CreateWorldText(gridArray[x, y].ToString(), null, getWorldPositionGrid(x, y), 1, Color.white, TextAnchor.MiddleCenter);
-                Debug.DrawLine(getWorldPositionGridWithOffset(x, y), getWorldPositionGridWithOffset(x, y + 1), Color.black, 200f);
-                Debug.DrawLine(getWorldPositionGridWithOffset(x, y), getWorldPositionGridWithOffset(x + 1, y), Color.black, 200f);
+                Debug.DrawLine(getWorldPositionGridWithOffset(x, y), getWorldPositionGridWithOffset(x, y + 1), Color.green, 400f);
+                Debug.DrawLine(getWorldPositionGridWithOffset(x, y), getWorldPositionGridWithOffset(x + 1, y), Color.green, 400f);
                 //Instantiate(square, getWorldPositionGridWithOffset(x, y) + new Vector3(gridCellSize, gridCellSize) * 0.5f, Quaternion.identity);
 
                 array[x, y] = 0;
             }
-            Debug.DrawLine(getWorldPositionGridWithOffset(0, height), getWorldPositionGridWithOffset(width, height), Color.black, 200f);
-            Debug.DrawLine(getWorldPositionGridWithOffset(width, 0), getWorldPositionGridWithOffset(width, height), Color.black, 200f);
+            Debug.DrawLine(getWorldPositionGridWithOffset(0, height), getWorldPositionGridWithOffset(width, height), Color.green, 400f);
+            Debug.DrawLine(getWorldPositionGridWithOffset(width, 0), getWorldPositionGridWithOffset(width, height), Color.green, 400f);
         }
     }
 
