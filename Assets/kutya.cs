@@ -15,11 +15,11 @@ public class kutya : MonoBehaviour
 
     public void RessurectButtonPress()
     {
-        SceneManager.LoadScene(ressurectSceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void QuitButtonPress()
     {
-        SceneManager.LoadScene(quitSceneName);
+        SceneManager.LoadScene(0);
     }
 
     // Update is called once per frame

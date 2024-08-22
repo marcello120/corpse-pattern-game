@@ -1,8 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class CatEnemy : Enemy

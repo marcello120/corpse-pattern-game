@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject snakeBoss;
 
+    public WinMenu winMenu;
+
     public enum Level
     {
         ENDLESS,
@@ -156,12 +158,12 @@ public class GameManager : MonoBehaviour
             new List<PatternStore.CorpsePattern.Difficulty>
             {
                 PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                //PatternStore.CorpsePattern.Difficulty.HARD,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                PatternStore.CorpsePattern.Difficulty.HARD,
             },
             spiceChance: 10,  
             endsWithBoss: true 
@@ -225,12 +227,16 @@ public class GameManager : MonoBehaviour
 
         //instead of count keep list
         currentEnemyCount = GameObject.FindObjectsOfType<Enemy>().Sum(item => item.powerLevel);
+
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     private int calculateScore()
     {
-        Debug.Log("SCORE E: " + score * 10 + " - " + getNumberOfCorpsesOnGrind() + " + " + getTimeBonus() + " + " + player.playerHealth*5);
-        return (int)(score * 10 - getNumberOfCorpsesOnGrind() + getTimeBonus()+ +player.playerHealth * 5);
+        return score * 10 - getNumberOfCorpsesOnGrind() + getTimeBonus() + (int)player.playerHealth; ;
     }
 
     private int getTimeBonus()
@@ -286,6 +292,29 @@ public class GameManager : MonoBehaviour
     void FixedUpdate()
     {
         gameTime += Time.fixedDeltaTime;
+    }
+
+    public IEnumerator Win()
+    {
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 0;
+        int finalScore = calculateScore();
+        winMenu.gameObject.SetActive(true);
+        winMenu.refresh(score, getNumberOfCorpsesOnGrind(), getTimeBonus(), (int)player.playerHealth, finalScore) ;
+        PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        yield return new WaitForSeconds(0.1f);
+
+    }
+
+    public void Lose()
+    {
+        int finalScore = calculateScore();
+        successDeathText.SetText(finalScore.ToString());
+        deathScore.SetText((score * 10).ToString());
+        deathExtraCorpses.SetText(getNumberOfCorpsesOnGrind().ToString());
+        deathTimeBonus.SetText(getTimeBonus().ToString());
+        PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+
     }
 
     public int removeCoprseAndReturnID(Vector2Int gridPos)
@@ -373,6 +402,9 @@ public class GameManager : MonoBehaviour
             effect.transform.localScale = effect.transform.localScale * size;
             //get new random pattern from store
 
+            //Increment score and set UI
+            incrementScore(multiplier);
+
             if (currentLevel != Level.ENDLESS)
             {
                 if (patternList.Count() < 1)
@@ -390,14 +422,14 @@ public class GameManager : MonoBehaviour
                             if (corpsenumber == 111 && GameObject.FindObjectsOfType(typeof(SnakeBoss)).Count() == 1)
                             {
                                 //killed last snake. Level Complete
-                                Debug.LogError("YOU WIN");
+                                StartCoroutine(Win());
                             }
                         }
                         pattern = (new int[1, 1] { { 111 } });
                     }
                     else
                     {
-                        Debug.LogError("YOU WIN");
+                        StartCoroutine(Win());
                     }
                 }
                 else
@@ -418,8 +450,6 @@ public class GameManager : MonoBehaviour
             patternGrid.setPattern(pattern);
 
 
-            //Increment score and set UI
-            incrementScore(multiplier);
 
         }
 
@@ -447,18 +477,14 @@ public class GameManager : MonoBehaviour
     {
         score = score + 1 * multi;
         Debug.Log("SCORE:  " + calculateScore());
-        successText.SetText("Score: " + score);
-        successDeathText.SetText(calculateScore().ToString());
-        deathScore.SetText((score*10).ToString());
-        deathExtraCorpses.SetText(getNumberOfCorpsesOnGrind().ToString());
-        deathTimeBonus.SetText(getTimeBonus().ToString());
+        successText.SetText("Score: " + score * 10);
         if (score > highscore)
         {
             highscore = score;
             PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), highscore);
             hightText.SetText("Top:  " + highscore);
         }
-        if ((player.level * 1) - 1 < score && score != 0)
+        if ((player.level * 1) - 1 < score && score != 0 && (currentLevel == Level.ENDLESS || patternList.Count > 0) )
         {
             StartCoroutine(levelUp());
             player.levelUp();
