@@ -17,6 +17,10 @@ public class DamageTrail : MonoBehaviour
 
     private void SpawnTrail()
     {
+        if (GetComponent<Enemy>().health < 1)
+        {
+            return;
+        }
         GameObject spawnedTrack = Instantiate(track, transform.position, Quaternion.identity);
         DamageSurface damageSurface = spawnedTrack.GetComponent<DamageSurface>();
         damageSurface.parent = GetComponent<Enemy>();

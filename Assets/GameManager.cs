@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
             },
-            spiceChance: 20,  
+            spiceChance: 30,  
             endsWithBoss: false 
         )
     },
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.HARD,
             },
-            spiceChance: 10,  
+            spiceChance: 1,  
             endsWithBoss: true 
         )
     },
