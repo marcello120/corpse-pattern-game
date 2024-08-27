@@ -20376,6 +20376,10 @@ PrefabInstance:
       value: 111
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
+      propertyPath: corpseConfigs.Array.data[4].corpse
+      value: 
+      objectReference: {fileID: 21300000, guid: 7625f508ca0a6fd489fa3843daf487dd, type: 3}
+    - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[5].corpse
       value: 
       objectReference: {fileID: 21300000, guid: 9e2189bd320b6b3438c540a433b82d32, type: 3}

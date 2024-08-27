@@ -304,7 +304,7 @@ MonoBehaviour:
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   powerLevel: 3
-  drops: {fileID: 0}
+  drops: {fileID: 5789712364844326497, guid: 0bd27932a5c19df458affd4b8c6721ed, type: 3}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
   deathEffect: {fileID: 0}
   hitSound: {fileID: 0}
@@ -323,6 +323,7 @@ MonoBehaviour:
   moveStates: 0100000002000000
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
+  stunnable: 1
   frenzyDistToPlayer: 1.75
   baseSpeed: 1
   frenzySpeed: 300
@@ -508,6 +509,7 @@ MonoBehaviour:
   reachedEndOfPath: 0
   seeker: {fileID: 0}
   nextWayPointDist: 0.2
+  refreshTime: 0.5
 --- !u!58 &7740664648857900368
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -541,6 +543,7 @@ MonoBehaviour:
   reachedEndOfPath: 0
   seeker: {fileID: 0}
   nextWayPointDist: 0.2
+  refreshTime: 0.5
 --- !u!1 &1166266786857768512
 GameObject:
   m_ObjectHideFlags: 0
