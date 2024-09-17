@@ -23189,7 +23189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5842680910732473733, guid: 50ec77df382f4c1499bf2d7860a80ef6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5842680910732473736, guid: 50ec77df382f4c1499bf2d7860a80ef6, type: 3}
       propertyPath: m_Camera
@@ -24895,6 +24895,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 69436118}
     m_Modifications:
+    - target: {fileID: 1847429396821319342, guid: 754594adca0f9924596ffede4a5593bb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.5727997
+      objectReference: {fileID: 0}
     - target: {fileID: 8014337247843720963, guid: 754594adca0f9924596ffede4a5593bb, type: 3}
       propertyPath: m_Name
       value: Win Menu
