@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.HARD,
             },
-            spiceChance: 1,  
+            spiceChance: 10,  
             endsWithBoss: true 
         )
     },
