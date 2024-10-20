@@ -261,7 +261,7 @@ public class RiggedPlayerController : PlayerController
 
     private void playEffectDashReload()
     {
-        effectsAnimator.Play("effect_wheel");
+        //effectsAnimator.Play("effect_wheel");
         //insatatiate vfx
     }
 
