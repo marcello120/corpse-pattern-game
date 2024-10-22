@@ -39,12 +39,12 @@ public class SnakeAStarMovement : AStarMovement
     }
 
     // Introduce a curve to the movement direction
-    private Vector3 SnakeCurve(Vector3 direction)
+    private Vector2 SnakeCurve(Vector2 direction)
     {
         float time = Time.time * curveFrequency;
         float curveX = Mathf.Sin(time) * curveMagnitude;
-        float curveZ = Mathf.Cos(time) * curveMagnitude;
-        Vector3 curve = new Vector3(curveX, 0f, curveZ);
+        float curveY = Mathf.Cos(time) * curveMagnitude; // Changed Z-axis (3D) to Y-axis (2D)
+        Vector2 curve = new Vector2(curveX, curveY);
         return direction + curve;
     }
 }

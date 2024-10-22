@@ -30,4 +30,9 @@ public class MuliTimer
         elapsedtime+= increment;
     }
 
+    public float getLoading()
+    {
+        return elapsedtime/ time;
+    }
+
 }
