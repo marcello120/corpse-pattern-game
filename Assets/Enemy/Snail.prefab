@@ -327,7 +327,7 @@ MonoBehaviour:
   drops: {fileID: 0}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
   deathEffect: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 6431ceac1ab1a124ab5ad71d695feeb2, type: 3}
   spawnSound: {fileID: 0}
   maxHealth: 4
   health: 4
@@ -343,6 +343,7 @@ MonoBehaviour:
   moveStates: 0100000002000000
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
+  stunnable: 1
 --- !u!61 &7355741024632167777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -558,6 +559,7 @@ MonoBehaviour:
   reachedEndOfPath: 0
   seeker: {fileID: 0}
   nextWayPointDist: 0.2
+  refreshTime: 0.5
   circleRadius: 3
   collisionThreshold: 1
   chasing: 0
