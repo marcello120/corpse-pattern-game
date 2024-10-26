@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6010421079866859733}
   - component: {fileID: 6010421079866859730}
+  - component: {fileID: 5146504203548675638}
   m_Layer: 0
   m_Name: UseThisLine
   m_TagString: Untagged
@@ -78,13 +79,13 @@ LineRenderer:
   - {x: 1, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.05
+    widthMultiplier: 2.9275572
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.019168854
+        value: 0.20588112
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -96,15 +97,15 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6132076, g: 0.39678138, b: 0, a: 1}
-      key1: {r: 0.740566, g: 1, b: 0.8834229, a: 1}
+      key0: {r: 0.6132076, g: 0.39678138, b: 0, a: 0.88235295}
+      key1: {r: 1, g: 1, b: 0, a: 0}
       key2: {r: 1, g: 0.96833915, b: 0.10849059, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
+      ctime0: 39514
       ctime1: 65535
       ctime2: 65535
       ctime3: 0
@@ -127,7 +128,28 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
+    shadowBias: 0
+    generateLightingData: 1
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!95 &5146504203548675638
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010421079866859731}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1451dd00411446e429fabf22e3354c3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
