@@ -307,7 +307,7 @@ MonoBehaviour:
   drops: {fileID: 5789712364844326497, guid: 0bd27932a5c19df458affd4b8c6721ed, type: 3}
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
   deathEffect: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: bcdfd7ab3123ec949a30f3752d8e7d97, type: 3}
   spawnSound: {fileID: 0}
   maxHealth: 1
   health: 1

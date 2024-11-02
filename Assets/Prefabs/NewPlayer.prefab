@@ -5681,6 +5681,7 @@ MonoBehaviour:
   stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
   powerUps: []
   patternGrid: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: f006f5a1c0e99bd48b0debc8bd4cbd86, type: 3}
   selectedUtility: 7
   interactLayerMask:
     serializedVersion: 2
