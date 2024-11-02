@@ -372,9 +372,19 @@ public class GameManager : MonoBehaviour
         if (fitPatter.Count > 0)
         {
             int multiplier = 1;
-            Vector3 doublerLocAdjusted = Grid.adjustWoldPosToNearestCell(doubler.transform.position, grid.gridCellSize);
-            Vector3 doublerLoc = grid.ConvetWorldPosToArrayPos(doublerLocAdjusted);
+            Vector3 doublerLoc;
 
+            if (doubler==null || doubler.transform == null)
+            {
+                doublerLoc = new Vector3(999, 999, 999);
+                Destroy(doubler);
+                SpawnDoubler();
+            }
+            else
+            {
+                Vector3 doublerLocAdjusted = Grid.adjustWoldPosToNearestCell(doubler.transform.position, grid.gridCellSize);
+                doublerLoc = grid.ConvetWorldPosToArrayPos(doublerLocAdjusted);
+            }
 
             for (int i = 0; i < fitPatter.Count; i++)
             {
