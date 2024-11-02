@@ -19,6 +19,7 @@ public class kutya : MonoBehaviour
     }
     public void QuitButtonPress()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
