@@ -46,6 +46,8 @@ public class RiggedPlayerController : PlayerController
 
     public PatternGrid patternGrid;
 
+    public AudioClip pickupSound;
+
     public enum WeaponEnum
     {
         NONE,
@@ -804,6 +806,7 @@ public class RiggedPlayerController : PlayerController
 
     public void addPowerUp(PowerUp powerUp)
     {
+        walkSound.PlayOneShot(pickupSound);
         powerUps.Add(powerUp);
     }
 

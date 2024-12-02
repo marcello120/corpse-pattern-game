@@ -28,7 +28,7 @@ public class EnemyStore : MonoBehaviour
 
     public Enemy getRandomEnemyWithMaxPower(int maxPower)
     {
-        int randomSkipChance = UnityEngine.Random.Range(1, maxPower+1);
+        int randomSkipChance = UnityEngine.Random.Range(1, maxPower);
 
         if(randomSkipChance > 1) {
             return getRandomEnemyWithMaxPower(maxPower - 1);

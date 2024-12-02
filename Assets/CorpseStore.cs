@@ -46,7 +46,7 @@ public class CorpseStore : MonoBehaviour
                 if (UnityEngine.Random.Range(1, spiceChance) == 1 && inpattern[i, j] != -1 && inpattern[i, j] != 0)
                 {
                     CorpseConfig selected = corpseConfigs[UnityEngine.Random.Range(0, corpseConfigs.Count)];
-                    if(selected.key > 100)
+                    if(selected.key > 100 || inpattern[i, j] > 100 )
                     {
                         spiced[i, j] = inpattern[i, j];
                     }

@@ -16,4 +16,4 @@ MonoBehaviour:
   powerUpDescription: Increase dash distance
   powerUpColor: {r: 0.37486652, g: 0.7328949, b: 0.9811321, a: 1}
   sprite: {fileID: 21300000, guid: 1d1f99ff873e016488245dc934424c0e, type: 3}
-  dashDistanceIncrease: 0.1
+  dashDistanceIncrease: 0.3

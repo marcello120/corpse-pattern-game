@@ -354,11 +354,12 @@ MonoBehaviour:
     time: 0.5
     elapsedtime: 0
   projectileCount: 4
+  projectileSpeed: 2.5
   roamTargePrefab: {fileID: 4112866766781027947, guid: bf7e01a002c4fc24a9eae746a3206a14, type: 3}
   roamTarget: {fileID: 0}
   playerTransform: {fileID: 0}
   shootingPosDist: 2.5
-  maxiDistToPlayer: 5
+  maxiDistToPlayer: 4
   minDistToPlayer: 1.75
   attackDist: 0.75
 --- !u!61 &1692610667276632106

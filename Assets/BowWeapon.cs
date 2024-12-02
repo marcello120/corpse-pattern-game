@@ -20,6 +20,9 @@ public class BowWeapon : Weapon
     public float spaceBetweenPoints;
     public float gravityScale;
 
+    public AudioClip bowPullAudio;
+    public bool hasfired = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,10 @@ public class BowWeapon : Weapon
     {
         if (canShoot)
         {
+            if(!hasfired) {
+                hitSound.PlayOneShot(bowPullAudio);
+                hasfired= true;
+            }
             launchForce = Mathf.Min(launchForce + (chargeSpeed * amount), 2f * originalLaunchForce);
         }
     }
@@ -88,6 +95,7 @@ public class BowWeapon : Weapon
             launchForce = originalLaunchForce;
 
             canShoot= false;
+            hasfired = false;
         }
     }
 

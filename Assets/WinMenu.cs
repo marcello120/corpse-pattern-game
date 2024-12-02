@@ -35,4 +35,9 @@ public class WinMenu : MonoBehaviour
     {
         
     }
+
+    private void OnEnable()
+    {
+        
+    }
 }
