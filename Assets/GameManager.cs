@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -38,6 +37,9 @@ public class GameManager : MonoBehaviour
     public PatternGrid patternGrid;
 
     public AudioSource scoreSound;
+
+    public AudioSource backgroundMusic;
+
 
     public int width = 22;
     public int height = 12;
@@ -85,6 +87,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject snakeBoss;
 
+    public GameObject turtleBoss;
+
+
     public WinMenu winMenu;
 
     public enum Level
@@ -99,26 +104,29 @@ public class GameManager : MonoBehaviour
     {
         public List<PatternStore.CorpsePattern.Difficulty> difficulties;
         public int spiceChance;
-        public bool endsWithBoss;
+        public Type bossType;
+        public int[,] bossPattern;
 
-        public LevelCongfig(List<PatternStore.CorpsePattern.Difficulty> difficulties, int spiceChance, bool endsWithBoss)
+        public LevelCongfig(List<PatternStore.CorpsePattern.Difficulty> difficulties, int spiceChance, Type bossType, int[,] bossPattern)
         {
             this.difficulties = difficulties;
             this.spiceChance = spiceChance;
-            this.endsWithBoss = endsWithBoss;
+            this.bossType = bossType;
+            this.bossPattern = bossPattern;
         }
     }
 
-    public Dictionary<Level, LevelCongfig> LevelConfigs = new Dictionary<Level, LevelCongfig>()
+    public Dictionary<Level, LevelCongfig> levelConfigs = new Dictionary<Level, LevelCongfig>()
 {
             {
         Level.ENDLESS, new LevelCongfig(
             new List<PatternStore.CorpsePattern.Difficulty>
             {
-                
+
             },
             spiceChance: 20,
-            endsWithBoss: false
+            bossType: null,
+            bossPattern: null
         )
     },
     {
@@ -126,14 +134,14 @@ public class GameManager : MonoBehaviour
             new List<PatternStore.CorpsePattern.Difficulty>
             {
                 PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                PatternStore.CorpsePattern.Difficulty.MEDIUM
+                //PatternStore.CorpsePattern.Difficulty.EASY,
+                //PatternStore.CorpsePattern.Difficulty.EASY,
+                //PatternStore.CorpsePattern.Difficulty.EASY,
+                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
             },
-            spiceChance: 100,  
-            endsWithBoss: false 
+            spiceChance: 100,
+            bossType: typeof(TurtleBoss),
+            bossPattern: new int[1, 2]{{ 142, 201 } }
         )
     },
     {
@@ -149,8 +157,10 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
             },
-            spiceChance: 30,  
-            endsWithBoss: false 
+            spiceChance: 30,
+            bossType: null,
+            bossPattern: null
+
         )
     },
     {
@@ -160,13 +170,14 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.HARD,
             },
-            spiceChance: 10,  
-            endsWithBoss: true 
+            spiceChance: 10,
+            bossType: typeof(SnakeBoss),
+            bossPattern: new int[1, 1] { { 111 } }
         )
     },
 };
@@ -179,6 +190,15 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+        }
+
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
+            setBackgroundMusicVolume(1f);
+        }
+        else
+        {
+            setBackgroundMusicVolume(PlayerPrefs.GetFloat("musicVolume"));
         }
 
         transform.position = new Vector3(width / 2 * -gridCellSize, height / 2 * -gridCellSize);
@@ -200,7 +220,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            List<PatternStore.CorpsePattern.Difficulty> diffs = LevelConfigs[currentLevel].difficulties;
+            List<PatternStore.CorpsePattern.Difficulty> diffs = levelConfigs[currentLevel].difficulties;
             for (int i = 0; i < diffs.Count; i++)
             {
                 patternList.Add(patternStore.GetRandomPatternWithDifficulty(diffs[i]));
@@ -209,7 +229,7 @@ public class GameManager : MonoBehaviour
 
             patternList.RemoveAt(0);
         }
-        pattern = CorpseStore.Instance.spiceItUp(pattern, LevelConfigs[currentLevel].spiceChance);
+        pattern = CorpseStore.Instance.spiceItUp(pattern, levelConfigs[currentLevel].spiceChance);
         patternGrid.setPattern(pattern);
         highscore = PlayerPrefs.GetInt("HighScore_" + currentLevel.ToString(), 0);
 
@@ -228,7 +248,7 @@ public class GameManager : MonoBehaviour
         //instead of count keep list
         currentEnemyCount = GameObject.FindObjectsOfType<Enemy>().Sum(item => item.powerLevel);
 
-        if(Time.timeScale == 0)
+        if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
         }
@@ -262,14 +282,15 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemies()
     {
-        if(currentLevel == Level.ENDLESS)
+        if (currentLevel == Level.ENDLESS)
         {
             while (enemyCount > currentEnemyCount)
             {
                 Debug.Log("SPAWNING ENEMY");
                 SpawnSlime((int)(enemyCount - currentEnemyCount));
             }
-        }else if (!bossmode)
+        }
+        else if (!bossmode)
         {
             while (enemyCount > currentEnemyCount)
             {
@@ -300,7 +321,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         int finalScore = calculateScore();
         winMenu.gameObject.SetActive(true);
-        winMenu.refresh(score, getNumberOfCorpsesOnGrind(), getTimeBonus(), (int)player.playerHealth, finalScore) ;
+        winMenu.refresh(score, getNumberOfCorpsesOnGrind(), getTimeBonus(), (int)player.playerHealth, finalScore);
         PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
         yield return new WaitForSeconds(0.1f);
 
@@ -344,15 +365,15 @@ public class GameManager : MonoBehaviour
 
     public CoprseInfoObject AddWorldPosToGridAndReturnAdjustedPos(Vector3 worldPos, int corpsenumber, int powerLevel)
     {
-        currentEnemyCount-=powerLevel;
-        if (currentEnemyCount < 0) currentEnemyCount= 0;
+        currentEnemyCount -= powerLevel;
+        if (currentEnemyCount < 0) currentEnemyCount = 0;
 
 
         //adjust fractional world pos to nearest multiple of gridcellsize AND offset it to center of Grid
         Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(worldPos, grid.gridCellSize);
 
         //add adjusted world position to grid
-        int newCorpseNum =  grid.addWorldPosToArray(adjustedPos, corpsenumber);
+        int newCorpseNum = grid.addWorldPosToArray(adjustedPos, corpsenumber);
 
         //if (newCorpseNum == 99)
         //{
@@ -361,7 +382,7 @@ public class GameManager : MonoBehaviour
         if (newCorpseNum == 999)
         {
             removeCorpseAtWorldPos(adjustedPos);
-            return new CoprseInfoObject(newCorpseNum, adjustedPos,corpseMoundObj);
+            return new CoprseInfoObject(newCorpseNum, adjustedPos, corpseMoundObj);
         }
 
         //check if pattern is found in grid
@@ -374,7 +395,7 @@ public class GameManager : MonoBehaviour
             int multiplier = 1;
             Vector3 doublerLoc;
 
-            if (doubler==null || doubler.transform == null)
+            if (doubler == null || doubler.transform == null)
             {
                 doublerLoc = new Vector3(999, 999, 999);
                 Destroy(doubler);
@@ -406,9 +427,9 @@ public class GameManager : MonoBehaviour
             }
             success = true;
             Debug.Log("SUCCESS");
-            Vector2Int middle = fitPatter[(fitPatter.Count-1) / 2];
+            Vector2Int middle = fitPatter[(fitPatter.Count - 1) / 2];
             float size = pattern.GetLength(0) > pattern.GetLength(1) ? pattern.GetLength(0) : pattern.GetLength(1);
-            GameObject effect =Instantiate(scoreEffect, grid.getWorldPositionGridWithOffset(middle.x, middle.y) + new Vector3(gridCellSize / 2, gridCellSize / 2), Quaternion.identity);
+            GameObject effect = Instantiate(scoreEffect, grid.getWorldPositionGridWithOffset(middle.x, middle.y) + new Vector3(gridCellSize / 2, gridCellSize / 2), Quaternion.identity);
             effect.transform.localScale = effect.transform.localScale * size;
             //get new random pattern from store
 
@@ -419,23 +440,32 @@ public class GameManager : MonoBehaviour
             {
                 if (patternList.Count() < 1)
                 {
-                    if (LevelConfigs[currentLevel].endsWithBoss)
+                    if (levelConfigs[currentLevel].bossType != null)
                     {
                         if (!bossmode)
                         {
                             //spawn snakeboss
-                            boss = Instantiate(snakeBoss.gameObject, Vector3.zero, Quaternion.identity);
+                            setBoss();
                             bossmode = true;
                         }
                         else
                         {
-                            if (corpsenumber == 111 && GameObject.FindObjectsOfType(typeof(SnakeBoss)).Count() == 1)
+                            if (corpsenumber > 100 && GameObject.FindObjectsOfType(levelConfigs[currentLevel].bossType).Count() == 1)
+                            //if (corpsenumber > 100 && GameObject.FindObjectsOfType(boss.GetType()).Count() == 1)
                             {
                                 //killed last snake. Level Complete
                                 StartCoroutine(Win());
+                                //return the world position where the enemy should place the coprse
+                                return new CoprseInfoObject(newCorpseNum, adjustedPos, null);
+                            }
+                            else
+                            {
+                                String bossName = GameObject.FindObjectOfType(levelConfigs[currentLevel].bossType).name;
+                                boss = GameObject.Find(bossName);
                             }
                         }
-                        pattern = (new int[1, 1] { { 111 } });
+                        //pattern = (new int[1, 1] { { boss.GetComponent<Enemy>().corpseNumber } });
+                        pattern = levelConfigs[currentLevel].bossPattern;
                     }
                     else
                     {
@@ -454,19 +484,42 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern corpsePattern = patternStore.GetRandomPatternWithDifficulty(PatternStore.CorpsePattern.Difficulty.EASY);
                 pattern = corpsePattern.getPatternFrom2DArray();
 
-            }            
-            
-            pattern = CorpseStore.Instance.spiceItUp(pattern, LevelConfigs[currentLevel].spiceChance);
+            }
+
+            pattern = CorpseStore.Instance.spiceItUp(pattern, levelConfigs[currentLevel].spiceChance);
             patternGrid.setPattern(pattern);
 
 
 
         }
+        else
+        {
+            //boss dead, but pattern not commplete
+            if (bossmode && corpsenumber > 100 && GameObject.FindObjectsOfType(levelConfigs[currentLevel].bossType).Count() == 1)
+            {
+                setBoss();
+            }
+        }
 
         //return the world position where the enemy should place the coprse
-        return new CoprseInfoObject(newCorpseNum, adjustedPos,null);
+        return new CoprseInfoObject(newCorpseNum, adjustedPos, null);
     }
 
+    private void setBoss()
+    {
+        if (levelConfigs[currentLevel].bossType == typeof(SnakeBoss))
+        {
+            boss = Instantiate(snakeBoss.gameObject, Vector3.zero, Quaternion.identity);
+        }
+        else if (levelConfigs[currentLevel].bossType == typeof(TurtleBoss))
+        {
+            boss = Instantiate(turtleBoss.gameObject, Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("THIS IS NOT SUPPOSED TO HAPPEN, NO BOSS GIVEN");
+        }
+    }
 
     public void removeCorpseAtWorldPos(Vector3 pos)
     {
@@ -490,11 +543,11 @@ public class GameManager : MonoBehaviour
         successText.SetText("Score: " + score * 10);
         if (score > highscore)
         {
-            highscore = score;
+            highscore = score * 10;
             PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), highscore);
             hightText.SetText("Top:  " + highscore);
         }
-        if ((player.level * 1) - 1 < score && score != 0 && (currentLevel == Level.ENDLESS || patternList.Count > 0) )
+        if ((player.level * 1) - 1 < score && score != 0 && (currentLevel == Level.ENDLESS || patternList.Count > 0))
         {
             StartCoroutine(levelUp());
             player.levelUp();
@@ -519,12 +572,22 @@ public class GameManager : MonoBehaviour
         return patternIn.Cast<int>().ToHashSet().Select(code => EnemyStore.instance.getEnemyByCorpseCode(code)).ToHashSet();
     }
 
+    public void setGridCellFromWorldPos(int number, Vector3 pos)
+    {
+
+        //adjust fractional world pos to nearest multiple of gridcellsize AND offset it to center of Grid
+        Vector3 adjustedPos = Grid.adjustWoldPosToNearestCell(pos, grid.gridCellSize);
+
+        //add adjusted world position to grid
+        int newCorpseNum = grid.addWorldPosToArray(adjustedPos, number);
+    }
+
     public void SpawnSlime(int maxPower)
     {
         //List<EnemySpawner> spawners = spawnerParent.GetComponentsInChildren<EnemySpawner>().OfType<EnemySpawner>().ToList();
 
         //List<EnemySpawner> sortedSpawners = spawners.OrderByDescending(t => Vector3.Distance(pos, t.transform.position)).ToList();
-        
+
         Enemy enemyToSpawn;
 
 
@@ -535,13 +598,13 @@ public class GameManager : MonoBehaviour
         //get codes for corpses on ground
         HashSet<int> corpseCodes = grid.array.Cast<int>().ToHashSet();
         //remove alive/corpese from pattern
-        List<int> filtered = enemiesFromPattern.Where(code => code %10 != 0 && code < 90 && code > 9).ToList();
+        List<int> filtered = enemiesFromPattern.Where(code => code % 10 != 0 && code < 90 && code > 9).ToList();
         foreach (int item in aliveCodes)
         {
             // Remove the first occurrence of the item in list1 (if it exists)
             filtered.Remove(item);
         }
-        if( UnityEngine.Random.Range(1, 10) <= 6)
+        if (UnityEngine.Random.Range(1, 10) <= 6)
         {
             foreach (int item in corpseCodes)
             {
@@ -550,20 +613,20 @@ public class GameManager : MonoBehaviour
             }
         }
         //if not empty spawn in pattern
-        if(filtered.Count > 0)
+        if (filtered.Count > 0)
         {
-             enemyToSpawn = EnemyStore.instance.getEnemyByCorpseCode(filtered.ToArray()[0]);
+            enemyToSpawn = EnemyStore.instance.getEnemyByCorpseCode(filtered.ToArray()[0]);
         }
         else
         {
-             enemyToSpawn = EnemyStore.instance.getRandomEnemyWithMaxPower(maxPower);
+            enemyToSpawn = EnemyStore.instance.getRandomEnemyWithMaxPower(maxPower);
         }
 
         currentEnemyCount += enemyToSpawn.powerLevel;
 
         Debug.Log("SPAWNING " + enemyToSpawn.name);
 
-        if(player == null)
+        if (player == null)
         {
             return;
         }
@@ -635,7 +698,7 @@ public class GameManager : MonoBehaviour
         }
 
         Vector3 worldPos = inGrid.getWorldPositionGridWithOffset(pos.x, pos.y) + new Vector3(gridCellSize / 2, gridCellSize / 2);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(worldPos, 0.2f, LayerMask.GetMask("Enemy", "ObstacleBlock","Player"));
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(worldPos, 0.2f, LayerMask.GetMask("Enemy", "ObstacleBlock", "Player"));
 
         if (hitColliders.Length > 0)
         {
@@ -662,6 +725,12 @@ public class GameManager : MonoBehaviour
 
         return Instantiate(thingToSpawn, spawnPoint, Quaternion.identity);
 
+    }
+
+    public void setBackgroundMusicVolume(float volume)
+    {
+        backgroundMusic.volume = volume;
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public Vector3 getSpawnPoint(Vector3 spawnWorldPos, int innerX, int outerX)

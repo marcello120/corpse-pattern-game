@@ -16,4 +16,4 @@ MonoBehaviour:
   powerUpDescription: 'Reduce ability cooldown '
   powerUpColor: {r: 0.68956923, g: 0.9811321, b: 0.9811321, a: 1}
   sprite: {fileID: 21300000, guid: 7e64474279135b34295a735a0ae1e97d, type: 3}
-  abilityCooldownDecreaseAmount: 0.1
+  abilityCooldownDecreaseAmount: 0.3

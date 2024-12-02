@@ -50,6 +50,7 @@ MonoBehaviour:
   speed: 3
   damage: 5
   isParried: 0
+  byPlayer: 0
 --- !u!50 &1013748439425590855
 Rigidbody2D:
   serializedVersion: 4

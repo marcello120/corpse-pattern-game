@@ -8,6 +8,7 @@ public class Ranged : Enemy
     public Projectile projectile;
     public MuliTimer attackPrepTime = new MuliTimer(0.5f);
     public float projectileCount = 3f;
+    public float projectileSpeed = 2.5f;
 
 
     [Header("Targeting")]
@@ -21,7 +22,7 @@ public class Ranged : Enemy
 
     public float shootingPosDist = 2f;
 
-    public float maxiDistToPlayer = 5f;
+    public float maxiDistToPlayer = 4f;
     public float minDistToPlayer = 1.75f;
     public float attackDist = 0.75f;
 
@@ -88,8 +89,9 @@ public class Ranged : Enemy
             }
             if (Vector3.Distance(transform.position, roamTarget.transform.position) < 0.2f)
             {
-                setState(State.Attacking);
-                return;
+                    setState(State.Attacking);
+                    return;
+               
             }
         }
         if (state == State.Attacking)
@@ -105,7 +107,7 @@ public class Ranged : Enemy
                 attackPrepTime.reset();
                 Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
                 Projectile spawenProj = Instantiate(projectile, transform.position, Quaternion.identity);
-                spawenProj.Setup(directionToPlayer, attackPower,3);
+                spawenProj.Setup(directionToPlayer, attackPower,projectileSpeed);
                 projectileCount -= 1f;
                 setState(State.Preparing); 
                 return;

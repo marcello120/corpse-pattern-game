@@ -13,6 +13,17 @@ public class EnemyDroppings : MonoBehaviour
 
             child.AddForce(direction * 1.5f);
         }
+        foreach (SpriteRenderer child in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            // Get the current color of the sprite
+            Color color = child.color;
+
+            // Set the alpha to 75% (0.75f)
+            color.a = 0.75f;
+
+            // Apply the modified color back to the sprite
+            child.color = color;
+        }
         Destroy(gameObject,100f);
     }
 
