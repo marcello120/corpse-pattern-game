@@ -134,10 +134,10 @@ public class GameManager : MonoBehaviour
             new List<PatternStore.CorpsePattern.Difficulty>
             {
                 PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
             },
             spiceChance: 100,
             bossType: typeof(TurtleBoss),
