@@ -422,7 +422,10 @@ public class GameManager : MonoBehaviour
                 scoreSound.Play();
 
                 Vector2Int corpseLoc = fitPatter[i];
-                removeCorpseAtGridLoc(corpseLoc);
+                if (grid.array[corpseLoc.x,corpseLoc.y] < 199 || grid.array[corpseLoc.x, corpseLoc.y] > 299)
+                {
+                    removeCorpseAtGridLoc(corpseLoc);
+                }
 
             }
             success = true;
