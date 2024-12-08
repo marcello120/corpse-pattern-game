@@ -34,6 +34,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public float health;
     public float attackPower;
     public float movemetSpeed;
+    public float knockbackReduction;
 
 
     [Header("Debug")]
@@ -178,6 +179,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         statusHolder.RemoveAll(this);
     }
 
+  
     public virtual void getHit(float damage, Vector2 knockback)
     {
         Debug.LogError("THIS IS NOT SUPPOSED TO HAPPEN");
@@ -213,7 +215,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         }
         else
         {
-            rb.AddForce(knockback);
+            rb.AddForce(knockback * (Vector2.one - Vector2.one * knockbackReduction));
             animator.SetTrigger("Hit");
         }
 

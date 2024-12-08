@@ -115,7 +115,7 @@ public class RiggedPlayerController : PlayerController
         
     }
 
-    private void selectWeapon()
+    public void selectWeapon()
     {
         WeaponEnum weaponEnum = StaticData.chosenWeapon;
         if (weaponEnum != WeaponEnum.NONE)

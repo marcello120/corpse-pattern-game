@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
@@ -89,11 +90,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject turtleBoss;
 
+    public GameObject bombBoss;
+
+
 
     public WinMenu winMenu;
 
     public enum Level
     {
+        HUB,
         ENDLESS,
         LEVEL1_1,
         LEVEL1_2,
@@ -118,6 +123,17 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<Level, LevelCongfig> levelConfigs = new Dictionary<Level, LevelCongfig>()
 {
+                    {
+        Level.HUB, new LevelCongfig(
+            new List<PatternStore.CorpsePattern.Difficulty>
+            {
+
+            },
+            spiceChance: 0,
+            bossType: null,
+            bossPattern: null
+        )
+    },
             {
         Level.ENDLESS, new LevelCongfig(
             new List<PatternStore.CorpsePattern.Difficulty>
@@ -149,18 +165,22 @@ public class GameManager : MonoBehaviour
             new List<PatternStore.CorpsePattern.Difficulty>
             {
                 PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                //PatternStore.CorpsePattern.Difficulty.EASY,
+                //PatternStore.CorpsePattern.Difficulty.EASY,
+                //PatternStore.CorpsePattern.Difficulty.EASY,
+                //PatternStore.CorpsePattern.Difficulty.EASY,
+                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
             },
             spiceChance: 30,
-            bossType: null,
-            bossPattern: null
-
+            bossType: typeof(TheBombBoss),
+            bossPattern:  new int[3, 1]
+            {
+                {11},
+                {143},
+                {11}
+            }
         )
     },
     {
@@ -211,8 +231,15 @@ public class GameManager : MonoBehaviour
 
         obstacles = new Grid(width, height, gridCellSize, 0);
 
+        player = (RiggedPlayerController)FindFirstObjectByType(typeof(RiggedPlayerController));
 
-        if (currentLevel == Level.ENDLESS)
+
+        if (currentLevel == Level.HUB)
+        {
+
+            pattern = new int[1, 1] { { 404 } };
+        }
+        else if (currentLevel == Level.ENDLESS)
         {
             PatternStore.CorpsePattern corpsePattern = patternStore.GetPatternByName("bottom right corner");
             pattern = corpsePattern.getPatternFrom2DArray();
@@ -231,16 +258,25 @@ public class GameManager : MonoBehaviour
         }
         pattern = CorpseStore.Instance.spiceItUp(pattern, levelConfigs[currentLevel].spiceChance);
         patternGrid.setPattern(pattern);
+
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+
+        if (currentLevel == Level.HUB)
+        {
+            //set total score
+            setTotal();
+            return;
+        }
+
         highscore = PlayerPrefs.GetInt("HighScore_" + currentLevel.ToString(), 0);
 
         successText.SetText("Score: " + 0);
         hightText.SetText("Top:  " + highscore);
 
-
-        doublerSpawners = doublerSpawnerParent.GetComponentsInChildren<DoublerSpawner>().OfType<DoublerSpawner>().ToList();
-
-        player = (RiggedPlayerController)FindFirstObjectByType(typeof(RiggedPlayerController));
-
+     
         SpawnDoubler();
 
         InvokeRepeating(nameof(SpawnEnemies), 0f, 7.5f);
@@ -248,10 +284,14 @@ public class GameManager : MonoBehaviour
         //instead of count keep list
         currentEnemyCount = GameObject.FindObjectsOfType<Enemy>().Sum(item => item.powerLevel);
 
-        if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
+ 
+    }
+
+    private static void setTotal()
+    {
+        GameObject totalScore = GameObject.Find("TotalScore");
+        int totalScoreSaved = PlayerPrefs.GetInt("TotalScore", 0);
+        totalScore.GetComponent<TextMeshProUGUI>().SetText("Total:" + totalScoreSaved);
     }
 
     private int calculateScore()
@@ -297,6 +337,17 @@ public class GameManager : MonoBehaviour
                 Debug.Log("SPAWNING ENEMY");
                 SpawnSlime((int)(enemyCount - currentEnemyCount));
             }
+        }else if (bossmode && currentLevel == Level.LEVEL1_2)
+        {
+            while (3 > currentEnemyCount)
+            {
+                Enemy enemyToSpawn = EnemyStore.instance.getEnemyByCorpseCode(11);
+
+                currentEnemyCount += enemyToSpawn.powerLevel;
+
+                SpawnWithCheck(enemyToSpawn.gameObject, player.transform.position, 8, 10);
+
+            }
         }
 
     }
@@ -323,6 +374,8 @@ public class GameManager : MonoBehaviour
         winMenu.gameObject.SetActive(true);
         winMenu.refresh(score, getNumberOfCorpsesOnGrind(), getTimeBonus(), (int)player.playerHealth, finalScore);
         PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
+        PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
         yield return new WaitForSeconds(0.1f);
 
     }
@@ -335,6 +388,8 @@ public class GameManager : MonoBehaviour
         deathExtraCorpses.SetText(getNumberOfCorpsesOnGrind().ToString());
         deathTimeBonus.SetText(getTimeBonus().ToString());
         PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
+        PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
 
     }
 
@@ -460,6 +515,11 @@ public class GameManager : MonoBehaviour
                                 StartCoroutine(Win());
                                 //return the world position where the enemy should place the coprse
                                 return new CoprseInfoObject(newCorpseNum, adjustedPos, null);
+                            }else if ( currentLevel == Level.LEVEL1_2)
+                            {
+                                StartCoroutine(Win());
+                                //return the world position where the enemy should place the coprse
+                                return new CoprseInfoObject(newCorpseNum, adjustedPos, null);
                             }
                             else
                             {
@@ -488,8 +548,11 @@ public class GameManager : MonoBehaviour
                 pattern = corpsePattern.getPatternFrom2DArray();
 
             }
+            if (!bossmode)
+            {
+                pattern = CorpseStore.Instance.spiceItUp(pattern, levelConfigs[currentLevel].spiceChance);
 
-            pattern = CorpseStore.Instance.spiceItUp(pattern, levelConfigs[currentLevel].spiceChance);
+            }
             patternGrid.setPattern(pattern);
 
 
@@ -517,6 +580,10 @@ public class GameManager : MonoBehaviour
         else if (levelConfigs[currentLevel].bossType == typeof(TurtleBoss))
         {
             boss = Instantiate(turtleBoss.gameObject, Vector3.zero, Quaternion.identity);
+        }
+        else if (levelConfigs[currentLevel].bossType == typeof(TheBombBoss))
+        {
+            boss = Instantiate(bombBoss.gameObject, Vector3.zero, Quaternion.identity);
         }
         else
         {

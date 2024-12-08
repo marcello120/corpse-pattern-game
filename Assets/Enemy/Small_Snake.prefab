@@ -164,7 +164,6 @@ MonoBehaviour:
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
   stunnable: 1
-  movementInterval: 1
 --- !u!114 &7841276403780925218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,8 +357,8 @@ MonoBehaviour:
   seeker: {fileID: 0}
   nextWayPointDist: 0.2
   refreshTime: 0.5
-  curveFrequency: 2
-  curveMagnitude: 2
+  curveFrequency: 5
+  curveMagnitude: 1
   variance: 0.5
 --- !u!1 &7841276404134509913
 GameObject:
