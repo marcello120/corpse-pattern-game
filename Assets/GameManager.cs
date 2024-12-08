@@ -294,6 +294,15 @@ public class GameManager : MonoBehaviour
         totalScore.GetComponent<TextMeshProUGUI>().SetText("Total: " + totalScoreSaved);
     }
 
+    public static void changeTotal(int amount)
+    {
+
+        int totalScoreSaved = PlayerPrefs.GetInt("TotalScore", 0);
+        PlayerPrefs.SetInt("TotalScore", totalScoreSaved + amount);
+        setTotal();
+
+    }
+
     private int calculateScore()
     {
         return score * 10 - getNumberOfCorpsesOnGrind() + getTimeBonus() + (int)player.playerHealth; ;
