@@ -25385,7 +25385,7 @@ PrefabInstance:
       objectReference: {fileID: 300003376}
     - target: {fileID: 2512616840177150869, guid: 7cbf8ed63d7b3f845bb97a08e2e7dc7e, type: 3}
       propertyPath: currentLevel
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2512616840177150869, guid: 7cbf8ed63d7b3f845bb97a08e2e7dc7e, type: 3}
       propertyPath: spawnerParent

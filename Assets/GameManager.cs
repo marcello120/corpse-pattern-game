@@ -165,13 +165,13 @@ public class GameManager : MonoBehaviour
             new List<PatternStore.CorpsePattern.Difficulty>
             {
                 PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.EASY,
-                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                //PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
             },
             spiceChance: 30,
             bossType: typeof(TheBombBoss),
@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject totalScore = GameObject.Find("TotalScore");
         int totalScoreSaved = PlayerPrefs.GetInt("TotalScore", 0);
-        totalScore.GetComponent<TextMeshProUGUI>().SetText("Total:" + totalScoreSaved);
+        totalScore.GetComponent<TextMeshProUGUI>().SetText("Total: " + totalScoreSaved);
     }
 
     private int calculateScore()
