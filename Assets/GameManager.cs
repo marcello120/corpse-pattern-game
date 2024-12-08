@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject totalScore = GameObject.Find("TotalScore");
         int totalScoreSaved = PlayerPrefs.GetInt("TotalScore", 0);
-        totalScore.GetComponent<TextMeshProUGUI>().SetText("Total:" + totalScoreSaved);
+        totalScore.GetComponent<TextMeshProUGUI>().SetText("Total: " + totalScoreSaved);
     }
 
     private int calculateScore()

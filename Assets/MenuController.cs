@@ -15,6 +15,9 @@ public class MenuController : MonoBehaviour
 
     public int selectedSceneId;
 
+    public string selectedSceneName;
+
+
     private void Start()
     {
         highscore_Lvl1.SetText("HighScore: " + PlayerPrefs.GetInt("HighScore_" + GameManager.Level.LEVEL1_1.ToString(), 0).ToString());
@@ -27,18 +30,22 @@ public class MenuController : MonoBehaviour
     public void LoadLevel1()
     {
         selectedSceneId = 3;
+        selectedSceneName = "Level 1_1";
     }
     public void LoadLevel2()
     {
         selectedSceneId = 4;
+        selectedSceneName = "Level 1_2";
     }
     public void LoadLevel3()
     {
         selectedSceneId = 5;
+        selectedSceneName = "Level 1_3";
     }
     public void LoadEndless()
     {
         selectedSceneId = 6;
+        selectedSceneName = "Endless";
     }
 
     public void setSceneId(int id)
