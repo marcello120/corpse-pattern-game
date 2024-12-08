@@ -13,9 +13,6 @@ public class SnakeAStarMovement : AStarMovement
     void Start()
     {
         init();
-        curveFrequency = curveFrequency + UnityEngine.Random.Range(-variance, variance);
-        curveMagnitude = curveMagnitude + UnityEngine.Random.Range(-variance, variance);
-
     }
 
     private void FixedUpdate()

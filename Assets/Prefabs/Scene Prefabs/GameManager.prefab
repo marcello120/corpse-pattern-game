@@ -81,6 +81,7 @@ MonoBehaviour:
   patternList: []
   snakeBoss: {fileID: 7059493799980615791, guid: 61f9517725050db4daf9ab72cdc6e3a9, type: 3}
   turtleBoss: {fileID: 7421201534729223835, guid: 9b527ecc3931e1e4b8d5baa9d7424903, type: 3}
+  bombBoss: {fileID: 4437271153862394021, guid: 09eeaf5e223c56f4086150968550ff0b, type: 3}
   winMenu: {fileID: 0}
 --- !u!82 &5297149557472241942
 AudioSource:

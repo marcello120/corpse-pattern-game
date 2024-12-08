@@ -29,6 +29,9 @@ public class Window_QuestPointer : MonoBehaviour {
         pointerImage.color = color;
         inited = true;
         uiCamera = GameObject.Find("UI_Camera").GetComponent<Camera>();
+
+        StartCoroutine(PulsePointer(6, 0.6f, 1.2f));
+
     }
 
 
@@ -88,4 +91,37 @@ public class Window_QuestPointer : MonoBehaviour {
 
         return n;
     }
+
+    private IEnumerator PulsePointer(int pulseCount, float pulseDuration, float scaleMultiplier)
+    {
+        Vector3 originalScale = pointerRectTransform.localScale;
+
+        for (int i = 0; i < pulseCount; i++)
+        {
+            // Scale up
+            float elapsed = 0f;
+            while (elapsed < pulseDuration / 2)
+            {
+                elapsed += Time.deltaTime;
+                float scale = Mathf.Lerp(1f, scaleMultiplier, elapsed / (pulseDuration / 2));
+                pointerRectTransform.localScale = originalScale * scale;
+                yield return null;
+            }
+
+            // Scale down
+            elapsed = 0f;
+            while (elapsed < pulseDuration / 2)
+            {
+                elapsed += Time.deltaTime;
+                float scale = Mathf.Lerp(scaleMultiplier, 1f, elapsed / (pulseDuration / 2));
+                pointerRectTransform.localScale = originalScale * scale;
+                yield return null;
+            }
+        }
+
+        // Ensure scale returns to normal
+        pointerRectTransform.localScale = originalScale;
+    }
+
+
 }

@@ -129,6 +129,10 @@ public class Grid
     }
     public void RemoveFromArray(int x, int y)
     {
+        if(array[x, y] == 201)//do not hardcode this
+        {
+            return;
+        }
         array[x, y] = defaultValue;
     }
 

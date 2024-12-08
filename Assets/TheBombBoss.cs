@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheBomb : Enemy
+public class TheBombBoss : Enemy
 {
     public Animator effects;
 
-    public MuliTimer fuseTimer= new MuliTimer(3f);
+    public MuliTimer fuseTimer = new MuliTimer(3f);
 
     public float expRadius = 0.6f;
 
@@ -44,13 +43,13 @@ public class TheBomb : Enemy
         //explode, deal dmg in area, lose hp
         //rest
         //
-       
-        if(target == null)
+
+        if (target == null)
         {
             return;
         }
 
-        if (state== State.Moving)
+        if (state == State.Moving)
         {
             if (Vector3.Distance(transform.position, target.position) < boomDist)
             {
@@ -62,7 +61,7 @@ public class TheBomb : Enemy
             }
             return;
         }
-        if(state == State.Attacking)
+        if (state == State.Attacking)
         {
             if (isStunned())
             {
@@ -72,7 +71,7 @@ public class TheBomb : Enemy
                 if (health > 0)
                 {
                     setState(State.Moving);
-                    knockbackReduction = 0.5f;
+                    knockbackReduction = 0.7f;
                 }
                 return;
             }
@@ -90,7 +89,7 @@ public class TheBomb : Enemy
                 if (health > 0)
                 {
                     setState(State.Base);
-                    knockbackReduction = 0.5f;
+                    knockbackReduction = 0.7f;
                 }
             }
             return;
@@ -114,13 +113,14 @@ public class TheBomb : Enemy
             {
                 Vector2 direction = transform.position - coll.gameObject.transform.position;
 
-                Vector2 knockback =  (direction.normalized * knockbackPower * -1);
+                Vector2 knockback = (direction.normalized * knockbackPower * -1);
 
-                coll.gameObject.GetComponent<Enemy>().getHit(attackPower, knockback,direction);
+                coll.gameObject.GetComponent<Enemy>().getHit(attackPower, knockback, direction);
             }
             if (coll.gameObject.GetComponent<CorpseScript>() != null)
             {
                 Debug.Log("CORPSE AT" + coll.transform.position);
+                GameManager.Instance.removeCorpseAtWorldPos(coll.transform.position);
             }
             //player
             if (coll.gameObject.GetComponent<RiggedPlayerController>() != null)
@@ -130,7 +130,7 @@ public class TheBomb : Enemy
         }
         yield return new WaitForSeconds(1.5f);
         setState(State.Moving);
-        knockbackReduction = 0.5f;
+        knockbackReduction = 0.7f;
         //this.getHit(1f, Vector2.zero);
     }
 }

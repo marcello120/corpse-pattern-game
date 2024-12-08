@@ -122,6 +122,10 @@ public class PatternChecker
                 {
                     return false;
                 }
+                if(array1[i, j] == 1 && array2[i, j] == 201)// do not hardcode this
+                {
+                    return false;
+                }
             }
         }
 
@@ -139,7 +143,7 @@ public class PatternChecker
     }
 
     private int[,] resolveWildCards(int[,] inPattern, int[,] bigArr, int wildcard)
-    {
+   {
         int[,] returnArray = new int[inPattern.GetLength(0), inPattern.GetLength(1)];
 
         for (int i = 0; i < inPattern.GetLength(0); i++)

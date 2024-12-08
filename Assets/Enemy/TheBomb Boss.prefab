@@ -378,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4437271153862394023}
-  - component: {fileID: 4437271153862394010}
+  - component: {fileID: 958952744105366322}
   - component: {fileID: 4437271153862394016}
   - component: {fileID: 4437271153862394019}
   - component: {fileID: 4437271153862394029}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 4437271153862394031}
   - component: {fileID: 2099149392539482442}
   m_Layer: 12
-  m_Name: TheBomb
+  m_Name: TheBomb Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4437271153862394010
+--- !u!114 &958952744105366322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,13 +420,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4437271153862394021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c4b6f2d1e5e7c49b4f4107f48fe53f, type: 3}
+  m_Script: {fileID: 11500000, guid: 44e21e5fe62fecb48aaf3ccad824e7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 4437271153645128408}
-  enemyname: Bomb
+  enemyname: BombBoss
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
-  corpseNumber: 43
+  corpseNumber: 143
   flipBehaviour: -1
   nearDeathStatusEffect: {fileID: 11400000, guid: 146a2bb41d7f6324d997e7123ee7b03e, type: 2}
   powerLevel: 4
@@ -435,8 +435,8 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 1a0b31fbe628fbb4f830595c2aec6628, type: 3}
   spawnSound: {fileID: 0}
-  maxHealth: 7
-  health: 7
+  maxHealth: 14
+  health: 14
   attackPower: 2
   movemetSpeed: 150
   knockbackReduction: 1
