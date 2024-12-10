@@ -48,6 +48,8 @@ public class RiggedPlayerController : PlayerController
 
     public AudioClip pickupSound;
 
+    public GameObject lowHealthShader;
+
     public enum WeaponEnum
     {
         NONE,
@@ -709,6 +711,10 @@ public class RiggedPlayerController : PlayerController
         {
             Die();
         }
+        else if (playerHealth == 1)
+        {
+            lowHealthShader.SetActive(true);
+        }
         else
         {
             invincible = true;
@@ -820,6 +826,9 @@ public class RiggedPlayerController : PlayerController
     public void heal(float inHealth)
     {
         playerHealth += inHealth;
+
+        lowHealthShader.SetActive(false);
+        
         if (playerHealth > maxHealth)
         {
             playerHealth= maxHealth;
