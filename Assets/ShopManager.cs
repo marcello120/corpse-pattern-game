@@ -35,8 +35,12 @@ public class ShopManager : MonoBehaviour
     public GameObject shopCanvas;
     public GameObject shopItemUi;
 
-    public RiggedPlayerController player;
     public CinemachineVirtualCamera cinemachineCamera;
+    public AudioSource audioSource;
+
+    public RiggedPlayerController player;
+    public AudioClip buy;
+    public AudioClip select;
 
 
 
@@ -44,6 +48,7 @@ public class ShopManager : MonoBehaviour
     {
         //seed();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<RiggedPlayerController>();
+        audioSource = GetComponent<AudioSource>();
         init();
     }
 
@@ -56,8 +61,9 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < shopItems.Count; i++)
         {
             ShopItem item = shopItems[i];
-            int active = PlayerPrefs.GetInt(item.utility.ToString() + "_isActive", 0);
-            if (active == 1)
+            string active = PlayerPrefs.GetString("SelectedUtility","NONE");
+            Utility selectedUtil = (Utility)Enum.Parse(typeof(Utility), active);
+            if (selectedUtil == item.utility)
             {
                 item.isActive = true;
             }
@@ -110,19 +116,21 @@ public class ShopManager : MonoBehaviour
         {
             GameManager.changeTotal(shopItem.cost * -1);
             PlayerPrefs.SetInt(shopItem.utility.ToString() + "_purchased", 1);
-            PlayerPrefs.SetInt(shopItem.utility.ToString() + "_isActive", 1);
+            PlayerPrefs.SetString("SelectedUtility",shopItem.utility.ToString());
+            audioSource.PlayOneShot(buy);
         }
         if (!shopItem.isActive && shopItem.purchased) 
         {
-            PlayerPrefs.SetInt(shopItem.utility.ToString() + "_isActive", 1);
+            PlayerPrefs.SetString("SelectedUtility", shopItem.utility.ToString());
+            audioSource.PlayOneShot(select);
         }
-        foreach (ShopItem item in shopItems)
-        {
-            if (item.utility != shopItem.utility)
-            {
-                PlayerPrefs.SetInt(item.utility.ToString() + "_isActive", 0);
-            }
-        }
+        //foreach (ShopItem item in shopItems)
+        //{
+        //    if (item.utility != shopItem.utility)
+        //    {
+        //        PlayerPrefs.SetInt(item.utility.ToString() + "_isActive", 0);
+        //    }
+        //}
         player.selectedUtility= shopItem.utility;
 
         init();
@@ -150,6 +158,7 @@ public class ShopManager : MonoBehaviour
         {
             // Initialize the shop
             init();
+            player.canAttack = false;
 
             // Enable shopCanvas
             shopCanvas.SetActive(true);
@@ -166,6 +175,8 @@ public class ShopManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            player.canAttack = true;
+
             // Gradually make shopCanvas disappear (fade-out effect)
             StartCoroutine(FadeCanvasGroup(shopCanvas.GetComponent<CanvasGroup>(), 1f, 0f, 1f, () =>
             {

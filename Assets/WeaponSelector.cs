@@ -27,9 +27,14 @@ public class WeaponSelector : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             StaticData.chosenWeapon = weaponEnum;
-            collision.gameObject.GetComponent<RiggedPlayerController>().selectWeapon();
-            Instantiate(selectionEffect,transform);
-            audioSource.PlayOneShot(audioClip);
+            RiggedPlayerController rpc = collision.gameObject.GetComponent<RiggedPlayerController>();
+            if(rpc.currentWeapon != weaponEnum)
+            {
+                rpc.selectWeapon();
+                Instantiate(selectionEffect, transform);
+                audioSource.PlayOneShot(audioClip);
+            }
+
         }
     }
 }

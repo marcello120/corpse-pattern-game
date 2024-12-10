@@ -1120,7 +1120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267358963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.15, y: 9.4, z: 0}
+  m_LocalPosition: {x: -0.66, y: 8.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10669,11 +10669,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3094747242288446221, guid: bb0b9ae2c1462c44fb40d98e8e2b7ddd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.15
+      value: 26.2
       objectReference: {fileID: 0}
     - target: {fileID: 3094747242288446221, guid: bb0b9ae2c1462c44fb40d98e8e2b7ddd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.33
+      value: 17.65
       objectReference: {fileID: 0}
     - target: {fileID: 3094747242288446221, guid: bb0b9ae2c1462c44fb40d98e8e2b7ddd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19280,6 +19280,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4286586494878344195, guid: 54455ee0d50703f4b81e442806497440, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4480459501102917697, guid: 54455ee0d50703f4b81e442806497440, type: 3}
       propertyPath: m_Name
       value: UI
@@ -19390,7 +19394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6377802544311739422, guid: 54455ee0d50703f4b81e442806497440, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54455ee0d50703f4b81e442806497440, type: 3}
@@ -19405,6 +19409,10 @@ PrefabInstance:
       propertyPath: shopCanvas
       value: 
       objectReference: {fileID: 7184589897277071702}
+    - target: {fileID: 4820068231724911754, guid: db5a5939e0036a949b20be437be87ddb, type: 3}
+      propertyPath: cinemachineCamera
+      value: 
+      objectReference: {fileID: 133475214}
     - target: {fileID: 4820068231724911755, guid: db5a5939e0036a949b20be437be87ddb, type: 3}
       propertyPath: m_Name
       value: Shop

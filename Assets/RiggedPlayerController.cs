@@ -57,6 +57,8 @@ public class RiggedPlayerController : PlayerController
         SWORD
     }
 
+    public WeaponEnum currentWeapon = WeaponEnum.SWORD;
+
     public enum Utility
     {
         NONE,
@@ -112,12 +114,16 @@ public class RiggedPlayerController : PlayerController
             baseMoveSpeed = moveSpeed;
         }
         selectWeapon();
-        
+        string active = PlayerPrefs.GetString("SelectedUtility","NONE");
+        Utility selectedUtil = (Utility)Enum.Parse(typeof(Utility), active);
+        selectedUtility = selectedUtil;
+
     }
 
     public void selectWeapon()
     {
         WeaponEnum weaponEnum = StaticData.chosenWeapon;
+        currentWeapon = weaponEnum;
         if (weaponEnum != WeaponEnum.NONE)
         {
             foreach (Transform child in holster.transform)
