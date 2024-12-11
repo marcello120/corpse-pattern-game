@@ -3271,13 +3271,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptedCoprseCode: 11
+  healAmount: 0
   ability: 2
   coprseView: {fileID: 8225561770553124135}
   utiltiyView: {fileID: 8225561769766214129}
   coprseDetecter: {fileID: 0}
   positiveEffect: {fileID: 8791802859087666345, guid: 9c8a1e0fcbc60e5429a07bbd1b9a0da7, type: 3}
   negativeEffect: {fileID: 7226888052703040409, guid: 3e6f046e6165cf34a8b57b188a1e0e94, type: 3}
-  positivieClip: {fileID: 0}
+  positivieClip: {fileID: 8300000, guid: f006f5a1c0e99bd48b0debc8bd4cbd86, type: 3}
   negativeClip: {fileID: 0}
 --- !u!58 &8225561769400133404
 CircleCollider2D:
