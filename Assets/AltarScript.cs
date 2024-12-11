@@ -6,6 +6,7 @@ public class AltarScript : MonoBehaviour
 {
     [Header("Model")]
     public int acceptedCoprseCode = -1;
+    public int healAmount = 0;
     public RiggedPlayerController.Utility ability;
 
     [Header("View")]
@@ -54,7 +55,15 @@ public class AltarScript : MonoBehaviour
                     if(riggedPlayerController != null && riggedPlayerController.GetComponent<RiggedPlayerController>() != null)
                     {
                         RiggedPlayerController rigged = riggedPlayerController.GetComponent<RiggedPlayerController>();
-                        rigged.setUtility(ability);
+                        if (healAmount > 0)
+                        {
+                            rigged.heal(healAmount);
+
+                        }
+                        else
+                        {
+                            rigged.setUtility(ability);
+                        }
                         GameObject effect = Instantiate(positiveEffect,transform.position, Quaternion.identity);
                         effect.transform.localScale = effect.transform.localScale * 0.4f;
                     }

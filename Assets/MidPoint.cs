@@ -9,8 +9,14 @@ public class MidPoint : MonoBehaviour
     public float cameraTargetDivider;
     public float maximumDistance;
 
+    public bool overriden = false;
+
     private void Update()
     {
+        if (overriden)
+        {
+            return;
+        }
         if(playerTransform== null)
         {
             return;
@@ -31,5 +37,16 @@ public class MidPoint : MonoBehaviour
         {
             transform.position = cameraTargetPosition;
         }
+    }
+
+    public void setPos(Vector3 pos)
+    {
+        overriden = true;
+        transform.position = pos;
+    }
+
+    public void release()
+    {
+        overriden= false;
     }
 }
