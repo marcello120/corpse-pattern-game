@@ -238,6 +238,10 @@ public class GameManager : MonoBehaviour
         {
 
             pattern = new int[1, 1] { { 404 } };
+            if (PlayerPrefs.GetInt("AdvancedSpawn", 0) == 1)
+            {
+                player.transform.position = new Vector3(-8.5f, -1.3f);
+            }
         }
         else if (currentLevel == Level.ENDLESS)
         {
@@ -382,7 +386,12 @@ public class GameManager : MonoBehaviour
         int finalScore = calculateScore();
         winMenu.gameObject.SetActive(true);
         winMenu.refresh(score, getNumberOfCorpsesOnGrind(), getTimeBonus(), (int)player.playerHealth, finalScore);
-        PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        int highscore = PlayerPrefs.GetInt("HighScore_" + currentLevel.ToString());
+        if(highscore < finalScore)
+        {
+            PlayerPrefs.SetInt("AdvancedSpawn", 1);
+            PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        }
         int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
         PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
         yield return new WaitForSeconds(0.1f);
@@ -396,7 +405,11 @@ public class GameManager : MonoBehaviour
         deathScore.SetText((score * 10).ToString());
         deathExtraCorpses.SetText(getNumberOfCorpsesOnGrind().ToString());
         deathTimeBonus.SetText(getTimeBonus().ToString());
-        PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        int highscore = PlayerPrefs.GetInt("HighScore_" + currentLevel.ToString());
+        if (highscore < finalScore)
+        {
+            PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        }
         int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
         PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
 

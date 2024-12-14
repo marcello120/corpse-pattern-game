@@ -1,3 +1,4 @@
+using ChristinaCreatesGames.Animations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -73,7 +74,6 @@ public class ScimitarWeapon : Weapon
         {
             CameraShake.Instance.Shake(0.33f, 0.3f);
             animator.SetTrigger("Attack");
-
             if (combostep == 0)
             {
                 comboTimer.reset();

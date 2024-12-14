@@ -112,7 +112,7 @@ public class Grid
             Print();
             return 999;
         }
-        else if (array[xint,yint] != 0)
+        else if (array[xint,yint] != 0 && array[xint, yint]!=201)
         {
             Debug.Log("STACK! " + xint + " : " + yint);
             array[xint, yint] = 99;

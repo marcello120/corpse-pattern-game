@@ -53,6 +53,11 @@ public class MenuController : MonoBehaviour
         selectedSceneId = id;
     }
 
+    public void GoToHub()
+    {
+        SceneManager.LoadScene("HUB");
+    }
+
 
     public void setSelectedWeapon(RiggedPlayerController.WeaponEnum weapon)
     {
