@@ -12,6 +12,8 @@ public class CorpseScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public SlowStatusEffect slowStatus;
     public Light2D light2d;
+    public Light2D bigLight;
+
 
     static Color GREEN_COLOR = new Color(0f, 1f, 0f); // Pure green
     static Color BLUE_COLOR = new Color(0f, 0f, 1f); // Pure blue
@@ -28,6 +30,13 @@ public class CorpseScript : MonoBehaviour
         spriteRenderer= GetComponent<SpriteRenderer>();
         Color color = getColorFromCorpseCode(corpseNumber);
         light2d.color = color;
+        if(GameManager.Instance.currentLevel== GameManager.Level.DARKNESS) {
+            bigLight.enabled = true;
+        }
+        else
+        {
+            bigLight.enabled = false;
+        }
     }
 
     public void Init(int coprseNumIn)

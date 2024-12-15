@@ -102,7 +102,8 @@ public class GameManager : MonoBehaviour
         ENDLESS,
         LEVEL1_1,
         LEVEL1_2,
-        LEVEL1_3
+        LEVEL1_3,
+        DARKNESS
     }
 
     public class LevelCongfig
@@ -200,6 +201,21 @@ public class GameManager : MonoBehaviour
             bossPattern: new int[1, 1] { { 111 } }
         )
     },
+    {
+        Level.DARKNESS, new LevelCongfig(
+            new List<PatternStore.CorpsePattern.Difficulty>
+            {
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
+            },
+            spiceChance: 80,
+            bossType: null,
+            bossPattern: new int[1, 1] { { 11 } }
+        )
+    },
+
 };
 
 
@@ -367,7 +383,10 @@ public class GameManager : MonoBehaviour
 
     private void SpawnDoubler()
     {
-        //DoublerSpawner selected = doublerSpawners[UnityEngine.Random.Range(0, doublerSpawners.Count)];
+        if(currentLevel == Level.DARKNESS)
+        {
+            return;
+        }
 
         doubler = SpawnWithCheck(doublerPrefab.gameObject, player.transform.position, 8, 10).GetComponent<Doubler>();
 
@@ -514,6 +533,10 @@ public class GameManager : MonoBehaviour
             //get new random pattern from store
 
             //Increment score and set UI
+            if(currentLevel == Level.DARKNESS)
+            {
+                multiplier = 3;
+            }
             incrementScore(multiplier);
 
             if (currentLevel != Level.ENDLESS)

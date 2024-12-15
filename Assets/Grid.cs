@@ -112,7 +112,7 @@ public class Grid
             Print();
             return 999;
         }
-        else if (array[xint,yint] != 0 && array[xint, yint]!=201)
+        else if (array[xint, yint] != 0 && (array[xint, yint] < 199 || array[xint, yint] > 299))
         {
             Debug.Log("STACK! " + xint + " : " + yint);
             array[xint, yint] = 99;
@@ -129,7 +129,7 @@ public class Grid
     }
     public void RemoveFromArray(int x, int y)
     {
-        if(array[x, y] == 201)//do not hardcode this
+        if(array[x, y] > 199 && array[x, y] < 299)
         {
             return;
         }

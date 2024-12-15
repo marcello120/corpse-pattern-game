@@ -114,7 +114,7 @@ public class PatternChecker
         }
 
         for (int i = 0; i < array1.GetLength(0); i++)
-        {
+        { 
             for (int j = 0; j < array1.GetLength(1); j++)
             {
                 //1 means any corpse, coprses are >10
@@ -122,9 +122,9 @@ public class PatternChecker
                 {
                     return false;
                 }
-                if(array1[i, j] == 1 && array2[i, j] == 201)// do not hardcode this
+                if(array1[i, j] == 1 && array2[i, j] > 199 && array2[i, j] < 299)
                 {
-                    return false;
+                    return false; 
                 }
             }
         }
