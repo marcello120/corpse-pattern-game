@@ -3203,6 +3203,7 @@ MonoBehaviour:
   highscore_Lvl3: {fileID: 1920682731}
   highscore_Endless: {fileID: 679585591}
   selectedSceneId: 0
+  selectedSceneName: 
 --- !u!1 &1233266086
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,10 +5465,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1805792127}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1220959818}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: GoToHub
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

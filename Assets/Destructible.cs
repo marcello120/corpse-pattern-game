@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using ChristinaCreatesGames.Animations;
 
 public class Destructible : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class Destructible : MonoBehaviour
     {
         health -= damage;
         Instantiate(hitEffect, transform.position, Quaternion.identity);
+        SquashAndStretch squasheffect = GetComponent<SquashAndStretch>();
+        if(squasheffect != null)
+        {
+            squasheffect.PlaySquashAndStretch();
+        }
         if (health < 1)
         {
             foreach (Transform child in transform)

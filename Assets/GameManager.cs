@@ -102,7 +102,8 @@ public class GameManager : MonoBehaviour
         ENDLESS,
         LEVEL1_1,
         LEVEL1_2,
-        LEVEL1_3
+        LEVEL1_3,
+        DARKNESS
     }
 
     public class LevelCongfig
@@ -200,6 +201,21 @@ public class GameManager : MonoBehaviour
             bossPattern: new int[1, 1] { { 111 } }
         )
     },
+    {
+        Level.DARKNESS, new LevelCongfig(
+            new List<PatternStore.CorpsePattern.Difficulty>
+            {
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.EASY,
+                PatternStore.CorpsePattern.Difficulty.MEDIUM,
+            },
+            spiceChance: 80,
+            bossType: null,
+            bossPattern: new int[1, 1] { { 11 } }
+        )
+    },
+
 };
 
 
@@ -238,6 +254,10 @@ public class GameManager : MonoBehaviour
         {
 
             pattern = new int[1, 1] { { 404 } };
+            if (PlayerPrefs.GetInt("AdvancedSpawn", 0) == 1)
+            {
+                player.transform.position = new Vector3(-8.5f, -1.3f);
+            }
         }
         else if (currentLevel == Level.ENDLESS)
         {
@@ -363,7 +383,10 @@ public class GameManager : MonoBehaviour
 
     private void SpawnDoubler()
     {
-        //DoublerSpawner selected = doublerSpawners[UnityEngine.Random.Range(0, doublerSpawners.Count)];
+        if(currentLevel == Level.DARKNESS)
+        {
+            return;
+        }
 
         doubler = SpawnWithCheck(doublerPrefab.gameObject, player.transform.position, 8, 10).GetComponent<Doubler>();
 
@@ -382,7 +405,12 @@ public class GameManager : MonoBehaviour
         int finalScore = calculateScore();
         winMenu.gameObject.SetActive(true);
         winMenu.refresh(score, getNumberOfCorpsesOnGrind(), getTimeBonus(), (int)player.playerHealth, finalScore);
-        PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        int highscore = PlayerPrefs.GetInt("HighScore_" + currentLevel.ToString());
+        if(highscore < finalScore)
+        {
+            PlayerPrefs.SetInt("AdvancedSpawn", 1);
+            PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        }
         int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
         PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
         yield return new WaitForSeconds(0.1f);
@@ -396,7 +424,11 @@ public class GameManager : MonoBehaviour
         deathScore.SetText((score * 10).ToString());
         deathExtraCorpses.SetText(getNumberOfCorpsesOnGrind().ToString());
         deathTimeBonus.SetText(getTimeBonus().ToString());
-        PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        int highscore = PlayerPrefs.GetInt("HighScore_" + currentLevel.ToString());
+        if (highscore < finalScore)
+        {
+            PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
+        }
         int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
         PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
 
@@ -501,6 +533,10 @@ public class GameManager : MonoBehaviour
             //get new random pattern from store
 
             //Increment score and set UI
+            if(currentLevel == Level.DARKNESS)
+            {
+                multiplier = 3;
+            }
             incrementScore(multiplier);
 
             if (currentLevel != Level.ENDLESS)

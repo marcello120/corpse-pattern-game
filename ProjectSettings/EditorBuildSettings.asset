@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeathMenu.unity
     guid: c785d449328314b4d87e61288cd092f6
+  - enabled: 1
+    path: Assets/Scenes/HUB.unity
+    guid: 4ac32b707558efe4ba4f717815a5a34b
+  - enabled: 1
+    path: Assets/Scenes/Darkness.unity
+    guid: 157354a406a87f041af6e01999b4460c
   m_configObjects: {}

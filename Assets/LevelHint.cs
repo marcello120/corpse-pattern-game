@@ -12,6 +12,8 @@ public class LevelHint : MonoBehaviour
         {GameManager.Level.LEVEL1_2, "Level 2" },
         {GameManager.Level.LEVEL1_3, "Level 3" },
         {GameManager.Level.ENDLESS, "Endless Mode" },
+        {GameManager.Level.DARKNESS, "Darkness" },
+
     };
 
 
@@ -32,7 +34,14 @@ public class LevelHint : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             int highscore = PlayerPrefs.GetInt("HighScore_" + level, 0);
-            InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position,levelNames[level], "Top Score: " + highscore ) ;
+            if(level == GameManager.Level.DARKNESS)
+            {
+               InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, levelNames[level], "Top Score: " + highscore, "Earn TRIPLE the score when venturing into the Darkness");
+            }
+            else
+            {
+                InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, levelNames[level], "Top Score: " + highscore);
+            }
         }
     }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Pathfinding;
+using ChristinaCreatesGames.Animations;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatusHolder))]
@@ -197,6 +198,11 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         if (hitEffect != null)
         {
             Instantiate(hitEffect, transform.position, Quaternion.FromToRotation(Vector3.right, directtion));
+        }
+        SquashAndStretch squasheffect = GetComponent<SquashAndStretch>();
+        if (squasheffect != null)
+        {
+            squasheffect.PlaySquashAndStretch();
         }
         if (hitSound != null)
         {
