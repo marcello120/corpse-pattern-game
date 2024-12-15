@@ -1,38 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using static System.TimeZoneInfo;
 using UnityEngine.SceneManagement;
-using System;
 
-public class Portal : MonoBehaviour
+public class TransitionAnimation : MonoBehaviour
 {
-
-    public string scene_name;
     public Material transitionMaterial;
     public float transitionTime = 1f;
     public float transitionSpeed = 1f;
     private string materialName = "_MaskAmount";
 
+    // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(StartTransition());
     }
 
-    private void load()
-    {
-        StartCoroutine(LoadLevel(scene_name));
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            load();
-        }
-    }
-
-    IEnumerator LoadLevel(string scene_name)
+    IEnumerator StartTransition()
     {
         float currentTime = 0f;
 
@@ -44,18 +29,12 @@ public class Portal : MonoBehaviour
             float t = currentTime / transitionTime;
 
             // Smoothly transition the material property
-            transitionMaterial.SetFloat(materialName, Mathf.Lerp(-1f, 1f, t));
+            transitionMaterial.SetFloat(materialName, Mathf.Lerp(1f, -1f, t));
 
             yield return null; // Wait for the next frame
         }
 
         // Ensure the final value is set
-        transitionMaterial.SetFloat(materialName, 1f);
-
-        // Wait before loading the scene (optional)
-        yield return new WaitForSeconds(0.5f);
-
-        SceneManager.LoadScene(scene_name);
+        transitionMaterial.SetFloat(materialName, -1f);
     }
-
 }
