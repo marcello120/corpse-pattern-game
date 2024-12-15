@@ -13227,11 +13227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8079740416817972776, guid: b20519a8a2c2a2045b249238246619bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.45
+      value: 4.485
       objectReference: {fileID: 0}
     - target: {fileID: 8079740416817972776, guid: b20519a8a2c2a2045b249238246619bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.99
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8079740416817972776, guid: b20519a8a2c2a2045b249238246619bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13268,6 +13268,10 @@ PrefabInstance:
     - target: {fileID: 8079740416817972790, guid: b20519a8a2c2a2045b249238246619bc, type: 3}
       propertyPath: m_Name
       value: vase (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079740416817972790, guid: b20519a8a2c2a2045b249238246619bc, type: 3}
+      propertyPath: m_TagString
+      value: Destructible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b20519a8a2c2a2045b249238246619bc, type: 3}
