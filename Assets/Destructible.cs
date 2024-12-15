@@ -19,6 +19,12 @@ public class Destructible : MonoBehaviour
     void Start()
     {
         audioSource= GetComponent<AudioSource>();
+        if (GetComponent<Explodable>() != null)
+        {
+            GetComponent<Explodable>().allowRuntimeFragmentation = true;
+            GetComponent<Explodable>().withForce = true;
+
+        }
     }
 
     // Update is called once per frame
@@ -36,10 +42,18 @@ public class Destructible : MonoBehaviour
         {
             squasheffect.PlaySquashAndStretch();
         }
-        audioSource.PlayOneShot(hitSound);
+        if(audioSource!= null && hitSound!=null) {
+            audioSource.PlayOneShot(hitSound);
+        }
         if (health < 1)
         {
-            AudioSource.PlayClipAtPoint(breakSound, transform.position);
+            if (audioSource != null && breakSound != null)
+            {
+                AudioSource.PlayClipAtPoint(breakSound, transform.position);
+            }
+            if (GetComponent<Explodable>() != null) {
+                GetComponent<Explodable>().explode();
+            }
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
