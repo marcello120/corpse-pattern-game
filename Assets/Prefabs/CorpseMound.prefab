@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 5011448977274309006}
   - component: {fileID: 2433796334370295661}
   - component: {fileID: 454669371306505521}
+  - component: {fileID: -4450364307686023715}
   m_Layer: 7
   m_Name: CorpseMound
   m_TagString: Destructible
@@ -300,7 +301,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f44f0f2e62f610546aa78daa92546674, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -348,6 +349,8 @@ MonoBehaviour:
   health: 5
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
   blocking: 1
+  hitSound: {fileID: 8300000, guid: 458f27956f77d1e4f9c12e4478fc0e45, type: 3}
+  breakSound: {fileID: 8300000, guid: 9bf84f42a53b0744f849775f085e834e, type: 3}
 --- !u!60 &2433796334370295661
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -373,24 +376,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.18992114, y: -0.22787857}
-      - {x: 0.0047457516, y: 0.21049964}
-      - {x: -0.20702597, y: -0.2299265}
-    - - {x: -0.15933333, y: -0.05}
-      - {x: -0.16, y: -0.050666668}
-      - {x: -0.16, y: -0.053999998}
-      - {x: -0.15333334, y: -0.058666665}
-      - {x: -0.15066667, y: -0.058666665}
-      - {x: -0.14933333, y: -0.05733333}
-      - {x: -0.14933333, y: -0.053999998}
-      - {x: -0.15466666, y: -0.05}
-    - - {x: -0.092, y: 0.12533334}
-      - {x: -0.09533333, y: 0.122}
-      - {x: -0.09533333, y: 0.119333334}
-      - {x: -0.08933333, y: 0.119333334}
-      - {x: -0.082666665, y: 0.122666664}
-      - {x: -0.082666665, y: 0.12466667}
-      - {x: -0.083333336, y: 0.12533334}
+    - - {x: 0.20331836, y: -0.24808645}
+      - {x: 0.0027809143, y: 0.16548443}
+      - {x: -0.20206451, y: -0.23976517}
 --- !u!114 &454669371306505521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,3 +438,99 @@ MonoBehaviour:
     m_RotationOrder: 4
   looping: 0
   loopingDelay: 0.5
+--- !u!82 &-4450364307686023715
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848862316599546136}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

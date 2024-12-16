@@ -27,16 +27,10 @@ public class CorpseScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer= GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Color color = getColorFromCorpseCode(corpseNumber);
         light2d.color = color;
-        if(GameManager.Instance.currentLevel== GameManager.Level.DARKNESS) {
-            bigLight.enabled = true;
-        }
-        else
-        {
-            bigLight.enabled = false;
-        }
+        bigLight.enabled = false;
     }
 
     public void Init(int coprseNumIn)
@@ -51,6 +45,10 @@ public class CorpseScript : MonoBehaviour
         if (corpseNumber == 99)
         {
             GetComponent<SpriteRenderer>().sortingOrder = 0;
+        }
+        if (GameManager.Instance.currentLevel == GameManager.Level.DARKNESS)
+        {
+            bigLight.enabled = true;
         }
     }
 
