@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedUp
   m_EditorClassIdentifier: 
   powerUpName: Speed Up
-  powerUpDescription: Speed Up
+  powerUpDescription: Move faster
   powerUpColor: {r: 1, g: 0.92332065, b: 0, a: 1}
   sprite: {fileID: 21300000, guid: 8b55326dc2e129f4d8259082e44c38ad, type: 3}
   speedIncreaseAmount: 0.3

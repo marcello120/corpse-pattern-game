@@ -36,7 +36,7 @@ public class LevelHint : MonoBehaviour
             int highscore = PlayerPrefs.GetInt("HighScore_" + level, 0);
             if(level == GameManager.Level.DARKNESS)
             {
-               InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, levelNames[level], "Top Score: " + highscore, "Earn TRIPLE the score when venturing into the Darkness");
+               InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, levelNames[level], "Top Score: " + highscore, "Earn TRIPLE the score when venturing into the Darkness <br><br>Make sure to bring a TORCH");
             }
             else
             {

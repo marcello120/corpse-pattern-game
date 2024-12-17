@@ -304,8 +304,8 @@ MonoBehaviour:
   - {fileID: 3192427707528175361}
   - {fileID: 77073984848422384}
   m_Bounds:
-    m_Center: {x: -0.37493002, y: 0.083884954, z: 0}
-    m_Extent: {x: 1.3324975, y: 1.4346471, z: 0}
+    m_Center: {x: -0.37492478, y: 0.0838871, z: 0}
+    m_Extent: {x: 1.3324951, y: 1.4346492, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -411,8 +411,8 @@ MonoBehaviour:
   - {fileID: 2662245333598537976}
   - {fileID: 584096269535732340}
   m_Bounds:
-    m_Center: {x: 0.21693313, y: 0.1297785, z: 0}
-    m_Extent: {x: 1.1912465, y: 1.4998733, z: 0}
+    m_Center: {x: 0.2169311, y: 0.12977958, z: 0}
+    m_Extent: {x: 1.1912575, y: 1.4998724, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -519,8 +519,8 @@ MonoBehaviour:
   - {fileID: 6674877247352946789}
   - {fileID: 2976927103235576097}
   m_Bounds:
-    m_Center: {x: 0.022828817, y: 0.052289724, z: 0}
-    m_Extent: {x: 2.0200763, y: 2.2371302, z: 0}
+    m_Center: {x: 0.022856832, y: 0.052289486, z: 0}
+    m_Extent: {x: 2.020085, y: 2.2371302, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -5679,9 +5679,13 @@ MonoBehaviour:
   perfectDashDecider: {fileID: 6009817812107121772}
   slowStatusEffect: {fileID: 11400000, guid: c80aa0d617c49b64cb8489d55b1310ca, type: 2}
   stunStatusEffect: {fileID: 11400000, guid: 0b5e0c135efd04f43995d420636aae6c, type: 2}
+  fearStatusEffect: {fileID: 11400000, guid: 077442170d4e90548853a9f94f73c4c1, type: 2}
+  purpleFog: {fileID: 1965343156803978, guid: 0524138e6b40d4d40988a4ff31ce8084, type: 3}
   powerUps: []
   patternGrid: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: f006f5a1c0e99bd48b0debc8bd4cbd86, type: 3}
+  lowHealthShader: {fileID: 0}
+  currentWeapon: 4
   selectedUtility: 7
   interactLayerMask:
     serializedVersion: 2
@@ -5696,6 +5700,7 @@ MonoBehaviour:
   corpse: {fileID: 6848862316599546136, guid: 196551fc062d9d743a4220c49d30f81e, type: 3}
   trap: {fileID: 762703005621402843, guid: 64a18686d51ea5645b37e4c49b8150ff, type: 3}
   mulihook: {fileID: 3097259650234347955}
+  torch: {fileID: 5161421133173165198, guid: 925f09beb752a8d429c8e53b52c9b7cc, type: 3}
   playerBody: {fileID: 7636291458337714648}
   chargeTimer:
     time: 1
@@ -6348,8 +6353,8 @@ MonoBehaviour:
   - {fileID: 4489141259205737139}
   - {fileID: 2662245333598537976}
   m_Bounds:
-    m_Center: {x: -0.005610466, y: 0.7764396, z: 0}
-    m_Extent: {x: 1.0882306, y: 1.0837711, z: 0}
+    m_Center: {x: -0.005587101, y: 0.7764393, z: 0}
+    m_Extent: {x: 1.0882308, y: 1.0837711, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -6602,7 +6607,7 @@ MonoBehaviour:
   - {fileID: 2438592464320020297}
   - {fileID: 4489141259205737139}
   m_Bounds:
-    m_Center: {x: 0.065075755, y: 0.69388795, z: 0}
+    m_Center: {x: 0.06507385, y: 0.6938865, z: 0}
     m_Extent: {x: 0.7767036, y: 0.7969558, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -8534,8 +8539,8 @@ MonoBehaviour:
   - {fileID: 5429311949621382385}
   - {fileID: 7033652027589197945}
   m_Bounds:
-    m_Center: {x: 0.06534135, y: -0.20270586, z: 0}
-    m_Extent: {x: 1.0776198, y: 2.2068563, z: 0}
+    m_Center: {x: 0.065368295, y: -0.20270538, z: 0}
+    m_Extent: {x: 1.0776191, y: 2.2068546, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

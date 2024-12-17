@@ -1803,22 +1803,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3193352372633987887, guid: f5bb02f7c2d5ea14eac4b8578b52dcd7, type: 3}
-      propertyPath: m_Color.a
-      value: 0.79607844
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193352372633987887, guid: f5bb02f7c2d5ea14eac4b8578b52dcd7, type: 3}
-      propertyPath: m_Color.b
-      value: 0.254717
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193352372633987887, guid: f5bb02f7c2d5ea14eac4b8578b52dcd7, type: 3}
-      propertyPath: m_Color.g
-      value: 0.254717
-      objectReference: {fileID: 0}
-    - target: {fileID: 3193352372633987887, guid: f5bb02f7c2d5ea14eac4b8578b52dcd7, type: 3}
-      propertyPath: m_Color.r
-      value: 0.254717
-      objectReference: {fileID: 0}
     - target: {fileID: 5603773440947874261, guid: f5bb02f7c2d5ea14eac4b8578b52dcd7, type: 3}
       propertyPath: m_Name
       value: InfoCanvas

@@ -170,6 +170,8 @@ MonoBehaviour:
   weaponAttackPower: 1
   timeToLive: 0
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
+  onWallHitSound: {fileID: 0}
+  statuseffect: {fileID: 0}
 --- !u!95 &8663506858128612819
 Animator:
   serializedVersion: 5

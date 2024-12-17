@@ -10,6 +10,9 @@ public class Weapon : MonoBehaviour, IWeapon
     public Animator animator;
     public AudioSource hitSound;
 
+    [Header("Optional")]
+    public StatusEffect statusEffect;
+
 
     [Header("Stats")]
     public float speed = 10;

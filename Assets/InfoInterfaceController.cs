@@ -45,9 +45,14 @@ public class InfoInterfaceController : MonoBehaviour
         canvasGroup.alpha = 0;
     }
 
-    public void FadeInHintAndZoomAndMove(Vector3? targetPos,string? textMain = "", string? textSecond = "", string? description = "", string? buttonText = "")
+    public void FadeInHintAndZoomAndMove(Vector3? targetPos, string? textMain = "", string? textSecond = "", string? description = "", string? buttonText = "")
     {
-        FadeInHint(textMain, textSecond, description);
+        FadeInHintAndZoomAndMove(null, targetPos, textMain, textSecond, description, buttonText);
+    }
+
+    public void FadeInHintAndZoomAndMove(Sprite? sprite, Vector3? targetPos,string? textMain = "", string? textSecond = "", string? description = "", string? buttonText = "")
+    {
+        FadeInHint(sprite,textMain, textSecond, description);
         StartCoroutine(CinemachineCameraZoom(cinemachineCamera, 1.5f, 0.75f));
         if (targetPos.HasValue)
         {
@@ -56,7 +61,7 @@ public class InfoInterfaceController : MonoBehaviour
     }
 
 
-    public void FadeInHint(string? textMain = "", string? textSecond = "", string? description = "", string? buttonText = "")
+    public void FadeInHint(Sprite? sprite, string? textMain = "", string? textSecond = "", string? description = "", string? buttonText = "")
     {
         mainText.text = textMain;
         secondText.text = textSecond;
@@ -65,6 +70,11 @@ public class InfoInterfaceController : MonoBehaviour
         mainText.enabled = true;
         secondText.enabled = true;
         rightImage.enabled = true;
+         if (sprite != null)
+        {
+            leftImage.enabled = true;
+            leftImage.sprite = sprite;
+        }
         if (buttonText != "")
         {
             button.gameObject.active = true;

@@ -50,7 +50,7 @@ void FixedUpdate()
 
 
             WeaponSwing effect = Instantiate(swing, transform);
-            effect.InitWeaponAttack(weaponKnockback, weaponAttackPower);
+            effect.InitWeaponAttack(weaponKnockback, weaponAttackPower, statusEffect);
             effect.transform.localPosition += new Vector3(0.5f, 0f);
             effect.transform.localScale *= size * 0.7f;
 

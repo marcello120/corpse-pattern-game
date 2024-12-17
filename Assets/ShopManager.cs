@@ -85,10 +85,10 @@ public class ShopManager : MonoBehaviour
             float shopItemHight = 70f;
             float offset = -230;
             int index = i;
-            if (i > 3)
+            if (i > 4)
             {
                 offset *= -1;
-                index -= 4;
+                index -= 5;
             }
             uiElement.GetComponent<RectTransform>().anchoredPosition = new Vector2(offset, 100 - (shopItemHight * index));
 

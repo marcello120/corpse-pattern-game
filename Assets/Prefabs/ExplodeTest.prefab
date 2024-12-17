@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 538cf035c1bbaeb41bd665234c580712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
+  dmgOnDash: 1
   hitEffect: {fileID: 760885542224398573, guid: 8f72d0450199beb449526fdef8a94bbd, type: 3}
   blocking: 0
   hitSound: {fileID: 8300000, guid: 458f27956f77d1e4f9c12e4478fc0e45, type: 3}

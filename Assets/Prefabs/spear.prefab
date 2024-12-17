@@ -176,6 +176,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 0}
   hitSound: {fileID: 0}
+  statusEffect: {fileID: 11400000, guid: 077442170d4e90548853a9f94f73c4c1, type: 2}
   speed: 0.7
   weaponAttackPower: 1
   weaponKnockback: 100

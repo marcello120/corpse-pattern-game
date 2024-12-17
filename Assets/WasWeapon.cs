@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WasWeapon : Weapon
 {
-    // Start is called before the first frame update
     void Start()
     {
         Init();
@@ -48,9 +47,9 @@ public class WasWeapon : Weapon
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            swing.InitWeaponAttack(weaponKnockback, weaponAttackPower);
 
             WeaponSwing effect = Instantiate(swing, transform);
+            effect.InitWeaponAttack(weaponKnockback, weaponAttackPower);
             effect.transform.localScale *= size*10;
 
             //comment if tired
@@ -85,9 +84,9 @@ public class WasWeapon : Weapon
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            swing.InitWeaponAttack(weaponKnockback, weaponAttackPower);
 
             WeaponSwing effect = Instantiate(swing, transform);
+            effect.InitWeaponAttack(weaponKnockback, weaponAttackPower, statusEffect);
             effect.transform.localScale *= size * 25;
 
             //comment if tired
