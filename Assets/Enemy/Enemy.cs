@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Pathfinding;
 using ChristinaCreatesGames.Animations;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatusHolder))]
@@ -42,6 +43,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public State state = State.Base;
     public bool isDead = false;
     public bool stunned;
+    public Vector3 pastPosition; 
 
 
     [Header("Extra")]
@@ -67,7 +69,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         Dying
     }
 
-    public void setState(State stateIn)
+    public virtual void setState(State stateIn)
     {
         if(stateIn == state)
         {
@@ -108,6 +110,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
            audioSource.PlayOneShot(spawnSound);
         }
+        InvokeRepeating(nameof(unstuck),3f, 3f);
     }
 
     public void commonUpdate()
@@ -124,6 +127,20 @@ public abstract class Enemy : MonoBehaviour, IEnemy
         {
             aliveTime += Time.deltaTime;
         }
+    }
+
+    public void unstuck()
+    {
+        if(pastPosition!= null && target!=null && target.transform!=null)
+        {
+            if(Vector3.Distance(pastPosition, transform.position) < 0.001)
+            {
+                Debug.LogWarning("Stuck " + gameObject.name);
+                Vector3 directionToPlayer = (target.position - transform.position).normalized;
+                transform.position += directionToPlayer * 0.5f;
+            }
+        }
+        pastPosition = transform.position;
     }
 
 

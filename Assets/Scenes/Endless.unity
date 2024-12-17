@@ -791,6 +791,246 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f085742aa792cdf4089be9691af86997, type: 3}
+--- !u!21 &144831835
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AllIn1SpriteShader/AllIn1SpriteShader
+  m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ColorRampTex:
+        m_Texture: {fileID: 2800000, guid: 279657edc397ece4b8029c727adf6ddc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorRampTexGradient:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorSwapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FadeBurnTex:
+        m_Texture: {fileID: 2800000, guid: 677cca399782dea41aedc1d292ecb67d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FadeTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlowTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineDistortTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineTex:
+        m_Texture: {fileID: 2800000, guid: 74087f6d03f233e4a8a142fa01f9e5cf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverlayTex:
+        m_Texture: {fileID: 2800000, guid: 677cca399782dea41aedc1d292ecb67d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShineMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _AlphaCutoffValue: 0.25
+    - _AlphaOutlineBlend: 1
+    - _AlphaOutlineGlow: 5
+    - _AlphaOutlineMinAlpha: 0
+    - _AlphaOutlinePower: 1
+    - _AlphaRoundThreshold: 0.5
+    - _BillboardY: 0
+    - _BlurHD: 0
+    - _BlurIntensity: 10
+    - _Brightness: 0
+    - _ChromAberrAlpha: 0.4
+    - _ChromAberrAmount: 1
+    - _ClipUvDown: 0
+    - _ClipUvLeft: 0
+    - _ClipUvRight: 0
+    - _ClipUvUp: 0
+    - _ColorChangeLuminosity: 0
+    - _ColorChangeTolerance: 0.25
+    - _ColorChangeTolerance2: 0.25
+    - _ColorChangeTolerance3: 0.25
+    - _ColorRampBlend: 1
+    - _ColorRampLuminosity: 0
+    - _ColorRampOutline: 0
+    - _ColorSwapBlend: 1
+    - _ColorSwapBlueLuminosity: 0.5
+    - _ColorSwapGreenLuminosity: 0.5
+    - _ColorSwapRedLuminosity: 0.5
+    - _Contrast: 1
+    - _CullingOption: 0
+    - _DistortAmount: 0.5
+    - _DistortTexXSpeed: 5
+    - _DistortTexYSpeed: 5
+    - _EditorDrawers: 6
+    - _FadeAmount: -0.1
+    - _FadeBurnGlow: 2
+    - _FadeBurnTransition: 0.075
+    - _FadeBurnWidth: 0.025
+    - _FishEyeUvAmount: 0.35
+    - _FlickerAlpha: 0
+    - _FlickerFreq: 0.2
+    - _FlickerPercent: 0.05
+    - _GhostBlend: 1
+    - _GhostColorBoost: 1
+    - _GhostTransparency: 0
+    - _GlitchAmount: 3
+    - _GlitchSize: 1
+    - _Glow: 10
+    - _GlowGlobal: 1
+    - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
+    - _GrassManualAnim: 1
+    - _GrassManualToggle: 0
+    - _GrassRadialBend: 0.1
+    - _GrassSpeed: 2
+    - _GrassWind: 20
+    - _GreyscaleBlend: 1
+    - _GreyscaleLuminosity: 0
+    - _GreyscaleOutline: 0
+    - _HandDrawnAmount: 10
+    - _HandDrawnSpeed: 5
+    - _HitEffectBlend: 1
+    - _HitEffectGlow: 5
+    - _HologramBlend: 1
+    - _HologramMaxAlpha: 0.75
+    - _HologramMinAlpha: 0.1
+    - _HologramStripesAmount: 0.1
+    - _HologramStripesSpeed: 4.5
+    - _HologramUnmodAmount: 0
+    - _HsvBright: 1
+    - _HsvSaturation: 1
+    - _HsvShift: 180
+    - _InnerOutlineAlpha: 1
+    - _InnerOutlineGlow: 4
+    - _InnerOutlineThickness: 1
+    - _MaxXUV: 1
+    - _MaxYUV: 1
+    - _MinXUV: 0
+    - _MinYUV: 0
+    - _MotionBlurAngle: 0.1
+    - _MotionBlurDist: 1.25
+    - _MyDstMode: 10
+    - _MySrcMode: 5
+    - _NegativeAmount: 1
+    - _OffsetUvX: 0
+    - _OffsetUvY: 0
+    - _OnlyInnerOutline: 0
+    - _OnlyOutline: 0
+    - _OutlineAlpha: 1
+    - _OutlineDistortAmount: 0.5
+    - _OutlineDistortTexXSpeed: 5
+    - _OutlineDistortTexYSpeed: 5
+    - _OutlineGlow: 1.5
+    - _OutlinePixelWidth: 1
+    - _OutlineTexXSpeed: 10
+    - _OutlineTexYSpeed: 0
+    - _OutlineWidth: 0.004
+    - _OverlayBlend: 1
+    - _OverlayGlow: 1
+    - _OverlayTextureScrollXSpeed: 0.25
+    - _OverlayTextureScrollYSpeed: 0.25
+    - _PinchUvAmount: 0.35
+    - _PixelateSize: 32
+    - _PosterizeGamma: 0.75
+    - _PosterizeNumColors: 8
+    - _PosterizeOutline: 0
+    - _RadialClip: 45
+    - _RadialClip2: 0
+    - _RadialStartAngle: 90
+    - _RandomSeed: 0
+    - _RectSize: 1
+    - _RotateUvAmount: 0
+    - _RoundWaveSpeed: 2
+    - _RoundWaveStrength: 0.7
+    - _ShadowAlpha: 0.5
+    - _ShadowX: 0.1
+    - _ShadowY: -0.05
+    - _ShakeUvSpeed: 2.5
+    - _ShakeUvX: 1.5
+    - _ShakeUvY: 1
+    - _ShineGlow: 1
+    - _ShineLocation: 0.5
+    - _ShineRotate: 0
+    - _ShineWidth: 0.1
+    - _TextureScrollXSpeed: 1
+    - _TextureScrollYSpeed: 0
+    - _TwistUvAmount: 1
+    - _TwistUvPosX: 0.5
+    - _TwistUvPosY: 0.5
+    - _TwistUvRadius: 0.75
+    - _WarpScale: 0.5
+    - _WarpSpeed: 8
+    - _WarpStrength: 0.025
+    - _WaveAmount: 7
+    - _WaveSpeed: 10
+    - _WaveStrength: 7.5
+    - _WaveX: 0
+    - _WaveY: 0.5
+    - _ZTestMode: 4
+    - _ZWrite: 0
+    - _ZoomUvAmount: 0.5
+    m_Colors:
+    - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorChangeNewCol: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol2: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol3: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeTarget: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeTarget2: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSwapRed: {r: 1, g: 1, b: 1, a: 1}
+    - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GradBotLeftCol: {r: 0, g: 0, b: 1, a: 1}
+    - _GradBotRightCol: {r: 0, g: 1, b: 0, a: 1}
+    - _GradTopLeftCol: {r: 1, g: 0, b: 0, a: 1}
+    - _GradTopRightCol: {r: 1, g: 1, b: 0, a: 1}
+    - _GreyscaleTintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HologramStripeColor: {r: 0, g: 1, b: 1, a: 1}
+    - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OverlayColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!4 &149418135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3094747242288446221, guid: bb0b9ae2c1462c44fb40d98e8e2b7ddd, type: 3}
@@ -1055,10 +1295,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3979206901043432533, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: acceptedCoprseCode
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 3979206901043432535, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
       propertyPath: m_Name
       value: Health_Altar (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3979206902587379345, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 144831835}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
 --- !u!1 &270840041
@@ -1197,6 +1445,246 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!21 &356640632
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AllIn1SpriteShader/AllIn1SpriteShader
+  m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ColorRampTex:
+        m_Texture: {fileID: 2800000, guid: 279657edc397ece4b8029c727adf6ddc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorRampTexGradient:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorSwapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FadeBurnTex:
+        m_Texture: {fileID: 2800000, guid: 677cca399782dea41aedc1d292ecb67d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FadeTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlowTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineDistortTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineTex:
+        m_Texture: {fileID: 2800000, guid: 74087f6d03f233e4a8a142fa01f9e5cf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverlayTex:
+        m_Texture: {fileID: 2800000, guid: 677cca399782dea41aedc1d292ecb67d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShineMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _AlphaCutoffValue: 0.25
+    - _AlphaOutlineBlend: 1
+    - _AlphaOutlineGlow: 5
+    - _AlphaOutlineMinAlpha: 0
+    - _AlphaOutlinePower: 1
+    - _AlphaRoundThreshold: 0.5
+    - _BillboardY: 0
+    - _BlurHD: 0
+    - _BlurIntensity: 10
+    - _Brightness: 0
+    - _ChromAberrAlpha: 0.4
+    - _ChromAberrAmount: 1
+    - _ClipUvDown: 0
+    - _ClipUvLeft: 0
+    - _ClipUvRight: 0
+    - _ClipUvUp: 0
+    - _ColorChangeLuminosity: 0
+    - _ColorChangeTolerance: 0.25
+    - _ColorChangeTolerance2: 0.25
+    - _ColorChangeTolerance3: 0.25
+    - _ColorRampBlend: 1
+    - _ColorRampLuminosity: 0
+    - _ColorRampOutline: 0
+    - _ColorSwapBlend: 1
+    - _ColorSwapBlueLuminosity: 0.5
+    - _ColorSwapGreenLuminosity: 0.5
+    - _ColorSwapRedLuminosity: 0.5
+    - _Contrast: 1
+    - _CullingOption: 0
+    - _DistortAmount: 0.5
+    - _DistortTexXSpeed: 5
+    - _DistortTexYSpeed: 5
+    - _EditorDrawers: 6
+    - _FadeAmount: -0.1
+    - _FadeBurnGlow: 2
+    - _FadeBurnTransition: 0.075
+    - _FadeBurnWidth: 0.025
+    - _FishEyeUvAmount: 0.35
+    - _FlickerAlpha: 0
+    - _FlickerFreq: 0.2
+    - _FlickerPercent: 0.05
+    - _GhostBlend: 1
+    - _GhostColorBoost: 1
+    - _GhostTransparency: 0
+    - _GlitchAmount: 3
+    - _GlitchSize: 1
+    - _Glow: 10
+    - _GlowGlobal: 1
+    - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
+    - _GrassManualAnim: 1
+    - _GrassManualToggle: 0
+    - _GrassRadialBend: 0.1
+    - _GrassSpeed: 2
+    - _GrassWind: 20
+    - _GreyscaleBlend: 1
+    - _GreyscaleLuminosity: 0
+    - _GreyscaleOutline: 0
+    - _HandDrawnAmount: 10
+    - _HandDrawnSpeed: 5
+    - _HitEffectBlend: 1
+    - _HitEffectGlow: 5
+    - _HologramBlend: 1
+    - _HologramMaxAlpha: 0.75
+    - _HologramMinAlpha: 0.1
+    - _HologramStripesAmount: 0.1
+    - _HologramStripesSpeed: 4.5
+    - _HologramUnmodAmount: 0
+    - _HsvBright: 1
+    - _HsvSaturation: 1
+    - _HsvShift: 180
+    - _InnerOutlineAlpha: 1
+    - _InnerOutlineGlow: 4
+    - _InnerOutlineThickness: 1
+    - _MaxXUV: 1
+    - _MaxYUV: 1
+    - _MinXUV: 0
+    - _MinYUV: 0
+    - _MotionBlurAngle: 0.1
+    - _MotionBlurDist: 1.25
+    - _MyDstMode: 10
+    - _MySrcMode: 5
+    - _NegativeAmount: 1
+    - _OffsetUvX: 0
+    - _OffsetUvY: 0
+    - _OnlyInnerOutline: 0
+    - _OnlyOutline: 0
+    - _OutlineAlpha: 1
+    - _OutlineDistortAmount: 0.5
+    - _OutlineDistortTexXSpeed: 5
+    - _OutlineDistortTexYSpeed: 5
+    - _OutlineGlow: 1.5
+    - _OutlinePixelWidth: 1
+    - _OutlineTexXSpeed: 10
+    - _OutlineTexYSpeed: 0
+    - _OutlineWidth: 0.004
+    - _OverlayBlend: 1
+    - _OverlayGlow: 1
+    - _OverlayTextureScrollXSpeed: 0.25
+    - _OverlayTextureScrollYSpeed: 0.25
+    - _PinchUvAmount: 0.35
+    - _PixelateSize: 32
+    - _PosterizeGamma: 0.75
+    - _PosterizeNumColors: 8
+    - _PosterizeOutline: 0
+    - _RadialClip: 45
+    - _RadialClip2: 0
+    - _RadialStartAngle: 90
+    - _RandomSeed: 0
+    - _RectSize: 1
+    - _RotateUvAmount: 0
+    - _RoundWaveSpeed: 2
+    - _RoundWaveStrength: 0.7
+    - _ShadowAlpha: 0.5
+    - _ShadowX: 0.1
+    - _ShadowY: -0.05
+    - _ShakeUvSpeed: 2.5
+    - _ShakeUvX: 1.5
+    - _ShakeUvY: 1
+    - _ShineGlow: 1
+    - _ShineLocation: 0.5
+    - _ShineRotate: 0
+    - _ShineWidth: 0.1
+    - _TextureScrollXSpeed: 1
+    - _TextureScrollYSpeed: 0
+    - _TwistUvAmount: 1
+    - _TwistUvPosX: 0.5
+    - _TwistUvPosY: 0.5
+    - _TwistUvRadius: 0.75
+    - _WarpScale: 0.5
+    - _WarpSpeed: 8
+    - _WarpStrength: 0.025
+    - _WaveAmount: 7
+    - _WaveSpeed: 10
+    - _WaveStrength: 7.5
+    - _WaveX: 0
+    - _WaveY: 0.5
+    - _ZTestMode: 4
+    - _ZWrite: 0
+    - _ZoomUvAmount: 0.5
+    m_Colors:
+    - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorChangeNewCol: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol2: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol3: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeTarget: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeTarget2: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSwapRed: {r: 1, g: 1, b: 1, a: 1}
+    - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GradBotLeftCol: {r: 0, g: 0, b: 1, a: 1}
+    - _GradBotRightCol: {r: 0, g: 1, b: 0, a: 1}
+    - _GradTopLeftCol: {r: 1, g: 0, b: 0, a: 1}
+    - _GradTopRightCol: {r: 1, g: 1, b: 0, a: 1}
+    - _GreyscaleTintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HologramStripeColor: {r: 0, g: 1, b: 1, a: 1}
+    - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OverlayColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!4 &360776157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3094747242288446221, guid: bb0b9ae2c1462c44fb40d98e8e2b7ddd, type: 3}
@@ -6889,10 +7377,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3979206901043432533, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: healAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979206901043432533, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: acceptedCoprseCode
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 3979206901043432535, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
       propertyPath: m_Name
       value: Health_Altar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3979206902587379345, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 356640632}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
 --- !u!1 &543091542
@@ -10730,6 +11230,246 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3392315685503113365, guid: f085742aa792cdf4089be9691af86997, type: 3}
   m_PrefabInstance: {fileID: 141088205}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1188001344
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AllIn1SpriteShader/AllIn1SpriteShader
+  m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ColorRampTex:
+        m_Texture: {fileID: 2800000, guid: 279657edc397ece4b8029c727adf6ddc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorRampTexGradient:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorSwapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FadeBurnTex:
+        m_Texture: {fileID: 2800000, guid: 677cca399782dea41aedc1d292ecb67d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FadeTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlowTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineDistortTex:
+        m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineTex:
+        m_Texture: {fileID: 2800000, guid: 74087f6d03f233e4a8a142fa01f9e5cf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverlayTex:
+        m_Texture: {fileID: 2800000, guid: 677cca399782dea41aedc1d292ecb67d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShineMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _AlphaCutoffValue: 0.25
+    - _AlphaOutlineBlend: 1
+    - _AlphaOutlineGlow: 5
+    - _AlphaOutlineMinAlpha: 0
+    - _AlphaOutlinePower: 1
+    - _AlphaRoundThreshold: 0.5
+    - _BillboardY: 0
+    - _BlurHD: 0
+    - _BlurIntensity: 10
+    - _Brightness: 0
+    - _ChromAberrAlpha: 0.4
+    - _ChromAberrAmount: 1
+    - _ClipUvDown: 0
+    - _ClipUvLeft: 0
+    - _ClipUvRight: 0
+    - _ClipUvUp: 0
+    - _ColorChangeLuminosity: 0
+    - _ColorChangeTolerance: 0.25
+    - _ColorChangeTolerance2: 0.25
+    - _ColorChangeTolerance3: 0.25
+    - _ColorRampBlend: 1
+    - _ColorRampLuminosity: 0
+    - _ColorRampOutline: 0
+    - _ColorSwapBlend: 1
+    - _ColorSwapBlueLuminosity: 0.5
+    - _ColorSwapGreenLuminosity: 0.5
+    - _ColorSwapRedLuminosity: 0.5
+    - _Contrast: 1
+    - _CullingOption: 0
+    - _DistortAmount: 0.5
+    - _DistortTexXSpeed: 5
+    - _DistortTexYSpeed: 5
+    - _EditorDrawers: 6
+    - _FadeAmount: -0.1
+    - _FadeBurnGlow: 2
+    - _FadeBurnTransition: 0.075
+    - _FadeBurnWidth: 0.025
+    - _FishEyeUvAmount: 0.35
+    - _FlickerAlpha: 0
+    - _FlickerFreq: 0.2
+    - _FlickerPercent: 0.05
+    - _GhostBlend: 1
+    - _GhostColorBoost: 1
+    - _GhostTransparency: 0
+    - _GlitchAmount: 3
+    - _GlitchSize: 1
+    - _Glow: 10
+    - _GlowGlobal: 1
+    - _GradBlend: 1
+    - _GradBoostX: 1.2
+    - _GradBoostY: 1.2
+    - _GradIsRadial: 0
+    - _GrassManualAnim: 1
+    - _GrassManualToggle: 0
+    - _GrassRadialBend: 0.1
+    - _GrassSpeed: 2
+    - _GrassWind: 20
+    - _GreyscaleBlend: 1
+    - _GreyscaleLuminosity: 0
+    - _GreyscaleOutline: 0
+    - _HandDrawnAmount: 10
+    - _HandDrawnSpeed: 5
+    - _HitEffectBlend: 1
+    - _HitEffectGlow: 5
+    - _HologramBlend: 1
+    - _HologramMaxAlpha: 0.75
+    - _HologramMinAlpha: 0.1
+    - _HologramStripesAmount: 0.1
+    - _HologramStripesSpeed: 4.5
+    - _HologramUnmodAmount: 0
+    - _HsvBright: 1
+    - _HsvSaturation: 1
+    - _HsvShift: 180
+    - _InnerOutlineAlpha: 1
+    - _InnerOutlineGlow: 4
+    - _InnerOutlineThickness: 1
+    - _MaxXUV: 1
+    - _MaxYUV: 1
+    - _MinXUV: 0
+    - _MinYUV: 0
+    - _MotionBlurAngle: 0.1
+    - _MotionBlurDist: 1.25
+    - _MyDstMode: 10
+    - _MySrcMode: 5
+    - _NegativeAmount: 1
+    - _OffsetUvX: 0
+    - _OffsetUvY: 0
+    - _OnlyInnerOutline: 0
+    - _OnlyOutline: 0
+    - _OutlineAlpha: 1
+    - _OutlineDistortAmount: 0.5
+    - _OutlineDistortTexXSpeed: 5
+    - _OutlineDistortTexYSpeed: 5
+    - _OutlineGlow: 1.5
+    - _OutlinePixelWidth: 1
+    - _OutlineTexXSpeed: 10
+    - _OutlineTexYSpeed: 0
+    - _OutlineWidth: 0.004
+    - _OverlayBlend: 1
+    - _OverlayGlow: 1
+    - _OverlayTextureScrollXSpeed: 0.25
+    - _OverlayTextureScrollYSpeed: 0.25
+    - _PinchUvAmount: 0.35
+    - _PixelateSize: 32
+    - _PosterizeGamma: 0.75
+    - _PosterizeNumColors: 8
+    - _PosterizeOutline: 0
+    - _RadialClip: 45
+    - _RadialClip2: 0
+    - _RadialStartAngle: 90
+    - _RandomSeed: 0
+    - _RectSize: 1
+    - _RotateUvAmount: 0
+    - _RoundWaveSpeed: 2
+    - _RoundWaveStrength: 0.7
+    - _ShadowAlpha: 0.5
+    - _ShadowX: 0.1
+    - _ShadowY: -0.05
+    - _ShakeUvSpeed: 2.5
+    - _ShakeUvX: 1.5
+    - _ShakeUvY: 1
+    - _ShineGlow: 1
+    - _ShineLocation: 0.5
+    - _ShineRotate: 0
+    - _ShineWidth: 0.1
+    - _TextureScrollXSpeed: 1
+    - _TextureScrollYSpeed: 0
+    - _TwistUvAmount: 1
+    - _TwistUvPosX: 0.5
+    - _TwistUvPosY: 0.5
+    - _TwistUvRadius: 0.75
+    - _WarpScale: 0.5
+    - _WarpSpeed: 8
+    - _WarpStrength: 0.025
+    - _WaveAmount: 7
+    - _WaveSpeed: 10
+    - _WaveStrength: 7.5
+    - _WaveX: 0
+    - _WaveY: 0.5
+    - _ZTestMode: 4
+    - _ZWrite: 0
+    - _ZoomUvAmount: 0.5
+    m_Colors:
+    - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorChangeNewCol: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol2: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol3: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeTarget: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeTarget2: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSwapRed: {r: 1, g: 1, b: 1, a: 1}
+    - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GradBotLeftCol: {r: 0, g: 0, b: 1, a: 1}
+    - _GradBotRightCol: {r: 0, g: 1, b: 0, a: 1}
+    - _GradTopLeftCol: {r: 1, g: 0, b: 0, a: 1}
+    - _GradTopRightCol: {r: 1, g: 1, b: 0, a: 1}
+    - _GreyscaleTintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HologramStripeColor: {r: 0, g: 1, b: 1, a: 1}
+    - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OverlayColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!4 &1218080566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3094747242288446221, guid: bb0b9ae2c1462c44fb40d98e8e2b7ddd, type: 3}
@@ -15979,10 +16719,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3979206901043432533, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: healAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979206901043432533, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: acceptedCoprseCode
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 3979206901043432535, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
       propertyPath: m_Name
       value: Health_Altar
       objectReference: {fileID: 0}
+    - target: {fileID: 3979206902587379345, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1188001344}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7477ecae0ea7144acc70bd173857d4, type: 3}
 --- !u!114 &1611599861 stripped
@@ -17496,114 +18248,134 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.size
-      value: 18
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
+      propertyPath: corpseConfigs.Array.data[3].key
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
+      propertyPath: corpseConfigs.Array.data[4].key
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[5].key
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[6].key
-      value: 31
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[7].key
-      value: 32
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[8].key
-      value: 33
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[9].key
-      value: 41
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[10].key
-      value: 42
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[11].key
-      value: 43
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[12].key
-      value: 99
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[13].key
-      value: 10
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[14].key
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[15].key
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[16].key
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[17].key
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
+      propertyPath: corpseConfigs.Array.data[18].key
       value: 111
       objectReference: {fileID: 0}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
+      propertyPath: corpseConfigs.Array.data[3].corpse
+      value: 
+      objectReference: {fileID: 21300000, guid: f11353c33442a8e42b90db9b05f16eee, type: 3}
+    - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[4].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: 7625f508ca0a6fd489fa3843daf487dd, type: 3}
+      objectReference: {fileID: 21300000, guid: 7ce1bbea514050645b5501f0a5bea51a, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[5].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: 9280a6acf14bf604cb2f08d122053cf5, type: 3}
+      objectReference: {fileID: 21300000, guid: 7625f508ca0a6fd489fa3843daf487dd, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[6].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: b78e2d734523696419cdd37f9d2990f2, type: 3}
+      objectReference: {fileID: 21300000, guid: 9280a6acf14bf604cb2f08d122053cf5, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[7].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: 985b721c24bbc1a4f910ee131033ca26, type: 3}
+      objectReference: {fileID: 21300000, guid: b78e2d734523696419cdd37f9d2990f2, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[8].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: b402a726d1975f544a0a4370382d2d86, type: 3}
+      objectReference: {fileID: 21300000, guid: 985b721c24bbc1a4f910ee131033ca26, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[9].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: eb623e3e935754741ab600c39bdd0b34, type: 3}
+      objectReference: {fileID: 21300000, guid: b402a726d1975f544a0a4370382d2d86, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[10].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: 6bf8b5cd8d733f54ca68bbdf596bceb9, type: 3}
+      objectReference: {fileID: 21300000, guid: eb623e3e935754741ab600c39bdd0b34, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[11].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: 6a67032d8e53cb54783a2b9d22b37a1c, type: 3}
+      objectReference: {fileID: 21300000, guid: 6bf8b5cd8d733f54ca68bbdf596bceb9, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[12].corpse
       value: 
-      objectReference: {fileID: 21300000, guid: 9e2189bd320b6b3438c540a433b82d32, type: 3}
+      objectReference: {fileID: 21300000, guid: 6a67032d8e53cb54783a2b9d22b37a1c, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[13].corpse
       value: 
-      objectReference: {fileID: 489567949, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+      objectReference: {fileID: 21300000, guid: 9e2189bd320b6b3438c540a433b82d32, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[14].corpse
       value: 
-      objectReference: {fileID: -83177709, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+      objectReference: {fileID: 489567949, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[15].corpse
       value: 
-      objectReference: {fileID: 2070876881, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+      objectReference: {fileID: -83177709, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[16].corpse
       value: 
-      objectReference: {fileID: 31689751, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+      objectReference: {fileID: 2070876881, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
     - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
       propertyPath: corpseConfigs.Array.data[17].corpse
+      value: 
+      objectReference: {fileID: 31689751, guid: a33d3dc821206dd4d8fc51a4a1cb59f2, type: 3}
+    - target: {fileID: 790567052873647701, guid: 06b81b1bc11c2164baf2cdcafaca256b, type: 3}
+      propertyPath: corpseConfigs.Array.data[18].corpse
       value: 
       objectReference: {fileID: -145526113, guid: 862d67228585ba04b849f3ddfa7ed70b, type: 3}
     m_RemovedComponents: []
@@ -20139,34 +20911,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
+      propertyPath: enemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 8961119088996793433, guid: 658e7ee25ed556c47948bbd3d53ab8ca, type: 3}
+    - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 6830850734151678591, guid: 338b5bcdacb0f4f4c9205ef50dcff310, type: 3}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.data[4]
       value: 
-      objectReference: {fileID: 676481064463840795, guid: 3277e9131bff25845ba3e66e77ef57da, type: 3}
+      objectReference: {fileID: 1280364478102889725, guid: 2e146dd5cd658864e8e57aadc3dc4235, type: 3}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.data[5]
       value: 
-      objectReference: {fileID: 457231206933666193, guid: 9f2b53a99e6b01d4cbd715c1a4eabea0, type: 3}
+      objectReference: {fileID: 676481064463840795, guid: 3277e9131bff25845ba3e66e77ef57da, type: 3}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.data[6]
       value: 
-      objectReference: {fileID: 1166266786613326397, guid: a1cf8f54c24f0e64a9981e9b27024e96, type: 3}
+      objectReference: {fileID: 457231206933666193, guid: 9f2b53a99e6b01d4cbd715c1a4eabea0, type: 3}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.data[7]
       value: 
-      objectReference: {fileID: 2710121823641362388, guid: 66807340cc2e87d4cadc0738c3707f1d, type: 3}
+      objectReference: {fileID: 1166266786613326397, guid: a1cf8f54c24f0e64a9981e9b27024e96, type: 3}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.data[8]
       value: 
-      objectReference: {fileID: 7355741024632167766, guid: 97398e5d7e154cd49934d85823cfb033, type: 3}
+      objectReference: {fileID: 2710121823641362388, guid: 66807340cc2e87d4cadc0738c3707f1d, type: 3}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.data[9]
       value: 
-      objectReference: {fileID: 7421201534729223832, guid: 064789b454e7e1d4184a69281513d8e8, type: 3}
+      objectReference: {fileID: 7355741024632167766, guid: 97398e5d7e154cd49934d85823cfb033, type: 3}
     - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
       propertyPath: enemies.Array.data[10]
+      value: 
+      objectReference: {fileID: 7421201534729223832, guid: 064789b454e7e1d4184a69281513d8e8, type: 3}
+    - target: {fileID: 4429709697113943789, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
+      propertyPath: enemies.Array.data[11]
       value: 
       objectReference: {fileID: 4437271153862394010, guid: 1b7366511dd134b48a55c64077c9319c, type: 3}
     - target: {fileID: 4429709697113943790, guid: c79ceeefcc25f7441b9ea2c167c70b91, type: 3}
@@ -20270,6 +21054,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4956227165844281200}
+    - target: {fileID: 5983967685213144821, guid: 54455ee0d50703f4b81e442806497440, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983967685213144821, guid: 54455ee0d50703f4b81e442806497440, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54455ee0d50703f4b81e442806497440, type: 3}
 --- !u!4 &4956227165844281193 stripped

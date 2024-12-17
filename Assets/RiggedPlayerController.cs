@@ -22,8 +22,6 @@ public class RiggedPlayerController : PlayerController
 
     public AudioSource walkSound;
 
-    public Collider2D collider;
-
     public int level = 1;
 
     public bool gameIsPaused = false;
@@ -208,7 +206,7 @@ public class RiggedPlayerController : PlayerController
             if (ininvTimer > invicnicbilityTime)
             {
                 ininvTimer = 0;
-                invincible = false;
+                setNotInvincible();
             }
         }
         //toggle stunned
@@ -613,7 +611,7 @@ public class RiggedPlayerController : PlayerController
                 if (perfectDashDecider != null && perfectDashDecider.isPerfect().Count > 0)
                 {
                     Debug.Log("PERFECT DODGE ON ");
-                    invincible = true;
+                    setInvincible();
                     playEffectPerfectDash();
                     //set all
                     foreach (GameObject stuntarget in perfectDashDecider.isPerfect())
@@ -764,7 +762,7 @@ public class RiggedPlayerController : PlayerController
         }
         else
         {
-            invincible = true;
+            setInvincible();
             stunned = true;
         }
     }

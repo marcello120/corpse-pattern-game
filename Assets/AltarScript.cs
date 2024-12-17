@@ -64,7 +64,7 @@ public class AltarScript : MonoBehaviour
                         {
                             rigged.setUtility(ability);
                         }
-                        AudioSource.PlayClipAtPoint(positivieClip, transform.position);
+                        AudioSource.PlayClipAtPoint(positivieClip, transform.position,5f);
                         GameObject effect = Instantiate(positiveEffect,transform.position, Quaternion.identity);
                         effect.transform.localScale = effect.transform.localScale * 0.4f;
                     }

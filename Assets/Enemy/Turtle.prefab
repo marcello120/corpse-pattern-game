@@ -69,7 +69,7 @@ MonoBehaviour:
   spawnSound: {fileID: 0}
   maxHealth: 5
   health: 5
-  attackPower: 2
+  attackPower: 1
   movemetSpeed: 800
   knockbackReduction: 0
   state: 0
