@@ -50,6 +50,13 @@ public class ShopItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         title.SetText(shopItem.name);
         description.SetText(shopItem.description);
         price.SetText(shopItem.cost.ToString());
+        int totalScoreSaved = PlayerPrefs.GetInt("TotalScore", 0);
+        if((totalScoreSaved < shopItem.cost) && !shopItem.purchased) 
+        {
+            GetComponent<Button>().onClick.RemoveAllListeners();
+            background.color = poorColor;
+
+        }
         if (shopItem.purchased)
         {
             background.color = purchasedColor;
@@ -59,13 +66,6 @@ public class ShopItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             price.SetText("");
             background.color = activeColor;
-        }
-        int totalScoreSaved = PlayerPrefs.GetInt("TotalScore", 0);
-        if((totalScoreSaved < shopItem.cost) && !shopItem.purchased) 
-        {
-            GetComponent<Button>().onClick.RemoveAllListeners();
-            background.color = poorColor;
-
         }
     }
 

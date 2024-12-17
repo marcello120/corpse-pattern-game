@@ -30,7 +30,6 @@ public class CorpseScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         Color color = getColorFromCorpseCode(corpseNumber);
         light2d.color = color;
-        bigLight.enabled = false;
     }
 
     public void Init(int coprseNumIn)

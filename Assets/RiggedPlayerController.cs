@@ -41,6 +41,9 @@ public class RiggedPlayerController : PlayerController
 
     public SlowStatusEffect slowStatusEffect;
     public StunStatusEffect stunStatusEffect;
+    public FearStatusEffect fearStatusEffect;
+    public GameObject purpleFog;
+
 
     public List<PowerUp> powerUps;
 
@@ -72,6 +75,8 @@ public class RiggedPlayerController : PlayerController
         EXPLODE,
         TRAP,
         GRAPPLING_HOOK,
+        TORCH,
+        MASS_FEAR
     }
 
     [Header("Util")]
@@ -95,6 +100,7 @@ public class RiggedPlayerController : PlayerController
 
     public MuliHook mulihook;
 
+    public GameObject torch;
 
     public GameObject playerBody;
 
@@ -285,6 +291,12 @@ public class RiggedPlayerController : PlayerController
     {
         effectsAnimator.Play("effect_vortex");
     }
+
+    private void playEffectMassFear()
+    {
+        Instantiate(purpleFog, transform);
+    }
+
     private void playEffectPerfectDash()
     {
         effectsAnimator.Play("effect_flash");
@@ -384,6 +396,23 @@ public class RiggedPlayerController : PlayerController
             utilTimer.reset();
             return;
         }
+        if (selectedUtility == Utility.MASS_FEAR && context.canceled)
+        {
+            Debug.Log("MASS_FEAR");
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+            playEffectMassFear();
+            foreach (Collider2D hitCollider in hitColliders)
+            {
+                if (hitCollider.gameObject.tag == "Enemy" && hitCollider.gameObject.GetComponent<Enemy>() != null)
+                {
+                    Enemy en = hitCollider.gameObject.GetComponent<Enemy>();
+                    en.addStatusEffect(Instantiate(fearStatusEffect));
+                }
+
+            }
+            utilTimer.reset();
+            return;
+        }
         if (selectedUtility == Utility.PULL && context.canceled)
         {
             Vector3 lookDir = (mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
@@ -421,6 +450,15 @@ public class RiggedPlayerController : PlayerController
             Vector3 newPos = transform.position + castOffset * lookDir2D;
             backupline.SetPosition(1, newPos + castDistance* lookDir2D);
             Destroy(backupline, 0.15f);
+            utilTimer.reset();
+            return;
+        }
+        if (selectedUtility == Utility.TORCH && context.canceled)
+        {
+            Debug.Log("TORCH");
+            GameObject spawnedTorch = Instantiate(torch, transform.position, Quaternion.identity);
+            spawnedTorch.GetComponent<SelfDestruct>().destructTime = 10f;
+            spawnedTorch.GetComponent<SelfDestruct>().shouldSelfDestruct = true;
             utilTimer.reset();
             return;
         }
@@ -604,6 +642,15 @@ public class RiggedPlayerController : PlayerController
                 Debug.Log(raycast.collider);
                 ColliderDistance2D distanceToObstacle = Physics2D.Distance(collider, raycast.collider);
                 dashPosition = new Vector2(transform.position.x, transform.position.y) + dashDirection * distanceToObstacle.distance * 0.9f;
+            }
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(dashPosition, 0.5f);
+            foreach (Collider2D coll in hitColliders)
+            {
+                //enemy
+                if (coll.gameObject.GetComponent<Destructible>() != null && coll.gameObject.GetComponent<Destructible>().dmgOnDash)
+                {
+                    coll.gameObject.GetComponent<Destructible>().hitDestructible(1f);
+                }
             }
             rb.MovePosition(dashPosition);
             canDash = false;

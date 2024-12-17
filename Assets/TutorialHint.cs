@@ -10,12 +10,19 @@ public class TutorialHint : MonoBehaviour
     [TextArea(10, 10)]
     public string description;
     public string buttonText;
+    public Sprite sprite;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, mainText, secondaryText, description, buttonText );
+            HintList hintList = GetComponent<HintList>();
+            if ( hintList != null)
+            {
+                description = hintList.hintList[Random.Range(0,hintList.hintList.Count)];
+            }
+            InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(sprite,transform.position, mainText, secondaryText, description, buttonText);
+
         }
     }
 

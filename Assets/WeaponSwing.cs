@@ -16,6 +16,8 @@ public class WeaponSwing : MonoBehaviour
 
     AudioSource audioSource;
 
+    public StatusEffect statuseffect;
+
     
 
     // Start is called before the first frame update
@@ -46,11 +48,20 @@ public class WeaponSwing : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void InitWeaponAttack(float knockbackIN, float weaponAttackPowerIN)
+    public void InitWeaponAttack(float knockbackIN, float weaponAttackPowerIN, StatusEffect statuse)
     {
         knockbackPower = knockbackIN;
         weaponAttackPower = weaponAttackPowerIN;
+        if(statuseffect == null)
+        {
+            statuseffect = statuse;
+        }
 
+    }
+
+    public void InitWeaponAttack(float knockbackIN, float weaponAttackPowerIN)
+    {
+        InitWeaponAttack(knockbackIN, weaponAttackPowerIN, null);
     }
 
     private Vector2 GetKnockBack(Collider2D collision)
@@ -71,7 +82,7 @@ public class WeaponSwing : MonoBehaviour
         {
             if (collision.gameObject.layer == ENEMY_DAMAGE_LAYER)
             {
-                Debug.Log("Hello");
+                Debug.Log("ENEMY_DAMAGE_LAYER");
             }
              
             Enemy enemy = collision.GetComponent<Enemy>();
@@ -90,6 +101,10 @@ public class WeaponSwing : MonoBehaviour
                 if (hitEffect != null)
                 {
                     Instantiate(hitEffect, contactpoint, Quaternion.identity);
+                }
+                if (statuseffect!= null) 
+                { 
+                    collision.GetComponent<EnemyHitbox>().parentEnemy.addStatusEffect(Instantiate(statuseffect));
                 }
             }
 

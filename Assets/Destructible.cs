@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using ChristinaCreatesGames.Animations;
-using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class Destructible : MonoBehaviour
 {
     public float health;
+    public bool dmgOnDash = false;
     public GameObject hitEffect;
     public bool blocking;
     public AudioClip hitSound;

@@ -16,7 +16,7 @@ MonoBehaviour:
   statusObject: {fileID: 5921950999999354617, guid: 3e058fd5974945e40bde072176aa3dba, type: 3}
   statusEffectName: Slow
   description: Reduces move speed
-  duration: 5
+  duration: 5.3
   timeElapsed: 0
   slowAmount: 0.33
-  originalSpeed: 0
+  originalSpeed: 3500

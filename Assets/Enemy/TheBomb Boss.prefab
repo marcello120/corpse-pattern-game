@@ -460,7 +460,7 @@ MonoBehaviour:
   boomDist: 0.5
   knockbackPower: 1
   ticktock: {fileID: 8300000, guid: 07adb153e872b9f4bb50fc6eba27d4ad, type: 3}
-  boom: {fileID: 8300000, guid: 3cf39f968bc7d3842831e7a155245755, type: 3}
+  boom: {fileID: 8300000, guid: a81c4c33afa250247ab35965c9b9ab2a, type: 3}
 --- !u!61 &4437271153862394016
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -219,14 +219,17 @@ public class GameManager : MonoBehaviour
 };
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
 
         if (!PlayerPrefs.HasKey("musicVolume"))
         {
