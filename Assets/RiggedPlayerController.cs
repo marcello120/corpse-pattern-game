@@ -872,6 +872,11 @@ public class RiggedPlayerController : PlayerController
     {
         walkSound.PlayOneShot(pickupSound);
         powerUps.Add(powerUp);
+        GameObject powerUpList = ((PowerUpList) FindFirstObjectByType(typeof(PowerUpList))).gameObject;
+        if(powerUpList != null && powerUpList.GetComponent<PowerUpList>()!=null)
+        {
+            powerUpList.GetComponent<PowerUpList>().AddPowerUp(powerUp);
+        }
     }
 
 

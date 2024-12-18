@@ -169,7 +169,6 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.EASY,
-                PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
@@ -188,7 +187,6 @@ public class GameManager : MonoBehaviour
         Level.LEVEL1_3, new LevelCongfig(
             new List<PatternStore.CorpsePattern.Difficulty>
             {
-                PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
