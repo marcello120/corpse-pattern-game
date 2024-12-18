@@ -34,7 +34,7 @@ public class GazelleEnemy : Enemy
         {
             float distToPlayer = Vector3.Distance(transform.position, target.position);
 
-            if (distToPlayer < 0.5)
+            if (distToPlayer < 0.7)
             {
                 setState(State.Attacking);
             }
@@ -53,7 +53,7 @@ public class GazelleEnemy : Enemy
                 setState(State.Preparing);
 
             }
-            if (Vector3.Distance(transform.position, target.position) > 0.7)
+            if (Vector3.Distance(transform.position, target.position) > 0.9)
             {
                 attackPrepTimer.reset();
                 setState(State.Moving);

@@ -158,6 +158,7 @@ MonoBehaviour:
   state: 0
   isDead: 0
   stunned: 0
+  pastPosition: {x: 0, y: 0, z: 0}
   extra: gazelle
   target: {fileID: 0}
   statusHolder: {fileID: 0}
@@ -167,7 +168,7 @@ MonoBehaviour:
   aliveTime: 0
   stunnable: 1
   attackPrepTimer:
-    time: 0.75
+    time: 0.5
     elapsedtime: 0
   postAttackTimer:
     time: 4
