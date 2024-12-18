@@ -191,7 +191,6 @@ public class GameManager : MonoBehaviour
                 PatternStore.CorpsePattern.Difficulty.EASY,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.MEDIUM,
-                PatternStore.CorpsePattern.Difficulty.MEDIUM,
                 PatternStore.CorpsePattern.Difficulty.HARD,
             },
             spiceChance: 10,

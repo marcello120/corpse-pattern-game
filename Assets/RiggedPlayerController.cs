@@ -111,6 +111,8 @@ public class RiggedPlayerController : PlayerController
 
     public GameObject chargeCompleteEffect;
 
+    public int extraHealing = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -879,10 +881,24 @@ public class RiggedPlayerController : PlayerController
         }
     }
 
+    public void inceaseMaxHealth(float maxHPIncrease)
+    {
+        maxHealth += maxHPIncrease;
+        playerHealth += maxHPIncrease;
+
+        lowHealthShader.SetActive(false);
+
+        if (playerHealth > maxHealth)
+        {
+            playerHealth = maxHealth;
+
+        }
+        UpdateHearts();
+    }
 
     public void heal(float inHealth)
     {
-        playerHealth += inHealth;
+        playerHealth += inHealth+extraHealing;
 
         lowHealthShader.SetActive(false);
         
@@ -894,10 +910,16 @@ public class RiggedPlayerController : PlayerController
         UpdateHearts();
     }
 
+
     public void increaseDashAmount(float dashIncreaseAmount)
     {
         DashAmount += dashIncreaseAmount;
         perfectDashDecider.updateDashAmount();
+    }
+
+    public void increasExtraHealing(int extraHealingIn)
+    {
+        extraHealing += extraHealingIn;
     }
 
     public void inreaseReach(float reachIncrease)
