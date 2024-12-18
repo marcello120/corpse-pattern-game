@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -50,6 +51,8 @@ public class RiggedPlayerController : PlayerController
     public AudioClip pickupSound;
 
     public GameObject lowHealthShader;
+
+    public AudioClip utilSound;
 
     public enum WeaponEnum
     {
@@ -376,8 +379,12 @@ public class RiggedPlayerController : PlayerController
         {
             return;
         }
+        if (context.canceled && selectedUtility != Utility.NONE)
+        {
+            AudioSource.PlayClipAtPoint(utilSound,new Vector3(transform.position.x,transform.position.y, FindObjectOfType(typeof(AudioListener)).GetComponent<Transform>().position.z), 100f);
+        }
 
-        if(selectedUtility == Utility.MASS_SLOW && context.canceled)
+        if (selectedUtility == Utility.MASS_SLOW && context.canceled)
         {
             Debug.Log("MASS_SLOW");
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 2f);
