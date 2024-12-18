@@ -5646,7 +5646,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   canMove: 1
   canAttack: 1
-  invicnicbilityTime: 0.75
+  invicnicbilityTime: 1
   invincible: 0
   stunTime: 0.2
   stunned: 0
@@ -5656,6 +5656,7 @@ MonoBehaviour:
   holster: {fileID: 8770637202596760895}
   takeDamageSound: {fileID: 1330521970791178299}
   flipped: 0
+  collider: {fileID: 0}
   DashAmount: 1
   canDash: 1
   dashCooldown: 2
@@ -5663,7 +5664,6 @@ MonoBehaviour:
   dashEffect: {fileID: 3678630056906836289, guid: f43a186ef485ad14d8ddc5feaa10df58, type: 3}
   dust: {fileID: 147677522926260773}
   walkSound: {fileID: 3672228881845344303}
-  collider: {fileID: 0}
   level: 1
   gameIsPaused: 0
   pauseMenuUI: {fileID: 0}
@@ -5685,6 +5685,7 @@ MonoBehaviour:
   patternGrid: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: f006f5a1c0e99bd48b0debc8bd4cbd86, type: 3}
   lowHealthShader: {fileID: 0}
+  utilSound: {fileID: 8300000, guid: f88aff6a81322eb419a0cf4b3d69a8de, type: 3}
   currentWeapon: 4
   selectedUtility: 7
   interactLayerMask:

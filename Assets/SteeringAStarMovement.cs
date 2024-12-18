@@ -22,7 +22,7 @@ public class SteeringAStarMovement : AStarMovement
         {
             return;
         }
-
+        float gridsize = GameManager.Instance.gridCellSize;
         // Direction to the next waypoint
         Vector2 direction = ((Vector3)path.vectorPath[currentWaypoint] - enemy.transform.position).normalized;
 

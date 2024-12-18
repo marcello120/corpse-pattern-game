@@ -198,7 +198,7 @@ MonoBehaviour:
   button: {fileID: 0}
   activeColor: {r: 0.1254902, g: 0.627451, b: 0.5137255, a: 1}
   purchasedColor: {r: 0.8773585, g: 0.6961232, b: 0.32694018, a: 1}
-  poorColor: {r: 0.6415094, g: 0.04538981, b: 0.04538981, a: 0.7176471}
+  poorColor: {r: 0.6415094, g: 0.04538981, b: 0.04538981, a: 0.9019608}
   shopItem:
     name: 
     utility: 0

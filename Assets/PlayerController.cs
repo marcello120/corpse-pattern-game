@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     public bool flipped;
 
+    public Collider2D collider;
+
+
     //public bool gameIsPaused = false;
     //public GameObject pauseMenuUI;
 
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
             if (ininvTimer > invicnicbilityTime)
             {
                 ininvTimer = 0;
-                invincible= false;
+                setNotInvincible();
             }
         }
         //toggle stunned
@@ -209,9 +212,21 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            invincible = true;
+            setInvincible();
             stunned = true;
         }
+    }
+
+    public void setInvincible()
+    {
+        invincible = true;
+        collider.enabled= false;
+    }
+    public void setNotInvincible()
+    {
+        invincible = false;
+        collider.enabled = true;
+
     }
 
     public void Die()
