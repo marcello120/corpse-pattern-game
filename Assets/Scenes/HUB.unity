@@ -34826,6 +34826,8 @@ MonoBehaviour:
   - '"Press [TAB] to enlarge the required pattern  if its too small to see"'
   - '"Seeing numbers in the pattern? That means any enemy of the number''s level
     will fit. The enemy''s level can be seen from the color of its corpse"'
+  - '"Completing a pattern lets you choose a power up to spawn on the map. Don''t
+    forget to pick up the power up after selectin it"'
 --- !u!4 &2055581323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3519282506112152125, guid: aecb6d12962139442b45e21716eb756f, type: 3}

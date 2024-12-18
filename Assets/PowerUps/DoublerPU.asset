@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15180181aa59c34092e2b3e013c7148, type: 3}
+  m_Name: DoublerPU
+  m_EditorClassIdentifier: 
+  powerUpName: +1 Doubler
+  powerUpDescription: Spawns one more doubler on the map
+  powerUpColor: {r: 0.17254902, g: 0.2784314, b: 0.3372549, a: 1}
+  sprite: {fileID: 21300000, guid: ed71083916de2864cb3608c2e3122825, type: 3}

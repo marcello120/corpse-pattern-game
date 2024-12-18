@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     public Doubler doublerPrefab;
 
-    public Doubler doubler;
+    public List<Doubler> doublers;
 
     public List<DoublerSpawner> doublerSpawners;
 
@@ -297,7 +297,6 @@ public class GameManager : MonoBehaviour
         successText.SetText("Score: " + 0);
         hightText.SetText("Top:  " + highscore);
 
-     
         SpawnDoubler();
 
         InvokeRepeating(nameof(SpawnEnemies), 0f, 7.5f);
@@ -382,14 +381,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void SpawnDoubler()
+    public void SpawnDoubler()
     {
         if(currentLevel == Level.DARKNESS)
         {
             return;
         }
 
-        doubler = SpawnWithCheck(doublerPrefab.gameObject, player.transform.position, 8, 10).GetComponent<Doubler>();
+        doublers.Add(SpawnWithCheck(doublerPrefab.gameObject, player.transform.position, 8, 10).GetComponent<Doubler>());
 
     }
 
@@ -490,28 +489,36 @@ public class GameManager : MonoBehaviour
         if (fitPatter.Count > 0)
         {
             int multiplier = 1;
-            Vector3 doublerLoc;
-
-            if (doubler == null || doubler.transform == null)
-            {
-                doublerLoc = new Vector3(999, 999, 999);
-                Destroy(doubler);
-                SpawnDoubler();
-            }
-            else
-            {
-                Vector3 doublerLocAdjusted = Grid.adjustWoldPosToNearestCell(doubler.transform.position, grid.gridCellSize);
-                doublerLoc = grid.ConvetWorldPosToArrayPos(doublerLocAdjusted);
-            }
 
             for (int i = 0; i < fitPatter.Count; i++)
             {
-                if (fitPatter[i].x == doublerLoc.x && fitPatter[i].y == doublerLoc.y)
+                Doubler doublerToDestry = null;
+                foreach (Doubler doubler in doublers)
                 {
-                    //doubler is part of pattern
-                    multiplier = 2;
-                    Debug.Log("Multiplier detected");
-                    Destroy(doubler);
+                    Vector3 doublerLoc;
+                    try
+                    {
+                        doublerLoc = grid.ConvetWorldPosToArrayPos(Grid.adjustWoldPosToNearestCell(doubler.transform.position, grid.gridCellSize));
+                    }
+                    catch
+                    {
+                        Debug.LogError("Doubler is not kosher");
+                        doublerLoc = new Vector3(999, 999, 999);
+                    }
+
+                    if (fitPatter[i].x == doublerLoc.x && fitPatter[i].y == doublerLoc.y)
+                    {
+                        //doubler is part of pattern
+                        doublerToDestry = doubler;
+                        multiplier = 2;
+                        Debug.Log("Multiplier detected");
+
+                    }
+                }
+                if(doublerToDestry != null)
+                {
+                    doublers.Remove(doublerToDestry);
+                    Destroy(doublerToDestry);
                     SpawnDoubler();
                 }
 

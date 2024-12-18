@@ -31582,7 +31582,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[0]
@@ -31611,7 +31611,7 @@ PrefabInstance:
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 8ccc30f21d67bf34f94269f69ba16db3, type: 2}
+      objectReference: {fileID: 11400000, guid: 0a1d8b7a10201bf458028eb10853d816, type: 2}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[7]
       value: 

@@ -20267,31 +20267,35 @@ PrefabInstance:
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c1691e93e9f311445a906275a0555fb4, type: 2}
+      objectReference: {fileID: 11400000, guid: 6c0174b6722ba3a4aa108a9abe54b56b, type: 2}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 6c0174b6722ba3a4aa108a9abe54b56b, type: 2}
+      objectReference: {fileID: 11400000, guid: 7005ae5cf3bb447429c5b198f649c668, type: 2}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 7005ae5cf3bb447429c5b198f649c668, type: 2}
+      objectReference: {fileID: 11400000, guid: 1f896ce29c1e01c4fac8dab6749d5cdd, type: 2}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 1f896ce29c1e01c4fac8dab6749d5cdd, type: 2}
+      objectReference: {fileID: 11400000, guid: d379d21b41dd27f4fae848993d4a3945, type: 2}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: d379d21b41dd27f4fae848993d4a3945, type: 2}
+      objectReference: {fileID: 11400000, guid: 27a2b2012ae6697429d6dbdfbca2125d, type: 2}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 27a2b2012ae6697429d6dbdfbca2125d, type: 2}
+      objectReference: {fileID: 11400000, guid: 9e744bc301e3a53419dd830f3846ba6a, type: 2}
     - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: powerUps.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: 9e744bc301e3a53419dd830f3846ba6a, type: 2}
+      objectReference: {fileID: 11400000, guid: 8ccc30f21d67bf34f94269f69ba16db3, type: 2}
+    - target: {fileID: 2225967726681697863, guid: 0fee88d6daa7987468209a893e091735, type: 3}
+      propertyPath: powerUps.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a1d8b7a10201bf458028eb10853d816, type: 2}
     - target: {fileID: 2225967726681697880, guid: 0fee88d6daa7987468209a893e091735, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
