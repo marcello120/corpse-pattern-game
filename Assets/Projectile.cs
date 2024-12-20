@@ -54,6 +54,10 @@ public class Projectile : MonoBehaviour
             {
                 Vector3 directionToEnemy = (hitbox.transform.position - transform.position).normalized;
                 hitbox.getHit(damage, GetKnockBack(collision),directionToEnemy);
+                if (hitbox.parentEnemy.GetComponent<Ranged>() != null)
+                {
+                    hitbox.parentEnemy.GetComponent<Ranged>().charge();
+                }
             }
             Destroy(gameObject);
 

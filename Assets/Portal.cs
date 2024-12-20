@@ -22,12 +22,12 @@ public class Portal : MonoBehaviour
     private void load()
     {
         //StoryDataContainer storyData = GetComponent<StoryDataContainer>();
-        if (PlayerPrefs.GetFloat("Story " + scene_name, 0) != 1)
+        if (PlayerPrefs.GetFloat("Story " + scene_name + " Part 1", 0) != 1)
         {
             if(StaticData.storyDictionary.ContainsKey(scene_name + " Part 1"))
             {
                 StaticData.StoryPojo story = StaticData.storyDictionary[scene_name + " Part 1"];
-                PlayerPrefs.SetFloat("Story " + scene_name, 1);
+                PlayerPrefs.SetFloat("Story " + scene_name + " Part 1", 1);
                 StaticData.story = story;
                 StaticData.story.targetScene = scene_name;
                 StartCoroutine(LoadLevel("Story"));

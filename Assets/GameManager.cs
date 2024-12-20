@@ -258,6 +258,10 @@ public class GameManager : MonoBehaviour
             {
                 player.transform.position = new Vector3(-8.5f, -1.3f);
             }
+            if (StaticData.hubStorySpawn)
+            {
+                player.transform.position = new Vector3(1.19f, 0.45f);
+            }
         }
         else if (currentLevel == Level.ENDLESS)
         {

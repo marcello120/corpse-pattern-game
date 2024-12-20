@@ -3218,7 +3218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storyTime: 38
-  storyText: ' Mythical fury plagues the lands of Egypt. The old gods enraged, their
+  storyText: 'Mythical fury plagues the lands of Egypt. The old gods enraged, their
     ire unyielding reverberates through the mortal realm, leaving devastation in
     its wake.
 
@@ -3230,7 +3230,7 @@ MonoBehaviour:
 
     You must face
     the tumultuous currents of divine discontent and mend the hardened heart of this
-    forsaken land'
+    forsaken land...'
   storyClip: {fileID: 8300000, guid: b229a120033503f4099d85cd18278a4e, type: 3}
   targetScene: 
 --- !u!1 &1233266086
