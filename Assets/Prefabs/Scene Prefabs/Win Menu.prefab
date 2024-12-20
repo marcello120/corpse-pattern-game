@@ -7284,7 +7284,8 @@ MonoBehaviour:
   kecske: 5
   spimage: {fileID: 8014337246890051126}
   ressurectSceneName: SampleScene
-  quitSceneName: Start Menu
+  quitSceneName: HUB
+  win: 1
 --- !u!1 &8014337247004176802
 GameObject:
   m_ObjectHideFlags: 0

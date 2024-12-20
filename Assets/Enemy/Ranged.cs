@@ -132,12 +132,7 @@ public class Ranged : Enemy
 
                 if (projectileCount <= 0)
                 {
-                    movemetSpeed *= 2f;
-                    Destroy(roamTarget);
-                    roamTarget = null;
-                    setState(State.Moving);
-                    target = playerTransform;
-
+                    charge();
                 }
                 else
                 {
@@ -152,6 +147,15 @@ public class Ranged : Enemy
             //move to player
         }
 
+    }
+
+    public void charge()
+    {
+        movemetSpeed *= 2f;
+        Destroy(roamTarget);
+        roamTarget = null;
+        setState(State.Moving);
+        target = playerTransform;
     }
 
 }

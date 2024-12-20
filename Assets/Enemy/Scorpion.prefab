@@ -415,12 +415,13 @@ MonoBehaviour:
   spawnSound: {fileID: 0}
   maxHealth: 3
   health: 3
-  attackPower: 2
+  attackPower: 1
   movemetSpeed: 150
   knockbackReduction: 0
   state: 0
   isDead: 0
   stunned: 0
+  pastPosition: {x: 0, y: 0, z: 0}
   extra: 
   target: {fileID: 0}
   statusHolder: {fileID: 0}
@@ -429,6 +430,7 @@ MonoBehaviour:
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
   stunnable: 1
+  getsUnstuck: 1
   roamTarget: {fileID: 4112866766781027947, guid: bf7e01a002c4fc24a9eae746a3206a14, type: 3}
   playerTransform: {fileID: 0}
   chargeSpeed: 7.5

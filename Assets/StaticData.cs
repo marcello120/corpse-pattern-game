@@ -6,12 +6,15 @@ public class StaticData : MonoBehaviour
 {
     public static RiggedPlayerController.WeaponEnum chosenWeapon;
 
+    public static bool hubStorySpawn = false;
+
     public class StoryPojo
     {
         public float storyTime;
         public string storyText;
         public AudioClip storyClip;
         public string targetScene;
+        public bool unlocked = false;
 
         public StoryPojo(float storyTime, string storyText, AudioClip storyClip, string targetScene)
         {
@@ -19,6 +22,15 @@ public class StaticData : MonoBehaviour
             this.storyText = storyText;
             this.storyClip = storyClip;
             this.targetScene = targetScene;
+            unlocked = false;
+        }
+        public StoryPojo(float storyTime, string storyText, AudioClip storyClip, string targetScene, bool unlocked)
+        {
+            this.storyTime = storyTime;
+            this.storyText = storyText;
+            this.storyClip = storyClip;
+            this.targetScene = targetScene;
+            this.unlocked = unlocked;
         }
     }
 

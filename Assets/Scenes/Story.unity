@@ -473,16 +473,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 1961081765}
   alternateFont: {fileID: 11400000, guid: e51955a522beb4945a42bfb085d56e34, type: 2}
-  finalFont: {fileID: 11400000, guid: efa30bde53b6aec4486e1e61943198b8, type: 2}
+  finalFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   sentences:
   - "Mythical fury plagues the lands of Egypt. The old gods enraged, their ire unyielding
     reverberates through the mortal realm, leaving devastation in its wake. \n\nYou
     are the Hieromancer: warrior, scribe, vessel of recompense, the sole wielder
     of arcane-might locked in ancient glyphs. \n\nYou must face the tumultuous currents
     of divine discontent and mend the hardened heart of this forsaken land..."
-  typingSpeed: 0.075
-  randomLetterSteps: 3
-  startOnLoad: 1
+  typingSpeed: 0.2
+  randomLetterSteps: 2
+  startOnLoad: 0
+  type: 1
 --- !u!1 &696515371
 GameObject:
   m_ObjectHideFlags: 0
@@ -16191,7 +16192,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.6
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.06
+  m_Intensity: 0.08
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000

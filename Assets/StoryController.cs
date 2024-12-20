@@ -21,6 +21,8 @@ public class StoryController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+
         if (StaticData.story != null)
         {
             storyTime = StaticData.story.storyTime;

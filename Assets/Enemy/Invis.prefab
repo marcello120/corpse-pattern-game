@@ -312,12 +312,13 @@ MonoBehaviour:
   spawnSound: {fileID: 0}
   maxHealth: 1
   health: 1
-  attackPower: 2
+  attackPower: 1
   movemetSpeed: 100
   knockbackReduction: 0
   state: 0
   isDead: 0
   stunned: 0
+  pastPosition: {x: 0, y: 0, z: 0}
   extra: 
   target: {fileID: 0}
   statusHolder: {fileID: 0}
@@ -326,6 +327,7 @@ MonoBehaviour:
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
   stunnable: 1
+  getsUnstuck: 1
   frenzyDistToPlayer: 1.75
   baseSpeed: 1
   frenzySpeed: 300
