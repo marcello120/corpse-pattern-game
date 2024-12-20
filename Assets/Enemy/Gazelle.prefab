@@ -158,6 +158,7 @@ MonoBehaviour:
   state: 0
   isDead: 0
   stunned: 0
+  pastPosition: {x: 0, y: 0, z: 0}
   extra: gazelle
   target: {fileID: 0}
   statusHolder: {fileID: 0}
@@ -166,8 +167,9 @@ MonoBehaviour:
   restingPlace: {x: 0, y: 0, z: 0}
   aliveTime: 0
   stunnable: 1
+  getsUnstuck: 1
   attackPrepTimer:
-    time: 0.75
+    time: 0.5
     elapsedtime: 0
   postAttackTimer:
     time: 4
@@ -613,8 +615,8 @@ Transform:
   m_GameObject: {fileID: 7125137087579084151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7125137087411795782}
   m_RootOrder: 2

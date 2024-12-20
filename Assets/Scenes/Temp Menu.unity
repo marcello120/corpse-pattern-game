@@ -3080,6 +3080,7 @@ GameObject:
   - component: {fileID: 1220959814}
   - component: {fileID: 1220959817}
   - component: {fileID: 1220959818}
+  - component: {fileID: 1220959819}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3204,6 +3205,34 @@ MonoBehaviour:
   highscore_Endless: {fileID: 679585591}
   selectedSceneId: 0
   selectedSceneName: 
+--- !u!114 &1220959819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220959813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd891d03f988e18408db99239a85f972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyTime: 38
+  storyText: 'AAAAAAAAAAAAAAAAA Mythical fury plagues the lands of Egypt. The old
+    gods enraged, their ire unyielding reverberates through the mortal realm, leaving
+    devastation in its wake.
+
+
+    You are the Hieromancer: warrior, scribe, vessel
+    of recompense, the sole wielder of arcane-might locked in ancient glyphs.
+
+
+
+    You
+    must face the tumultuous currents of divine discontent and mend the hardened
+    heart of this forsaken land'
+  storyClip: {fileID: 8300000, guid: b229a120033503f4099d85cd18278a4e, type: 3}
+  targetScene: 
 --- !u!1 &1233266086
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,6 +55,7 @@ public class AltarScript : MonoBehaviour
                     if(riggedPlayerController != null && riggedPlayerController.GetComponent<RiggedPlayerController>() != null)
                     {
                         RiggedPlayerController rigged = riggedPlayerController.GetComponent<RiggedPlayerController>();
+                        //healingMode
                         if (healAmount > 0)
                         {
                             rigged.heal(healAmount);

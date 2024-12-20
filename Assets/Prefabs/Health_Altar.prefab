@@ -3271,7 +3271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptedCoprseCode: 11
-  healAmount: 2
+  healAmount: 1
   ability: 2
   coprseView: {fileID: 3979206902587379345}
   utiltiyView: {fileID: 3979206902841619015}

@@ -17,6 +17,17 @@ public class MenuController : MonoBehaviour
 
     public string selectedSceneName;
 
+    private void Awake()
+    {
+        if(PlayerPrefs.GetFloat("Intro",0) == 0)
+        {
+            PlayerPrefs.SetFloat("Intro", 1);
+            StoryDataContainer storyDataContainer = GetComponent<StoryDataContainer>();
+            StaticData.story = new StaticData.StoryPojo(storyDataContainer.storyTime, storyDataContainer.storyText, storyDataContainer.storyClip, SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("Story");
+        }
+
+    }
 
     private void Start()
     {

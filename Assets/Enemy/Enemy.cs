@@ -55,6 +55,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
     public Vector3 restingPlace;
     public float aliveTime;
     public bool stunnable = true;
+    public bool getsUnstuck = true;
 
 
 
@@ -131,13 +132,16 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
     public void unstuck()
     {
-        if(pastPosition!= null && target!=null && target.transform!=null)
+        if (moveStates.Contains(state) && getsUnstuck)
         {
-            if(Vector3.Distance(pastPosition, transform.position) < 0.001)
+            if (pastPosition != null && target != null && target.transform != null)
             {
-                Debug.LogWarning("Stuck " + gameObject.name);
-                Vector3 directionToPlayer = (target.position - transform.position).normalized;
-                transform.position += directionToPlayer * 0.5f;
+                if (Vector3.Distance(pastPosition, transform.position) < 0.001)
+                {
+                    Debug.LogWarning("Stuck " + gameObject.name);
+                    Vector3 directionToPlayer = (target.position - transform.position).normalized;
+                    transform.position += directionToPlayer * 0.5f;
+                }
             }
         }
         pastPosition = transform.position;
