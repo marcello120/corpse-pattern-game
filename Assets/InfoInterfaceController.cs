@@ -14,10 +14,11 @@ public class InfoInterfaceController : MonoBehaviour
 
     public Image leftImage;
     public Image rightImage;
-    public TextMeshProUGUI mainText;
     public TextMeshProUGUI secondText;
     public TextMeshProUGUI descText;
     public Button button;
+    public DaniText mainDaniText;
+
 
     CanvasGroup canvasGroup;
     CinemachineVirtualCamera cinemachineCamera;
@@ -63,11 +64,10 @@ public class InfoInterfaceController : MonoBehaviour
 
     public void FadeInHint(Sprite? sprite, string? textMain = "", string? textSecond = "", string? description = "", string? buttonText = "")
     {
-        mainText.text = textMain;
+        mainDaniText.setText(textMain);
         secondText.text = textSecond;
         descText.text = description;
         descText.enabled = true;
-        mainText.enabled = true;
         secondText.enabled = true;
         rightImage.enabled = true;
          if (sprite != null)
@@ -80,6 +80,7 @@ public class InfoInterfaceController : MonoBehaviour
             button.gameObject.active = true;
             button.GetComponentInChildren<TextMeshProUGUI>().text = buttonText;
         }
+        StopAllCoroutines();
         StartCoroutine(FadeCanvasGroup(canvasGroup, 0f, 1f, 1f));
     }
 
@@ -100,7 +101,7 @@ public class InfoInterfaceController : MonoBehaviour
     {
         leftImage.enabled = true;
         rightImage.enabled = true;
-        mainText.enabled = true;
+        mainDaniText.setText(" ");
         secondText.enabled = true;
         descText.enabled = true;
         button.gameObject.active = true;
@@ -111,7 +112,7 @@ public class InfoInterfaceController : MonoBehaviour
     {
         leftImage.enabled = false;
         rightImage.enabled = false;
-        mainText.enabled = false;
+        mainDaniText.setText("");
         secondText.enabled = false;
         descText.enabled = false;
         button.gameObject.active = false;

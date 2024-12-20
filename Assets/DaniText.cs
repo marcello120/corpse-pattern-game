@@ -1,30 +1,76 @@
+using System;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class DaniText : MonoBehaviour
 {
     public TextMeshProUGUI textDisplay; // The TextMeshPro component
     public TMP_FontAsset alternateFont; // Font for random letters
     public TMP_FontAsset finalFont; // Font for finalized letters
+    [TextArea(10, 10)]
     public string[] sentences; // Sentences to display
     public float typingSpeed = 0.02f; // Delay between finalized letters
     public int randomLetterSteps = 6; // Number of random iterations per letter
+    public bool startOnLoad = false;
 
     private int index = 0; // Current sentence index
 
+
     void Start()
     {
-        if (textDisplay == null || alternateFont == null || finalFont == null || sentences.Length == 0)
+        //if (startOnLoad)
+        //{
+        //    StartCoroutine(Type());
+        //}
+        //if (textDisplay == null || alternateFont == null || finalFont == null || sentences.Length == 0)
+        //{
+        //    return;
+        //}
+        //StartCoroutine(Type());
+    }
+
+    //private void OnEnable()
+    //{
+    //    DoTyping();
+    //}
+
+    public void setText(string input)
+    {
+        StopCoroutine(Type());
+        textDisplay.text = "";
+        if(input == null || input == "")
         {
-            return;
+            sentences = new[] {""};
         }
+        else
+        {
+            //sentences = input
+            //    .Split(new[] { '.', '!', '?', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+            //    .Select(sentence => sentence.Trim())
+            //    .Where(sentence => !string.IsNullOrEmpty(sentence))
+            //    .ToArray()
+            //    ;
+            sentences = new string[] {input};
+            StartCoroutine(Type());
+        }
+
+    }
+
+    private void DoTyping()
+    {
+        StopCoroutine(Type());
+        textDisplay.text = "";
         StartCoroutine(Type());
     }
 
     IEnumerator Type()
     {
-        yield return new WaitForSeconds(1f); // Initial delay
+        //yield return new WaitForSeconds(1f); // Initial delay
+        //yield return new WaitForSeconds(typingSpeed);
+
 
         string currentText = ""; // Text finalized so far
 
@@ -44,7 +90,7 @@ public class DaniText : MonoBehaviour
             currentText += letter;
             textDisplay.text = GetFormattedText(currentText, null); // Update with finalized text
 
-            yield return new WaitForSeconds(typingSpeed);
+            //yield return new WaitForSeconds(typingSpeed);
         }
     }
 
@@ -53,7 +99,7 @@ public class DaniText : MonoBehaviour
         char randomLetter;
         do
         {
-            randomLetter = (char)Random.Range(32, 127); // Printable ASCII range
+            randomLetter = (char)UnityEngine.Random.Range(32, 127); // Printable ASCII range
         } while (randomLetter == finalLetter); // Ensure random letter isn't the final letter
 
         return randomLetter;

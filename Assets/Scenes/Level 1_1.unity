@@ -17984,7 +17984,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756407570}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0165ab7f03adcd34d95f337fd49a5efb, type: 3}
   m_Name: 
@@ -17996,6 +17996,7 @@ MonoBehaviour:
   - "Nem vagyok ideges, f\u0151 a nyugalom"
   typingSpeed: 0.05
   randomLetterSteps: 50
+  startOnLoad: 0
 --- !u!114 &1756407573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22461,6 +22462,10 @@ PrefabInstance:
     - target: {fileID: 3058139737074922926, guid: 54455ee0d50703f4b81e442806497440, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -9.700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750597236542315845, guid: 54455ee0d50703f4b81e442806497440, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4480459501102917697, guid: 54455ee0d50703f4b81e442806497440, type: 3}
       propertyPath: m_Name
