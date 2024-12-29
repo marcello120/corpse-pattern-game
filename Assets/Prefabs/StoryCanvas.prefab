@@ -360,11 +360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "When the blade turned upon his own flesh, the sun had already risen high,
-    Ra himself, casting its indifferent light over the mound of cadavers. The hieroglyph
-    gleamed, wet and terrible, as the priest\u2019s body slumped into the pattern.
-    A perfect fit. And as the final piece fell into place, the air shifted. The gods
-    had answered\u2026"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

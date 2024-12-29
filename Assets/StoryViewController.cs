@@ -90,7 +90,7 @@ public class StoryViewController : MonoBehaviour
         }
         else
         {
-            textDisplay.text = "Story not yet discovered";
+            textDisplay.text = "Unlock this Story piece by: <br><br>" + getLevelHint(key) + getLevelName(key);
         }
         foreach (StoryItemUi item in items)
         {
@@ -100,6 +100,48 @@ public class StoryViewController : MonoBehaviour
                 item.setChosen();
             }
         }
+    }
+
+    public string getLevelName(string key)
+    {
+        if(key.Contains("Level 1_1"))
+        {
+            return "Level 1";
+        }
+        if (key.Contains("Level 1_2"))
+        {
+            return "Level 2";
+        }
+        if (key.Contains("Level 1_3"))
+        {
+            return "Level 3";
+        }
+        if (key.Contains("Finale"))
+        {
+            return "";
+        }
+        return key;
+    }
+
+    public string getLevelHint(string key)
+    {
+        if (key.Contains("Part 1"))
+        {
+            return "Starting ";
+        }
+        if (key.Contains("Part 2"))
+        {
+            return "Finding the Story tablet on ";
+        }
+        if (key.Contains("Part 3"))
+        {
+            return "Winning ";
+        }
+        if (key.Contains("Finale"))
+        {
+            return "Finding all other story pieces";
+        }
+        return key;
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha, float duration, Action onComplete = null)

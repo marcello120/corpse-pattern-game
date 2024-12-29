@@ -1,10 +1,12 @@
 
+using Dan.Main;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
@@ -254,13 +256,22 @@ public class GameManager : MonoBehaviour
         {
 
             pattern = new int[1, 1] { { 404 } };
+            if (StaticData.hubStorySpawn)
+            {
+                player.transform.position = new Vector3(1.19f, 0.45f);
+            }
             if (PlayerPrefs.GetInt("AdvancedSpawn", 0) == 1)
             {
                 player.transform.position = new Vector3(-8.5f, -1.3f);
             }
-            if (StaticData.hubStorySpawn)
+            else
             {
-                player.transform.position = new Vector3(1.19f, 0.45f);
+                if (PlayerPrefs.GetString("SelectedUtility", "nope") == "nope" && PlayerPrefs.GetString("MASS_SLOW_purchased", "nope") == "nope")
+                {
+                    PlayerPrefs.SetString("SelectedUtility", "MASS_SLOW");
+                    PlayerPrefs.SetInt("MASS_SLOW_purchased", 1);
+                    player.selectedUtility = RiggedPlayerController.Utility.MASS_SLOW;
+                }
             }
         }
         else if (currentLevel == Level.ENDLESS)
@@ -416,6 +427,14 @@ public class GameManager : MonoBehaviour
         }
         int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
         PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
+        if(currentLevel == Level.LEVEL1_1)
+        {
+            PlayerPrefs.SetInt("Unlocked " + Level.LEVEL1_2.ToString(),1);
+        }
+        if (currentLevel == Level.LEVEL1_2)
+        {
+            PlayerPrefs.SetInt("Unlocked " + Level.LEVEL1_3.ToString(), 1);
+        }
         yield return new WaitForSeconds(0.1f);
 
     }
@@ -432,9 +451,29 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore_" + currentLevel.ToString(), finalScore);
         }
-        int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
-        PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
-
+        if (finalScore > 0)
+        {
+            int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
+            PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
+        }
+        if (currentLevel == Level.ENDLESS)
+        {
+            if (highscore < finalScore)
+            {
+                string playerName = PlayerPrefs.GetString("Username");
+                if (playerName == null || playerName == "")
+                {
+                    return;
+                }
+                Leaderboards.HieromancerEndless.UploadNewEntry(playerName, finalScore, isSuccessful =>
+                {
+                    if (isSuccessful)
+                        return;
+                    if (!isSuccessful)
+                        Debug.LogWarning("Leaderboard Cannot Load!");
+                });
+            }
+        }
     }
 
     public int removeCoprseAndReturnID(Vector2Int gridPos)
