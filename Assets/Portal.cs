@@ -8,7 +8,9 @@ using System;
 public class Portal : MonoBehaviour
 {
 
-    public string scene_name;
+    private string scene_name;
+    public GameManager.Level level;
+
     public Material transitionMaterial;
     public float transitionTime = 1f;
     public float transitionSpeed = 1f;
@@ -16,7 +18,12 @@ public class Portal : MonoBehaviour
 
     void Start()
     {
-        
+        scene_name = StaticData.sceneNames[level];
+        if((level == GameManager.Level.LEVEL1_2 || level == GameManager.Level.LEVEL1_3) &&  PlayerPrefs.GetInt("Unlocked " + level.ToString(), 0) != 1)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+        }
     }
 
     private void load()

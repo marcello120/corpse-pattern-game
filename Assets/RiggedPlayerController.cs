@@ -381,9 +381,16 @@ public class RiggedPlayerController : PlayerController
         {
             return;
         }
-        if (context.canceled && selectedUtility != Utility.NONE)
-        {
-            AudioSource.PlayClipAtPoint(utilSound,new Vector3(transform.position.x,transform.position.y, FindObjectOfType(typeof(AudioListener)).GetComponent<Transform>().position.z), 100f);
+        if (context.canceled)
+        { 
+            if (selectedUtility != Utility.NONE)
+            {
+                AudioSource.PlayClipAtPoint(utilSound, new Vector3(transform.position.x, transform.position.y, FindObjectOfType(typeof(AudioListener)).GetComponent<Transform>().position.z), 100f);
+            }
+            else
+            {
+
+            }
         }
 
         if (selectedUtility == Utility.MASS_SLOW && context.canceled)

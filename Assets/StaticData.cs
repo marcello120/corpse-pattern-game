@@ -8,6 +8,28 @@ public class StaticData : MonoBehaviour
 
     public static bool hubStorySpawn = false;
 
+    public static Dictionary<GameManager.Level, string> levelNames = new Dictionary<GameManager.Level, string>
+    {
+        {GameManager.Level.LEVEL1_1, "Level 1" },
+        {GameManager.Level.LEVEL1_2, "Level 2" },
+        {GameManager.Level.LEVEL1_3, "Level 3" },
+        {GameManager.Level.ENDLESS, "Endless Mode" },
+        {GameManager.Level.DARKNESS, "Darkness" },
+
+    };
+
+    public static Dictionary<GameManager.Level, string> sceneNames = new Dictionary<GameManager.Level, string>
+    {
+        {GameManager.Level.LEVEL1_1, "Level 1_1" },
+        {GameManager.Level.LEVEL1_2, "Level 1_2" },
+        {GameManager.Level.LEVEL1_3, "Level 1_3" },
+        {GameManager.Level.ENDLESS, "Endless" },
+        {GameManager.Level.DARKNESS, "Darkness" },
+        {GameManager.Level.HUB, "HUB" },
+
+
+    };
+
     public class StoryPojo
     {
         public float storyTime;

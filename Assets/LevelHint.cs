@@ -6,17 +6,6 @@ public class LevelHint : MonoBehaviour
 {
     public GameManager.Level level;
 
-    private Dictionary<GameManager.Level, string> levelNames = new Dictionary<GameManager.Level, string>
-    {
-        {GameManager.Level.LEVEL1_1, "Level 1" },
-        {GameManager.Level.LEVEL1_2, "Level 2" },
-        {GameManager.Level.LEVEL1_3, "Level 3" },
-        {GameManager.Level.ENDLESS, "Endless Mode" },
-        {GameManager.Level.DARKNESS, "Darkness" },
-
-    };
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +25,20 @@ public class LevelHint : MonoBehaviour
             int highscore = PlayerPrefs.GetInt("HighScore_" + level, 0);
             if(level == GameManager.Level.DARKNESS)
             {
-               InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, levelNames[level], "Top Score: " + highscore, "Earn TRIPLE the score when venturing into the Darkness <br><br>Make sure to bring a TORCH");
+               InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, StaticData.levelNames[level], "Top Score: " + highscore, "Earn TRIPLE the score when venturing into the Darkness <br><br>Make sure to bring a TORCH");
+               return;
             }
-            else
+            //is unlocked
+            if ((level == GameManager.Level.LEVEL1_2 || level == GameManager.Level.LEVEL1_3) &&  PlayerPrefs.GetInt("Unlocked " + level, 0) == 0)
             {
-                InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, levelNames[level], "Top Score: " + highscore);
+                //level to beat
+                string levelToBeat = level == GameManager.Level.LEVEL1_2 ? StaticData.levelNames[GameManager.Level.LEVEL1_1] : StaticData.levelNames[GameManager.Level.LEVEL1_2];
+                InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, StaticData.levelNames[level], "Top Score: " + highscore, "Beat " + levelToBeat + " to unlock this level." );
+                return;
             }
+
+            InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, StaticData.levelNames[level], "Top Score: " + highscore);
+            
         }
     }
 
