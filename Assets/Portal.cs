@@ -28,6 +28,16 @@ public class Portal : MonoBehaviour
 
     private void load()
     {
+        if (level == GameManager.Level.ENDLESS)
+        {
+            if (PlayerPrefs.GetString("Username") == "")
+            {
+                StartCoroutine(LoadLevel("Name"));
+                return;
+            }
+            StartCoroutine(LoadLevel(scene_name));
+        }
+
         //StoryDataContainer storyData = GetComponent<StoryDataContainer>();
         if (PlayerPrefs.GetFloat("Story " + scene_name + " Part 1", 0) != 1)
         {

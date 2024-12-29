@@ -1,10 +1,12 @@
 
+using Dan.Main;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
@@ -453,6 +455,24 @@ public class GameManager : MonoBehaviour
         {
             int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
             PlayerPrefs.SetInt("TotalScore", totalScore + finalScore);
+        }
+        if (currentLevel == Level.ENDLESS)
+        {
+            if (highscore < finalScore)
+            {
+                string playerName = PlayerPrefs.GetString("Username");
+                if (playerName == null || playerName == "")
+                {
+                    return;
+                }
+                Leaderboards.HieromancerEndless.UploadNewEntry(playerName, finalScore, isSuccessful =>
+                {
+                    if (isSuccessful)
+                        return;
+                    if (!isSuccessful)
+                        Debug.LogWarning("Leaderboard Cannot Load!");
+                });
+            }
         }
     }
 

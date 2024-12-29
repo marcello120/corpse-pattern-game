@@ -1,5 +1,7 @@
+using Dan.Main;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelHint : MonoBehaviour
@@ -35,6 +37,21 @@ public class LevelHint : MonoBehaviour
                 string levelToBeat = level == GameManager.Level.LEVEL1_2 ? StaticData.levelNames[GameManager.Level.LEVEL1_1] : StaticData.levelNames[GameManager.Level.LEVEL1_2];
                 InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, StaticData.levelNames[level], "Top Score: " + highscore, "Beat " + levelToBeat + " to unlock this level." );
                 return;
+            }
+            if(level == GameManager.Level.ENDLESS)
+            {
+                string leaderboardText = "";
+                Leaderboards.HieromancerEndless.GetEntries(entries =>
+                {
+                    foreach (var entry in entries)
+                    {
+                       leaderboardText+=(entry.Username + ": " + entry.Score + "<br>");
+                    }
+                    InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, StaticData.levelNames[level], "Top Score: " + highscore, leaderboardText);
+
+                });
+                return;
+
             }
 
             InfoInterfaceController.Instance.FadeInHintAndZoomAndMove(transform.position, StaticData.levelNames[level], "Top Score: " + highscore);
